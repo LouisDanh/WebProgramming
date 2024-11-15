@@ -1,4 +1,0 @@
-Phân công nhiệm vụ ngày 11/6/2024(Thiết kế giao diện)
-Thời hạn hoàn thành: 1 tuần
-- Danh Phương Nhã - 22130191: phần login, header, footer
-- Huỳnh Minh Hiển - 22130080: phần body
