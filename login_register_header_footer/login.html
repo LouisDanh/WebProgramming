@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Thêm Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thêm Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navbar">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand mx-auto" href="#"> <i class="bi bi-star"></i> HISHAKU </a>
+            <!-- Nút toggler cho mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Các mục trong navbar -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-envelope"></i> Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-question-circle"></i> Help</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>    
+
+    <!-- Login and Create Account Section -->
+    <div class="container my-5 pt-5">
+        <div class="row justify-content-center">
+            <!-- Phần Log in -->
+            <div class="col-md-5">
+                <h1 class="text-center">Log in</h1>
+                <p class="text-center">Don't have an account yet? <a href="#">Sign up</a></p>
+                <form id="loginForm" method="post" enctype="multipart/form-data">
+                    <!-- Trường nhập email -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="EMAIL" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <!-- Trường nhập mật khẩu -->
+                    <div class="form-floating mb-3 position-relative">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="PASSWORD">
+                        <label for="password">Password</label>
+                        <!-- Nút toggle hiện/ẩn mật khẩu -->
+                        <button type="button" id="toggle-password" class="btn position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <!-- Nút submit -->
+                    <button type="submit" class="btn btn-dark btn-block mt-3" id="submitLoginForm">Log in</button>
+                </form>
+            </div>
+
+            <!-- Phần Create Account -->
+            <div class="col-md-5 text-center">
+                <h1>Create an AP account</h1>
+                <p>Your personal account enables you to check your watches in and benefit from additional exclusive features.</p>
+                <a href="register.html" class="btn btn-dark btn-block mt-3">Create an account</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5 py-3">
+        <p>© 2024 HISHAKU - All Rights Reserved</p>
+    </footer>
+
+    <!-- Bootstrap JS và mã JavaScript tùy chỉnh -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Thay đổi trạng thái hiện/ẩn mật khẩu
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            var passwordField = document.getElementById('password');
+            var icon = this.querySelector('i');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text'; // Hiện mật khẩu
+                icon.classList.remove('bi-eye'); // Đổi icon
+                icon.classList.add('bi-eye-slash');
+            } else {
+                passwordField.type = 'password'; // Ẩn mật khẩu
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+    </script>
+</body>
+
+</html>

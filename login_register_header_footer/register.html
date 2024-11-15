@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an AP Account</title>
+    <!-- Thêm Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thêm Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-auto" href="#"> <i class="bi bi-star"></i> HISHAKU </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="login.html"><i class="bi bi-house-door"></i>
+                            Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-envelope"></i> Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-question-circle"></i> Help</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Container chính -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Create an AP Account</h2>
+        <p class="text-center">Your personal account enables you to check your watches in and benefit from additional
+            exclusive features.</p>
+
+        <!-- Form đăng ký -->
+        <form id="registerForm">
+            <div class="row">
+                <!-- Salutation -->
+                <div class="col-md-4 mb-3">
+                    <label for="salutation" class="form-label">Salutation</label>
+                    <select class="form-select" id="salutation" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Ms">Ms</option>
+                    </select>
+                </div>
+
+                <!-- First Name -->
+                <div class="col-md-4 mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                </div>
+
+                <!-- Last Name -->
+                <div class="col-md-4 mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+            </div>
+
+            <!-- Location -->
+            <div class="mb-3">
+                <label for="location" class="form-label">Your Location</label>
+                <select class="form-select" id="location" required>
+                    <option selected disabled value="">Loading countries...</option>
+                </select>
+            </div>
+
+            <!-- Password -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="password" class="form-label">Create a Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                        required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password"
+                        required>
+                </div>
+            </div>
+
+            <!-- Privacy Policy -->
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                <label class="form-check-label" for="privacyCheck">
+                    I acknowledge that my personal data will be processed in accordance with Audemars Piguet Privacy
+                    Notice.
+                </label>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-dark w-100">Create an Account</button>
+        </form>
+
+        <!-- Đã có tài khoản -->
+        <p class="text-center mt-3">Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+
+    <!-- Thêm Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Tải danh sách quốc gia từ API -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const locationSelect = document.getElementById("location");
+
+            // Fetch danh sách quốc gia từ API
+            fetch("https://restcountries.com/v3.1/all")
+                .then((response) => response.json())
+                .then((data) => {
+                    data.sort((a, b) => a.name.common.localeCompare(b.name.common)); // Sắp xếp theo tên quốc gia
+                    data.forEach((country) => {
+                        const option = document.createElement("option");
+                        option.value = country.name.common;
+                        option.textContent = country.name.common;
+                        locationSelect.appendChild(option);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching countries:", error);
+                    locationSelect.innerHTML = `<option value="">Unable to load countries</option>`;
+                });
+        });
+    </script>
+</body>
+
+</html>
