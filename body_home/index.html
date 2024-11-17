@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"> -->
 
 </head>
 
@@ -47,23 +46,23 @@
                                         </div>
                                     </div>
                                 </a>
-                               <a href="" class="w-25 text-decoration-none" >
-                                <div class="card border-0">
-                                    <img src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1V901_308x424_0.jpg"
-                                        alt="ảnh sản phẩm" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Tên sản phẩm</h5>
-                                        <h6 class="card-subtitle">Mô tả thêm sự kiện (có hoặc không)</h6>
-                                        <p class="fw-bold card-text">3.900.000đ</p>
+                                <a href="" class="w-25 text-decoration-none">
+                                    <div class="card border-0">
+                                        <img src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1V901_308x424_0.jpg"
+                                            alt="ảnh sản phẩm" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Tên sản phẩm</h5>
+                                            <h6 class="card-subtitle">Mô tả thêm sự kiện (có hoặc không)</h6>
+                                            <p class="fw-bold card-text">3.900.000đ</p>
+                                        </div>
                                     </div>
-                                </div>
-                               </a>                                
+                                </a>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <!-- 5 sản phẩm đc hiển thị -->
                             <div class="d-flex flex-row gap-3">
-                               
+
                             </div>
                         </div>
                         <!-- list 2 -->
@@ -197,8 +196,41 @@
             </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-        <script src="script.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script> -->
+        <script>
+            //body start
+            //show tabled product
+            const tabledProducts = document.getElementsByClassName("tabled-products");
+            const containerTabled = document.getElementsByClassName("tabled-product-detail");
+
+            //event tabled
+            {
+
+                // Hàm để cập nhật lớp "fw-bold" cho tab được chọn
+                function updateTabHighlight(selectedElement) {
+                    for (const element of tabledProducts) {
+                        element.classList.remove("fw-bold");
+                    }
+                    selectedElement.classList.add("fw-bold");
+                }
+
+                // Hàm để hiển thị danh sách sản phẩm  tương ứng với tab được chọn
+                function showContainerTabled(index) {
+                    for (let i = 0; i < containerTabled.length; i++) {
+                        containerTabled[i].classList.toggle("d-none", i !== index);
+                    }
+                }
+
+            }
+            // Gán sự kiện click cho từng tab
+            for (let i = 0; i < tabledProducts.length; i++) {
+                tabledProducts[i].addEventListener("click", () => {
+                    updateTabHighlight(tabledProducts[i]); // Cập nhật tab được chọn
+                    showContainerTabled(i); // Hiển thị container tương ứng
+                });
+            }
+            //body end
+        </script>
 </body>
 
 </html>
