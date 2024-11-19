@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Description</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Danh sách các góc chụp của sản phẩm (chiếm 2 phần) -->
+            <div class="col-1 d-flex justify-content-start align-items-center flex-column px-2 mt-5">
+                <img src="/el_sku_G12S01_640x640_0.avif" alt="Image 1" class="img-60px">
+                <!-- <img src="/el_sku_G12S01_640x640_0.avif" alt="Image 1" class="img-60px">
+                <img src="/el_sku_G12S01_640x640_0.avif" alt="Image 1" class="img-60px">
+                <img src="/el_sku_G12S01_640x640_0.avif" alt="Image 1" class="img-60px"> -->
+            </div>
+
+            <!-- Khu vực center (chiếm phần còn lại của màn hình) -->
+            <div class="col">
+                <div class="row">
+                    <!-- Chi tiết từng góc chụp -->
+                    <div class="col">
+                        <img src="/el_sku_G12S01_640x640_0.avif" alt="Product Detail" class="img-fluid mb-3">
+                        <!-- Mô tả chi tiết thành phần -->
+                        <div class="border-bottom">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h2>Thành phần</h2>
+                                <!-- Tăng kích thước icon -->
+                                <div class="tang-kich-thuoc-plus">
+                                    <i class="bi bi-plus" id="toggleIcon"></i>
+                                </div>
+                            </div>
+                            <div id="ingredientsContent" class="d-none">
+                                <p>Hydrolyzed Rice Extract, Yeast Extract\Faex\Extrait De Levure, Hordeum Vulgare
+                                    Extract\Extrait D'Orge, Anthemis Nobilis (Chamomile) Flower Extract, Cucumis Sativus
+                                    (Cucumber) Fruit Extract, Helianthus Annuus (Sunflower) Seed Extract, Sorbitol,
+                                    Potassium Palmitoyl Hydrolyzed Wheat Protein, Propylene Glycol Dicaprate,
+                                    Maltodextrin,
+                                    Steareth-21, Dimethicone Crosspolymer-3, Steareth-2, Hexylene Glycol, Xanthan Gum,
+                                    Caprylyl Glycol, Ethylhexylglycerin, Glucose, Bht, Disodium Edta, Phenoxyethanol,
+                                    Sodium
+                                    Dehydroacetate, Potassium Sorbate, Yellow 5 (Ci 19140), Red 4 (Ci 14700)
+                                </p>
+                                <p>Xin lưu ý rằng danh sách thành phần có thể thay đổi hoặc thay đổi theo thời gian. Vui
+                                    lòng tham khảo danh sách thành phần trên gói sản phẩm bạn nhận được để biết danh
+                                    sách
+                                    thành phần cập nhật nhất.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mt-5">
+                            <div class="text-center">
+                                <h1>ANR ECLIPSE-WN</h1>
+                                <h4>4.200.000₫</h4>
+                            </div>
+
+                            <!-- Chỉnh lại phần button số lượng -->
+                            <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
+                                <p class="mb-0 fw-bold">SLG</p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <button class="btn btn-dark btn-sm" id="decrease">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                    <span class="text-center" id="quantity">1</span>
+                                    <button class="btn btn-dark btn-sm" id="increase">
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>                                
+                                    <!-- Thêm vào giỏ hàng -->
+                                    <div class="text-center">
+                                        <button class="btn btn-dark ">Thêm vào giỏ hàng</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Thông tin giao hàng -->
+                            <div class="text-center mt-3">
+                                <p class="mb-0">Giao hàng tiêu chuẩn miễn phí và trả lại</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script src="/scripts.js"></script>
+</body>
+
+</html>
