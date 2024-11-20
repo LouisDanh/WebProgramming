@@ -13,11 +13,28 @@ $(document).ready(function(){
         }
     });
 });
-// Tăng số lượng sp
 let quantity = 1;
 document.getElementById('decrease').onclick = () => {
-    if (quantity > 1) document.getElementById('quantity').textContent = --quantity;
+    if (quantity > 1) {
+        quantity--;
+        document.getElementById('quantity').textContent = quantity;
+    }
 };
 document.getElementById('increase').onclick = () => {
-    document.getElementById('quantity').textContent = ++quantity;
+    quantity++;
+    document.getElementById('quantity').textContent = quantity;
 };
+// đổi ảnh khi nhấp 
+const thumbnails = document.querySelectorAll('.img-60px');
+
+// Get the main image element where the larger image will be displayed
+const mainImage = document.getElementById('mainImage');
+
+// Attach click event to each thumbnail
+thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener('click', (e) => {
+        // Change the source of the main image to the clicked thumbnail's data-large-image value
+        mainImage.src = e.target.getAttribute('data-large-image');
+    });
+});
+

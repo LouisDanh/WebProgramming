@@ -2,6 +2,10 @@
     object-fit: contain;
     width: 60px;
     height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
     
 }
 .tang-kich-thuoc-plus{
@@ -10,3 +14,24 @@
 .border-bottom{
     border-bottom: 6px solid #000;
 }
+#prices {
+    color: red;
+}
+
+.img-60px:hover {
+    transform: scale(1.1);
+}
+.image-container {
+    width: 526px; /* Fixed width */
+    height: 526px; /* Fixed height */
+    overflow: hidden; /* Ensures any overflow is hidden */
+}
+
+.image-container img {
+    width: 100%; /* Image width is 100% of the container */
+    height: 100%; /* Image height is 100% of the container */
+    object-fit: cover; /* Scale the image to cover the container, no distortion */
+}
+
+
+
