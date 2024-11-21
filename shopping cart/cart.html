@@ -169,8 +169,43 @@
                     </div>
                     <!-- Right Column: Product Image -->
                     <div class="col">
-                        <div class="product-image-card border">
-                            <img src="/product1.png" class="img-fluid">
+                        <div class="m">
+                            <!-- Card thanh toán -->
+                            <div class=" card align-items-center p-2 mb-4">
+                                <button class="btn btn-dark w-100 ">Tiến hành thanh toán</button>
+                                <div class="w-100">
+                                    <i class="bi bi-credit-card card-icon"></i>
+                                    <span class="visa">Visa</span> 
+                                    <i class="bi bi-bank bank-icon"></i>
+                                </div>
+                            </div>
+                            <!-- Hóa đơn -->
+                            <div class="container mt-5 card">
+                                <div class="order-summary">
+                                    <h3>Tóm tắt đơn hàng</h3>
+                                    <div class="item">
+                                        <span>Tạm tính:</span>
+                                        <span class="item-value">4.950.000₫</span>
+                                    </div>
+                                    <div class="item">
+                                        <span>Giao hàng:</span>
+                                        <span class="free-shipping">giao hàng tiêu chuẩn (Miễn phí)</span>
+                                    </div>
+                                    <div class="total">
+                                        <span>Tổng giá trị đơn hàng:</span>
+                                        <span class="item-value">4.950.000₫</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card voucher -->
+                            <div class="card flex-row align-items-center p-3">
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="voucher" placeholder="NHẬP MÃ ƯU ĐÃI">
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-dark">Áp dụng</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

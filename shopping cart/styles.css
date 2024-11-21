@@ -1,4 +1,3 @@
-
 /* Image Container */
 .product-image-container {
     width: 90px;
@@ -57,7 +56,8 @@
     border: 1px solid #ddd;
 }
 
-.quantity-btn i, .quantity-btn span {
+.quantity-btn i,
+.quantity-btn span {
     display: block;
     width: 100%;
     height: 100%;
@@ -77,3 +77,27 @@
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+
+/* Định dạng cho trường nhập liệu */
+.form-control {
+    position: relative;
+    padding-top: 20px;
+    /* Tạo khoảng cách cho placeholder */
+}
+
+/* Định dạng cho trường nhập liệu */
+.form-control {
+    position: relative;
+    padding-top: 20px;
+    /* Tạo khoảng cách cho placeholder */
+}
+.visa {
+    font-size: 1rem; font-weight: bold; color: #1a1f71;}
+.wallet-icon{
+    color: green;
+}
+.card-icon{
+    color: orange;
+}
+
+
