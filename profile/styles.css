@@ -1,0 +1,13 @@
+:root{
+    --color-primary: #F2CD95;
+}
+.primary-color-hover{
+    cursor: pointer;
+}
+.primary-color-hover:hover{
+    background-color: var(--color-primary);
+}
+.avatar-img{
+    object-fit: contain;
+    margin-right:1rem ;
+}
