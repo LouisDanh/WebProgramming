@@ -1,4 +1,0 @@
-Phân công nhiệm vụ ngày 21/1/2024(Thiết kế giao diện)
-Thời hạn hoàn thành: 1 tuần
-- Danh Phương Nhã - 22130191: trang lấy lại mật khẩu, trang cá nhân(địa chỉ, đổi mật khẩu)
-- Huỳnh Minh Hiển - 22130080: lịch sử mua hàng, trang cá nhân(hồ sơ, ngân hàng)

@@ -1,122 +1,57 @@
-$(document).ready(function() {
-    // Toggling ingredients visibility with icon change
-    $("#toggleIcon").click(function() {
-        const ingredientsContent = $("#ingredientsContent");
-        const isHidden = ingredientsContent.hasClass("d-none");
+$(document).ready(function () {
+    // Hàm cập nhật tổng giá trị đơn hàng
+    const updateTotalPrice = () => {
+        let totalPrice = 0;
+        let totalItems = 0; // Variable to keep track of the total items in the cart
 
-        ingredientsContent.toggleClass("d-none", !isHidden);
-        $(this).toggleClass("bi-plus bi-dash", isHidden);
-    });
-
-    // Function to update the price for a given product
-    const updatePrice = (productElement, quantity) => {
-        const priceElement = productElement.find('.total-price');
-        const basePrice = parseInt(priceElement.data('price'));
-        const totalPrice = basePrice * quantity;
-        priceElement.text(totalPrice.toLocaleString('vi-VN') + '₫');
-    };
-
-    // Handle Quantity Change for all products
-    $('.product-details').each(function() {
-        const productElement = $(this);
-        let quantity = 1;
-
-        // Event delegation for decrease and increase buttons
-        productElement.on('click', '.decrease', function() {
-            if (quantity > 1) {
-                quantity--;
-                productElement.find('.quantity-display').text(quantity);
-                updatePrice(productElement, quantity);
-            }
-        });
-
-        productElement.on('click', '.increase', function() {
-            quantity++;
-            productElement.find('.quantity-display').text(quantity);
-            updatePrice(productElement, quantity);
-        });
-
-        // Initial price update on page load
-        updatePrice(productElement, quantity);
-    });
-
-    // Image change functionality
-    const thumbnails = document.querySelectorAll('.img-60px');
-    const mainImage = document.getElementById('mainImage');
-
-    thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', (e) => {
-            mainImage.src = e.target.getAttribute('data-large-image');
-        });
-    });
-    
-    // Price adjustment logic for single product
-    let quantity = 1;
-    const priceElement = $('#prices');
-    const basePrice = parseInt(priceElement.data('price'));
-
-    const updateSingleProductPrice = () => {
-        const totalPrice = basePrice * quantity;
-        priceElement.text(totalPrice.toLocaleString('vi-VN') + '₫');
-    };
-
-    // Decrease quantity for the single product
-    $('#decrease').click(function() {
-        if (quantity > 1) {
-            quantity--;
-            $('#quantity').text(quantity);
-            updateSingleProductPrice();
-        }
-    });
-
-    // Increase quantity for the single product
-    $('#increase').click(function() {
-        quantity++;
-        $('#quantity').text(quantity);
-        updateSingleProductPrice();
-    });
-
-    // Initial price update for the single product
-    updateSingleProductPrice();
-});
-
-$(document).ready(function() {
-    // Function to update the cart count dynamically
-    const updateCartCount = () => {
-        let totalQuantity = 0;
-        
-        // Loop through each product and get the quantity value
-        $('.product-item').each(function() {
+        // Duyệt qua từng sản phẩm trong giỏ hàng và tính toán tổng giá trị
+        $('.cart-item').each(function () {
+            // Lấy số lượng sản phẩm
             const quantity = parseInt($(this).find('.quantity-display').text());
-            totalQuantity += quantity;
+            // Lấy giá của sản phẩm
+            const price = parseInt($(this).find('.total-price').data('price'));
+            // Tính toán tổng giá trị đơn hàng
+            totalPrice += quantity * price;
+            // Cập nhật tổng số lượng sản phẩm
+            totalItems += quantity;
         });
-        
-        // Update the cart count displayed in the h2
-        $('#cart-count').text(`Giỏ hàng của bạn [${totalQuantity}]`);
+
+        // Cập nhật tổng giá trị tạm tính
+        $('#total-amount').text(totalPrice.toLocaleString('vi-VN') + '₫');
+        // Cập nhật tổng giá trị đơn hàng
+        $('#final-total').text(totalPrice.toLocaleString('vi-VN') + '₫');
+
+        // Cập nhật số lượng giỏ hàng
+        $('#cart-count').text('Giỏ hàng của bạn [' + totalItems + ']');
     };
 
-    // Handle Quantity Change for each product
-    $('.product-details').each(function() {
-        const productElement = $(this); // Get the current product
-        let quantity = 1; // Default quantity
+    // Gán sự kiện cho các nút tăng và giảm số lượng sản phẩm
+    $('.cart-items').on('click', '.decrease, .increase', function () {
+        // Lấy sản phẩm đang thay đổi số lượng
+        const productItem = $(this).closest('.cart-item');
+        // Lấy số lượng hiện tại của sản phẩm
+        let quantity = parseInt(productItem.find('.quantity-display').text());
 
-        // Event listener for decrease button
-        productElement.find('.decrease').click(function() {
-            if (quantity > 1) {
-                quantity--;
-                productElement.find('.quantity-display').text(quantity); // Update quantity display
-                updateCartCount(); // Update the cart count
-            }
-        });
-
-        // Event listener for increase button
-        productElement.find('.increase').click(function() {
+        // Nếu nút giảm được nhấn và số lượng lớn hơn 1, giảm số lượng đi 1
+        if ($(this).hasClass('decrease') && quantity > 1) {
+            quantity--;
+        } 
+        // Nếu nút tăng được nhấn, tăng số lượng lên 1
+        else if ($(this).hasClass('increase')) {
             quantity++;
-            productElement.find('.quantity-display').text(quantity); // Update quantity display
-            updateCartCount(); // Update the cart count
-        });
+        }
 
-        // Initial cart count update on page load
-        updateCartCount();
+        // Cập nhật lại số lượng hiển thị trên giao diện
+        productItem.find('.quantity-display').text(quantity);
+        // Lấy giá của sản phẩm
+        const price = parseInt(productItem.find('.total-price').data('price'));
+        // Cập nhật lại giá sản phẩm sau khi thay đổi số lượng
+        productItem.find('.total-price').text((quantity * price).toLocaleString('vi-VN') + '₫');
+
+        // Cập nhật lại tổng giá trị đơn hàng và số lượng giỏ hàng sau khi thay đổi số lượng
+        updateTotalPrice();
     });
+
+    // Cập nhật tổng giá trị đơn hàng và số lượng giỏ hàng ngay khi trang được tải
+    updateTotalPrice();
 });

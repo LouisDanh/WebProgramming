@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Giỏ Hàng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -16,40 +16,40 @@
         <div class="row align-items-start px-5 d-flex">
             <div class="container mt-5">
                 <div class="row">
-                    <!-- Left Column: Cart Items -->
+                    <!-- Cột bên trái: Danh sách sản phẩm trong giỏ hàng -->
                     <div class="col-8 d-flex flex-column align-items-center">
                         <div class="text-center">
                             <h2 id="cart-count" class="text-center">Giỏ hàng của bạn [1]</h2>
                         </div>
-                        <div class="product-list d-flex flex-column align-items-center border p-2">
-                            <div class="product-item border-bottom p-2">
-                                <div class="product-card d-flex gap-3">
-                                    <div class="product-image-container">
-                                        <img src="/product1.png" class="product-image">
+                        <div class="cart-items d-flex flex-column align-items-center border p-2">
+                            <!-- sp1                   -->
+                            <div class="cart-item border-bottom p-2" data-price="4200000">
+                                <div class="cart-item-details d-flex gap-5 p-3">
+                                    <div class="product-image-wrapper">
+                                        <img src="/el_sku_PGJG46_TH_226x311_0.avif" class="product-image">
                                     </div>
-                                    <div class="product-details d-flex flex-column justify-content-between h-100">
+                                    <div class="product-info-wrapper d-flex flex-column justify-content-between h-100">
                                         <div class="product-info d-flex justify-content-between mb-3">
                                             <div>
-                                                <h5 class="mb-1">Synchronized Multi-Recovery Complex</h5>
-                                                <p class="text-muted mb-0">Kích thước: <strong>75ml</strong></p>
+                                                <h6 class="mb-1">Synchronized Multi-Recovery Complex</h6>
+                                                <p class="text-muted mb-0">Kích thước: 75ml</p>
                                             </div>
                                         </div>
                                         <div class="quantity-controls d-flex align-items-center gap-0">
-                                            <!-- Decrease Quantity -->
+                                            <!-- Giảm số lượng -->
                                             <div class="quantity-btn">
                                                 <i class="bi bi-dash decrease"></i>
                                             </div>
-                                            <!-- Quantity Display -->
+                                            <!-- Hiển thị số lượng -->
                                             <div class="quantity-btn">
                                                 <span class="quantity-display">1</span>
                                             </div>
-                                            <!-- Increase Quantity -->
+                                            <!-- Tăng số lượng -->
                                             <div class="quantity-btn">
                                                 <i class="bi bi-plus increase"></i>
                                             </div>
                                             <div class="ms-auto">
-                                                <h5 class="text-danger fw-bold total-price" data-price="4200000"
-                                                    id="price-1">
+                                                <h5 class="text-danger total-price" data-price="4200000" id="price-1">
                                                     4.200.000₫
                                                 </h5>
                                             </div>
@@ -57,108 +57,35 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="product-item border-bottom p-2">
-                                <div class="product-card d-flex gap-3">
-                                    <div class="product-image-container">
-                                        <img src="/product1.png" class="product-image">
+                            <!-- sp2                   -->
+                            <div class="cart-item border-bottom p-2" data-price="4200000">
+                                <div class="cart-item-details d-flex gap-5 p-3">
+                                    <div class="product-image-wrapper">
+                                        <img src="/el_sku_GXGP01_640x640_0.avif" class="product-image">
                                     </div>
-                                    <div class="product-details d-flex flex-column justify-content-between h-100">
+                                    <div class="product-info-wrapper d-flex flex-column justify-content-between h-100">
                                         <div class="product-info d-flex justify-content-between mb-3">
                                             <div>
-                                                <h5 class="mb-1">Synchronized Multi-Recovery Complex</h5>
-                                                <p class="text-muted mb-0">Kích thước: <strong>75ml</strong></p>
+                                                <h6 class="mb-1">Synchronized Multi-Recovery Complex</h6>
+                                                <p class="text-muted mb-0">Kích thước: 75ml</p>
                                             </div>
                                         </div>
                                         <div class="quantity-controls d-flex align-items-center gap-0">
-                                            <!-- Decrease Quantity -->
+                                            <!-- Giảm số lượng -->
                                             <div class="quantity-btn">
                                                 <i class="bi bi-dash decrease"></i>
                                             </div>
-                                            <!-- Quantity Display -->
+                                            <!-- Hiển thị số lượng -->
                                             <div class="quantity-btn">
                                                 <span class="quantity-display">1</span>
                                             </div>
-                                            <!-- Increase Quantity -->
+                                            <!-- Tăng số lượng -->
                                             <div class="quantity-btn">
                                                 <i class="bi bi-plus increase"></i>
                                             </div>
                                             <div class="ms-auto">
-                                                <h5 class="text-danger fw-bold total-price" data-price="4200000"
-                                                    id="price-1">
-                                                    4.200.000₫
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="product-item border-bottom p-2">
-                                <div class="product-card d-flex gap-3">
-                                    <div class="product-image-container">
-                                        <img src="/product1.png" class="product-image">
-                                    </div>
-                                    <div class="product-details d-flex flex-column justify-content-between h-100">
-                                        <div class="product-info d-flex justify-content-between mb-3">
-                                            <div>
-                                                <h5 class="mb-1">Synchronized Multi-Recovery Complex</h5>
-                                                <p class="text-muted mb-0">Kích thước: <strong>75ml</strong></p>
-                                            </div>
-                                        </div>
-                                        <div class="quantity-controls d-flex align-items-center gap-0">
-                                            <!-- Decrease Quantity -->
-                                            <div class="quantity-btn">
-                                                <i class="bi bi-dash decrease"></i>
-                                            </div>
-                                            <!-- Quantity Display -->
-                                            <div class="quantity-btn">
-                                                <span class="quantity-display">1</span>
-                                            </div>
-                                            <!-- Increase Quantity -->
-                                            <div class="quantity-btn">
-                                                <i class="bi bi-plus increase"></i>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <h5 class="text-danger fw-bold total-price" data-price="4200000"
-                                                    id="price-1">
-                                                    4.200.000₫
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="product-item border-bottom p-2">
-                                <div class="product-card d-flex gap-3">
-                                    <div class="product-image-container">
-                                        <img src="/product1.png" class="product-image">
-                                    </div>
-                                    <div class="product-details d-flex flex-column justify-content-between h-100">
-                                        <div class="product-info d-flex justify-content-between mb-3">
-                                            <div>
-                                                <h5 class="mb-1">Synchronized Multi-Recovery Complex</h5>
-                                                <p class="text-muted mb-0">Kích thước: <strong>75ml</strong></p>
-                                            </div>
-                                        </div>
-                                        <div class="quantity-controls d-flex align-items-center gap-0">
-                                            <!-- Decrease Quantity -->
-                                            <div class="quantity-btn">
-                                                <i class="bi bi-dash decrease"></i>
-                                            </div>
-                                            <!-- Quantity Display -->
-                                            <div class="quantity-btn">
-                                                <span class="quantity-display">1</span>
-                                            </div>
-                                            <!-- Increase Quantity -->
-                                            <div class="quantity-btn">
-                                                <i class="bi bi-plus increase"></i>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <h5 class="text-danger fw-bold total-price" data-price="4200000"
-                                                    id="price-1">
-                                                    4.200.000₫
+                                                <h5 class="text-danger total-price" data-price="3600000" id="price-2">
+                                                    3.600.000₫
                                                 </h5>
                                             </div>
                                         </div>
@@ -167,43 +94,51 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Right Column: Product Image -->
+                    <!-- Cột bên phải: Thông tin thanh toán -->
                     <div class="col">
-                        <div class="m">
-                            <!-- Card thanh toán -->
-                            <div class=" card align-items-center p-2 mb-4">
-                                <button class="btn btn-dark w-100 ">Tiến hành thanh toán</button>
-                                <div class="w-100">
+                        <div class="container mb-4">
+                            <!-- Thẻ thanh toán -->
+                            <div class="card align-items-center p-2 mb-3">
+                                <button class="btn btn-dark w-100"><i class="bi bi-lock-fill"></i> Tiến hành thanh
+                                    toán</button>
+                                <div>
                                     <i class="bi bi-credit-card card-icon"></i>
-                                    <span class="visa">Visa</span> 
+                                    <span class="visa">Visa</span>
                                     <i class="bi bi-bank bank-icon"></i>
                                 </div>
                             </div>
-                            <!-- Hóa đơn -->
-                            <div class="container mt-5 card">
-                                <div class="order-summary">
-                                    <h3>Tóm tắt đơn hàng</h3>
-                                    <div class="item">
-                                        <span>Tạm tính:</span>
-                                        <span class="item-value">4.950.000₫</span>
+                            <!-- Tóm tắt đơn hàng -->
+                            <div class="card shadow-sm mb-3">
+                                <div class="card-body">
+                                    <h3 class="card-title text-center mb-4">Tóm tắt đơn hàng</h3>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                                        <span class="font-weight-bold">Tạm tính:</span>
+                                        <span id="total-amount" class="font-weight-bold text-success">4.950.000₫</span>
                                     </div>
-                                    <div class="item">
-                                        <span>Giao hàng:</span>
-                                        <span class="free-shipping">giao hàng tiêu chuẩn (Miễn phí)</span>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                                        <span class="font-weight-bold">Giao hàng:</span>
+                                        <span class="text-muted">Giao hàng tiêu chuẩn (Miễn phí)</span>
                                     </div>
-                                    <div class="total">
-                                        <span>Tổng giá trị đơn hàng:</span>
-                                        <span class="item-value">4.950.000₫</span>
+                                    <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                        <span class="font-weight-bold">Tổng giá trị đơn hàng:</span>
+                                        <span class="font-weight-bold text-danger" id="final-total">4.950.000₫</span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Card voucher -->
-                            <div class="card flex-row align-items-center p-3">
-                                <div class="col-9">
-                                    <input type="text" class="form-control" id="voucher" placeholder="NHẬP MÃ ƯU ĐÃI">
-                                </div>
-                                <div class="col-3">
-                                    <button type="button" class="btn btn-dark">Áp dụng</button>
+                            <!-- Mã ưu đãi -->
+                            <div class="card p-3 mb-3 shadow-sm rounded">
+                                <div class="row g-2 align-items-center">
+                                    <div class="col-8">
+                                        <div class="form-floating">
+                                            <input type="text" id="voucher" class="form-control" placeholder=" " />
+                                            <label for="voucher">NHẬP MÃ ƯU ĐÃI</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="button" class="btn btn-dark primary-color-hover">Áp dụng</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -213,6 +148,7 @@
         </div>
     </div>
     <script src="/scripts.js"></script>
+
 </body>
 
 </html>

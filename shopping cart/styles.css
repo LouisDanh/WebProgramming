@@ -1,18 +1,19 @@
-/* Image Container */
-.product-image-container {
+/* Wrapper cho hình ảnh sản phẩm */
+.product-image-wrapper {
     width: 90px;
     height: 123px;
     overflow: hidden;
 }
 
+/* Hình ảnh sản phẩm */
 .product-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* Product Card */
-.product-card {
+/* Thẻ chứa thông tin sản phẩm */
+.cart-item-details {
     width: 595px;
     height: 123px;
     display: flex;
@@ -21,32 +22,26 @@
     overflow: hidden;
 }
 
-/* Product List */
-.product-list {
+/* Danh sách sản phẩm trong giỏ hàng */
+.cart-items {
     width: 635px;
 }
 
-/* Product Info */
+/* Thông tin sản phẩm */
 .product-info {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 
-/* Total Price */
-.total-price {
-    font-weight: bold;
-    color: #d9534f;
-}
-
-/* Quantity Control Buttons */
+/* Điều khiển số lượng */
 .quantity-controls {
     display: flex;
     gap: 0;
     align-items: center;
 }
 
-/* Quantity Button */
+/* Nút điều chỉnh số lượng */
 .quantity-btn {
     display: flex;
     justify-content: center;
@@ -65,15 +60,15 @@
     line-height: 40px;
 }
 
-/* Product Image Card (Right Column) */
-.product-image-card {
+/* Thẻ thanh toán (Cột phải) */
+.payment-card {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
 }
 
-/* Card Item */
-.product-item {
+/* Các sản phẩm trong giỏ hàng */
+.cart-item {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
@@ -82,22 +77,35 @@
 .form-control {
     position: relative;
     padding-top: 20px;
-    /* Tạo khoảng cách cho placeholder */
+    /* Khoảng cách cho placeholder */
 }
 
 /* Định dạng cho trường nhập liệu */
-.form-control {
+.form-floating {
     position: relative;
-    padding-top: 20px;
-    /* Tạo khoảng cách cho placeholder */
+    margin-bottom: 1.5rem;
 }
+
+/* Định dạng thẻ thẻ thanh toán Visa */
 .visa {
-    font-size: 1rem; font-weight: bold; color: #1a1f71;}
-.wallet-icon{
-    color: green;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #1a1f71;
 }
-.card-icon{
+
+/* Biểu tượng thẻ Visa */
+.card-icon {
     color: orange;
 }
 
+.bank-icon {
+    color: green;
+}
 
+/* Thay đổi màu khi hover vào nút */
+.btn-dark:hover {
+    background-color: rgba(228, 142, 11, 0.5);
+    /* Màu vàng */
+    border-color: rgba(227, 184, 118, 0.5);
+    /* Đổi màu đường viền nếu có */
+}
