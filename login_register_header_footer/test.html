@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Style for the search bar */
+        #search-bar {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        #search-bar input {
+            padding: 5px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+        }
+
+        #search-bar button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .d-none {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Logo -->
+            <div>
+                <h1 class="logo">HISHAKU</h1>
+            </div>
+            <!-- Menu Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="#" onclick="toggleSubCategory('brand')">NHÃN HÀNG</a>
+                    <a class="nav-link" href="#" onclick="toggleSubCategory('skincare')">DƯỠNG DA</a>
+                    <a class="nav-link" href="#" onclick="toggleSubCategory('makeup')">TRANG ĐIỂM</a>
+                    <a class="nav-link" href="#" onclick="toggleSubCategory('haircare')">CHĂM SÓC NHUỘM TÓC</a>
+                </div>
+            </nav>
+            <!-- Tools Section -->
+            <div class="tools d-flex align-items-center">
+                <!-- Search Icon -->
+                <div>
+                    <i class="fas fa-search" onclick="toggleSearchBar()"></i>
+                </div>
+                <!-- Cart Icon -->
+                <div>
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Bar (Initially hidden) -->
+    <div id="search-bar" class="search-bar d-none">
+        <input type="text" placeholder="Tìm kiếm...">
+        <button>Search</button>
+    </div>
+
+    <script>
+        // Toggle the visibility of the search bar
+        function toggleSearchBar() {
+            const searchBar = document.getElementById("search-bar");
+            searchBar.classList.toggle("d-none"); // Toggles the 'd-none' class to show/hide the search bar
+        }
+    </script>
+</body>
+
+</html>
