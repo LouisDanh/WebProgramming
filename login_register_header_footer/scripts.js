@@ -1,3 +1,32 @@
+// Đảm bảo mật khẩu ẩn và biểu tượng là mắt đóng khi trang được tải
+document.getElementById('toggle-password').addEventListener('click', function () {
+    var passwordField = document.getElementById('password');
+    var icon = this.querySelector('i');
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text'; // Hiện mật khẩu
+        icon.classList.remove('bi-eye-slash'); // Đổi biểu tượng mắt đóng
+        icon.classList.add('bi-eye'); // Đổi biểu tượng mắt mở
+    } else {
+        passwordField.type = 'password'; // Ẩn mật khẩu
+        icon.classList.remove('bi-eye'); // Đổi biểu tượng mắt mở
+        icon.classList.add('bi-eye-slash'); // Đổi biểu tượng mắt đóng
+    }
+});
+
+document.getElementById('toggle-confirm-password').addEventListener('click', function () {
+    var confirmPasswordField = document.getElementById('confirmPassword');
+    var icon = this.querySelector('i');
+    if (confirmPasswordField.type === 'password') {
+        confirmPasswordField.type = 'text'; // Hiện mật khẩu xác nhận
+        icon.classList.remove('bi-eye-slash'); // Đổi biểu tượng mắt đóng
+        icon.classList.add('bi-eye'); // Đổi biểu tượng mắt mở
+    } else {
+        confirmPasswordField.type = 'password'; // Ẩn mật khẩu xác nhận
+        icon.classList.remove('bi-eye'); // Đổi biểu tượng mắt mở
+        icon.classList.add('bi-eye-slash'); // Đổi biểu tượng mắt đóng
+    }
+});
+
 // Hàm để toggle hiển thị danh mục con khi nhấn
 function toggleSubCategory(category) {
     const subCategories = document.querySelectorAll('.sub-category');
@@ -28,29 +57,4 @@ function closeAllSubCategories() {
 
 // Thêm sự kiện `mouseleave` vào phần tử menu để đóng danh mục con khi di chuột ra ngoài
 document.querySelector('.navbar-nav').addEventListener('mouseleave', closeAllSubCategories);
-// Function to show the search form
-
-// Toggle the visibility of the search bar when clicking the icon
-function toggleSearchBar() {
-    const searchBar = document.getElementById("search-bar");
-    searchBar.classList.toggle("d-none"); // Toggles the 'd-none' class to show/hide the search bar
-}
-
-// Close the search bar if clicked anywhere outside of it
-document.addEventListener("click", function(event) {
-    const searchBar = document.getElementById("search-bar");
-    const searchIcon = document.querySelector(".fas.fa-search");
-
-    // Check if the click was outside the search bar and the search icon
-    if (!searchBar.contains(event.target) && !searchIcon.contains(event.target)) {
-        searchBar.classList.add("d-none"); // Hide the search bar
-    }
-});
-
-// Attach the toggleSearchBar function to the search icon
-document.querySelector(".fas.fa-search").addEventListener("click", function(event) {
-    event.stopPropagation();  // Prevent the click event from propagating to the document
-    toggleSearchBar();
-});
-
 
