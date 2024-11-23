@@ -10,48 +10,56 @@ $(document).ready(function () {
             reader.readAsDataURL(file);
         }
     });
-        $('#submitButton').on('click', function () {
-            let isValid = true;
-    
-            // Kiểm tra từng trường
-            if ($('#name').val().trim() === '') {
-                $('#nameError').removeClass('d-none'); // Hiển thị lỗi
-                isValid = false;
-            } else {
-                $('#nameError').addClass('d-none'); // Ẩn lỗi
-            }
-    
-            if ($('#email').val().trim() === '' || !validateEmail($('#email').val().trim())) {
-                $('#emailError').removeClass('d-none');
-                isValid = false;
-            } else {
-                $('#emailError').addClass('d-none');
-            }
-    
-            if ($('#phone').val().trim() === '') {
-                $('#phoneError').removeClass('d-none');
-                isValid = false;
-            } else {
-                $('#phoneError').addClass('d-none');
-            }
-    
-            if ($('#birthday').val().trim() === '') {
-                $('#birthdayError').removeClass('d-none');
-                isValid = false;
-            } else {
-                $('#birthdayError').addClass('d-none');
-            }
-    
-            // Nếu hợp lệ, submit form
-            if (isValid) {
-                $('#userForm').submit();
-            }
-        });
-    
-        // Hàm kiểm tra email hợp lệ
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
+    $('#submitButton').on('click', function () {
+        let isValid = true;
+
+        // Kiểm tra từng trường
+        if ($('#name').val().trim() === '') {
+            $('#nameError').removeClass('d-none'); // Hiển thị lỗi
+            isValid = false;
+        } else {
+            $('#nameError').addClass('d-none'); // Ẩn lỗi
         }
-    
+
+        if ($('#email').val().trim() === '' || !validateEmail($('#email').val().trim())) {
+            $('#emailError').removeClass('d-none');
+            isValid = false;
+        } else {
+            $('#emailError').addClass('d-none');
+        }
+
+        if ($('#phone').val().trim() === '') {
+            $('#phoneError').removeClass('d-none');
+            isValid = false;
+        } else {
+            $('#phoneError').addClass('d-none');
+        }
+
+        if ($('#birthday').val().trim() === '') {
+            $('#birthdayError').removeClass('d-none');
+            isValid = false;
+        } else {
+            $('#birthdayError').addClass('d-none');
+        }
+
+        // Nếu hợp lệ, submit form
+        if (isValid) {
+            $('#userForm').submit();
+        }
+    });
+    $('.primary-color-hover').on('click', function () {
+        $(this).addClass('primary-color-active');
+        var index = $(this).index();
+        var tag = $('.infor-tag').eq(index)
+        tag.removeClass('d-none');
+        $('.infor-tag').not(tag).addClass('d-none');
+        $('.primary-color-hover').not(this).removeClass('primary-color-active');
+    });
+
+    // Hàm kiểm tra email hợp lệ
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
 });

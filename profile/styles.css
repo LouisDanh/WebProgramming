@@ -1,13 +1,57 @@
-:root{
+:root {
     --color-primary: #F2CD95;
 }
-.primary-color-hover{
+
+.primary-color-hover {
     cursor: pointer;
 }
-.primary-color-hover:hover{
+
+#submitButton,
+label[for="imageUpload"] {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+}
+
+.primary-text-color:hover {
+    color: var(--color-primary) !important;
+}
+
+.primary-color-hover:hover,
+.primary-color-active {
+    background-color: var(--color-primary) !important;
+    color: black !important;
+}
+
+.add-bank-btn {
+    background-color: var(--color-primary);
+    border: none;
+    padding: 0.5rem 1.5rem;
+}
+
+.add-bank-btn:hover {
+    opacity: 0.8;
+}
+
+.avatar-img {
+    object-fit: contain;
+    margin-right: 1rem;
+}
+
+.remove-bank-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem 1.5rem;
+}
+.remove-bank-btn:hover{
+    opacity: 0.8;
     background-color: var(--color-primary);
 }
-.avatar-img{
-    object-fit: contain;
-    margin-right:1rem ;
+
+#addBankModal .form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: initial;
 }
