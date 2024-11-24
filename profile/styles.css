@@ -6,8 +6,7 @@
     cursor: pointer;
 }
 
-#submitButton,
-label[for="imageUpload"] {
+#submitButton label[for="imageUpload"] {
     background-color: black;
     border: none;
     color: white;
@@ -20,7 +19,8 @@ label[for="imageUpload"] {
 }
 
 .primary-color-hover:hover,
-.primary-color-active {
+.primary-color-active, #submitButton, 
+#addressSubmitButton, #editAddressButton, #passwordSubmitButton {
     background-color: var(--color-primary) !important;
     color: black !important;
 }
@@ -45,7 +45,8 @@ label[for="imageUpload"] {
     border: none;
     padding: 0.5rem 1.5rem;
 }
-.remove-bank-btn:hover{
+
+.remove-bank-btn:hover {
     opacity: 0.8;
     background-color: var(--color-primary);
 }
