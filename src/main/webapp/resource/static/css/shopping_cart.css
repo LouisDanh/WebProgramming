@@ -1,0 +1,111 @@
+/* Wrapper cho hình ảnh sản phẩm */
+.product-image-wrapper {
+    width: 90px;
+    height: 123px;
+    overflow: hidden;
+}
+
+/* Hình ảnh sản phẩm */
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Thẻ chứa thông tin sản phẩm */
+.cart-item-details {
+    width: 595px;
+    height: 123px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Danh sách sản phẩm trong giỏ hàng */
+.cart-items {
+    width: 635px;
+}
+
+/* Thông tin sản phẩm */
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Điều khiển số lượng */
+.quantity-controls {
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
+/* Nút điều chỉnh số lượng */
+.quantity-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+}
+
+.quantity-btn i,
+.quantity-btn span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 40px;
+}
+
+/* Thẻ thanh toán (Cột phải) */
+.payment-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Các sản phẩm trong giỏ hàng */
+.cart-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Định dạng cho trường nhập liệu */
+.form-control {
+    position: relative;
+    padding-top: 20px;
+    /* Khoảng cách cho placeholder */
+}
+
+/* Định dạng cho trường nhập liệu */
+.form-floating {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+/* Định dạng thẻ thẻ thanh toán Visa */
+.visa {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #1a1f71;
+}
+
+/* Biểu tượng thẻ Visa */
+.card-icon {
+    color: orange;
+}
+
+.bank-icon {
+    color: green;
+}
+
+/* Thay đổi màu khi hover vào nút */
+.btn-dark:hover {
+    background-color: rgba(228, 142, 11, 0.5);
+    /* Màu vàng */
+    border-color: rgba(227, 184, 118, 0.5);
+    /* Đổi màu đường viền nếu có */
+}

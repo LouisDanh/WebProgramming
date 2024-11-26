@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.no-transition {
+	transition: none;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.cursor-default {
+	cursor: default;
+}
+
+.fs-15rem {
+	font-size: 1.5rem;
+}
+
+.img-300px {
+	width: 300px;
+	height: 300px;
+	object-fit: contain;
+}
+
+.h-395px {
+	height: 395px;
+}
+
+.hover-dark {
+	border: 1px solid transparent;
+}
+
+.hover-dark:hover {
+	border: 1px solid black;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

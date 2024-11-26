@@ -1,0 +1,53 @@
+.title-category {
+	font-size: 5em;
+	font-weight: 700;
+}
+
+.dropdown-brand-item.disabled {
+	background-color: #CBCCCD;
+}
+
+.drop-brand-item__active {
+	background-color: #767676;
+}
+
+.dropdown-brand-item:hover {
+	color: white;
+	background-color: #767676;
+}
+
+.filter-item__active {
+	background-color: white;
+	color: black;
+}
+
+.filter-item {
+	font-weight: bold;
+}
+
+.filter-item:hover, #filter-submit-button:hover {
+	color: black;
+	background-color: #F2CD95;
+}
+
+#filter-remove-button, #filter-submit-button {
+	padding: 0.5em 3em;
+	border: none;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+#filter-remove-button {
+	background-color: transparent;
+	color: white;
+	display: flex;
+	align-items: center;
+}
+
+#dropdown-text-brand {
+	color: #F2CD95;
+}
+
+#filter-submit-button {
+	background-color: white;
+}

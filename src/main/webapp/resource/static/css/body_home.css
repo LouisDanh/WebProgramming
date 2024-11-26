@@ -1,0 +1,21 @@
+/* body start */
+.tabled-products {
+    text-transform: uppercase;
+}
+
+.tabled-products:hover {
+    font-weight: bold;
+}
+
+.l-out {
+    left: -10%;
+}
+
+.r-out {
+    right: -10%;
+}
+
+.tabled-product-detail {
+    transition: display;
+}
+/* body end */
