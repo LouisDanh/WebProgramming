@@ -1,4 +1,4 @@
-Phân công nhiệm vụ ngày 25/22/2024(Cấu hình cấu trúc project, ghép giao diện)
+Phân công nhiệm vụ ngày 25/11/2024(Cấu hình cấu trúc project, ghép giao diện)
 Thời hạn hoàn thành: 20:00 - 23:30 
 - Danh Phương Nhã - 22130191: tải jquery, bootstrap, ghép giao diện
 - Huỳnh Minh Hiển - 22130080: tổng hợp các giao diện, ghép giao diện
