@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,10 +31,10 @@
         </div>
     </div>
     <div class="container">
-        <!-- Nội dung tìm kiếm -->
+        <!-- Ná»i dung tÃ¬m kiáº¿m -->
         <div class="border-bottom py-3 container">
             <h2 class="fw-bold h1">
-                (Nội dung tìm kiếm) Results
+                (Ná»i dung tÃ¬m kiáº¿m) Results
             </h2>
         </div>
         <div class="row p-4">
@@ -60,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <!-- kết quả tìm kiém -->
+        <!-- káº¿t quáº£ tÃ¬m kiÃ©m -->
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>

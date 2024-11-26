@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,46 +17,46 @@
         <div class="p-5 w-100 h-50"></div>
         <div class="container">
             <h1 class="title-category">
-                Danh mục lớn
+                Danh má»¥c lá»n
             </h1>
             <p class="fs-15rem fw-light">
-                Nâng tầm vẻ đẹp tự nhiên cho da bạn mỗi ngày với các sản phẩm chăm sóc da mặt của L'Oréal Paris. Các
-                phương pháp trị liệu của chúng tôi kết hợp các loại lotion, mặt nạ và kem dưỡng ẩm giúp bạn tạo nên một
-                thói quen chăm sóc da phù hợp với bản thân và loại da của bạn. Chuẩn bị sẵn sàng để đón nhận các loại
-                dưỡng chất phù hợp nhất cũng đồng nghĩa với việc bước đầu tiên bạn cần làm là tẩy trang. Các loại kem,
-                gel rửa mặt, lotion, nước cân bằng da: Lựa chọn kết cấu sản phẩm phù hợp với loại da của bạn và giúp da
-                thanh lọc với các sản phẩm tẩy tế bào chết hoặc mặt nạ tương đương. Là một tập hợp thực chất của các
-                thành phần hoạt tính, tinh chất làm giàu da với các thành phần hoạt động có tính mục tiêu và chuẩn bị
-                cho da sẵn sàng tiếp nhận các bước chăm sóc tiếp theo. Da khô, da hỗn hợp hoặc da dầu cần kem dưỡng da
-                ban ngày và kem dưỡng da ban đêm phù hợp với từng loại da. Những kem dưỡng da mặt này đáp ứng các nhu
-                cầu của da như chống lão hóa, dưỡng ẩm hoặc kiểm soát bóng dầu. Kem dưỡng của chúng tôi còn hỗ trợ phần
-                viền mắt, vùng da mỏng manh cần quy trình chăm sóc đặc biệt với các tinh chất dịu nhẹ đặc thù. Làn da
-                của bạn sẽ trở nên rạng rỡ, tinh khiết và mịn màng hơn với dòng sản phẩm chăm sóc da của L'Oréal Paris
+                NÃ¢ng táº§m váº» Äáº¹p tá»± nhiÃªn cho da báº¡n má»i ngÃ y vá»i cÃ¡c sáº£n pháº©m chÄm sÃ³c da máº·t cá»§a L'OrÃ©al Paris. CÃ¡c
+                phÆ°Æ¡ng phÃ¡p trá» liá»u cá»§a chÃºng tÃ´i káº¿t há»£p cÃ¡c loáº¡i lotion, máº·t náº¡ vÃ  kem dÆ°á»¡ng áº©m giÃºp báº¡n táº¡o nÃªn má»t
+                thÃ³i quen chÄm sÃ³c da phÃ¹ há»£p vá»i báº£n thÃ¢n vÃ  loáº¡i da cá»§a báº¡n. Chuáº©n bá» sáºµn sÃ ng Äá» ÄÃ³n nháº­n cÃ¡c loáº¡i
+                dÆ°á»¡ng cháº¥t phÃ¹ há»£p nháº¥t cÅ©ng Äá»ng nghÄ©a vá»i viá»c bÆ°á»c Äáº§u tiÃªn báº¡n cáº§n lÃ m lÃ  táº©y trang. CÃ¡c loáº¡i kem,
+                gel rá»­a máº·t, lotion, nÆ°á»c cÃ¢n báº±ng da: Lá»±a chá»n káº¿t cáº¥u sáº£n pháº©m phÃ¹ há»£p vá»i loáº¡i da cá»§a báº¡n vÃ  giÃºp da
+                thanh lá»c vá»i cÃ¡c sáº£n pháº©m táº©y táº¿ bÃ o cháº¿t hoáº·c máº·t náº¡ tÆ°Æ¡ng ÄÆ°Æ¡ng. LÃ  má»t táº­p há»£p thá»±c cháº¥t cá»§a cÃ¡c
+                thÃ nh pháº§n hoáº¡t tÃ­nh, tinh cháº¥t lÃ m giÃ u da vá»i cÃ¡c thÃ nh pháº§n hoáº¡t Äá»ng cÃ³ tÃ­nh má»¥c tiÃªu vÃ  chuáº©n bá»
+                cho da sáºµn sÃ ng tiáº¿p nháº­n cÃ¡c bÆ°á»c chÄm sÃ³c tiáº¿p theo. Da khÃ´, da há»n há»£p hoáº·c da dáº§u cáº§n kem dÆ°á»¡ng da
+                ban ngÃ y vÃ  kem dÆ°á»¡ng da ban ÄÃªm phÃ¹ há»£p vá»i tá»«ng loáº¡i da. Nhá»¯ng kem dÆ°á»¡ng da máº·t nÃ y ÄÃ¡p á»©ng cÃ¡c nhu
+                cáº§u cá»§a da nhÆ° chá»ng lÃ£o hÃ³a, dÆ°á»¡ng áº©m hoáº·c kiá»m soÃ¡t bÃ³ng dáº§u. Kem dÆ°á»¡ng cá»§a chÃºng tÃ´i cÃ²n há» trá»£ pháº§n
+                viá»n máº¯t, vÃ¹ng da má»ng manh cáº§n quy trÃ¬nh chÄm sÃ³c Äáº·c biá»t vá»i cÃ¡c tinh cháº¥t dá»u nháº¹ Äáº·c thÃ¹. LÃ n da
+                cá»§a báº¡n sáº½ trá» nÃªn ráº¡ng rá»¡, tinh khiáº¿t vÃ  má»n mÃ ng hÆ¡n vá»i dÃ²ng sáº£n pháº©m chÄm sÃ³c da cá»§a L'OrÃ©al Paris
             </p>
         </div>
         <div class="py-5 w-75 m-auto h-50">
-            <!-- button mở thanh filter -->
+            <!-- button má» thanh filter -->
             <div class="d-flex justify-content-between align-items-center shadow fs-4 fw-bold">
-                <p class="p-4 m-0"><span>(25)</span> Kết quả</p>
+                <p class="p-4 m-0"><span>(25)</span> Káº¿t quáº£</p>
                 <div id="filter-product" class="px-5 py-4 bg-dark text-white cursor-pointer " data-bs-toggle="collapse"
                     data-bs-target="#filter-content" aria-expanded="false" aria-controls="filter-content">
-                    <span class="me-2">Cụ thể nhu cầu của tôi</span>
+                    <span class="me-2">Cá»¥ thá» nhu cáº§u cá»§a tÃ´i</span>
                     <i class="fa-solid fa-filter"></i>
                 </div>
             </div>
             <div class="collapse bg-dark text-white p-5 no-transition shadow" id="filter-content">
-                <!-- các  lựa chọn liên quan tới nhóm sản phẩm -->
+                <!-- cÃ¡c  lá»±a chá»n liÃªn quan tá»i nhÃ³m sáº£n pháº©m -->
                 <div class="p-4">
-                    <h3 class="mb-4">Loại sản phẩm</h3>
+                    <h3 class="mb-4">Loáº¡i sáº£n pháº©m</h3>
                     <div class="d-flex flex-wrap gap-4 cursor-pointer">
                         <div class="border border-white filter-item">
-                            <p class="p-3  m-0">Nội dung bên trong <span>(Số lượng)</span></p>
+                            <p class="p-3  m-0">Ná»i dung bÃªn trong <span>(Sá» lÆ°á»£ng)</span></p>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center p-4">
-                    <p class="fs-4 m-0">Dòng sản phẩm</p>
-                    <!-- hiển thị brand -->
+                    <p class="fs-4 m-0">DÃ²ng sáº£n pháº©m</p>
+                    <!-- hiá»n thá» brand -->
                     <div class="dropdown w-50 ms-3 cursor-default ">
                         <div class="d-flex justify-content-between align-items-center border-bottom py-2 px-3 dropdown-toggle"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,28 +66,28 @@
                             </div>
                             <i class="bi bi-chevron-down"></i>
                         </div>
-                        <!-- chọn brand -->
+                        <!-- chá»n brand -->
                         <div class="dropdown-menu w-100 shadow-lg fs-5 p-0 border-radius-1">
                             <div class="dropdown-item disabled text-muted dropdown-brand-item">
                                 Brand</div>
                             <div class="dropdown-item dropdown-brand-item">Glycolic Bright
-                                <span>(Số lượng)</span>
+                                <span>(Sá» lÆ°á»£ng)</span>
                             </div>
-                            <div class="dropdown-item dropdown-brand-item">Dưỡng trắng da Aura
-                                Perfect <span>(Số lượng)</span></div>
-                            <div class="dropdown-item dropdown-brand-item">Revitalift <span>(Số lượng)</span>
+                            <div class="dropdown-item dropdown-brand-item">DÆ°á»¡ng tráº¯ng da Aura
+                                Perfect <span>(Sá» lÆ°á»£ng)</span></div>
+                            <div class="dropdown-item dropdown-brand-item">Revitalift <span>(Sá» lÆ°á»£ng)</span>
                             </div>
-                            <div class="dropdown-item dropdown-brand-item">Youth Code <span>(Số lượng)</span>
+                            <div class="dropdown-item dropdown-brand-item">Youth Code <span>(Sá» lÆ°á»£ng)</span>
                             </div>
-                            <div class="dropdown-item dropdown-brand-item pb-1 border-radius-1">Giảm thâm nám Aura
-                                Perfect Clinical <span>(Số lượng)</span></div>
+                            <div class="dropdown-item dropdown-brand-item pb-1 border-radius-1">Giáº£m thÃ¢m nÃ¡m Aura
+                                Perfect Clinical <span>(Sá» lÆ°á»£ng)</span></div>
                         </div>
                     </div>
                 </div>
                 <!-- button filter -->
                 <div class="p-4 d-flex align-items-center justify-content-end">
                     <button id="filter-remove-button">
-                        <span class="me-2">Xóa toàn bộ</span>
+                        <span class="me-2">XÃ³a toÃ n bá»</span>
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                     <button id="filter-submit-button" data-bs-toggle="collapse" data-bs-target="#filter-content"

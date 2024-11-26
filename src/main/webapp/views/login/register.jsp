@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create an AP Account</title>
-    <!-- Thêm Bootstrap CSS -->
+    <!-- ThÃªm Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Thêm Bootstrap Icons -->
+    <!-- ThÃªm Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
         rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
@@ -18,7 +20,7 @@
         <h2 class="text-center mb-4">Create an AP Account</h2>
         <p class="text-center mb-4">Create an account to access exclusive features and check your watches in.</p>
 
-        <!-- Form đăng ký -->
+        <!-- Form ÄÄng kÃ½ -->
         <form id="registerForm">
             <div class="mb-3">
                 <label for="salutation" class="form-label">Salutation</label>
@@ -46,12 +48,12 @@
                 <input type="date" class="form-control" id="dob" required>
             </div>
 
-            <!-- Địa điểm (Chưa áp dụng hiệu ứng label cho select) -->
+            <!-- Äá»a Äiá»m (ChÆ°a Ã¡p dá»¥ng hiá»u á»©ng label cho select) -->
             <div class="form-group">
                 <label for="location" class="form-label"></label>
                 <select class="form-select" id="location" name="location" required>
                     <option selected disabled value="">Loading countries...
-                        <!-- Đang tải các quốc gia... -->
+                        <!-- Äang táº£i cÃ¡c quá»c gia... -->
                     </option>
                 </select>
             </div>
@@ -92,7 +94,7 @@
         <p class="text-center mt-3">Already have an account? <a href="login.html">Log in</a></p>
     </div>
 
-    <!-- Liên kết tới file JavaScript của bạn -->
+    <!-- LiÃªn káº¿t tá»i file JavaScript cá»§a báº¡n -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const locationSelect = document.getElementById('location');

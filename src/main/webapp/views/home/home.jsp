@@ -35,8 +35,7 @@
 						<div class="carousel-item active ">
 							<!-- 5 sản phẩm đc hiển thị -->
 							<div class="d-flex flex-row gap-3">
-								<a href="" class="w-25 text-decoration-none">
-									<div class="card border-0">
+									<div class="card border-0 w-25 btn-link">
 										<img
 											src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
 											alt="ảnh sản phẩm" class="card-img-top">
@@ -47,8 +46,7 @@
 											<p class="fw-bold card-text">3.900.000đ</p>
 										</div>
 									</div>
-								</a> <a href="" class="w-25 text-decoration-none">
-									<div class="card border-0">
+									<div class="card border-0 w-25 btn-link">
 										<img
 											src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1V901_308x424_0.jpg"
 											alt="ảnh sản phẩm" class="card-img-top">
@@ -59,7 +57,6 @@
 											<p class="fw-bold card-text">3.900.000đ</p>
 										</div>
 									</div>
-								</a>
 							</div>
 						</div>
 						<div class="carousel-item">
