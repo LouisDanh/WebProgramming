@@ -9,7 +9,8 @@
 <title>Login Page</title>
 </head>
 <body>
-<jsp:include page="../shares/header.jsp"></jsp:include>
+	<jsp:include
+		page="${pageContext.request.contextPath}/views/shares/header.jsp"></jsp:include>
 	<!-- Login and Create Account Section -->
 	<main>
 		<div class="container my-5 pt-5">
@@ -59,9 +60,11 @@
 			</div>
 		</div>
 	</main>
-<jsp:include page="../shares/footer.jsp"></jsp:include>
+	<jsp:include
+		page="${pageContext.request.contextPath}/views/shares/footer.jsp"></jsp:include>
 
-<script src="${pageContext.request.contextPath}/resource/static/js/scripts.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resource/static/js/scripts.js"></script>
 
 </body>
 
