@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../shares/header.jsp"></jsp:include>
 	<div class="container my-5">
 		<!-- content lễ hội -->
 		<div class="mb-5">
@@ -221,7 +220,7 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../shares/footer.jsp"></jsp:include>
+	
 </body>
 
 </html>

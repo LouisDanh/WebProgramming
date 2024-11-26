@@ -5,18 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/static/css/styles.css">
 </head>
 <body>
+<jsp:include page="staticlib.jsp"></jsp:include>
 	<header>
 		<div
 			class="container d-flex justify-content-between align-items-center">
@@ -406,6 +398,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="/header.js"></script>
+	<script src="${pageContext.request.contextPath}/resource/static/js/scripts.js"></script>
 </body>
 </html>
