@@ -1,0 +1,4 @@
+Phân công nhiệm vụ ngày 26/11/2024(Ghép giao diện(chuyển từ file html -> file jsp))
+Thời hạn hoàn thành: 2 ngày
+- Danh Phương Nhã - 22130191: chuyển tất cả những giao diện mà mình tạo
+- Huỳnh Minh Hiển - 22130080: chuyển tất cả những giao diện mà mình tạo
