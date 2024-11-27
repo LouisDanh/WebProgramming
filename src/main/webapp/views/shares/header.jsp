@@ -6,12 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/login.css">
+	href="${pageContext.request.contextPath}/resources/static/css/headerr.css">
 </head>
 <body>
 	<jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
-
-	<header>
 		<div
 			class="container d-flex justify-content-between align-items-center">
 			<!-- Logo -->
@@ -40,7 +38,7 @@
 					<i class="fas fa-shopping-cart"></i>
 				</div>
 				<!-- Logout Icon -->
-				<div class="logout-icon" id="logoutIcon">
+				<div class="logout-icon btn-link" id="logoutIcon" data-href="${pageContext.request.contextPath}/views/login/login.jsp">
 					<i class="fas fa-sign-out-alt"></i>
 				</div>
 
@@ -52,7 +50,6 @@
 
 			</div>
 		</div>
-	</header>
 
 	<!-- danh mục nhãn hàng -->
 	<div id="brand" class="sub-category ">
@@ -403,7 +400,6 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/scripts.js"
 		type="text/javascript">
-		
 	</script>
 </body>
 </html>

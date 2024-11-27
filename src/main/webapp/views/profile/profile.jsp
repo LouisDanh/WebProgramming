@@ -12,9 +12,10 @@
 </head>
 
 <body>
-	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-	<main>
-		<div class="container-fluid mt-4">
+	<header><jsp:include page="/views/shares/header.jsp"></jsp:include></header>
+
+	<main class="my-4">
+		<div class="container-fluid">
 			<div class="container">
 				<div class="row">
 					<div class="col-2 fs-5">
@@ -71,7 +72,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col border-1 shadow ms-5">
+					<div class="col border-1 shadow ms-5 h-100">
 						<div class="p-3">
 							<div class="infor-tag">
 								<!-- Header -->
@@ -304,9 +305,7 @@
 							<div class="infor-tag d-none ">
 								<div class="d-flex flex-column">
 									<div class=" mb-3 shadow-sm">
-										<a class="text-decoration-none" data-bs-toggle="collapse"
-											href="#orderDetails1" role="button" aria-expanded="false">
-											<div class="card-body">
+											<div class="card-body collapse-btn">
 												<div class="d-flex align-items-center">
 													<!-- Order Images -->
 													<div class="order-images d-flex me-3">
@@ -338,9 +337,8 @@
 													</div>
 												</div>
 											</div>
-										</a>
 										<!-- Order Details -->
-										<div class="collapse border-top" id="orderDetails1">
+										<div class="collapse-content border-top w-100">
 											<div class="d-flex flex-column gap-3 p-3">
 												<div class="border-bottom pb-3">
 													<div
@@ -403,11 +401,12 @@
 			</div>
 		</div>
 	</main>
-
-
-	<jsp:include page="/views/shares/footer.jsp"></jsp:include>
+	<footer><jsp:include page="/views/shares/footer.jsp"></jsp:include>
+	</footer>
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/profiles.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/static/js/collapse.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/user_infor_validate.js"></script>
 	<script

@@ -5,15 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/static/css/footer.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/footer.css">
 </head>
 <body>
 <jsp:include page="staticlib.jsp"></jsp:include>
-	<footer>
 		<div class="container">
 			<div class="row">
-
 				<!-- Thông tin công ty -->
 				<div class="col-md-3">
 					<h5>Thông tin công ty</h5>
@@ -95,8 +92,5 @@
 				<p>© 2024 HISHAKU. Tất cả quyền được bảo lưu.</p>
 			</div>
 		</div>
-	</footer>
-
-
 </body>
 </html>

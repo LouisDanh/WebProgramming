@@ -1,0 +1,20 @@
+.tabled-products {
+	text-transform: uppercase;
+}
+
+.tabled-products:hover {
+	font-weight: bold;
+}
+
+#carousel-tabled-products .btn-slick{
+	color: gray;
+	background-color: transparent;
+	border: none;
+	font-size: 1.5rem;
+	position: absolute;
+}
+
+#carousel-tabled-products .slick-track {
+	margin-left: 0;
+	margin-right: 0;
+}
