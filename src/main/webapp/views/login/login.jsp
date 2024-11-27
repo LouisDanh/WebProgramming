@@ -11,9 +11,9 @@
 
 </head>
 <body>
-	<header>
+
 		<jsp:include page="/views/shares/header.jsp"></jsp:include>
-	</header>
+
 	<main>
 		<div class="container my-5 pt-5">
 			<div class="row justify-content-center">
@@ -62,10 +62,5 @@
 		</div>
 	</main>
 	<jsp:include page="/views/shares/footer.jsp"></jsp:include>
-
-	<script
-		src="${pageContext.request.contextPath}/resources/static/js/scripts.js"
-		type="text/javascript"></script>
-
 </body>
 </html>

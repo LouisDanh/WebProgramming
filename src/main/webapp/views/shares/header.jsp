@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/login.css">
+	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/headerr.css">
 </head>
 <body>
 	<jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
@@ -21,8 +23,8 @@
 			<!-- Menu Navigation -->
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="navbar-nav">
-					<a class="nav-link" href="#" onclick="toggleSubCategory('brand')">NHÃN
-						HÀNG</a> <a class="nav-link" href="#"
+					<a class="nav-link" href="#" onclick="toggleSubCategory('brand')">NƯỚC
+						HOA</a> <a class="nav-link" href="#"
 						onclick="toggleSubCategory('skincare')">DƯỠNG DA</a> <a
 						class="nav-link" href="#" onclick="toggleSubCategory('makeup')">TRANG
 						ĐIỂM</a> <a class="nav-link" href="#"
@@ -40,21 +42,22 @@
 					<i class="fas fa-shopping-cart"></i>
 				</div>
 				<!-- Logout Icon -->
-				<div class="logout-icon" id="logoutIcon">
+				<div class="btn-link" id="logoutIcon"
+					data-href="${pageContext.request.contextPath}/views/login/login.jsp">
 					<i class="fas fa-sign-out-alt"></i>
 				</div>
+
 
 				<!-- Search Bar (Initially hidden) -->
 				<div id="search-bar" class="search-bar d-none">
 					<input type="text" placeholder="Tìm kiếm...">
 					<button>Search</button>
 				</div>
-
 			</div>
 		</div>
 	</header>
-
-	<!-- danh mục nhãn hàng -->
+<div class="danhMuc">
+<!-- danh mục nhãn hàng -->
 	<div id="brand" class="sub-category ">
 		<div class="d-flex row">
 			<div class="col-1"></div>
@@ -127,10 +130,9 @@
 			<div class="col-1"></div>
 		</div>
 	</div>
-
 	<!-- danh mục dưỡng da -->
 	<div id="skincare" class="sub-category">
-		<div class="d-flex ">
+		<div class="d-flex container">
 
 			<div class="d-flex flex-column col-3">
 				<div>
@@ -174,7 +176,7 @@
 				</div>
 			</div>
 			<div class="d-flex flex-column col-3 ">
-				<!-- Add a border-right here -->
+
 				<div>
 					<h5>Kem chống nắng</h5>
 				</div>
@@ -191,6 +193,7 @@
 				</div>
 			</div>
 			<div class="border"></div>
+			<div class="p-3"></div>
 			<div class="d-flex flex-column col-3">
 				<div>
 					<h5>Các dòng sản phẩm dưỡng da</h5>
@@ -228,7 +231,7 @@
 	</div>
 	<!-- danh mục trang điểm -->
 	<div id="makeup" class="sub-category">
-		<div class="d-flex">
+		<div class="d-flex container">
 			<div class="d-flex flex-column col-3">
 				<div>
 					<h5>Sản phẩm trang điểm mặt</h5>
@@ -285,6 +288,7 @@
 				</div>
 			</div>
 			<div class="border"></div>
+			<div class="p-3"></div>
 			<div class="d-flex flex-column col-3">
 				<div>
 					<h5>Các dòng sản phẩm trang điểm</h5>
@@ -356,6 +360,7 @@
 				</div>
 			</div>
 			<div class="border"></div>
+			<div class="p-4"></div>
 			<div class="d-flex flex-column col-4">
 				<div>
 					<h5>Các dòng sản phẩm tóc</h5>
@@ -400,8 +405,19 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<script
-		src="${pageContext.request.contextPath}/resources/static/js/scripts.js"
+		src="${pageContext.request.contextPath}/resources/static/js/category.js"
+		type="text/javascript">
+		
+	</script>
+	<script
+		src="${pageContext.request.contextPath}/resources/static/js/search_bar.js"
+		type="text/javascript">
+		
+	</script>
+	<script
+		src="${pageContext.request.contextPath}/resources/static/js/btn_link.js"
 		type="text/javascript">
 		
 	</script>

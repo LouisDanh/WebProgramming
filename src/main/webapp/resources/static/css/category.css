@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.sub-category {
+	display: none;
+	/* Initially hide the sub-category sections */
+	padding: 30px 0;
+	background-color: #f8f9fa;
+	border-top: 2px solid #ddd;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sub-category h5 {
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: #343a40;
+	margin-bottom: 15px;
+}
+
+.sub-category-allProduct {
+	font-weight: 600;
+	text-decoration: underline;
+}
+
