@@ -7,15 +7,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login Page</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resource/static/css/login.css">
+
 </head>
 <body>
-	<jsp:include
-		page="${pageContext.request.contextPath}/views/shares/header.jsp"></jsp:include>
-	<!-- Login and Create Account Section -->
+	<header><jsp:include
+			page="${pageContext.request.contextPath}"></jsp:include>
+	</header>
 	<main>
 		<div class="container my-5 pt-5">
 			<div class="row justify-content-center">
-				<!-- Pháº§n Log in -->
+				<!-- Login part -->
 				<div class="col-md-5">
 					<h1 class="text-center">Log in</h1>
 					<p class="text-center">
@@ -31,7 +34,6 @@
 							<input type="password" class="form-control" id="password"
 								name="password" placeholder="Password"> <label
 								for="password">Password</label>
-							<!-- NÃºt toggle hiá»n/áº©n máº­t kháº©u -->
 							<button type="button" id="toggle-password"
 								class="btn position-absolute top-50 end-7 translate-middle-y p-0"
 								style="right: 12px; background: none; border: none;">
@@ -60,12 +62,11 @@
 			</div>
 		</div>
 	</main>
-	<jsp:include
-		page="${pageContext.request.contextPath}/views/shares/footer.jsp"></jsp:include>
-
+	<footer><jsp:include
+			page="${pageContext.request.contextPath}"></jsp:include>
+	</footer>
 	<script
-		src="${pageContext.request.contextPath}/resource/static/js/scripts.js"></script>
-
+		src="${pageContext.request.contextPath}/resources/static/js/scripts.js"
+		type="text/javascript"></script>
 </body>
-
 </html>

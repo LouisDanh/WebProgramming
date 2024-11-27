@@ -4,129 +4,135 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create an AP Account</title>
-    <!-- ThÃªm Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- ThÃªm Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create an AP Account</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resource/static/css/register.css">
 </head>
 
 <body>
-    <div class="container container-f mt-5">
-        <h2 class="text-center mb-4">Create an AP Account</h2>
-        <p class="text-center mb-4">Create an account to access exclusive features and check your watches in.</p>
+	<header><jsp:include
+			page="${pageContext.request.contextPath}/views/shares.header.jsp"></jsp:include></header>
+	<main>
+		<div class="container container-f mt-5">
+			<h2 class="text-center mb-4">Create an AP Account</h2>
+			<p class="text-center mb-4">Create an account to access exclusive
+				features and check your watches in.</p>
 
-        <!-- Form ÄÄng kÃ½ -->
-        <form id="registerForm">
-            <div class="mb-3">
-                <label for="salutation" class="form-label">Salutation</label>
-                <select class="form-select" id="salutation" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option value="Mr">Mr</option>
-                    <option value="Mrs">Mrs</option>
-                    <option value="Ms">Ms</option>
-                </select>
-            </div>
+			<!-- Form ÄÄng kÃ½ -->
+			<form id="registerForm">
+				<div class="mb-3">
+					<label for="salutation" class="form-label">Salutation</label> <select
+						class="form-select" id="salutation" required>
+						<option selected disabled value="">Choose...</option>
+						<option value="Mr">Mr</option>
+						<option value="Mrs">Mrs</option>
+						<option value="Ms">Ms</option>
+					</select>
+				</div>
 
-            <div class="mb-3">
-                <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
-            </div>
+				<div class="mb-3">
+					<label for="fullName" class="form-label">Full Name</label> <input
+						type="text" class="form-control" id="fullName"
+						placeholder="Enter your full name" required>
+				</div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
-            </div>
+				<div class="mb-3">
+					<label for="email" class="form-label">Email</label> <input
+						type="email" class="form-control" id="email"
+						placeholder="Enter your email address" required>
+				</div>
 
-            <!-- Date of Birth -->
-            <div class="mb-3">
-                <label for="dob" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" id="dob" required>
-            </div>
+				<!-- Date of Birth -->
+				<div class="mb-3">
+					<label for="dob" class="form-label">Date of Birth</label> <input
+						type="date" class="form-control" id="dob" required>
+				</div>
 
-            <!-- Äá»a Äiá»m (ChÆ°a Ã¡p dá»¥ng hiá»u á»©ng label cho select) -->
-            <div class="form-group">
-                <label for="location" class="form-label"></label>
-                <select class="form-select" id="location" name="location" required>
-                    <option selected disabled value="">Loading countries...
-                        <!-- Äang táº£i cÃ¡c quá»c gia... -->
-                    </option>
-                </select>
-            </div>
+				<!-- Äá»a Äiá»m (ChÆ°a Ã¡p dá»¥ng hiá»u á»©ng label cho select) -->
+				<div class="form-group">
+					<label for="location" class="form-label"></label> <select
+						class="form-select" id="location" name="location" required>
+						<option selected disabled value="">Loading countries...
+							<!-- Äang táº£i cÃ¡c quá»c gia... -->
+						</option>
+					</select>
+				</div>
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="password" class="form-label">Create a Password</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password"
-                            required>
-                        <button type="button" id="toggle-password" class="password-toggle">
-                            <i class="bi-eye-slash"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="confirmPassword"
-                            placeholder="Confirm your password" required>
-                        <button type="button" id="toggle-confirm-password" class="password-toggle">
-                            <i class="bi-eye-slash"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="privacyCheck" required>
-                <label class="form-check-label" for="privacyCheck">
-                    I acknowledge that my personal data will be processed in accordance with Audemars Piguet Privacy
-                    Notice.
-                </label>
-            </div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="password" class="form-label">Create a Password</label>
+						<div class="input-group">
+							<input type="password" class="form-control" id="password"
+								placeholder="Enter your password" required>
+							<button type="button" id="toggle-password"
+								class="password-toggle">
+								<i class="bi-eye-slash"></i>
+							</button>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="confirmPassword" class="form-label">Confirm
+							Password</label>
+						<div class="input-group">
+							<input type="password" class="form-control" id="confirmPassword"
+								placeholder="Confirm your password" required>
+							<button type="button" id="toggle-confirm-password"
+								class="password-toggle">
+								<i class="bi-eye-slash"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="form-check mb-3">
+					<input class="form-check-input" type="checkbox" id="privacyCheck"
+						required> <label class="form-check-label"
+						for="privacyCheck"> I acknowledge that my personal data
+						will be processed in accordance with Audemars Piguet Privacy
+						Notice. </label>
+				</div>
 
-            <button type="submit" class="btn btn-dark w-100">Create an Account</button>
-        </form>
+				<button type="submit" class="btn btn-dark w-100">Create an
+					Account</button>
+			</form>
 
-        <p class="text-center mt-3">Already have an account? <a href="login.html">Log in</a></p>
-    </div>
+			<p class="text-center mt-3">
+				Already have an account? <a href="login.html">Log in</a>
+			</p>
+		</div>
+	</main>
+	<footer></footer>
+	<script>document.addEventListener('DOMContentLoaded', function () {
+		    const locationSelect = document.getElementById('location');
 
-    <!-- LiÃªn káº¿t tá»i file JavaScript cá»§a báº¡n -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const locationSelect = document.getElementById('location');
+		    // Function to fetch countries and populate the select dropdown
+		    async function fetchCountries() {
+		        try {
+		            // Fetch countries from the API
+		            const response = await fetch('https://restcountries.com/v3.1/all');
+		            const countries = await response.json();
 
-            // Function to fetch countries and populate the select dropdown
-            async function fetchCountries() {
-                try {
-                    // Fetch countries from the API
-                    const response = await fetch('https://restcountries.com/v3.1/all');
-                    const countries = await response.json();
+		            // Clear any existing options (in case the page is reloaded)
+		            locationSelect.innerHTML = '<option selected disabled value="">Choose a country...</option>';
 
-                    // Clear any existing options (in case the page is reloaded)
-                    locationSelect.innerHTML = '<option selected disabled value="">Choose a country...</option>';
+		            // Loop through the countries and create option elements
+		            countries.forEach(country => {
+		                const option = document.createElement('option');
+		                option.value = country.name.common;  // Set the country name as the value
+		                option.textContent = country.name.common;  // Set the country name as the displayed text
+		                locationSelect.appendChild(option);
+		            });
+		        } catch (error) {
+		            console.error('Error fetching countries:', error);
+		            locationSelect.innerHTML = '<option selected disabled value="">Failed to load countries</option>';
+		        }
+		    }
 
-                    // Loop through the countries and create option elements
-                    countries.forEach(country => {
-                        const option = document.createElement('option');
-                        option.value = country.name.common;  // Set the country name as the value
-                        option.textContent = country.name.common;  // Set the country name as the displayed text
-                        locationSelect.appendChild(option);
-                    });
-                } catch (error) {
-                    console.error('Error fetching countries:', error);
-                    locationSelect.innerHTML = '<option selected disabled value="">Failed to load countries</option>';
-                }
-            }
-
-            // Call the function to fetch countries when the page is loaded
-            fetchCountries();
-        });
-    </script>
-    <script src="/scripts.js"></script>
+		    // Call the function to fetch countries when the page is loaded
+		    fetchCountries();
+		});
+	</script>
 </body>
 
 </html>

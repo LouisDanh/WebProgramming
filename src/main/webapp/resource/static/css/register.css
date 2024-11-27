@@ -1,0 +1,96 @@
+/* css trang đăng kí */
+.container-f {
+    max-width: 600px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+}
+
+.btn-dark {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.password-toggle i {
+    font-size: 1.2rem;
+}
+
+.form-control:focus {
+    border-color: #343a40;
+    box-shadow: none;
+}
+
+
+
+/* Forgot pass */
+
+.card {
+    width: 100%;
+    /* Đặt độ rộng card bằng 100% của container */
+    max-width: 500px;
+    /* Đặt chiều rộng tối đa cho card */
+    border-radius: 15px;
+    /* Góc bo tròn cho card */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Thêm bóng đổ nhẹ cho card */
+}
+
+.card-body {
+    padding: 2rem;
+    /* Thêm padding cho bên trong card */
+}
+
+.card-title {
+    font-size: 1.75rem;
+    /* Kích thước tiêu đề */
+    font-weight: bold;
+    /* Làm đậm tiêu đề */
+}
+
+.card-text {
+    font-size: 1rem;
+    /* Kích thước chữ của phần mô tả */
+    color: #6c757d;
+    /* Màu chữ của phần mô tả */
+}
+
+form .form-control {
+    font-size: 1rem;
+    /* Kích thước chữ của input */
+    padding: 0.75rem;
+    /* Padding cho input */
+}
+
+button {
+    font-size: 1rem;
+    /* Kích thước chữ cho nút */
+    padding: 0.75rem;
+    /* Padding cho nút */
+    border-radius: 5px;
+    /* Góc bo tròn cho nút */
+}
+
+button:hover {
+    background-color: #0056b3;
+    /* Thay đổi màu nền khi rê chuột */
+}
+

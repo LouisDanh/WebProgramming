@@ -5,43 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/static/css/footer.css">
 
-    <style>
-        footer {
-            background-color: #f8f9fa;
-            padding: 40px 0;
-        }
-        footer h5 {
-            font-weight: bold;
-            color: #343a40;
-        }
-        footer a {
-            color: #6c757d;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: #007bff;
-            text-decoration: underline;
-        }
-        .social-icons i {
-            transition: transform 0.3s ease;
-        }
-        .social-icons i:hover {
-            transform: scale(1.2);
-        }
-        .input-group .form-control {
-            border-radius: 30px;
-        }
-        .input-group .btn {
-            border-radius: 30px;
-        }
-        .copyright {
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-    </style>
 </head>
 <body>
+<jsp:include page="staticlib.jsp"></jsp:include>
 	<footer>
 		<div class="container">
 			<div class="row">
