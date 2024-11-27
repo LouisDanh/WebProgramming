@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,7 @@
 </head>
 <body>
 	<jsp:include
-		page="${pageContext.request.contextPath}/views/shares/header.jsp"></jsp:include>
+		page="/views/shares/header.jsp"></jsp:include>
 	<!-- Login and Create Account Section -->
 	<main>
 		<div class="container my-5 pt-5">
@@ -61,11 +60,9 @@
 		</div>
 	</main>
 	<jsp:include
-		page="${pageContext.request.contextPath}/views/shares/footer.jsp"></jsp:include>
+		page="/views/shares/footer.jsp"></jsp:include>
 
 	<script
-		src="${pageContext.request.contextPath}/resource/static/js/scripts.js"></script>
-
+		src="${pageContext.request.contextPath}/resources/static/js/scripts.js" type="text/javascript"></script>
 </body>
-
 </html>

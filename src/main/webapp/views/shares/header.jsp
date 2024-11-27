@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/static/css/styles.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/login.css">
 </head>
 <body>
-<jsp:include page="staticlib.jsp"></jsp:include>
+<jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
 	<header>
 		<div
 			class="container d-flex justify-content-between align-items-center">
@@ -398,6 +398,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/resource/static/js/scripts.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/static/js/scripts.js" type="text/javascript"> </script>
 </body>
 </html>
