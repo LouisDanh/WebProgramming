@@ -7,12 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login Page</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/login.css">
+	href="${pageContext.request.contextPath}/resources/static/css/hiddenEye.css">
 
 </head>
 <body>
-
-		<jsp:include page="/views/shares/header.jsp"></jsp:include>
+	<jsp:include page="/views/shares/header.jsp"></jsp:include>
 
 	<main>
 		<div class="container my-5 pt-5">
@@ -20,11 +19,8 @@
 				<!-- Login part -->
 				<div class="col-md-5">
 					<h1 class="text-center">Log in</h1>
-					<p class="text-center">
-						Don't have an account yet? <a href="/register.html">Sign up</a>
-					</p>
 					<form id="loginForm" method="post" enctype="multipart/form-data">
-						<!-- TrÆ°á»ng nháº­p email -->
+						<!--  email -->
 						<div class="form-floating mb-3">
 							<input type="text" class="form-control" id="email" name="email"
 								placeholder="EMAIL" required> <label for="email">Email</label>
@@ -34,14 +30,15 @@
 								name="password" placeholder="Password"> <label
 								for="password">Password</label>
 							<button type="button" id="toggle-password"
-								class="btn position-absolute top-50 end-7 translate-middle-y p-0"
-								style="right: 12px; background: none; border: none;">
+								class="btn position-absolute top-50 end-7 translate-middle-y p-0">
 								<i class="bi-eye-slash"></i>
 							</button>
 						</div>
-						<!-- NÃºt submit -->
+						<!--forgot password -->
 						<div class="text-center">
-							<a href="/forgotPass.html">Forgot password</a>
+							<a
+								href="${pageContext.request.contextPath}/views/login/forgotPass.jsp">Forgot
+								password</a>
 						</div>
 						<div class="text-center">
 							<button type="submit" class="btn btn-dark btn-block mt-3 w-100"
@@ -50,17 +47,24 @@
 					</form>
 				</div>
 
-				<!-- Pháº§n Create Account -->
+				<!--  Create Account -->
 				<div class="col-md-5 text-center">
 					<h1>Create an AP account</h1>
 					<p>Your personal account enables you to check your watches in
 						and benefit from additional exclusive features.</p>
-					<a href="/register.html" class="btn btn-dark btn-block mt-3">Create
+					<a class="btn btn-dark btn-block mt-3"
+						href="${pageContext.request.contextPath}/views/login/register.jsp">Create
 						an account</a>
+
 				</div>
 			</div>
 		</div>
 	</main>
+	<script
+		src="${pageContext.request.contextPath}/resources/static/js/hiddenEye.js"
+		type="text/javascript">
+	</script>
 	<jsp:include page="/views/shares/footer.jsp"></jsp:include>
+
 </body>
 </html>

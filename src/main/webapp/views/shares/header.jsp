@@ -6,12 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/headerr.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
+
 </head>
 <body>
 	<jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
+	<header>
 	<div
 		class="container d-flex justify-content-between align-items-center">
 		<!-- Logo -->
@@ -54,6 +56,7 @@
 			</div>
 		</div>
 	</div>
+	</header>
 	<div class="danhMuc">
 		<!-- danh mục nhãn hàng -->
 		<div id="brand" class="sub-category ">
