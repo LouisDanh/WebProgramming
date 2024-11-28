@@ -21,12 +21,12 @@ function toggleSubCategory(category) {
 }
 
 // Hàm đóng danh mục con khi chuột di chuyển ra ngoài
-function closeAllSubCategories() {
-	const subCategories = document.querySelectorAll('.sub-category');
-	subCategories.forEach(function(subCategory) {
-		subCategory.style.display = 'none';
-	});
-}
+//function closeAllSubCategories() {
+//	const subCategories = document.querySelectorAll('.sub-category');
+//	subCategories.forEach(function(subCategory) {
+//		subCategory.style.display = 'none';
+//	});
+//}
 
 // Thêm sự kiện `mouseleave` vào phần tử menu để đóng danh mục con khi di chuột ra ngoài
 document.querySelector('.danhMuc').addEventListener('mouseleave', closeAllSubCategories);
