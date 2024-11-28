@@ -9,72 +9,75 @@
 	href="${pageContext.request.contextPath}/resources/static/css/headerr.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/category.css">
+
 
 </head>
 <body>
 	<jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
 	<header>
-	<div
-		class="container d-flex justify-content-between align-items-center">
-		<!-- Logo -->
-		<div>
-			<h1 class="logo">HISHAKU</h1>
+		<div
+			class="container d-flex justify-content-between align-items-center">
+			<!-- Logo -->
+			<div class="logo mb-4"
+				onclick="window.location.href='${pageContext.request.contextPath}/views/home/home.jsp';">
+				HISHAKU</div>
+
+			<!-- Menu Navigation -->
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="navbar-nav">
+					<a class="nav-link" href="#" onclick="toggleSubCategory('brand')">NƯỚC
+						HOA</a> <a class="nav-link" href="#"
+						onclick="toggleSubCategory('skincare')">DƯỠNG DA</a> <a
+						class="nav-link" href="#" onclick="toggleSubCategory('makeup')">TRANG
+						ĐIỂM</a> <a class="nav-link" href="#"
+						onclick="toggleSubCategory('haircare')">CHĂM SÓC NHUỘM TÓC</a>
+				</div>
+			</nav>
+			<!-- Tools Section -->
+			<div class="tools d-flex align-items-center">
+				<!-- Search Icon -->
+				<div>
+					<i class="fas fa-search"></i>
+				</div>
+				<!-- Cart Icon -->
+				<div>
+					<i class="fas fa-shopping-cart"></i>
+				</div>
+				<!-- Logout Icon -->
+				<div class="btn-link" id="logoutIcon"
+					data-href="${pageContext.request.contextPath}/views/login/login.jsp">
+					<i class="fas fa-sign-out-alt"></i>
+				</div>
+
+
+				<!-- Search Bar (Initially hidden) -->
+				<div id="search-bar" class="search-bar d-none">
+					<input type="text" placeholder="Tìm kiếm...">
+					<button>Search</button>
+				</div>
+			</div>
 		</div>
-		<!-- Menu Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-light">
-			<div class="navbar-nav">
-				<a class="nav-link" href="#" onclick="toggleSubCategory('brand')">NƯỚC
-					HOA</a> <a class="nav-link" href="#"
-					onclick="toggleSubCategory('skincare')">DƯỠNG DA</a> <a
-					class="nav-link" href="#" onclick="toggleSubCategory('makeup')">TRANG
-					ĐIỂM</a> <a class="nav-link" href="#"
-					onclick="toggleSubCategory('haircare')">CHĂM SÓC NHUỘM TÓC</a>
-			</div>
-		</nav>
-		<!-- Tools Section -->
-		<div class="tools d-flex align-items-center">
-			<!-- Search Icon -->
-			<div>
-				<i class="fas fa-search"></i>
-			</div>
-			<!-- Cart Icon -->
-			<div>
-				<i class="fas fa-shopping-cart"></i>
-			</div>
-			<!-- Logout Icon -->
-
-			<div class="btn-link" id="logoutIcon"
-				data-href="${pageContext.request.contextPath}/views/login/login.jsp">
-				<i class="fas fa-sign-out-alt"></i>
-			</div>
-
-
-			<!-- Search Bar (Initially hidden) -->
-			<div id="search-bar" class="search-bar d-none">
-				<input type="text" placeholder="Tìm kiếm...">
-				<button>Search</button>
-			</div>
-		</div>
-	</div>
 	</header>
 	<div class="danhMuc">
-		<!-- danh mục nhãn hàng -->
-		<div id="brand" class="sub-category ">
+		<!-- danh mục nước hoa -->
+		<div id="brand" class="sub-category">
 			<div class="d-flex row">
 				<div class="col-1"></div>
 				<div class="d-flex flex-column col-2">
 					<div>
-						<h5>Thương hiệu Hishaku</h5>
+						<h5>Nhãn hàng Nước hoa</h5>
 					</div>
 					<br>
 					<div>
-						<span>Câu chuyện thương hiệu</span>
+						<span>Câu chuyện các nhãn hàng nước hoa</span>
 					</div>
 					<div>
-						<span>Lịch sử thương hiệu</span>
+						<span>Lịch sử các nhãn hàng nước hoa</span>
 					</div>
 					<div>
-						<span>Đại sứ thương hiệu</span>
+						<span>Đại sứ nhãn hàng nước hoa</span>
 					</div>
 				</div>
 				<div class="d-flex flex-column col-2">
@@ -83,19 +86,19 @@
 					</div>
 					<br>
 					<div>
-						<span>Làm đẹp bền vững</span>
+						<span>Làm đẹp bền vững trong ngành nước hoa</span>
 					</div>
 				</div>
 				<div class="d-flex flex-column col-2">
 					<div>
-						<h5>Khoa học làm đẹp</h5>
+						<h5>Khoa học Nước hoa</h5>
 					</div>
 					<br>
 					<div>
-						<span>Nghiên cứu những đằng sau sản phẩm</span>
+						<span>Nghiên cứu các thành phần trong nước hoa</span>
 					</div>
 					<div>
-						<span>Trải nghiệm dịch vụ thực tế ảo</span>
+						<span>Trải nghiệm dịch vụ thử nước hoa thực tế ảo</span>
 					</div>
 				</div>
 				<div class="d-flex flex-column col-2">
@@ -104,31 +107,39 @@
 					</div>
 					<br>
 					<div>
-						<span>Collagen</span>
+						<span>Hương hoa hồng</span>
 					</div>
 					<div>
-						<span>Acid Hyaluroic - HA</span>
+						<span>Hương gỗ</span>
 					</div>
 					<div>
-						<span>Retinol</span>
+						<span>Hương vani</span>
+					</div>
+					<div>
+						<span>Hương cam quýt</span>
+					</div>
+					<div>
+						<span>Hương xạ hương</span>
 					</div>
 				</div>
 				<div class="d-flex flex-column col-2">
 					<div>
-						<h5>Dự án của chúng tôi</h5>
+						<h5>Các loại nước hoa</h5>
 					</div>
 					<br>
 					<div>
-						<span>Phát triển bền vững - Forever</span>
+						<span>Nước hoa Eau de Parfum (EDP)</span>
 					</div>
 					<div>
-						<span>Khuyến đẹp ADJ</span>
+						<span>Nước hoa Eau de Toilette (EDT)</span>
 					</div>
 					<div>
-						<span>Lưu Sắc A891</span>
+						<span>Nước hoa Eau de Cologne (EDC)</span>
+					</div>
+					<div>
+						<span>Nước hoa Unisex</span>
 					</div>
 				</div>
-				<div class="col-1"></div>
 			</div>
 		</div>
 		<!-- danh mục dưỡng da -->
@@ -406,10 +417,13 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
+
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/category.js"
 		type="text/javascript">
+		
 	</script>
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/search_bar.js"
@@ -419,6 +433,7 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/btn_link.js"
 		type="text/javascript">
- 	</script>
+		
+	</script>
 </body>
 </html>
