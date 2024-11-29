@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/* Button styles for all buttons */
+.btn {
+    background-color: black !important; /* Force black background */
+    color: white !important; /* Text color white */
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+/* Hover effect for all buttons */
+.btn:hover {
+    background-color: #F2CD95 !important; /* Hover background color */
+    color: black !important; /* Text color changes to black on hover */
+}

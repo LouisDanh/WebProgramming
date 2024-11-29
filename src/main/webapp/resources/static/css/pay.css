@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/* Initially hide collapse content */
+.collapse-content {
+    display: none;
+}
+
+/* Flexbox setup for payment buttons */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+}
+
+/* When the button is selected */
+.payment-method.selected {
+    background-color: white; /* Change background when selected */
+    color: black; /* Change text color to black when selected */
+}

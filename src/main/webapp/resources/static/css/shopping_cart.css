@@ -60,52 +60,5 @@
     line-height: 40px;
 }
 
-/* Thẻ thanh toán (Cột phải) */
-.payment-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
 
-/* Các sản phẩm trong giỏ hàng */
-.cart-item {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
 
-/* Định dạng cho trường nhập liệu */
-.form-control {
-    position: relative;
-    padding-top: 20px;
-    /* Khoảng cách cho placeholder */
-}
-
-/* Định dạng cho trường nhập liệu */
-.form-floating {
-    position: relative;
-    margin-bottom: 1.5rem;
-}
-
-/* Định dạng thẻ thẻ thanh toán Visa */
-.visa {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #1a1f71;
-}
-
-/* Biểu tượng thẻ Visa */
-.card-icon {
-    color: orange;
-}
-
-.bank-icon {
-    color: green;
-}
-
-/* Thay đổi màu khi hover vào nút */
-.btn-dark:hover {
-    background-color: rgba(228, 142, 11, 0.5);
-    /* Màu vàng */
-    border-color: rgba(227, 184, 118, 0.5);
-    /* Đổi màu đường viền nếu có */
-}
