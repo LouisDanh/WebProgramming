@@ -9,6 +9,8 @@
 <title>Create an AP Account</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/hiddenEye.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
 
 </head>
 
@@ -78,8 +80,8 @@
 										<div class="input-group">
 											<input type="password" class="form-control" id="password"
 												placeholder="Enter your password" required>
-											<button type="button" id="toggle-password"
-												class="btn position-absolute top-50 end-5 translate-middle-y p-0">
+											<button id="toggle-password"
+												class=" position-absolute top-50 end-5 translate-middle-y p-0">
 												<i class="bi-eye-slash"></i>
 											</button>
 										</div>
@@ -92,8 +94,8 @@
 											<input type="password" class="form-control"
 												id="confirmPassword" placeholder="Confirm your password"
 												required>
-											<button type="button" id="toggle-password"
-												class="btn position-absolute top-50 end-5 translate-middle-y p-0">
+											<button id="toggle-password"
+												class=" position-absolute top-50 end-5 translate-middle-y p-0">
 												<i class="bi-eye-slash"></i>
 											</button>
 										</div>
@@ -164,9 +166,9 @@
 		src="${pageContext.request.contextPath}/resources/static/js/hiddenEye.js"
 		type="text/javascript"></script>
 
-<!-- 	<footer> -->
-<%-- 		<jsp:include page="/views/shares/footer.jsp"></jsp:include> --%>
-<!-- 	</footer> -->
+	<!-- 	<footer> -->
+	<%-- 		<jsp:include page="/views/shares/footer.jsp"></jsp:include> --%>
+	<!-- 	</footer> -->
 
 
 </body>

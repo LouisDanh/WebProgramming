@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/headerr.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/hheader.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
 <link rel="stylesheet"
@@ -20,7 +19,7 @@
 		<div
 			class="container d-flex justify-content-between align-items-center">
 			<!-- Logo -->
-			<div class="logo mb-4"
+			<div class="logo"
 				onclick="window.location.href='${pageContext.request.contextPath}/views/home/home.jsp';">
 				HISHAKU</div>
 
@@ -42,7 +41,7 @@
 					<i class="fas fa-search"></i>
 				</div>
 				<!-- Cart Icon -->
-				<div>
+				<div class="btn-link" data-href="${pageContext.request.contextPath}/views/home/cart.jsp">
 					<i class="fas fa-shopping-cart"></i>
 				</div>
 				<!-- Logout Icon -->

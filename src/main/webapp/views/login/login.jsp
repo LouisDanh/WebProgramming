@@ -8,6 +8,8 @@
 <title>Login Page</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/hiddenEye.css">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
 
 </head>
 <body>
@@ -30,8 +32,8 @@
 							<input type="password" class="form-control" id="password"
 								name="password" placeholder="Password"> <label
 								for="password">Enter your password</label>
-							<button type="button" id="toggle-password"
-								class="btn position-absolute top-50 end-7 translate-middle-y p-0">
+							<button  id="toggle-password"
+								class="position-absolute top-50 end-7 translate-middle-y p-0">
 								<i class="bi-eye-slash"></i>
 							</button>
 						</div>

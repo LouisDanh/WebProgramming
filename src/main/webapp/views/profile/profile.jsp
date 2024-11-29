@@ -401,8 +401,7 @@
 			</div>
 		</div>
 	</main>
-	<footer><jsp:include page="/views/shares/footer.jsp"></jsp:include>
-	</footer>
+	
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/profiles.js"></script>
 	<script

@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forgot Password</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
 </head>
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
