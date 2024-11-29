@@ -16,9 +16,7 @@
 </head>
 
 <body>
-	<header>
-		<jsp:include page="/views/shares/header.jsp"></jsp:include>
-	</header>
+	<jsp:include page="/views/shares/header.jsp"></jsp:include>
 	<main class="my-4">
 		<div class="container my-5">
 			<!-- content lễ hội -->
@@ -29,13 +27,13 @@
 				<!-- thể loại sản phẩm -->
 				<ul
 					class="list-unstyled d-flex gap-3 justify-content-center align-items-center">
-					<li class="tabled-products fw-bold">Phiên bản giới hạn</li>
+					<li class="tabled-products fw-bold cursor-pointer">Phiên bản giới hạn</li>
 					<li>|</li>
-					<li class="tabled-products">Dưỡng da</li>
+					<li class="tabled-products cursor-pointer">Dưỡng da</li>
 					<li>|</li>
-					<li class="tabled-products">Trang điểm</li>
+					<li class="tabled-products cursor-pointer">Trang điểm</li>
 					<li>|</li>
-					<li class="tabled-products">Nước hoa</li>
+					<li class="tabled-products cursor-pointer">Nước hoa</li>
 				</ul>
 				<div id="carousel-tabled-products">
 					<div class="wrapper-topic-product w-100">
@@ -51,8 +49,8 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						
-						<div class="border-0 card btn-link mx-4"
+
+							<div class="border-0 card btn-link mx-4"
 								data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 								<img
 									src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
@@ -62,7 +60,7 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						<div class="border-0 card btn-link mx-4"
+							<div class="border-0 card btn-link mx-4"
 								data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 								<img
 									src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
@@ -72,7 +70,7 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						<div class="border-0 card btn-link mx-4"
+							<div class="border-0 card btn-link mx-4"
 								data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 								<img
 									src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
@@ -82,7 +80,7 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						<div class="border-0 card btn-link mx-4"
+							<div class="border-0 card btn-link mx-4"
 								data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 								<img
 									src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
@@ -92,7 +90,7 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						<div class="border-0 card btn-link mx-4"
+							<div class="border-0 card btn-link mx-4"
 								data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 								<img
 									src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
@@ -102,7 +100,7 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						<div class="border-0 card btn-link mx-4"
+							<div class="border-0 card btn-link mx-4"
 								data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 								<img
 									src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
@@ -112,7 +110,7 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						<div class="border-0 card btn-link mx-4"
+							<div class="border-0 card btn-link mx-4"
 								data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 								<img
 									src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
@@ -122,7 +120,7 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						<div class="border-0 card btn-link mx-4"
+							<div class="border-0 card btn-link mx-4"
 								data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 								<img
 									src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
@@ -132,7 +130,7 @@
 									<p class="fw-bold card-text">3.900.000đ</p>
 								</div>
 							</div>
-						
+
 						</div>
 					</div>
 

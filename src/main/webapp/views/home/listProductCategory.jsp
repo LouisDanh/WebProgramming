@@ -12,7 +12,7 @@
 </head>
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-	<main>
+	<main class="my-4">
 		<div class="container-fluid">
 			<div class="p-5 w-100 h-50"></div>
 			<div class="container">
@@ -89,8 +89,8 @@
 			</div>
 			<div class="container">
 				<div class="row p-4">
-					<div class="col-3 hover-zoom btn-link mb-4"
-						data-href="https://www.w3schools.com/">
+					<div class="col-3 hover-dark btn-link mb-4"
+						data-href="${pageContext.request.contextPath}/views/home/descript.jsp">
 						<div class="card border-0 text-center">
 							<img
 								src="https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/makeup/lip-color/lipstick/les-nus-intense-lipstick-intensely-pigmented/nu-impertinent/les-nus-impertinent-173-071249421758-primary.png?rev=b599fdaa54c046b58c6f5f54041e78c5&w=200&hash=37DCDDDD3E18F314410CE9365B2CECAF1A136492"

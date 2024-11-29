@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/hheader.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/hheader.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
 <link rel="stylesheet"
@@ -19,8 +20,8 @@
 		<div
 			class="container d-flex justify-content-between align-items-center">
 			<!-- Logo -->
-			<div class="logo"
-				onclick="window.location.href='${pageContext.request.contextPath}/views/home/home.jsp';">
+			<div class="logo btn-link"
+				data-href="${pageContext.request.contextPath}/views/home/home.jsp">
 				HISHAKU</div>
 
 			<!-- Menu Navigation -->
@@ -41,7 +42,8 @@
 					<i class="fas fa-search"></i>
 				</div>
 				<!-- Cart Icon -->
-				<div class="btn-link" data-href="${pageContext.request.contextPath}/views/home/cart.jsp">
+				<div class="btn-link"
+					data-href="${pageContext.request.contextPath}/views/home/cart.jsp">
 					<i class="fas fa-shopping-cart"></i>
 				</div>
 				<!-- Logout Icon -->
@@ -426,11 +428,6 @@
 	</script>
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/search_bar.js"
-		type="text/javascript">
-		
-	</script>
-	<script
-		src="${pageContext.request.contextPath}/resources/static/js/btn_link.js"
 		type="text/javascript">
 		
 	</script>

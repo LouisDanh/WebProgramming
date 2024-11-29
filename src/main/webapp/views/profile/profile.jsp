@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<header><jsp:include page="/views/shares/header.jsp"></jsp:include></header>
+	<jsp:include page="/views/shares/header.jsp"></jsp:include>
 
 	<main class="my-4">
 		<div class="container-fluid">
@@ -305,38 +305,38 @@
 							<div class="infor-tag d-none ">
 								<div class="d-flex flex-column">
 									<div class=" mb-3 shadow-sm">
-											<div class="card-body collapse-btn">
-												<div class="d-flex align-items-center">
-													<!-- Order Images -->
-													<div class="order-images d-flex me-3">
-														<div class="position-relative">
-															<img
-																src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lvcrqvyu9pxp3f_tn"
-																alt="Product 1"
-																class="rounded me-2 img-thumbnail img-40px"> <img
-																src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lvcrqvyu9pxp3f_tn"
-																alt="Product 2"
-																class="rounded me-2 img-thumbnail img-40px"> <span
-																class="badge bg-secondary position-absolute top-0 start-100 translate-middle">+3</span>
-														</div>
+										<div class="card-body collapse-btn">
+											<div class="d-flex align-items-center">
+												<!-- Order Images -->
+												<div class="order-images d-flex me-3">
+													<div class="position-relative">
+														<img
+															src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lvcrqvyu9pxp3f_tn"
+															alt="Product 1"
+															class="rounded me-2 img-thumbnail img-40px"> <img
+															src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lvcrqvyu9pxp3f_tn"
+															alt="Product 2"
+															class="rounded me-2 img-thumbnail img-40px"> <span
+															class="badge bg-secondary position-absolute top-0 start-100 translate-middle">+3</span>
 													</div>
-													<!-- Order Info -->
-													<div class="flex-grow-1">
-														<div class="d-flex justify-content-between">
-															<div>
-																<small class="text-muted d-block">Ngày mua:
-																	20/11/2023</small> <small class="text-muted d-block">Ngày
-																	nhận: 25/11/2023</small>
-															</div>
-															<div class="text-end text-dark">
-																<h5 class="mb-0 ">
-																	Tổng đơn: <span class="text-danger">500,000 đ</span>
-																</h5>
-															</div>
+												</div>
+												<!-- Order Info -->
+												<div class="flex-grow-1">
+													<div class="d-flex justify-content-between">
+														<div>
+															<small class="text-muted d-block">Ngày mua:
+																20/11/2023</small> <small class="text-muted d-block">Ngày
+																nhận: 25/11/2023</small>
+														</div>
+														<div class="text-end text-dark">
+															<h5 class="mb-0 ">
+																Tổng đơn: <span class="text-danger">500,000 đ</span>
+															</h5>
 														</div>
 													</div>
 												</div>
 											</div>
+										</div>
 										<!-- Order Details -->
 										<div class="collapse-content border-top w-100">
 											<div class="d-flex flex-column gap-3 p-3">
@@ -401,7 +401,7 @@
 			</div>
 		</div>
 	</main>
-	
+
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/profiles.js"></script>
 	<script

@@ -9,12 +9,11 @@
 <title>Mô tả sản phẩm</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/product_description.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/btn.css">
-
 </head>
 
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-	<div class="container mt-5">
+	<div class="container my-5">
 		<div class="row">
 			<!-- Phần hiển thị ảnh sản phẩm, chiếm 2 cột -->
 			<div
