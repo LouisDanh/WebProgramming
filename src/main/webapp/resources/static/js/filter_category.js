@@ -20,4 +20,8 @@ $(document).ready(function() {
 		$('#dropdown-text-brand').text('');
 		$('.dropdown-brand-item').removeClass('drop-brand-item__active');
 	});
+	$('#filter-submit-button').on('click', function() {
+		$('.collapse-content').hide(500);
+		
+	});
 });

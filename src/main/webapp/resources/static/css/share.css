@@ -17,7 +17,7 @@
 }
 
 .no-transition {
-	transition: none;
+	transition: none !important;
 }
 
 .cursor-pointer {
@@ -39,7 +39,7 @@
 }
 
 .h-395px {
-	height: 395px;
+	height: 395px !important;;
 }
 
 .hover-dark {
@@ -73,4 +73,8 @@
 	color: inherit;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+.collapse-content {
+	width: 100% !important;
 }

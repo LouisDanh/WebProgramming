@@ -21,39 +21,36 @@
 			</div>
 			<div class="py-5 w-75 m-auto h-50">
 				<div
-					class="d-flex justify-content-between align-items-center shadow fs-4 fw-bold">
+					class="d-flex justify-content-between align-items-center shadow fs-4 fw-bold collapse-btn">
 					<p class="p-4 m-0">
 						<span>(25)</span> Kết quả
 					</p>
 					<div id="filter-product"
-						class="px-5 py-4 bg-dark text-white cursor-pointer "
-						data-bs-toggle="collapse" data-bs-target="#filter-content"
-						aria-expanded="false" aria-controls="filter-content">
+						class="px-5 py-4 bg-dark text-white cursor-pointer ">
 						<span class="me-2">Nhu cau cua toi</span> <i
 							class="fa-solid fa-filter"></i>
 					</div>
 				</div>
-				<div class="collapse bg-dark text-white p-5 no-transition shadow"
-					id="filter-content">
+				<div class="collapse-content bg-dark text-white p-5 shadow">
 					<div class="p-4">
 						<h3 class="mb-4">Loai san pham</h3>
 						<div class="d-flex flex-wrap gap-4 cursor-pointer">
 							<div class="filter-item">
 								<p class="p-3  m-0">
-									Ná»i dung bÃªn trong <span>(Sá» lÆ°á»£ng)</span>
+									Noi dung ben trong <span>So luong</span>
 								</p>
 							</div>
 						</div>
 					</div>
 					<div class="d-flex align-items-center p-4">
-						<p class="fs-4 m-0">DÃ²ng sáº£n pháº©m</p>
-						<div class="dropdown w-50 ms-3 cursor-default ">
+						<p class="fs-4 m-0">Dong san pham</p>
+						<div class="dropdown w-50 ms-3 cursor-default">
 							<div
 								class="d-flex justify-content-between align-items-center border-bottom py-2 px-3 dropdown-toggle"
 								data-bs-toggle="dropdown" aria-expanded="false">
 								<div class="fw-bold fs-5 m-0 text-wrap d-flex">
 									<span class="me-2">Brand</span> <span id="dropdown-text-brand"></span>
-								</div>
+								</div> 
 							</div>
 							<div
 								class="dropdown-menu w-100 shadow-lg fs-5 p-0 border-radius-1">
@@ -61,34 +58,32 @@
 									class="dropdown-item disabled text-muted dropdown-brand-item">
 									Brand</div>
 								<div class="dropdown-item dropdown-brand-item">
-									Glycolic Bright <span>(Sá» lÆ°á»£ng)</span>
+									Glycolic Bright <span>So luong</span>
 								</div>
 								<div class="dropdown-item dropdown-brand-item">
-									DÆ°á»¡ng tráº¯ng da Aura Perfect <span>(Sá» lÆ°á»£ng)</span>
+									Duong trang da Aura Perfect <span>So luong</span>
 								</div>
 								<div class="dropdown-item dropdown-brand-item">
-									Revitalift <span>(Sá» lÆ°á»£ng)</span>
+									Revitalift <span>So luong</span>
 								</div>
 								<div class="dropdown-item dropdown-brand-item">
-									Youth Code <span>(Sá» lÆ°á»£ng)</span>
+									Youth Code <span>(So luong)</span>
 								</div>
 								<div
 									class="dropdown-item dropdown-brand-item pb-1 border-radius-1">
-									Giáº£m thÃ¢m nÃ¡m Aura Perfect Clinical <span>(Sá»
-										lÆ°á»£ng)</span>
+									Giam tham nam Aura Perfect Clinical <span>So luong</span>
 								</div>
 							</div>
 						</div>
+					
 					</div>
 					<!-- button filter -->
 					<div class="p-4 d-flex align-items-center justify-content-end">
 						<button id="filter-remove-button">
-							<span class="me-2">XÃ³a toÃ n bá»</span> <i
+							<span class="me-2">Xoa toan bo</span> <i
 								class="fa-solid fa-xmark"></i>
 						</button>
-						<button id="filter-submit-button" data-bs-toggle="collapse"
-							data-bs-target="#filter-content" aria-expanded="false"
-							aria-controls="filter-content">Xong</button>
+						<button id="filter-submit-button" class="collapse-btn">Xong</button>
 					</div>
 				</div>
 			</div>
@@ -125,6 +120,8 @@
 	<jsp:include page="/views/shares/footer.jsp"></jsp:include>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/static/js/filter_category.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/static/js/collapse.js"></script>
 </body>
 
 </html>
