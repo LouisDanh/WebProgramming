@@ -1,0 +1,122 @@
+/* Logo */
+.logo {
+	width: 236px;
+	height: 59px;
+	font-family: 'Dancing Script', cursive;
+	font-size: 68px;
+	font-weight: bold;
+	color: white; /* Màu chữ logo mặc định */
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: color 0.3s ease, transform 0.3s ease;
+	/* Thêm hiệu ứng mượt cho màu và kích thước */
+}
+
+/* Hiệu ứng hover cho logo */
+.logo:hover {
+	color: #F2CD95 !important; /* Màu chữ logo khi hover */
+	transform: scale(1.1); /* Phóng to logo khi hover */
+}
+
+/* Header Styles */
+header {
+	background-color: #222; /* Màu nền tối hơn */
+	padding: 20px 0; /* Thêm không gian trên và dưới */
+	transition: background-color 0.3s ease; /* Hiệu ứng chuyển nền mượt */
+	display: flex;
+	justify-content: space-between;
+	align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+/* Menu */
+.navbar-nav {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+}
+
+.nav-link {
+	color: white !important; /* Màu chữ mặc định */
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 10px 20px;
+	transition: color 0.3s ease; /* Hiệu ứng chuyển màu chữ */
+	text-align: center;
+}
+
+.nav-link:hover {
+	color: #F2CD95 !important; /* Màu chữ khi hover */
+	border-radius: 5px;
+	background-color: transparent; /* Giữ nền trong suốt, không thay đổi */
+}
+
+/* Shared Styles for #finding and #hamburgerIcon */
+#finding, #hamburgerIcon i {
+	color: white !important; /* Default text color */
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 10px 20px;
+	font-size: 16px; /* Adjusted font size */
+	cursor: pointer;
+	transition: color 0.3s ease; /* Smooth transition for color change */
+	text-align: center;
+}
+
+/* Hover effect for #finding */
+#finding:hover {
+	color: #F2CD95 !important; /* Change color on hover */
+}
+
+/* Specific Styles for the Hamburger Icon */
+#hamburgerIcon i {
+	font-size: 24px;
+}
+
+/* Hover effect for the hamburger icon */
+#hamburgerIcon i:hover {
+	color: #F2CD95 !important; /* Change color on hover */
+}
+
+/* Hidden Icons (will be displayed when hamburger icon is clicked) */
+#extraIcons {
+	display: none; /* Initially hidden */
+	position: absolute !important;
+	top: 40px; /* Adjust this for positioning below the hamburger icon */
+	right: 0;
+	background-color: #333; /* Background color for the extra icons */
+	border-radius: 5px;
+	padding: 10px 0;
+	width: 180px; /* Width for the extra icons menu */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	z-index: 10;
+}
+
+/* Styling for the menu links inside #extraIcons */
+#extraIcons .btn-link {
+	display: block;
+	padding: 10px 20px;
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the menu links */
+#extraIcons .btn-link:hover {
+	background-color: #F2CD95;
+	/* Highlight background when hovering over the menu items */
+}
+
+/* Icon spacing inside the menu */
+#extraIcons .btn-link i {
+	margin-right: 10px; /* Space between icon and text */
+}
+
+/* Show the hidden icons when the hamburger icon is clicked */
+#extraIcons.show {
+	display: block;
+}

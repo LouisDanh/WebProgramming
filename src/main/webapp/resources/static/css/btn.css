@@ -3,7 +3,7 @@
 .btn {
     background-color: black !important; /* Force black background */
     color: white !important; /* Text color white */
-    border: none;
+    border: #F2CD95 !important;
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
 }
 

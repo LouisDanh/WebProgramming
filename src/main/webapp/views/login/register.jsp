@@ -63,15 +63,6 @@
 										placeholder="Enter your email address" required>
 								</div>
 
-								<!-- Choose your countries -->
-								<div class="mb-3">
-									<label for="location" class="form-label">Country</label> <select
-										class="form-select" id="location" required>
-										<option selected disabled value="">Loading
-											countries...</option>
-									</select>
-								</div>
-
 								<!-- Password and Confirm Password -->
 								<div class="row mb-3">
 									<div class="col-md-6">
@@ -128,49 +119,9 @@
 			</div>
 		</div>
 	</main>
-
-	<!-- JavaScript for Country Selection and Password Visibility -->
-	<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const locationSelect = document.getElementById('location');
-
-            // Function to fetch countries and populate the select dropdown
-            async function fetchCountries() {
-                try {
-                    // Fetch countries from the API
-                    const response = await fetch('https://restcountries.com/v3.1/all');
-                    const countries = await response.json();
-
-                    // Clear any existing options (in case the page is reloaded)
-                    locationSelect.innerHTML = '<option selected disabled value="">Choose a country...</option>';
-
-                    // Loop through the countries and create option elements
-                    countries.forEach(country => {
-                        const option = document.createElement('option');
-                        option.value = country.name.common;  // Set the country name as the value
-                        option.textContent = country.name.common;  // Set the country name as the displayed text
-                        locationSelect.appendChild(option);
-                    });
-                } catch (error) {
-                    console.error('Error fetching countries:', error);
-                    locationSelect.innerHTML = '<option selected disabled value="">Failed to load countries</option>';
-                }
-            }
-
-            // Call the function to fetch countries when the page is loaded
-            fetchCountries();
-        });
-    </script>
-
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/hiddenEye.js"
 		type="text/javascript"></script>
-
-	<!-- 	<footer> -->
-	<%-- 		<jsp:include page="/views/shares/footer.jsp"></jsp:include> --%>
-	<!-- 	</footer> -->
-
-
 </body>
 
 </html>

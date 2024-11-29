@@ -1,12 +1,8 @@
-/**
- * Thêm bớt giỏ hàng
- */
-
 $(document).ready(function () {
     // Hàm cập nhật tổng giá trị đơn hàng
     const updateTotalPrice = () => {
-        let totalPrice = 0;
-        let totalItems = 0; // Variable to keep track of the total items in the cart
+        let totalPrice = 0;  // Biến để tính tổng giá trị đơn hàng
+        let totalItems = 0;  // Biến để theo dõi tổng số lượng sản phẩm trong giỏ hàng
 
         // Duyệt qua từng sản phẩm trong giỏ hàng và tính toán tổng giá trị
         $('.cart-item').each(function () {

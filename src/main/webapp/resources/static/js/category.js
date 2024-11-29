@@ -1,28 +1,21 @@
-function toggleSubCategory(category) {
-    const subCategories = document.querySelectorAll('.sub-category');
-
-    subCategories.forEach(function(subCategory) {
+$(document).ready(function() {
+    function toggleSubCategory(category) {
         // Hide all sub-categories
-        subCategory.style.display = 'none';
-    });
+        $('.sub-category').hide();
 
-    // Get the selected category
-    const selectedCategory = document.getElementById(category);
-
-    // Show or hide the selected category based on its current state
-    if (selectedCategory.style.display === 'block') {
-        selectedCategory.style.display = 'none';
-    } else {
-        selectedCategory.style.display = 'block';
+        // Show or hide the selected category based on its current state
+        const selectedCategory = $('#' + category);
+        if (selectedCategory.css('display') === 'block') {
+            selectedCategory.hide();
+        } else {
+            selectedCategory.show();
+        }
     }
-}
 
-function closeAllSubCategories() {
-    const subCategories = document.querySelectorAll('.sub-category');
-    subCategories.forEach(function(subCategory) {
-        subCategory.style.display = 'none';
-    });
-}
+    function closeAllSubCategories() {
+        $('.sub-category').hide();
+    }
 
-// Close the sub-categories when mouse leaves the menu
-document.querySelector('.danhMuc').addEventListener('mouseleave', closeAllSubCategories);
+    // Close the sub-categories when mouse leaves the menu
+    $('.danhMuc').on('mouseleave', closeAllSubCategories);
+});
