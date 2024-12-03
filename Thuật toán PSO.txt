@@ -1,0 +1,5 @@
+Thuật toán PSO áp dụng vào dự án:
+- Mỗi đường đi(từ điểm bắt đầu đến kết thúc) tương ứng với một hạt(particle)
+- Mỗi đường đi là một danh sách các điểm
+- Để đi được ô tiếp theo nó phải dựa vào cập nhật vận tốc theo công thức:
+- 

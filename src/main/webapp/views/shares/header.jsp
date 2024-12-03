@@ -6,14 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/head.css">
+	href="${pageContext.request.contextPath}/resources/static/css/header.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/category.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/share.css">
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
 
 </head>
 <body>
@@ -29,12 +30,14 @@
 			<!-- Menu Navigation -->
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="navbar-nav">
-					<a class="nav-link" href="#" onclick="toggleSubCategory('brand')">NƯỚC
-						HOA</a> <a class="nav-link" href="#"
-						onclick="toggleSubCategory('skincare')">DƯỠNG DA</a> <a
-						class="nav-link" href="#" onclick="toggleSubCategory('makeup')">TRANG
-						ĐIỂM</a> <a class="nav-link" href="#"
-						onclick="toggleSubCategory('haircare')">CHĂM SÓC NHUỘM TÓC</a>
+					<a class="nav-link" href="#" onclick="toggleSubCategory('brand')"><strong>NƯỚC
+							HOA</strong> </a> <a class="nav-link" href="#"
+						onclick="toggleSubCategory('skincare')"><strong>DƯỠNG
+							DA</strong></a> <a class="nav-link" href="#"
+						onclick="toggleSubCategory('makeup')"><strong>TRANG
+							ĐIỂM</strong></a> <a class="nav-link" href="#"
+						onclick="toggleSubCategory('haircare')"><strong>CHĂM
+							SÓC NHUỘM TÓC</strong></a>
 				</div>
 			</nav>
 			<!-- Tools Section -->
@@ -429,12 +432,9 @@
 		</div>
 
 	</div>
-
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/category.js"
-		type="text/javascript">
-		
-	</script>
+		type="text/javascript" defer></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/search_bar.js"
 		type="text/javascript">

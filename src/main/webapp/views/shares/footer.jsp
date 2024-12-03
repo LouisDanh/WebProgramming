@@ -1,96 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/footer.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/footer.css">
 </head>
 <body>
-<jsp:include page="staticlib.jsp"></jsp:include>
-		<div class="container">
-			<div class="row">
-				<!-- Thông tin công ty -->
-				<div class="col-md-3">
-					<h5>Thông tin công ty</h5>
-					<p>Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM</p>
-					<p>Số điện thoại: 0901234567</p>
-					<p>Email: info@mypham.com</p>
-					<p>Giờ làm việc: 8:00 - 18:00</p>
-				</div>
-
-				<!-- Liên kết nhanh -->
-				<div class="col-md-3">
-					<h5>Liên kết nhanh</h5>
-					<ul class="list-unstyled">
-						<li><a href="#">Trang chủ</a></li>
-						<li><a href="#">Sản phẩm</a></li>
-						<li><a href="#">Giới thiệu</a></li>
-						<li><a href="#">Chính sách bảo mật</a></li>
-						<li><a href="#">Liên hệ</a></li>
-					</ul>
-				</div>
-
-				<!-- Dịch vụ -->
-				<div class="col-md-3">
-					<h5>Dịch vụ</h5>
-					<ul class="list-unstyled">
-						<li><a href="#">Giao hàng nhanh</a></li>
-						<li><a href="#">Đổi trả miễn phí</a></li>
-						<li><a href="#">Thanh toán khi nhận hàng</a></li>
-						<li><a href="#">Chăm sóc khách hàng</a></li>
-					</ul>
-				</div>
-
-				<!-- Hỗ trợ khách hàng -->
-				<div class="col-md-3">
-					<h5>Hỗ trợ khách hàng</h5>
-					<ul class="list-unstyled">
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Chính sách đổi trả</a></li>
-						<li><a href="#">Bảo hành sản phẩm</a></li>
-						<li><a href="#">Hướng dẫn mua hàng</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="row">
-				<!-- Mạng xã hội -->
-				<div class="col-md-12 text-center">
-					<h5>Kết nối với chúng tôi</h5>
-					<ul
-						class="list-unstyled d-flex justify-content-center social-icons">
-						<!-- Facebook Icon -->
-						<li class="mx-3"><a href="#" target="_blank"> <i
-								class="fab fa-facebook fa-3x"></i>
-						</a></li>
-						<!-- Instagram Icon -->
-						<li class="mx-3"><a href="#" target="_blank"> <i
-								class="fab fa-instagram fa-3x"></i>
-						</a></li>
-						<!-- TikTok Icon -->
-						<li class="mx-3"><a href="#" target="_blank"> <i
-								class="fab fa-tiktok fa-3x"></i>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- Đăng ký nhận tin -->
-			<div class="text-center mt-4">
-				<h5>Đăng ký nhận bản tin</h5>
-				<form action="#">
-					<div class="input-group mx-auto" style="max-width: 350px;">
-						<input type="email" class="form-control"
-							placeholder="Nhập email của bạn" required>
-						<button class="btn btn-primary" type="submit">Đăng ký</button>
+	<jsp:include page="staticlib.jsp"></jsp:include>
+	<footer>
+		<div class="div-with-top-border cursor-pointer">
+			<div class="footer-container container mt-5">
+				<div class="row">
+					<div class="col-12 col-md-3">
+						<h4>PHONE REPAIR</h4>
+						<ul>
+							<li><i class="fas fa-phone-alt"></i> Tổng đài miễn phí: <strong>1800
+									2057</strong></li>
+							<li><i class="fas fa-phone-alt"></i> Phản ánh dịch vụ: <strong>1800
+									2018</strong></li>
+							<li><i class="fas fa-clock"></i> Giờ làm việc: Thứ 2 - CN,
+								8:00 - 21:00</li>
+						</ul>
 					</div>
-				</form>
-			</div>
+					<div class="col-12 col-md-3">
+						<h4>THÔNG TIN HỖ TRỢ</h4>
+						<ul>
+							<li>Chính sách bảo hành/Đổi trả/Vận chuyển</li>
+							<li>Chính sách bảo mật</li>
+							<li>Hình thức thanh toán</li>
+							<li>Chính sách lưu trữ thiết bị</li>
+							<li>Thông tin chủ sở hữu Website</li>
+						</ul>
+					</div>
 
-			<!-- Bản quyền -->
-			<div class="text-center mt-4 copyright">
-				<p>© 2024 HISHAKU. Tất cả quyền được bảo lưu.</p>
+					<div class="col-12 col-md-3">
+						<h4>Người Thực Hiện</h4>
+						<ul>
+							<li>FUN NHA</li>
+							<li>HIEN TEACHER</li>
+						</ul>
+					</div>
+
+					<div class="col-12 col-md-3">
+						<div>
+							<h4 class="title">Kết nối với FastCare</h4>
+							<div class="social-links">
+								<a href="https://www.youtube.com/c/FastcareVN" target="_blank"
+									rel="nofollow"> <img
+									src="${pageContext.request.contextPath}/resources/static/img/youtube-icon.png"
+									alt="YouTube" width="50">
+								</a> <a href="https://www.facebook.com/fastcarehcm" target="_blank"
+									rel="nofollow"> <img
+									src="${pageContext.request.contextPath}/resources/static/img/facebook-icon.png"
+									alt="Facebook" width="50">
+								</a> <a href="https://www.pinterest.com/Fastcare_vn/"
+									target="_blank" rel="nofollow"> <img
+									src="${pageContext.request.contextPath}/resources/static/img/pinterest-icon.png"
+									alt="Pinterest" width="50">
+								</a> <a href="https://www.tiktok.com/@fastcare.vn" target="_blank"
+									rel="nofollow"> <img
+									src="${pageContext.request.contextPath}/resources/static/img/tiktok-icon.png"
+									alt="TikTok" width="50">
+								</a> <a href="https://www.instagram.com/fastcare.vn/"
+									target="_blank" rel="nofollow"> <img
+									src="${pageContext.request.contextPath}/resources/static/img/instagram-icon.png"
+									alt="Instagram" width="50">
+								</a>
+							</div>
+						</div>
+						<div class="certificates">
+							<a href="http://online.gov.vn/Home/WebDetails/29094"
+								rel="nofollow"> <img
+								src="${pageContext.request.contextPath}/resources/static/img/logo-bo-cong-thuong.png"
+								alt="Bộ Công Thương" width="100">
+							</a> <a
+								href="https://dmca.com/Protection/Status.aspx?ID=75573202-78d7-410f-a6f6-40d252da45bd&amp;refurl=https://fastcare.vn/"
+								rel="nofollow"> <img
+								src="${pageContext.request.contextPath}/resources/static/img/dmca-badge-fastcare.png"
+								alt="DMCA Protected" width="100">
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		<div class="pt-3 top-border">
+			<div class="text-center font-footer-bottom">
+				<p>Công ty Cổ Phần thương mại dịch vụ Hishaku</p>
+				<p>GPDKKD số 0123456789 do Sở kế hoạch và Đầu tư TP. Hồ Chí Minh
+					cấp ngày 20/10/2024</p>
+				<p>Địa chỉ: TP.HCM</p>
+				<p>Email: hishaku@gmail.vn</p>
+			</div>
+		</div>
+
+	</footer>
 </body>
 </html>

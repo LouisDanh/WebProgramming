@@ -3,12 +3,12 @@
 .btn {
     background-color: black !important; /* Force black background */
     color: white !important; /* Text color white */
-    border: #F2CD95 !important;
+    border: black !important;
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
 }
 
 /* Hover effect for all buttons */
 .btn:hover {
-    background-color: #F2CD95 !important; /* Hover background color */
-    color: black !important; /* Text color changes to black on hover */
+    background-color: #BDC3C7 !important; /* Hover background color */
+    color: white !important; /* Text color changes to black on hover */
 }
