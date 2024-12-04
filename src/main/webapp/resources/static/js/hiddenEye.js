@@ -1,28 +1,35 @@
-// Đảm bảo mật khẩu ẩn và biểu tượng là mắt đóng khi trang được tải
-document.getElementById('toggle-password').addEventListener('click', function () {
-    var passwordField = document.getElementById('password');
-    var icon = this.querySelector('i');
-    if (passwordField.type === 'password') {
-        passwordField.type = 'text'; // Hiện mật khẩu
-        icon.classList.remove('bi-eye-slash'); // Đổi biểu tượng mắt đóng
-        icon.classList.add('bi-eye'); // Đổi biểu tượng mắt mở
-    } else {
-        passwordField.type = 'password'; // Ẩn mật khẩu
-        icon.classList.remove('bi-eye'); // Đổi biểu tượng mắt mở
-        icon.classList.add('bi-eye-slash'); // Đổi biểu tượng mắt đóng
-    }
-});
+$(document).ready(function() {
+    // Đảm bảo mật khẩu ẩn và biểu tượng là mắt đóng khi trang được tải
+    $('#toggle-password').click(function() {
+        var passwordField = $('#password');  // Lấy trường mật khẩu
+        var icon = $(this).find('i');  // Lấy biểu tượng mắt trong nút
 
-document.getElementById('toggle-confirm-password').addEventListener('click', function () {
-    var confirmPasswordField = document.getElementById('confirmPassword');
-    var icon = this.querySelector('i');
-    if (confirmPasswordField.type === 'password') {
-        confirmPasswordField.type = 'text'; // Hiện mật khẩu xác nhận
-        icon.classList.remove('bi-eye-slash'); // Đổi biểu tượng mắt đóng
-        icon.classList.add('bi-eye'); // Đổi biểu tượng mắt mở
-    } else {
-        confirmPasswordField.type = 'password'; // Ẩn mật khẩu xác nhận
-        icon.classList.remove('bi-eye'); // Đổi biểu tượng mắt mở
-        icon.classList.add('bi-eye-slash'); // Đổi biểu tượng mắt đóng
-    }
+        // Kiểm tra xem mật khẩu đang ẩn hay hiển thị
+        if (passwordField.attr('type') === 'password') {
+            passwordField.attr('type', 'text');  // Hiện mật khẩu
+            icon.removeClass('bi-eye-slash');  // Xóa biểu tượng mắt đóng
+            icon.addClass('bi-eye');  // Thêm biểu tượng mắt mở
+        } else {
+            passwordField.attr('type', 'password');  // Ẩn mật khẩu
+            icon.removeClass('bi-eye');  // Xóa biểu tượng mắt mở
+            icon.addClass('bi-eye-slash');  // Thêm biểu tượng mắt đóng
+        }
+    });
+
+    // Đảm bảo mật khẩu xác nhận ẩn và biểu tượng là mắt đóng khi trang được tải
+    $('#toggle-confirm-password').click(function() {
+        var confirmPasswordField = $('#confirmPassword');  // Lấy trường mật khẩu xác nhận
+        var icon = $(this).find('i');  // Lấy biểu tượng mắt trong nút
+
+        // Kiểm tra xem mật khẩu xác nhận đang ẩn hay hiển thị
+        if (confirmPasswordField.attr('type') === 'password') {
+            confirmPasswordField.attr('type', 'text');  // Hiện mật khẩu xác nhận
+            icon.removeClass('bi-eye-slash');  // Xóa biểu tượng mắt đóng
+            icon.addClass('bi-eye');  // Thêm biểu tượng mắt mở
+        } else {
+            confirmPasswordField.attr('type', 'password');  // Ẩn mật khẩu xác nhận
+            icon.removeClass('bi-eye');  // Xóa biểu tượng mắt mở
+            icon.addClass('bi-eye-slash');  // Thêm biểu tượng mắt đóng
+        }
+    });
 });

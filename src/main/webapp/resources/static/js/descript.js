@@ -1,16 +1,13 @@
-/**
- * Update shopping Cart
- */
 $(document).ready(function() {
-    // Toggle ingredients visibility with icon change
+    // Chức năng ẩn/hiện phần nguyên liệu khi nhấn vào biểu tượng
     $("#toggleIcon").click(function() {
         const ingredientsContent = $("#ingredientsContent");
         const isHidden = ingredientsContent.hasClass("d-none");
 
-        // Toggle visibility
+        // Thực hiện ẩn/hiện phần nguyên liệu
         ingredientsContent.toggleClass("d-none", !isHidden);
 
-        // Change the icon
+        // Thay đổi biểu tượng (+ <-> -)
         if (isHidden) {
             $(this).removeClass("bi-plus").addClass("bi-dash");
         } else {
@@ -18,42 +15,38 @@ $(document).ready(function() {
         }
     });
 
-    // Update price based on quantity
+    // Hàm cập nhật giá tiền dựa trên số lượng
     const updatePrice = (quantity) => {
-        const basePrice = 4200000;  // Set base price for your product (you can get it from HTML)
-        const totalPrice = basePrice * quantity;
-        $("#prices").text(totalPrice.toLocaleString('vi-VN') + '₫');
+        const basePrice = parseInt($("#basePrice").text());  // Lấy giá gốc từ HTML (có thể lấy từ phần tử trên trang)
+        const totalPrice = basePrice * quantity;  // Tính tổng giá
+        $("#prices").text(totalPrice.toLocaleString('vi-VN') + '₫');  // Hiển thị tổng giá theo định dạng tiền Việt
     };
 
-    // Handle quantity changes
-    let quantity = 1;  // Default quantity
+    // Xử lý thay đổi số lượng
+    let quantity = 1;  // Số lượng mặc định
 
-    // When decrease button is clicked
+    // Khi nhấn nút giảm số lượng
     $("#decrease").click(function() {
         if (quantity > 1) {
-            quantity--;  // Decrease the quantity
-            $("#quantity").text(quantity);  // Update the quantity display
-            updatePrice(quantity);  // Update price
+            quantity--;  // Giảm số lượng
+            $("#quantity").text(quantity);  // Cập nhật hiển thị số lượng
+            updatePrice(quantity);  // Cập nhật giá
         }
     });
 
-    // When increase button is clicked
+    // Khi nhấn nút tăng số lượng
     $("#increase").click(function() {
-        quantity++;  // Increase the quantity
-        $("#quantity").text(quantity);  // Update the quantity display
-        updatePrice(quantity);  // Update price
+        quantity++;  // Tăng số lượng
+        $("#quantity").text(quantity);  // Cập nhật hiển thị số lượng
+        updatePrice(quantity);  // Cập nhật giá
     });
 
-    // Change main image when thumbnail is clicked
-    const thumbnails = document.querySelectorAll('.img-60px');
-    const mainImage = document.getElementById('mainImage');
-
-    thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', (e) => {
-            mainImage.src = e.target.getAttribute('data-large-image');
-        });
+    // Thay đổi ảnh chính khi nhấn vào hình thu nhỏ (sử dụng jQuery)
+    $(".img-60px").click(function() {
+        const newImage = $(this).data('large-image');  // Lấy URL của ảnh lớn từ thuộc tính data-large-image
+        $('#mainImage').attr('src', newImage);  // Cập nhật ảnh chính
     });
 
-    // Initially update price when page loads
+    // Cập nhật giá ngay khi trang được tải
     updatePrice(quantity);
 });

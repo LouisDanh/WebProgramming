@@ -1,42 +1,25 @@
-@charset "UTF-8";
-
-footer {
-	background-color: #f8f9fa;
-	padding: 40px 0;
+/* Remove the bullet points from the lists */
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-footer h5 {
-	font-weight: bold;
-	color: #343a40;
+/* Optional: Add custom padding to the list items */
+ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.div-with-top-border {
+    border-top: 3px solid #BDC3C7; /* Orange solid top border */
+    padding: 8px;
 }
 
-footer a {
-	color: #6c757d;
-	text-decoration: none;
+.top-border {
+    border-top: 1px solid #BDC3C7; /* Orange solid top border */
+    padding: 4px;
 }
 
-footer a:hover {
-	color: #007bff;
-	text-decoration: underline;
+.font-footer-bottom{
+	font-size: 12px;
 }
 
-.social-icons i {
-	transition: transform 0.3s ease;
-}
-
-.social-icons i:hover {
-	transform: scale(1.2);
-}
-
-.input-group .form-control {
-	border-radius: 30px;
-}
-
-.input-group .btn {
-	border-radius: 30px;
-}
-
-.copyright {
-	font-size: 0.9rem;
-	color: #6c757d;
-}

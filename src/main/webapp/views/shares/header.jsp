@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/hheader.css">
+	href="${pageContext.request.contextPath}/resources/static/css/header.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
 <link rel="stylesheet"
@@ -25,41 +25,50 @@
 			<!-- Menu Navigation -->
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="navbar-nav">
-					<a class="nav-link" href="#" onclick="toggleSubCategory('brand')">NƯỚC
-						HOA</a> <a class="nav-link" href="#"
-						onclick="toggleSubCategory('skincare')">DƯỠNG DA</a> <a
-						class="nav-link" href="#" onclick="toggleSubCategory('makeup')">TRANG
-						ĐIỂM</a> <a class="nav-link" href="#"
-						onclick="toggleSubCategory('haircare')">CHĂM SÓC NHUỘM TÓC</a>
+					<a class="nav-link" href="#" onclick="toggleSubCategory('brand')"><strong>NƯỚC
+							HOA</strong> </a> <a class="nav-link" href="#"
+						onclick="toggleSubCategory('skincare')"><strong>DƯỠNG
+							DA</strong></a> <a class="nav-link" href="#"
+						onclick="toggleSubCategory('makeup')"><strong>TRANG
+							ĐIỂM</strong></a> <a class="nav-link" href="#"
+						onclick="toggleSubCategory('haircare')"><strong>CHĂM
+							SÓC NHUỘM TÓC</strong></a>
 				</div>
 			</nav>
 			<!-- Tools Section -->
-			<div class="tools d-flex align-items-center">
-				<!-- Search Icon -->
+			<div class="d-flex justify-content-between align-items-center">
+				<!-- Tìm kiếm Text (Search) -->
 				<div>
-					<i class="fas fa-search"></i>
+					<a id="finding" class="btn-link"
+						href="${pageContext.request.contextPath}/views/home/listProductSearch.jsp">
+						Tìm kiếm </a>
 				</div>
-				<!-- Cart Icon -->
-				<div class="btn-link"
-					data-href="${pageContext.request.contextPath}/views/home/cart.jsp">
-					<i class="fas fa-shopping-cart"></i>
-				</div>
-				<!-- Logout Icon -->
-				<div class="btn-link" id="logoutIcon"
-					data-href="${pageContext.request.contextPath}/views/login/login.jsp">
-					<i class="fas fa-sign-out-alt"></i>
-				</div>
-
-
-				<!-- Search Bar (Initially hidden) -->
-				<div id="search-bar" class="search-bar d-none">
-					<input type="text" placeholder="Tìm kiếm...">
-					<button>Search</button>
+				<div id="headerContainer">
+					<div id="hamburgerIcon">
+						<i class="fas fa-bars"></i>
+					</div>
+					<div id="extraIcons">
+						<!-- Cart Icon -->
+						<div class="btn-link"
+							data-href="${pageContext.request.contextPath}/views/home/cart.jsp">
+							<i class="fas fa-shopping-cart"></i> Giỏ hàng
+						</div>
+						<!-- Logout Icon -->
+						<div class="btn-link" id="logoutIcon"
+							data-href="${pageContext.request.contextPath}/views/login/login.jsp">
+							<i class="fas fa-sign-out-alt"></i> Đăng xuất
+						</div>
+						<!-- Personal Profile Icon -->
+						<div class="btn-link" id="profileIcon"
+							data-href="${pageContext.request.contextPath}/views/profile/profile.jsp">
+							<i class="fas fa-user"></i> Hồ sơ
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-	<div class="danhMuc">
+	<div class="danhMuc cursor-pointer">
 		<!-- danh mục nước hoa -->
 		<div id="brand" class="sub-category">
 			<div class="d-flex row">
@@ -418,14 +427,16 @@
 		</div>
 
 	</div>
-
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/category.js"
+		type="text/javascript" defer></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/static/js/search_bar.js"
 		type="text/javascript">
 		
 	</script>
 	<script
-		src="${pageContext.request.contextPath}/resources/static/js/search_bar.js"
+		src="${pageContext.request.contextPath}/resources/static/js/hiddenTools.js"
 		type="text/javascript">
 		
 	</script>

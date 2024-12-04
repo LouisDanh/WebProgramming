@@ -8,7 +8,7 @@
 <title>Login Page</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/hiddenEye.css">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
 
 </head>
@@ -24,14 +24,15 @@
 						<!--  Email -->
 						<div class="form-floating mb-3">
 							<input type="text" class="form-control" id="email" name="email"
-								placeholder="EMAIL" required> <label for="email">Enter your email address</label>
+								placeholder="EMAIL" required> <label for="email">Enter
+								your email address</label>
 						</div>
 						<!-- Password -->
 						<div class="form-floating mb-3 position-relative">
 							<input type="password" class="form-control" id="password"
 								name="password" placeholder="Password"> <label
 								for="password">Enter your password</label>
-							<button  id="toggle-password"
+							<button id="toggle-password"
 								class="position-absolute top-50 end-7 translate-middle-y p-0">
 								<i class="bi-eye-slash"></i>
 							</button>

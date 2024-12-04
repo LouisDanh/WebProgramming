@@ -1,0 +1,107 @@
+.logo {
+	width: 236px;
+	height: 59px;
+	font-family: 'Dancing Script', cursive;
+	font-size: 68px;
+	font-weight: bold;
+	color: #000000;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.logo:hover {
+	color: white !important;
+	transform: scale(1.1);
+}
+
+header {
+	background-color: #BDC3C7;
+	padding: 20px 0;
+	transition: background-color 0.3s ease;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.navbar-nav {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+}
+
+.nav-link {
+	color: black !important;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 10px 20px;
+	transition: color 0.3s ease;
+	text-align: center;
+}
+
+.nav-link:hover {
+	color: white !important;
+	border-radius: 5px;
+	background-color: transparent;
+}
+
+#finding, #hamburgerIcon i {
+	color: black !important;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: color 0.3s ease;
+	text-align: center;
+}
+
+#finding:hover {
+	color: white !important;
+}
+
+#hamburgerIcon i {
+	font-size: 24px;
+}
+
+#hamburgerIcon i:hover {
+	color: white !important;
+}
+
+#extraIcons {
+	display: none;
+	position: absolute !important;
+	top: 40px;
+	right: 0;
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px 0;
+	width: 180px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	z-index: 10;
+}
+
+#extraIcons .btn-link {
+	display: block;
+	padding: 10px 20px;
+	color: black;
+	text-decoration: none;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+}
+
+#extraIcons .btn-link:hover {
+	background-color: #BDC3C7;
+}
+
+#extraIcons .btn-link i {
+	margin-right: 10px;
+}
+
+#extraIcons.show {
+	display: block;
+}
