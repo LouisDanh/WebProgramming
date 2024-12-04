@@ -14,7 +14,6 @@
 </head>
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-
 	<main>
 		<div class="container my-5 pt-5">
 			<div class="row justify-content-center">

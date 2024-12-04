@@ -11,11 +11,9 @@
 	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/category.css">
-
-
+<jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
 	<header>
 		<div
 			class="container d-flex justify-content-between align-items-center">

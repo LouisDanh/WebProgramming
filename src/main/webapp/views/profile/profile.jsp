@@ -13,7 +13,6 @@
 
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-
 	<main class="my-4">
 		<div class="container-fluid">
 			<div class="container">
