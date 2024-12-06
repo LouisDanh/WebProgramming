@@ -10,5 +10,5 @@
 /* Hover effect for all buttons */
 .btn:hover {
     background-color: #BDC3C7 !important; /* Hover background color */
-    color: white !important; /* Text color changes to black on hover */
+    color: black !important; /* Text color changes to black on hover */
 }
