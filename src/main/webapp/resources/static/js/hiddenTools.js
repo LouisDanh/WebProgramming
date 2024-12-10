@@ -2,6 +2,7 @@ $(document).ready(function() {
     // Toggle menu khi nhấn vào hamburger icon
     $('#hamburgerIcon').click(function(event) {
         $('#extraIcons').toggleClass('show'); // Toggle class 'show' để hiển thị/ẩn menu
+		$('.sub-category').hide();
         
         // Ngừng sự kiện click lan tỏa ra ngoài (ngăn không đóng khi nhấn vào menu)
         event.stopPropagation();

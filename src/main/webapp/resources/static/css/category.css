@@ -1,18 +1,19 @@
 .sub-category {
     display: none; /* Ẩn các danh mục con ban đầu */
     padding: 30px 0;
-    background-color: #f8f9fa;
+    background-color: black;
     border-top: 2px solid #ddd;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: absolute; /* Đảm bảo danh mục con nổi lên trên nội dung */
     width: 100%;
     z-index: 1000; /* Đảm bảo nó nằm trên các phần tử khác */
+    color: white;
 }
 
 .sub-category h5 {
     font-weight: bold;
     font-size: 1.2rem;
-    color: #343a40;
+    color: white;
     margin-bottom: 15px;
 }
 

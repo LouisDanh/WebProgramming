@@ -15,7 +15,7 @@
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
 	<main class="mb-4">
 		<div class="container-fluid position-relative h-395px p-0">
-			<div class="h-50 bg-danger"></div>
+			<div class="h-50"></div>
 			<div class="search-input-container">
 				<form action="" class="search-form">
 					<input type="text" placeholder="Search for a movie"

@@ -18,7 +18,7 @@
 		<div
 			class="container d-flex justify-content-between align-items-center">
 			<!-- Logo -->
-			<div class="logo btn-link"
+			<div class="logo btn-link ml-2"
 				data-href="${pageContext.request.contextPath}/views/home/home.jsp">
 				HISHAKU</div>
 
@@ -37,31 +37,30 @@
 			</nav>
 			<!-- Tools Section -->
 			<div class="d-flex justify-content-between align-items-center">
-				<!-- Tìm kiếm Text (Search) -->
-				<div>
-					<a id="finding" class="btn-link"
-						href="${pageContext.request.contextPath}/views/home/listProductSearch.jsp">
-						Tìm kiếm </a>
-				</div>
 				<div id="headerContainer">
 					<div id="hamburgerIcon">
 						<i class="fas fa-bars"></i>
 					</div>
 					<div id="extraIcons">
-						<!-- Cart Icon -->
-						<div class="btn-link"
-							data-href="${pageContext.request.contextPath}/views/home/cart.jsp">
-							<i class="fas fa-shopping-cart"></i> Giỏ hàng
-						</div>
-						<!-- Logout Icon -->
-						<div class="btn-link" id="logoutIcon"
-							data-href="${pageContext.request.contextPath}/views/login/login.jsp">
-							<i class="fas fa-sign-out-alt"></i> Đăng xuất
-						</div>
 						<!-- Personal Profile Icon -->
 						<div class="btn-link" id="profileIcon"
 							data-href="${pageContext.request.contextPath}/views/profile/profile.jsp">
 							<i class="fas fa-user"></i> Hồ sơ
+						</div>
+						<!-- Tìm kiếm Text (Search) -->
+						<div class="btn-link" id="profileIcon"
+							data-href="${pageContext.request.contextPath}/views/home/listProductSearch.jsp">
+							<i class="fas fa-search"></i> Tìm kiếm
+						</div>
+						<!-- Cart Icon -->
+						<div class="btn-link" id="profileIcon"
+							data-href="${pageContext.request.contextPath}/views/home/cart.jsp">
+							<i class="fas fa-shopping-cart"></i> Giỏ hàng
+						</div>
+						<!-- Logout Icon -->
+						<div class="btn-link" id="logoutIcon" id="profileIcon"
+							data-href="${pageContext.request.contextPath}/views/login/login.jsp">
+							<i class="fas fa-sign-out-alt"></i> Đăng xuất
 						</div>
 					</div>
 				</div>
@@ -430,11 +429,7 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/category.js"
 		type="text/javascript" defer></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/static/js/search_bar.js"
-		type="text/javascript">
-		
-	</script>
+
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/hiddenTools.js"
 		type="text/javascript">
