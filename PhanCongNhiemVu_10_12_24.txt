@@ -1,0 +1,4 @@
+Phân công nhiệm vụ ngày 10/12/2024(Servlet)
+Thời hạn hoàn thành: 2 ngày
+- Danh Phương Nhã - 22130191: quốc tế hóa ứng dụng, gửi email, xử lí lưu trữ ảnh & video sản phẩm
+- Huỳnh Minh Hiển - 22130080: xây dựng DAO, mã hóa mật khẩu người dùng
