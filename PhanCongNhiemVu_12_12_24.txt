@@ -1,0 +1,4 @@
+Phân công nhiệm vụ ngày 12/12/2024(Viết servlet, JSP)
+Thời hạn hoàn thành:  2 tuần
+- Danh Phương Nhã - 22130191: profile, cart, xử lí voucher,  thanh toán, tìm kiếm(search theo kí tự), phần admin(user, voucher, solving order)
+- Huỳnh Minh Hiển - 22130080: login, topic(home page), chi tiết sản phẩm, header, bộ lọc, phần admin(brand, BAN, category, payment)
