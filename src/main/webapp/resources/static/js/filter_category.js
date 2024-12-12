@@ -22,6 +22,6 @@ $(document).ready(function() {
 	});
 	$('#filter-submit-button').on('click', function() {
 		$('.collapse-content').hide(500);
-		
+
 	});
 });

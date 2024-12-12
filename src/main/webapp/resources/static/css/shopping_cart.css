@@ -1,54 +1,54 @@
 .product-image-wrapper {
-    width: 90px;
-    height: 123px;
-    overflow: hidden;
+	width: 90px;
+	height: 123px;
+	overflow: hidden;
 }
 
 .product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .cart-item-details {
-    width: 595px;
-    height: 123px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+	width: 595px;
+	height: 123px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
 }
 
 .cart-items {
-    width: 635px;
+	width: 635px;
 }
 
 .product-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
 }
 
 .quantity-controls {
-    display: flex;
-    gap: 0;
-    align-items: center;
+	display: flex;
+	gap: 0;
+	align-items: center;
 }
 
 .quantity-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #ddd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #ddd;
 }
 
 .quantity-btn i,
 .quantity-btn span {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    line-height: 40px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 40px;
 }

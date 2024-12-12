@@ -15,8 +15,9 @@
 	color: var(--color-primary) !important;
 }
 
-.primary-color-hover:hover, .primary-color-btn:hover,
-	.primary-color-active {
+.primary-color-hover:hover,
+.primary-color-btn:hover,
+.primary-color-active {
 	background-color: var(--color-primary) !important;
 	color: black !important;
 }
@@ -49,23 +50,27 @@
 	background-color: transparent !important;
 	border-radius: 50%;
 }
-.star i{
+
+.star i {
 	font-size: 1.5rem;
 	color: gray;
 	transition: all 0.5s ease;
 }
-.star:hover i{
+
+.star:hover i {
 	color: gold;
 	transform: scale(1.1);
 }
+
 .star:hover {
 	border-color: gold;
-	box-shadow: 0 0 15px rgba(255, 223, 0, 0.7), 0 0 30px
-		rgba(255, 223, 0, 0.5);
+	box-shadow: 0 0 15px rgba(255, 223, 0, 0.7), 0 0 30px rgba(255, 223, 0, 0.5);
 }
-.star_active i{
+
+.star_active i {
 	color: gold;
 }
+
 .page-infor-btn {
 	padding: 0.5rem 1.5rem;
 	border-radius: 6px;

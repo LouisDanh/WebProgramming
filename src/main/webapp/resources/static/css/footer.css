@@ -1,25 +1,27 @@
 /* Remove the bullet points from the lists */
 ul {
-    list-style-type: none;
-    padding: 0;
+	list-style-type: none;
+	padding: 0;
 }
 
 /* Optional: Add custom padding to the list items */
 ul li {
-    margin-bottom: 8px;
-    font-size: 14px;
+	margin-bottom: 8px;
+	font-size: 14px;
 }
+
 .div-with-top-border {
-    border-top: 3px solid #BDC3C7; /* Orange solid top border */
-    padding: 8px;
+	border-top: 3px solid #BDC3C7;
+	/* Orange solid top border */
+	padding: 8px;
 }
 
 .top-border {
-    border-top: 1px solid #BDC3C7; /* Orange solid top border */
-    padding: 4px;
+	border-top: 1px solid #BDC3C7;
+	/* Orange solid top border */
+	padding: 4px;
 }
 
-.font-footer-bottom{
+.font-footer-bottom {
 	font-size: 12px;
 }
-
