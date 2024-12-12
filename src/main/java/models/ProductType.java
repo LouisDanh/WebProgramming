@@ -9,5 +9,7 @@ public class ProductType {
 	private String name;
 	private String decription;
 	private List<Product>products;
+	private List<Purpose> purposes;
 	private boolean state;
+	
 }
