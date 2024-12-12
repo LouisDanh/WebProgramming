@@ -21,6 +21,7 @@
 			<div class="container mt-5">
 				<div class="row">
 					<!-- Cột bên trái: Danh sách sản phẩm trong giỏ hàng -->
+					
 					<div class="col-8 d-flex flex-column align-items-center">
 						<div class="text-center">
 							<h2 id="cart-count" class="text-center">Giỏ hàng của bạn [1]</h2>
