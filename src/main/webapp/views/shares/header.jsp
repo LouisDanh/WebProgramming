@@ -8,8 +8,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/header.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/search_bar.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/category.css">
 <jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
 </head>
