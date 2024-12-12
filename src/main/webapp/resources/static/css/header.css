@@ -1,24 +1,62 @@
 .logo {
-	width: 236px;
-	height: 59px;
-	font-family: 'Dancing Script', cursive;
+	cursor: pointer;
+	position: relative;
+	padding: 10px 20px;
+	background: white;
 	font-size: 68px;
 	font-weight: bold;
 	color: #000000;
+	font-family: 'Dancing Script', cursive;
 	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	transition: color 0.3s ease, transform 0.3s ease;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	transition: all 1s;
+}
+
+.logo:after,
+.logo:before {
+	content: " ";
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	border: 0px solid #fff;
+	transition: all 1s;
+}
+
+.logo:after {
+	top: -1px;
+	left: -1px;
+	border-top: 5px solid black;
+	border-left: 5px solid black;
+}
+
+.logo:before {
+	bottom: -1px;
+	right: -1px;
+	border-bottom: 5px solid black;
+	border-right: 5px solid black;
 }
 
 .logo:hover {
-	color: white !important;
-	transform: scale(1.1);
+	border-top-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	background: white(244, 243, 222, 0.5);
+	color: rgb(11, 1, 1);
 }
 
+.logo:hover:before,
+.logo:hover:after {
+	width: 100%;
+	height: 100%;
+	border-color: white;
+}
+
+
 header {
-	background-color: #BDC3C7;
+	background-color: white;
 	padding: 20px 0;
 	transition: background-color 0.3s ease;
 	display: flex;
@@ -28,81 +66,164 @@ header {
 	padding-right: 30px;
 }
 
-.navbar-nav {
-	margin-left: auto;
+
+#headerContainer {
+	position: relative;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
+	background: none;
+	padding: 10px;
 }
 
-.nav-link {
-	color: black !important;
-	font-weight: 600;
-	text-transform: uppercase;
-	padding: 10px 20px;
-	transition: color 0.3s ease;
-	text-align: center;
-}
 
-.nav-link:hover {
-	color: white !important;
-	border-radius: 5px;
-	background-color: transparent;
-}
-
-#finding,
-#hamburgerIcon i {
-	color: black !important;
-	font-weight: 600;
-	text-transform: uppercase;
-	padding: 10px 20px;
-	font-size: 16px;
+#hamburgerIcon {
 	cursor: pointer;
-	transition: color 0.3s ease;
-	text-align: center;
-}
-
-#finding:hover {
-	color: white !important;
-}
-
-#hamburgerIcon i {
 	font-size: 24px;
 }
 
-#hamburgerIcon i:hover {
-	color: white !important;
-}
-
 #extraIcons {
-	display: none;
-	position: absolute !important;
-	top: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	position: absolute;
+	top: 50px;
+	/* Adjust based on header size */
 	right: 0;
-	background-color: white;
-	border-radius: 5px;
-	padding: 10px 0;
-	width: 180px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-	z-index: 10;
+	width: 200px;
+	transform: translateX(100%);
+	/* Initially off-screen */
+	opacity: 0;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	background: white;
+	padding: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #extraIcons .btn-link {
 	display: block;
-	padding: 10px 20px;
-	color: black;
+	width: 100%;
+	padding: 10px;
 	text-decoration: none;
-	font-size: 16px;
-	transition: background-color 0.3s ease;
+	color: #444;
+	border-left: 5px solid transparent;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #extraIcons .btn-link:hover {
-	background-color: #BDC3C7;
+	color: white;
+	background-color: black;
 }
 
-#extraIcons .btn-link i {
-	margin-right: 10px;
-}
+
 
 #extraIcons.show {
+	transform: translateX(0);
+	/* Slide the icons in */
+	opacity: 1;
+	/* Fade them in */
+}
+
+
+.navbar-nav {
+	display: flex;
+	justify-content: center;
+	/* Align items horizontally in the center */
+	align-items: center;
+	/* Align items vertically in the center */
+	width: 100%;
+	/* Ensure the navbar takes up the full width */
+	margin: 0;
+	transition: all 1s;
+}
+
+.navbar-nav a {
+	position: relative;
 	display: block;
+	text-transform: uppercase;
+	margin: 10px 15px;
+	/* Add spacing between the links */
+	padding: 10px 20px;
+	text-decoration: none;
+	color: #262626;
+	font-family: sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	transition: .5s;
+	z-index: 1;
+}
+
+/* Additional hover effects */
+.navbar-nav a:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-top: 2px solid #262626;
+	border-bottom: 2px solid #262626;
+	transform: scaleY(2);
+	opacity: 0;
+	transition: .3s;
+}
+
+.navbar-nav a:after {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #262626;
+	transform: scale(0);
+	opacity: 0;
+	transition: .3s;
+	z-index: -1;
+}
+
+.navbar-nav a:hover {
+	color: #fff;
+}
+
+.navbar-nav a:hover:before {
+	transform: scaleY(1);
+	opacity: 1;
+}
+
+.navbar-nav a:hover:after {
+	transform: scaleY(1);
+	opacity: 1;
+}
+
+/* Cấu hình cho hamburger icon */
+#hamburgerIcon {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    transition: color 0.35s ease;
+    z-index: 1000;
+}
+
+/* Tạo hiệu ứng cho vòng tròn nền */
+#hamburgerIcon i {
+    font-size: 25px; /* Kích thước icon */
+    padding: 10px; /* Padding xung quanh icon */
+    display: inline-block;
+    transition: all 0.35s ease; /* Hiệu ứng mượt mà */
+    color: #262626; /* Màu mặc định của icon */
+    background-color: white; /* Màu nền mặc định của icon */
+    z-index: 1000;
+        border-radius: 5px;
+    
+}
+
+/* Hiệu ứng hover cho icon */
+#hamburgerIcon i:hover {
+    color: white; /* Màu icon khi hover */
+    background-color: black; /* Màu nền khi hover */
+    transform: rotate(360deg); /* Xoay icon */
+    transition: transform 0.5s ease, background-color 0.35s ease, color 0.35s ease; /* Hiệu ứng mượt mà */
+        z-index: 1000;
+    
 }

@@ -32,7 +32,7 @@
 							<div class="cart-item border-bottom p-2" data-price="4200000">
 								<div class="cart-item-details d-flex gap-5 p-3">
 									<div class="product-image-wrapper">
-										<img src="/el_sku_PGJG46_TH_226x311_0.avif"
+										<img src="${pageContext.request.contextPath}/resources/static/img/tiktok-icon.png"
 											class="product-image">
 									</div>
 									<div

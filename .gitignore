@@ -1,2 +1,7 @@
 /build/
 /target/
+/bin/
+
+!/build/*.jar
+!/target/*.jar
+!/bin/*.jar
