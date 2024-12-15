@@ -1,6 +1,6 @@
 package models;
 
-public class CashPayment implements PaymentMethodStategy {
+public class CashPayment implements PaymentMethodStrategy {
 	private PaymentMethod method;
 	
 	@Override

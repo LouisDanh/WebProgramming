@@ -2,9 +2,30 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PURPOSE_TYPE")
 public class PurposeType {
-private int id;
-private String name;
-private List<Purpose> purposes;
-private boolean state;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(name="NAME",columnDefinition = "varchar(30)")
+	private String name;
+	@Column(name="ACTIVE")
+	private boolean active;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="PURPOSE_TYPE_ID")
+	private List<Purpose> purposes;
+	public PurposeType() {
+		active=true;
+	}
 }

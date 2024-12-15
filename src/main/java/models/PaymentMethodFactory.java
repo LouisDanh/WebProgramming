@@ -1,7 +1,7 @@
 package models;
 
 public class PaymentMethodFactory {
-	public PaymentMethodStategy createMethod(PaymentMethod type) {
+	public PaymentMethodStrategy createMethod(PaymentMethod type) {
 		return null;
 	}
 }

@@ -1,6 +1,6 @@
 package models;
 
-public interface PaymentMethodStategy {
+public interface PaymentMethodStrategy {
 	String getName();
 
 	double pay();

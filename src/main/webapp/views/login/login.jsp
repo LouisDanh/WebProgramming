@@ -20,7 +20,7 @@
 				<!-- Login part -->
 				<div class="col-md-5 text-center">
 					<h1 class="text-center">Log in</h1>
-					<form id="loginForm" method="post" enctype="multipart/form-data">
+					<form id="loginForm" method="post" enctype="multipart/form-data" action="/WebMyPham/LoginServlet">
 						<!--  Email -->
 						<div class="form-floating mb-3">
 							<input type="text" class="form-control" id="email" name="email"
@@ -41,8 +41,8 @@
 						<a
 							href="${pageContext.request.contextPath}/views/login/forgotPass.jsp">Forgot
 							password</a>
-						<button type="submit" class="btn btn-dark mt-3 w-100"
-							id="submitLoginForm">Log in</button>
+						<input type="submit" class="btn btn-dark mt-3 w-100"
+							id="submitLoginForm" value="Log in">
 					</form>
 				</div>
 

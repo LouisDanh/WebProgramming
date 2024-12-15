@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<!-- Kết nối với cơ sở dữ liệu -->
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=BEAUTYSTORE;trustServerCertificate=true;encrypt=true</property>
+		<property name="hibernate.connection.username">minhhien</property>
+		<property name="hibernate.connection.password">minhhien</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
+
+
+		<!-- Cấu hình hibernate -->
+		<property name="hibernate.archive.autodetection">class</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.archive.autodetection">class</property>
+		<mapping class="models.Account" />
+		<mapping class="models.Bank" />
+		<mapping class="models.BankAccount" />
+		<mapping class="models.BankAccOwner" />
+		<mapping class="models.Brand" />
+		<mapping class="models.CartItem" />
+		<mapping class="models.Customer" />
+		<mapping class="models.Gallery" />
+		<mapping class="models.Invoice" />
+		<mapping class="models.Order" />
+		<mapping class="models.OrderItem" />
+		<mapping class="models.OrderDate" />
+		<mapping class="models.OrderState" />
+		<mapping class="models.PaymentMethod" />
+		<mapping class="models.Product" />
+		<mapping class="models.ProductBenefit" />
+		<mapping class="models.ProductTopic" />
+		<mapping class="models.ProductType" />
+		<mapping class="models.Purpose" />
+		<mapping class="models.PurposeType" />
+		<mapping class="models.Topic" />
+		<mapping class="models.Violate" />
+		<mapping class="models.Voucher" />
+		<mapping class="models.VoucherState" />
+	</session-factory>
+
+</hibernate-configuration>
