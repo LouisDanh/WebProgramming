@@ -114,21 +114,22 @@ public class GenericDao {
 	 * 
 	 * Tìm kiếm dữ liệu từ bảng dựa trên điều kiện linh hoạt.
 	 * 
-	 * @param <T>            Kiểu dữ liệu của đối tượng (class entity).
-	 * @param className      Tên đầy đủ của class entity (bao gồm package).
-	 * @param typeConditions Danh sách các toán tử liên kết điều kiện (AND, OR).
-	 * @param conditions     Danh sách các tên trường (field) dùng làm điều kiện.
-	 * @param values         Danh sách các giá trị tương ứng với điều kiện.
+	 * @param <T>        Kiểu dữ liệu của đối tượng (class entity).
+	 * @param className  Tên đầy đủ của class entity (bao gồm package).
+	 * @param connectors Danh sách các toán tử liên kết điều kiện (AND, OR)
+	 * @param conditions Danh sách các tên trường (field) dùng làm điều kiện.
+	 * @param operators  Danh sách các toán tử so sánh (ví dụ: =, >, <, v.v.)
+	 * @param values     Danh sách các giá trị tương ứng với điều kiện.
 	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
 	 *         rỗng nếu không tìm thấy.
 	 */
-	private static <T> List<T> findIf(String className, List<String> typeConditions, List<String> conditions,
-			List<Object> values) {
+	private static <T> List<T> findIf(String className, List<String> connectors, List<String> conditions,
+			List<String> operators, List<Object> values) {
 		Class<T> data = getClass(className);
 		if (data == null)
 			return Collections.emptyList();
 		StringBuilder queryString = new StringBuilder("From " + data.getName() + " ");
-		queryString.append(QueryFactory.muiltiConditions(conditions, typeConditions, conditions));
+		queryString.append(QueryFactory.muiltiConditions(operators, conditions, connectors));
 		List<T> result = new ArrayList<>();
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSession()) {
@@ -153,19 +154,21 @@ public class GenericDao {
 	 * 
 	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
 	 * @param className Tên đầy đủ của class entity (bao gồm package).
-	 * @param datas     Danh sách các cặp điều kiện (field - value).
+	 * @param datas     Danh sách các cặp điều kiện (field - logicOperator -value).
+	 *                  Ví dụ: id = 1
 	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
 	 *         rỗng nếu không tìm thấy.
 	 */
 	public static <T> List<T> findAnd(String className, Object... datas) {
-		List<String> typeConditions = new ArrayList<String>();
+		List<String> connectors = new ArrayList<String>();
+		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
 		List<Object> values = new ArrayList<Object>();
-		for (int i = 0; i < datas.length; i += 2) {
-			typeConditions.add("AND");
-			prepareConditions(conditions, values, i, datas);
+		for (int i = 0; i < datas.length; i += 3) {
+			prepareConditions(conditions, values, operators, i, datas);
+			connectors.add("AND");
 		}
-		return findIf(className, typeConditions, conditions, values);
+		return findIf(className, connectors, operators, conditions, values);
 	}
 
 	/**
@@ -174,19 +177,21 @@ public class GenericDao {
 	 * 
 	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
 	 * @param className Tên đầy đủ của class entity (bao gồm package).
-	 * @param datas     Danh sách các cặp điều kiện (field - value).
+	 * @param datas     Danh sách các cặp điều kiện (field - logicOperator -value).
+	 *                  Ví dụ: id = 1
 	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
 	 *         rỗng nếu không tìm thấy.
 	 */
 	public static <T> List<T> findOr(String className, Object... datas) {
-		List<String> typeConditions = new ArrayList<String>();
+		List<String> connectors = new ArrayList<String>();
+		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
 		List<Object> values = new ArrayList<Object>();
-		for (int i = 0; i < datas.length; i += 2) {
-			typeConditions.add("OR");
-			prepareConditions(conditions, values, i, datas);
+		for (int i = 0; i < datas.length; i += 3) {
+			prepareConditions(conditions, values, operators, i, datas);
+			connectors.add("OR");
 		}
-		return findIf(className, typeConditions, conditions, values);
+		return findIf(className, connectors, conditions, operators, values);
 	}
 
 	/**
@@ -195,20 +200,22 @@ public class GenericDao {
 	 * 
 	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
 	 * @param className Tên đầy đủ của class entity (bao gồm package).
-	 * @param datas     Danh sách các bộ ba (field - value - logicOperator) xác định
-	 *                  điều kiện. Ví dụ (id - 1 - and). Danh sách có thể chứa bộ 2
-	 *                  (field - value) nêu không cần nhiều điều kiện
+	 * @param datas     Danh sách các bộ 4 (field - logicOperator - value
+	 *                  -logicConnector ) xác định điều kiện. Ví dụ (id = 1 and).
+	 *                  Danh sách có thể chứa bộ 3 (field -logicOperator - value)
+	 *                  nêu không cần nhiều điều kiện
 	 * @return Danh sách thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
 	 */
 	public static <T> List<T> findWithConditions(String className, Object... datas) {
-		List<String> typeConditions = new ArrayList<String>();
+		List<String> connectors = new ArrayList<String>();
+		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
 		List<Object> values = new ArrayList<Object>();
-		for (int i = 0; i < datas.length; i += 3) {
-			conditions.add(datas[i].toString());
-			prepareConditions(conditions, values, i + 1, datas);
+		for (int i = 0; i < datas.length; i += 4) {
+			prepareConditions(conditions, values, operators, i, datas);
+			conditions.add(datas[i + 3].toString());
 		}
-		return findIf(className, typeConditions, conditions, values);
+		return findIf(className, connectors, conditions, operators, values);
 	}
 
 	/**
@@ -217,8 +224,8 @@ public class GenericDao {
 	 * 
 	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
 	 * @param className Tên đầy đủ của class entity (bao gồm package).
-	 * @param datas     Danh sách các bộ ba (field - value - logicOperator) xác định
-	 *                  điều kiện. Ví dụ (id - 1 - and). Danh sách có thể chứa bộ 2
+	 * @param datas     Danh sách các bộ ba (field - logicOperator - value ) xác
+	 *                  định điều kiện. Ví dụ (id = 1 ). Danh sách có thể chứa bộ 2
 	 *                  (field - value) nêu không cần nhiều điều kiện
 	 * @return Đối tượng thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
 	 */
@@ -231,16 +238,14 @@ public class GenericDao {
 	}
 
 	/**
-	 * Chuẩn bị và xử lý điều kiện tìm kiếm.
+	 * Chuẩn bị điều kiện tìm kiếm.
 	 * 
-	 * @param conditions Danh sách tên các trường (field).
-	 * @param values     Danh sách các giá trị tương ứng với trường.
-	 * @param index      Vị trí của field trong mảng `datas`.
-	 * @param datas      Mảng chứa thông tin điều kiện (field - value).
 	 */
-	private static void prepareConditions(List<String> conditions, List<Object> values, int index, Object... datas) {
+	private static void prepareConditions(List<String> conditions, List<Object> values, List<String> operators,
+			int index, Object... datas) {
 		conditions.add(datas[index].toString());
-		values.add(datas[index + 1]);
+		operators.add(datas[index + 1].toString());
+		values.add(datas[index + 2]);
 	}
 
 }
