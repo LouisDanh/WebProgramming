@@ -7,27 +7,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mô tả sản phẩm</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/product_description.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/btn.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/product_description.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
 </head>
 
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
 	<div class="container my-5">
 		<div class="row">
-			<!-- Phần hiển thị ảnh sản phẩm, chiếm 2 cột -->
-			<div
-				class="col-2 d-flex justify-content-start align-items-center flex-column px-2 gap-3">
-				<img src="/product1.png" alt="Image 1" class="img-60px"
-					data-large-image="/product1.png"> <img
-					src="/el_sku_G1VH01_308x424_0.avif" alt="Image 2" class="img-60px"
-					data-large-image="/el_sku_G1VH01_308x424_0.avif"> <img
-					src="/el_sku_PG5201_226x311_0.avif" alt="Image 3" class="img-60px"
-					data-large-image="/el_sku_PG5201_226x311_0.avif"> <img
-					src="/el_sku_G1VH01_308x424_0.avif" alt="Image 4" class="img-60px"
-					data-large-image="/el_sku_G1VH01_308x424_0.avif">
-				<!-- Có thể thêm nhiều ảnh sản phẩm khác ở đây -->
-			</div>
+			   <!-- Phần hiển thị ảnh sản phẩm, chiếm 2 cột -->
+            <div class="col-2 d-flex justify-content-start align-items-center flex-column px-2 gap-3">
+                <img src="${pageContext.request.contextPath}/resources/static/img/sp1.jpg" class="img-60px " data-large-image="${pageContext.request.contextPath}/resources/static/img/sp1.jpg">
+                <img src="${pageContext.request.contextPath}/resources/static/img/sp3.png" alt="Image 2" class="img-60px " data-large-image="${pageContext.request.contextPath}/resources/static/img/sp3.png">
+                <img src="${pageContext.request.contextPath}/resources/static/img/sp2.png" alt="Image 3" class="img-60px " data-large-image="${pageContext.request.contextPath}/resources/static/img/sp2.png">
+                <img src="${pageContext.request.contextPath}/resources/static/img/sp1.jpg" alt="Image 4" class="img-60px " data-large-image="${pageContext.request.contextPath}/resources/static/img/sp1.jpg">
+                <!-- Có thể thêm nhiều ảnh sản phẩm khác ở đây -->
+            </div>
 
 			<!-- Phần chi tiết sản phẩm, chiếm phần còn lại -->
 			<div class="col">
@@ -39,7 +36,7 @@
 							<div
 								class="image-container d-flex justify-content-center align-items-center"
 								style="width: 526px; height: 526px;">
-								<img id="mainImage" src="/product1.png" alt="Product Detail"
+								<img id="mainImage" src="${pageContext.request.contextPath}/resources/static/img/sp1.jpg" alt="Image 1" class="img-60px " data-large-image="/product1.png" alt="Product Detail"
 									class="img-fluid">
 							</div>
 						</div>
@@ -77,7 +74,7 @@
 							<!-- Tên sản phẩm (sử dụng h1 cho tiêu đề chính) -->
 							<h3>ANR ECLIPSE-WN</h3>
 							<!-- Sử dụng display-4 để tăng cỡ chữ cho tên sản phẩm -->
-							<h4 class="text-center fw-bold" id="prices">4.200.000₫</h4>
+							<h4 class="text-center fw-bold prices">4.200.000₫</h4>
 							<div
 								class="d-flex justify-content-center align-items-center gap-3 mb-3">
 								<p class="mb-0 fw-bold">SLG</p>
@@ -116,7 +113,11 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/descript.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/static/js/descript.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/static/js/format_prices.js"></script>
+
 </body>
 
 </html>
