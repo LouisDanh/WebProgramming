@@ -1,6 +1,8 @@
 package services;
 
 import dao.GenericDao;
+import dao.QueryFactory;
+import models.Account;
 
 public class AccountServices {
 	/**
@@ -9,11 +11,28 @@ public class AccountServices {
 	 * @param email
 	 * @return id nếu tồn tại, ngược lại null
 	 */
-	public Integer getIdAccount(String email) {
-		return GenericDao.findOne("=", Integer.class.getName(), "email", email);
+	public static Integer getIdAccount(String email) {
+		return GenericDao.findOne(Account.class.getName(), "email", QueryFactory.EQUALS, email);
 	}
 
-	public boolean login(int id,String password) {
-		return GenericDao.findOne("", password, null);
+	/**
+	 * Đăng nhập
+	 * 
+	 * @param id
+	 * @param password
+	 * @return true nếu thành công
+	 */
+	public static boolean login(int id, String password) {
+		Boolean isLogin = GenericDao.findOne(Account.class.getName(), "password", QueryFactory.EQUALS, password,
+				QueryFactory.AND, "id", QueryFactory.EQUALS, id);
+		return isLogin != null;
+	}
+	/**
+	 * Tạo tài khoản
+	 * @param acc dữ liệu về tài khoản
+	 * @return
+	 */
+	public static boolean createAccount(Account acc) {
+		return GenericDao.insert(acc);
 	}
 }
