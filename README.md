@@ -4,7 +4,7 @@ Thành viên:
 --------------------------------------------------------------------
 WEB BÁN MỸ PHẨM HISHAKU
 + Các chức năng:
-1.Sản phẩm:
+1. Sản phẩm:
 - Lọc sản phẩm: tìm kiếm theo tên, loại sản phẩm, nhãn hàng, công dụng.
 - Upload ảnh, video, thông tin sản phẩm.
 2. Thanh toán, giỏ hàng:
