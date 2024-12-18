@@ -188,11 +188,6 @@
 											id="email" class="form-control"
 											placeholder="Enter your email" required>
 									</div>
-									<!-- Date of Birth Input -->
-									<div class="form-group mt-3">
-										<label for="dob">Date of Birth:</label> <input type="date"
-											id="dob" class="form-control" required>
-									</div>
 									<!-- Phone Input -->
 									<div class="form-group mt-3">
 										<label for="phone">Phone Number:</label> <input type="tel"
