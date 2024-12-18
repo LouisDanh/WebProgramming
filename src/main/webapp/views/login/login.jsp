@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="sdf"  %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,8 @@
 				<!-- Login part -->
 				<div class="col-md-5 text-center">
 					<h1 class="text-center">Log in</h1>
-					<form id="loginForm" method="post" enctype="multipart/form-data" action="/WebMyPham/LoginServlet">
+					<form id="loginForm" method="post" enctype="multipart/form-data"
+						action="/WebMyPham/LoginServlet">
 						<!--  Email -->
 						<div class="form-floating mb-3">
 							<input type="text" class="form-control" id="email" name="email"
@@ -37,11 +38,14 @@
 								<i class="bi-eye-slash"></i>
 							</button>
 						</div>
+						<!-- Error -->
+						<c:if test="${not empty loginError}">
+							<p class="text-danger text-start">${loginError}</p>
+						</c:if>
 						<!--Forgot password -->
 						<a
 							href="${pageContext.request.contextPath}/views/login/forgotPass.jsp">Forgot
-							password</a>
-						<input type="submit" class="btn btn-dark mt-3 w-100"
+							password</a> <input type="submit" class="btn btn-dark mt-3 w-100"
 							id="submitLoginForm" value="Log in">
 					</form>
 				</div>
