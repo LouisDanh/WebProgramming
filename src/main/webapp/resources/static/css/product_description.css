@@ -1,3 +1,5 @@
+
+
 .img-60px {
 	object-fit: contain;
 	width: 60px;
@@ -5,8 +7,6 @@
 	object-fit: cover;
 	cursor: pointer;
 	transition: transform 0.2s ease-in-out;
-
-
 }
 
 .tang-kich-thuoc-plus {
@@ -17,9 +17,11 @@
 	border-bottom: 6px solid #000;
 }
 
-#prices {
+.prices {
 	color: red;
 }
+
+
 
 .img-60px:hover {
 	transform: scale(1.1);
