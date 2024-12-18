@@ -18,15 +18,15 @@ public class QueryFactory {
 
 	public static String getCondition(String operator, String condition) {
 		switch (operator) {
-		case "like": {
+		case LIKE: {
 			return condition + " LIKE CONCAT('%', :" + condition + ", '%')";
 		}
-		case ">":
-		case ">=":
-		case "<=":
-		case "<":
-		case "!=":
-		case "=":
+		case GREATER_THAN:
+		case GREATER_THAN_OR_EQUAL:
+		case LESS_THAN_OR_EQUAL:
+		case LESS_THAN:
+		case NOT_EQUALS:
+		case EQUALS:
 			return condition + operator + " :" + condition;
 		default:
 			return null;
