@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,41 +28,26 @@
 								exclusive features and check your products in.</p>
 
 							<!-- Account Registration Form -->
-							<form id="registerForm">
-								<div class="mb-3">
-									<label for="salutation" class="form-label">Salutation</label> <select
-										class="form-select" id="salutation" required>
-										<option selected disabled value="">Choose...</option>
-										<option value="Mr">Mr</option>
-										<option value="Mrs">Mrs</option>
-										<option value="Ms">Ms</option>
-									</select>
-								</div>
-
+							<form id="registerForm" action="/WebMyPham/LoginServlet"
+								method="Post">
 								<div class="mb-3">
 									<label for="fullName" class="form-label">Full Name</label> <input
-										type="text" class="form-control" id="fullName"
+										type="text" class="form-control" id="fullName" name="fullName"
 										placeholder="Enter your full name" required>
 								</div>
-
-								<!-- Date of Birth -->
-								<div class="mb-3">
-									<label for="dob" class="form-label">Date of Birth</label> <input
-										type="date" class="form-control" id="dob" required>
-								</div>
-
 								<div class="mb-3">
 									<label for="tel" class="form-label">Phone number</label> <input
-										type="tel" class="form-control" id="tel"
+										type="tel" class="form-control" id="tel" name="tel"
 										placeholder="Enter your phone number" required>
 								</div>
-
 								<div class="mb-3">
 									<label for="email" class="form-label">Email</label> <input
-										type="email" class="form-control" id="email"
+										type="email" class="form-control" id="email" name="email"
 										placeholder="Enter your email address" required>
+									<c:if test="${emailError not empty }">
+										<p class="text-danger d-none">${emailError}/p>
+									</c:if>
 								</div>
-
 								<!-- Password and Confirm Password -->
 								<div class="row mb-3">
 									<div class="col-md-6">
@@ -70,14 +55,13 @@
 											Password</label>
 										<div class="input-group">
 											<input type="password" class="form-control" id="password"
-												placeholder="Enter your password" required>
+												placeholder="Enter your password" name="password" required>
 											<button id="toggle-password"
 												class=" position-absolute top-50 end-5 translate-middle-y p-0">
 												<i class="bi-eye-slash"></i>
 											</button>
 										</div>
 									</div>
-
 									<div class="col-md-6">
 										<label for="confirmPassword" class="form-label">Confirm
 											Password</label>
@@ -91,6 +75,8 @@
 											</button>
 										</div>
 									</div>
+									<p class="text-danger d-none" id="text-error-pass">Password
+										and Confirm Password do not match!</p>
 								</div>
 
 								<!-- Privacy Policy -->
@@ -103,8 +89,8 @@
 								</div>
 
 								<!-- Submit Button -->
-								<button type="submit" class="btn btn-dark w-100">Create
-									an Account</button>
+								<button type="submit" class="btn btn-dark w-100" name="action"
+									value="create">Create an Account</button>
 							</form>
 
 							<!-- Login Link -->
@@ -122,6 +108,19 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/hiddenEye.js"
 		type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('input[name="action"]').on('submit', function() {
+				const password = $("#password").val();
+				const confirmPassword = $("#confirmPassword").val();
+				if (password !== confirmPassword) {
+					$('#text-error-pass').removeClass('d-none');
+					event.preventDefault();
+				} else
+					$('#text-error-pass').addClass('d-none');
+			})
+		})
+	</script>
 </body>
 
 </html>

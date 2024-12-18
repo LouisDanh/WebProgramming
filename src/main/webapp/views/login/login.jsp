@@ -46,7 +46,7 @@
 						<a
 							href="${pageContext.request.contextPath}/views/login/forgotPass.jsp">Forgot
 							password</a> <input type="submit" class="btn btn-dark mt-3 w-100"
-							id="submitLoginForm" value="Log in">
+							id="submitLoginForm" name="action" value="Log in">
 					</form>
 				</div>
 
@@ -65,6 +65,19 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/hiddenEye.js"
 		type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#email').on("input", function() {
+				$.ajax({
+					url : 'LoginServlet',
+					type : 'POST',
+					data : {
+						email : email
+					}
+				})
+			})
+		})
+	</script>
 
 </body>
 </html>
