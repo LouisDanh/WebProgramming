@@ -1,9 +1,9 @@
-A. Thành viên:
+Thành viên:
 - Danh Phương Nhã : 22130191(Trưởng nhóm)
 - Huỳnh Minh Hiển : 22130080
 --------------------------------------------------------------------
 WEB BÁN MỸ PHẨM HISHAKU
-B. Các chức năng:
++ Các chức năng:
 1.Sản phẩm:
 - Lọc sản phẩm: tìm kiếm theo tên, loại sản phẩm, nhãn hàng, công dụng.
 - Upload ảnh, video, thông tin sản phẩm.
