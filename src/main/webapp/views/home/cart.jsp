@@ -10,18 +10,18 @@
 	href="${pageContext.request.contextPath}/resources/static/css/shopping_cart.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/pay.css">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
 </head>
 
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-	<div class="container mt-5">
+	<div class="container">
 		<div class="row align-items-start px-5 d-flex">
-			<div class="container mt-5">
+			<div class="container mt-3">
 				<div class="row">
 					<!-- Cột bên trái: Danh sách sản phẩm trong giỏ hàng -->
-					
+
 					<div class="col-8 d-flex flex-column align-items-center">
 						<div class="text-center">
 							<h2 id="cart-count" class="text-center">Giỏ hàng của bạn [1]</h2>
@@ -32,7 +32,8 @@
 							<div class="cart-item border-bottom p-2" data-price="4200000">
 								<div class="cart-item-details d-flex gap-5 p-3">
 									<div class="product-image-wrapper">
-										<img src="${pageContext.request.contextPath}/resources/static/img/tiktok-icon.png"
+										<img
+											src="${pageContext.request.contextPath}/resources/static/img/sp3.png"
 											class="product-image">
 									</div>
 									<div
@@ -68,7 +69,9 @@
 							<div class="cart-item border-bottom p-2" data-price="4200000">
 								<div class="cart-item-details d-flex gap-5 p-3">
 									<div class="product-image-wrapper">
-										<img src="/el_sku_GXGP01_640x640_0.avif" class="product-image">
+										<img
+											src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
+											class="product-image">
 									</div>
 									<div
 										class="product-info-wrapper d-flex flex-column justify-content-between h-100">
