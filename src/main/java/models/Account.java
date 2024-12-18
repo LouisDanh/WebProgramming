@@ -19,18 +19,15 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "ACCOUNT")
-public class Account implements Serializable{
+public class Account implements Serializable {
 	private static final long serialVersionUID = 7347939252891773559L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@NotBlank(message = "Email không được để trống")
-	@Email(message = "Email không hợp lệ, vui lòng kiểm tra!")
 	@Column(name = "EMAIL", nullable = false, columnDefinition = "VARCHAR(20)")
 	private String email;
-	@NotBlank(message = "Password không được để trống")
 	@Column(name = "PASSWORD", nullable = false, columnDefinition = "VARCHAR(20)")
 	private String password;
 	@Column(name = "BAN")
@@ -39,17 +36,25 @@ public class Account implements Serializable{
 	private int role;
 	@Column(name = "CREATE_DATE")
 	private LocalDateTime createDate;
-	
+
 //	 Cấu hình liên kết
 	@OneToOne
 	@JoinColumn(name = "CUS_ID")
 	private Customer customer;
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="CUS_ID")
+	@JoinColumn(name = "CUS_ID")
 	private List<Violate> violates;
 
 	public Account() {
+
+	}
+
+	public Account(String email, String password, Customer customer) {
 		ban = false;
 		createDate = LocalDateTime.now();
+		this.email = email;
+		this.password = password;
+		this.customer = customer;
 	}
+
 }
