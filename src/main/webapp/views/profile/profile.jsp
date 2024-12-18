@@ -11,8 +11,6 @@
 	href="${pageContext.request.contextPath}/resources/static/css/profile.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/admin.css">
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath}/resources/static/css/base.css"> --%>
 
 </head>
 

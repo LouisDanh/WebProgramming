@@ -13,9 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "PRODCUT")
-public class Product implements Serializable{
+public class Product implements Serializable {
 	private static final long serialVersionUID = -864055505260462770L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,10 +35,11 @@ public class Product implements Serializable{
 	private boolean active;
 //	 Cấu hình liên kết
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="PRODUCT_ID")
+	@JoinColumn(name = "PRODUCT_ID")
 	private List<Gallery> galleries;
 
 	public Product() {
 		active = true;
 	}
+
 }

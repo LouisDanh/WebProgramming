@@ -3,6 +3,7 @@ package services;
 import dao.GenericDao;
 import dao.QueryFactory;
 import models.Account;
+import models.Customer;
 
 public class AccountServices {
 	/**
@@ -34,5 +35,19 @@ public class AccountServices {
 	 */
 	public static boolean createAccount(Account acc) {
 		return GenericDao.insert(acc);
+	}
+	
+	/**
+	 * Lấy thông tin customer
+	 * 
+	 * @param accountId 
+	 * @return custome, ngược lại null
+	 */
+	public static Customer getCostomer(Integer accountId) {
+		return GenericDao.findOne(Customer.class.getName(), "id", QueryFactory.EQUALS, accountId);
+	}
+
+	public static boolean updateCustomer(Customer customer) {
+		return GenericDao.update(customer);
 	}
 }
