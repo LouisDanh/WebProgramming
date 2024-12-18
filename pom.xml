@@ -8,6 +8,12 @@
 	<artifactId>WebMyPham</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
+	</repositories>
 
 
 	<build>
@@ -30,6 +36,18 @@
 	</build>
 
 	<dependencies>
+		<!-- JSTL API -->
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<!-- JSTL servlet-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+		</dependency>
 		<!-- Hibernate Core(latest stable version) -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
