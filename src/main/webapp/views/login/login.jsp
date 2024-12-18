@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="sdf"  %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,6 @@
 	href="${pageContext.request.contextPath}/resources/static/css/hiddenEye.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
-
 </head>
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
@@ -58,14 +58,9 @@
 			</div>
 		</div>
 	</main>
-
-	<!-- Horizontal line to separate footer -->
-	<!--     <hr class="my-8">  -->
-
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/hiddenEye.js"
 		type="text/javascript"></script>
-	<%--     <jsp:include page="/views/shares/footer.jsp"></jsp:include> --%>
 
 </body>
 </html>
