@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import models.Account;
+
 public class GenericDao {
 	/**
 	 * Lấy class dựa trên tên class
@@ -109,36 +111,32 @@ public class GenericDao {
 	}
 
 	/**
-	 * Tìm dữ liệu theo điều kiện và toán tử cho trước.
 	 * 
-	 * @param <T>           Kiểu dữ liệu cần tìm.
-	 * @param typeCondition Loại điều kiện (ví dụ: "And", "Or").
-	 * @param operator      Toán tử tìm kiếm (ví dụ: "=", "LIKE").
-	 * @param className     Tên lớp cần tìm.
-	 * @param datas         Các điều kiện tìm kiếm dưới dạng cặp key-value
-	 *                      (condition-data), trong đó key là tên trường và value là
-	 *                      giá trị cần tìm.
-	 * @return Danh sách các đối tượng phù hợp với điều kiện, nếu có lỗi trả về danh
-	 *         sách rỗng.
+	 * Tìm kiếm dữ liệu từ bảng dựa trên điều kiện linh hoạt.
+	 * 
+	 * @param <T>        Kiểu dữ liệu của đối tượng (class entity).
+	 * @param className  Tên đầy đủ của class entity (bao gồm package).
+	 * @param connectors Danh sách các toán tử liên kết điều kiện (AND, OR)
+	 * @param conditions Danh sách các tên trường (field) dùng làm điều kiện.
+	 * @param operators  Danh sách các toán tử so sánh (ví dụ: =, >, <, v.v.)
+	 * @param values     Danh sách các giá trị tương ứng với điều kiện.
+	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
+	 *         rỗng nếu không tìm thấy.
 	 */
-	private static <T> List<T> findIf(String typeCondition, String operator, String className, Object... datas) {
-		StringBuilder queryString = new StringBuilder("From ");
-		for (int i = 0; i < datas.length - 1; i += 2) {
-			queryString.append(datas[i].toString());
-			queryString.append(operator + " :" + datas[i + 1]);
-			if (typeCondition != null)
-				queryString.append(" " + typeCondition + " ");
-		}
-		Class<T> instance = getClass(className);
-		if (instance == null)
+	private static <T> List<T> findIf(String className, List<String> connectors, List<String> conditions,
+			List<String> operators, List<Object> values) {
+		Class<T> data = getClass(className);
+		if (data == null)
 			return Collections.emptyList();
+		StringBuilder queryString = new StringBuilder("From " + data.getName() + " ");
+		queryString.append(QueryFactory.muiltiConditions(operators, conditions, connectors));
 		List<T> result = new ArrayList<>();
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSession()) {
 			transaction = session.beginTransaction();
-			Query<T> query = session.createQuery("FROM " + queryString.toString(), instance);
-			for (int i = 0; i < datas.length - 1; i += 2) {
-				query.setParameter(datas[i].toString(), datas[i + 1]);
+			Query<T> query = session.createQuery(queryString.toString(), data);
+			for (int i = 0; i < conditions.size(); i++) {
+				query.setParameter(conditions.get(i), values.get(i));
 			}
 			result = query.list();
 			transaction.commit();
@@ -152,45 +150,102 @@ public class GenericDao {
 	}
 
 	/**
-	 * Tìm dữ liệu theo điều kiện AND.
+	 * Tìm kiếm dữ liệu dựa trên điều kiện "AND".
 	 * 
-	 * @param <T>       Kiểu dữ liệu cần tìm.
-	 * @param operator  Toán tử tìm kiếm (ví dụ: "=", "LIKE").
-	 * @param className Tên lớp cần tìm.
-	 * @param datas     Các điều kiện tìm kiếm (key-value).
-	 * @return Danh sách các đối tượng tìm thấy theo điều kiện AND.
+	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
+	 * @param className Tên đầy đủ của class entity (bao gồm package).
+	 * @param datas     Danh sách các cặp điều kiện (field - logicOperator -value).
+	 *                  Ví dụ: id = 1
+	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
+	 *         rỗng nếu không tìm thấy.
 	 */
-	public static <T> List<T> findAnd(String operator, String className, Object... datas) {
-		return findIf("And", operator, className, datas);
-	}
-
-	/**
-	 * Tìm dữ liệu theo điều kiện OR.
-	 * 
-	 * @param <T>       Kiểu dữ liệu cần tìm.
-	 * @param operator  Toán tử tìm kiếm (ví dụ: "=", "LIKE").
-	 * @param className Tên lớp cần tìm.
-	 * @param datas     Các điều kiện tìm kiếm (key-value).
-	 * @return Danh sách các đối tượng tìm thấy theo điều kiện OR.
-	 */
-	public static <T> List<T> findOr(String operator, String className, Object... datas) {
-		return findIf("Or", operator, className, datas);
-	}
-
-	/**
-	 * Tìm một đối tượng duy nhất trong bảng phù hợp với điều kiện cho trước.
-	 * 
-	 * @param <T>       Kiểu dữ liệu cần tìm.
-	 * @param operator  Toán tử tìm kiếm (ví dụ: "=", "LIKE").
-	 * @param className Tên lớp cần tìm.
-	 * @param datas     Các điều kiện tìm kiếm (key-value).
-	 * @return Đối tượng duy nhất tìm thấy, nếu không có thì trả về null.
-	 */
-	public static <T> T findOne(String operator, String className, Object... datas) {
-		List<T> result = findIf(null, operator, className, datas);
-		if (result.isEmpty()) {
-			return null;
+	public static <T> List<T> findAnd(String className, Object... datas) {
+		List<String> connectors = new ArrayList<String>();
+		List<String> operators = new ArrayList<String>();
+		List<String> conditions = new ArrayList<String>();
+		List<Object> values = new ArrayList<Object>();
+		for (int i = 0; i < datas.length; i += 3) {
+			prepareConditions(conditions, values, operators, i, datas);
+			connectors.add("AND");
 		}
-		return result.get(0);
+		return findIf(className, connectors, operators, conditions, values);
 	}
+
+	/**
+	 * 
+	 * Tìm kiếm dữ liệu dựa trên điều kiện "OR".
+	 * 
+	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
+	 * @param className Tên đầy đủ của class entity (bao gồm package).
+	 * @param datas     Danh sách các cặp điều kiện (field - logicOperator -value).
+	 *                  Ví dụ: id = 1
+	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
+	 *         rỗng nếu không tìm thấy.
+	 */
+	public static <T> List<T> findOr(String className, Object... datas) {
+		List<String> connectors = new ArrayList<String>();
+		List<String> operators = new ArrayList<String>();
+		List<String> conditions = new ArrayList<String>();
+		List<Object> values = new ArrayList<Object>();
+		for (int i = 0; i < datas.length; i += 3) {
+			prepareConditions(conditions, values, operators, i, datas);
+			connectors.add("OR");
+		}
+		return findIf(className, connectors, conditions, operators, values);
+	}
+
+	/**
+	 * 
+	 * Tìm danh sách đối tượng dựa trên nhiều điều kiện.
+	 * 
+	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
+	 * @param className Tên đầy đủ của class entity (bao gồm package).
+	 * @param datas     Danh sách các bộ 4 (field - logicOperator - value
+	 *                  -logicConnector ) xác định điều kiện. Ví dụ (id = 1 and).
+	 *                  Danh sách có thể chứa bộ 3 (field -logicOperator - value)
+	 *                  nêu không cần nhiều điều kiện
+	 * @return Danh sách thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
+	 */
+	public static <T> List<T> findWithConditions(String className, Object... datas) {
+		List<String> connectors = new ArrayList<String>();
+		List<String> operators = new ArrayList<String>();
+		List<String> conditions = new ArrayList<String>();
+		List<Object> values = new ArrayList<Object>();
+		for (int i = 0; i < datas.length; i += 4) {
+			prepareConditions(conditions, values, operators, i, datas);
+			conditions.add(datas[i + 3].toString());
+		}
+		return findIf(className, connectors, conditions, operators, values);
+	}
+
+	/**
+	 * 
+	 * Tìm 1 đối tượng dựa trên nhiều điều kiện.
+	 * 
+	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
+	 * @param className Tên đầy đủ của class entity (bao gồm package).
+	 * @param datas     Danh sách các bộ ba (field - logicOperator - value ) xác
+	 *                  định điều kiện. Ví dụ (id = 1 ). Danh sách có thể chứa bộ 2
+	 *                  (field - value) nêu không cần nhiều điều kiện
+	 * @return Đối tượng thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
+	 */
+	public static <T> T findOne(String className, Object... datas) {
+		List<T> result = findAnd(className, datas);
+		if (result.isEmpty())
+			return null;
+		else
+			return result.get(0);
+	}
+
+	/**
+	 * Chuẩn bị điều kiện tìm kiếm.
+	 * 
+	 */
+	private static void prepareConditions(List<String> conditions, List<Object> values, List<String> operators,
+			int index, Object... datas) {
+		conditions.add(datas[index].toString());
+		operators.add(datas[index + 1].toString());
+		values.add(datas[index + 2]);
+	}
+
 }
