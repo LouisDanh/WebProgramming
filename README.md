@@ -3,7 +3,7 @@ Thành viên:
 - Huỳnh Minh Hiển : 22130080
 --------------------------------------------------------------------
 WEB BÁN MỸ PHẨM HISHAKU
--Các chức năng:
+- Các chức năng:
 1.Sản phẩm:
 - Lọc sản phẩm: tìm kiếm theo tên, loại sản phẩm, nhãn hàng, công dụng.
 - Upload ảnh, video, thông tin sản phẩm.
