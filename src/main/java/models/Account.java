@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +19,9 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "ACCOUNT")
-public class Account {
+public class Account implements Serializable{
+	private static final long serialVersionUID = 7347939252891773559L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

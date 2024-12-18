@@ -7,6 +7,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class BankAccOwnerId implements Serializable{
+	private static final long serialVersionUID = 2680491701495028602L;
 	private int cusId;
 	private int bankAccountId;
 	@Override

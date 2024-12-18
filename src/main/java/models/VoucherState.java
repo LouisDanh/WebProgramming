@@ -1,5 +1,7 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +13,9 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "VOUCHER_STATE")
-public class VoucherState {
+public class VoucherState implements Serializable{
+	private static final long serialVersionUID = -1070809452707047256L;
+
 	@EmbeddedId
 	private VoucherStateId id;
 	

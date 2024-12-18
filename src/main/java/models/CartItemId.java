@@ -7,6 +7,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class CartItemId implements Serializable{
+	private static final long serialVersionUID = -746659657905733951L;
 	private int cusId;
 	private int productId;
 	@Override

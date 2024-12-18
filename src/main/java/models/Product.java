@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,7 +15,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODCUT")
-public class Product {
+public class Product implements Serializable{
+	private static final long serialVersionUID = -864055505260462770L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -7,6 +7,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class ProductTopicId implements Serializable {
+	private static final long serialVersionUID = -7723429605739692746L;
 	private int productId;
 	private int productTypeId;
 

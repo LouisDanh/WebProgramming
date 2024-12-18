@@ -7,6 +7,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class ProductBenenfitId implements Serializable{
+	private static final long serialVersionUID = 6667213580579184358L;
 	private int productId;
 	private int purposeId;
 

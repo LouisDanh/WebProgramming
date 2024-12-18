@@ -6,13 +6,16 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class VoucherStateId implements Serializable{
+public class VoucherStateId implements Serializable {
+	private static final long serialVersionUID = -7893920505554652675L;
 	private int voucherId;
 	private int cusId;
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cusId, voucherId);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -24,5 +27,5 @@ public class VoucherStateId implements Serializable{
 		VoucherStateId other = (VoucherStateId) obj;
 		return cusId == other.cusId && voucherId == other.voucherId;
 	}
-	
+
 }

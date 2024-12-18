@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +17,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "VOUCHER")
-public class Voucher {
+public class Voucher implements Serializable{
+	private static final long serialVersionUID = -1870479247193352102L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

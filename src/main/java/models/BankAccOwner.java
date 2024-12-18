@@ -1,5 +1,7 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +13,8 @@ import javax.persistence.UniqueConstraint;
 
 @Entity	
 @Table(name = "BANK_ACC_OWNER")
-public class BankAccOwner {
+public class BankAccOwner implements Serializable{
+	private static final long serialVersionUID = -5885156952865993026L;
 	@EmbeddedId
 	private BankAccOwnerId id;
 	@ManyToOne

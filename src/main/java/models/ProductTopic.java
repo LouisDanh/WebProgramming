@@ -1,5 +1,7 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,7 +12,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT_TOPIC")
-public class ProductTopic {
+public class ProductTopic implements Serializable{
+	private static final long serialVersionUID = -7355520214514616153L;
+
 	@EmbeddedId
 	private ProductTopicId id;
 	

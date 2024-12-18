@@ -1,5 +1,7 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -9,7 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT_BENEFIT")
-public class ProductBenefit {
+public class ProductBenefit implements Serializable{
+	private static final long serialVersionUID = -3827286005967040554L;
 	@EmbeddedId
 	private ProductBenenfitId id;
 	@ManyToOne
