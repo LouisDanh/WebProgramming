@@ -19,30 +19,9 @@ import models.Bank;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Session session = HibernateUtil.getSession();
-		try {
-			// Bắt đầu transaction
-			session.beginTransaction();
-
-			// Tạo đối tượng Product
-			Bank bank = new Bank("Viettinbank");
-
-			// Lưu đối tượng vào database
-			session.save(bank);
-
-			// Commit transaction
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			HibernateUtil.closeFactory();
-		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Integer idAccount = (Integer) request.getSession().getAttribute("idAccount");
 	}
 
 }
