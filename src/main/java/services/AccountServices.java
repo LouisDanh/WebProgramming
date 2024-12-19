@@ -28,26 +28,42 @@ public class AccountServices {
 				QueryFactory.AND, "id", QueryFactory.EQUALS, id);
 		return isLogin != null;
 	}
+
 	/**
 	 * Tạo tài khoản
+	 * 
 	 * @param acc dữ liệu về tài khoản
 	 * @return
 	 */
 	public static boolean createAccount(Account acc) {
 		return GenericDao.insert(acc);
 	}
-	
+
+	public static boolean updateCustomer(Customer customer) {
+		return GenericDao.update(customer);
+	}
+
 	/**
 	 * Lấy thông tin customer
 	 * 
-	 * @param accountId 
+	 * @param accountId
 	 * @return custome, ngược lại null
 	 */
 	public static Customer getCostomer(Integer accountId) {
 		return GenericDao.findOne(Customer.class.getName(), "id", QueryFactory.EQUALS, accountId);
 	}
 
-	public static boolean updateCustomer(Customer customer) {
-		return GenericDao.update(customer);
+	/**
+	 * Lấy thông tin tài khoản từ accountId
+	 * 
+	 * @param
+	 * @return account, ngược lại null
+	 */
+	public static Account getAccount(Integer accountId) {
+		return GenericDao.findOne(Account.class.getName(), "id", QueryFactory.EQUALS, accountId);
 	}
+	public static boolean updateAccount(Account account) {
+		return GenericDao.update(account);
+	}
+
 }

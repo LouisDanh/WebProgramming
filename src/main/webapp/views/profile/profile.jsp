@@ -148,19 +148,19 @@
 									<!-- Current Password -->
 									<div class="form-group mt-5">
 										<label for="email">Current password:</label> <input
-											type="password" id="password" class="form-control"
+											type="password" id="current-password" class="form-control"
 											placeholder="Enter your current password" required>
 									</div>
 									<!-- New Password -->
 									<div class="form-group">
 										<label for="email">New password:</label> <input
-											type="password" id="password" class="form-control"
+											type="password" id="new-password" class="form-control"
 											placeholder="Enter your new password" required>
 									</div>
 									<!-- Confirm Password -->
 									<div class="form-group">
 										<label for="email">Confirm password:</label> <input
-											type="password" id="password" class="form-control"
+											type="password" id="confirm-password" class="form-control"
 											placeholder="Enter your new password" required>
 									</div>
 									<!-- Save Change Button -->

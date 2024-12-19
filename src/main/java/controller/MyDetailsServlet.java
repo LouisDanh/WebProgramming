@@ -16,7 +16,7 @@ import services.AccountServices;
  * Servlet implementation class ProfileServices
  */
 @WebServlet("/ProfileServices")
-public class ProfileServlet extends HttpServlet {
+public class MyDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
