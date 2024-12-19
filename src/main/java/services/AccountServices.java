@@ -12,7 +12,7 @@ public class AccountServices {
 	 * @return id nếu tồn tại, ngược lại null
 	 */
 	public static Integer getIdAccount(String email) {
-		return GenericDao.findOne(Account.class.getName(), "email", QueryFactory.EQUALS, email);
+		return GenericDao.findOne(Account.class,"id", "email", QueryFactory.EQUALS, email);
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class AccountServices {
 	 * @return true nếu thành công
 	 */
 	public static boolean login(int id, String password) {
-		Boolean isLogin = GenericDao.findOne(Account.class.getName(), "password", QueryFactory.EQUALS, password,
+		Boolean isLogin = GenericDao.findOne(Account.class, "password", QueryFactory.EQUALS, password,
 				QueryFactory.AND, "id", QueryFactory.EQUALS, id);
 		return isLogin != null;
 	}

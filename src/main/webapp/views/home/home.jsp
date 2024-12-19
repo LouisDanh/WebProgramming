@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -12,7 +12,6 @@
 	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-
 </head>
 
 <body>
@@ -21,19 +20,22 @@
 		<div class="container my-5">
 			<!-- content lễ hội -->
 			<div class="mb-5">
-				<h2 class="h2 text-center fs-1">Mua sắm lễ hội</h2>
-				<p class="text-center">Nội dung cần chỉnh sửa</p>
-
+				<h2 class="h2 text-center fs-1">${topic.name}</h2>
+				<p class="text-center">${topic.description}</p>
 				<!-- thể loại sản phẩm -->
+				
 				<ul
 					class="list-unstyled d-flex gap-3 justify-content-center align-items-center">
-					<li class="tabled-products fw-bold cursor-pointer">Phiên bản giới hạn</li>
+					<c:forEach var="entry" items="${topic.products.entrySet()}" varStatus="index">
+					<c:set></c:set>
+					<li class="tabled-products fw-bold cursor-pointer">${entry.key}</li>
 					<li>|</li>
 					<li class="tabled-products cursor-pointer">Dưỡng da</li>
 					<li>|</li>
 					<li class="tabled-products cursor-pointer">Trang điểm</li>
 					<li>|</li>
 					<li class="tabled-products cursor-pointer">Nước hoa</li>
+					</c:forEach>
 				</ul>
 				<div id="carousel-tabled-products">
 					<div class="wrapper-topic-product w-100">

@@ -2,6 +2,7 @@ package models;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT_TYPE")
-public class ProductType implements Serializable{
+public class ProductType implements Serializable {
 	private static final long serialVersionUID = 9215015874801278028L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +41,27 @@ public class ProductType implements Serializable{
 	private ProductType parent;
 	@OneToMany(mappedBy = "parent")
 	private List<ProductType> child;
+
 	public ProductType() {
-		active=true;
+		active = true;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductType other = (ProductType) obj;
+		return id == other.id;
+	}
+
+
 }

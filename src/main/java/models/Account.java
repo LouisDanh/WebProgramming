@@ -30,11 +30,11 @@ public class Account implements Serializable {
 	private String email;
 	@Column(name = "PASSWORD", nullable = false, columnDefinition = "VARCHAR(20)")
 	private String password;
-	@Column(name = "BAN")
+	@Column(name = "BAN", nullable = false)
 	private boolean ban;
-	@Column(name = "ROLE")
+	@Column(name = "ROLE", nullable = false)
 	private int role;
-	@Column(name = "CREATE_DATE")
+	@Column(name = "CREATE_DATE", nullable = false)
 	private LocalDateTime createDate;
 
 //	 Cấu hình liên kết

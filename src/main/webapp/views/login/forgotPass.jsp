@@ -19,8 +19,7 @@
 				<p class="card-text text-center mb-4">Enter the email address
 					associated with your account and we will send you a link to reset
 					your password.</p>
-
-				<form action="#" method="POST">
+				<form action="/WebMyPham/LoginServlet" method="post">
 					<div class="mb-3">
 						<label for="email" class="form-label">Email</label> <input
 							type="email" class="form-control" id="email"
@@ -29,7 +28,8 @@
 					<button type="submit" class="btn btn-dark w-100">Reset my
 						password</button>
 				</form>
-				<p class="text-center mt-3">I remember the password? <a
+				<p class="text-center mt-3">
+					I remember the password? <a
 						href="${pageContext.request.contextPath}/views/login/login.jsp">Log
 						in</a>
 				</p>
