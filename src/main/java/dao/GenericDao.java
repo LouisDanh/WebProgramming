@@ -1,8 +1,11 @@
 package dao;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.persistence.Column;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,22 +41,19 @@ public class GenericDao {
 	 * @return Danh sách các đối tượng trong bảng. Nếu có lỗi xảy ra thì trả về danh
 	 *         sách rỗng.
 	 */
-	public static <T> List<T> getAll(String className) {
-		Class<T> data = getClass(className);
-		if (data == null)
-			return Collections.emptyList();
+	public static <T> List<T> getAll(Class<T> entityName) {
 		Transaction transaction = null;
 		List<T> result = new ArrayList<>();
 		try (Session session = HibernateUtil.getSession()) {
 			transaction = session.beginTransaction();
-			Query<T> query = session.createQuery("FROM " + data.getName(), data);
+			Query<T> query = session.createQuery("FROM " + entityName.getName(), entityName);
 			result = query.list();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			System.err.println("Lỗi: Không thể lấy dữ liệu All cho class " + className);
+			System.err.println("Lỗi: Không thể lấy dữ liệu All cho class " + entityName.getName());
 		}
 		return result;
 	}
@@ -114,21 +114,30 @@ public class GenericDao {
 	 * 
 	 * Tìm kiếm dữ liệu từ bảng dựa trên điều kiện linh hoạt.
 	 * 
-	 * @param <T>        Kiểu dữ liệu của đối tượng (class entity).
-	 * @param className  Tên đầy đủ của class entity (bao gồm package).
-	 * @param connectors Danh sách các toán tử liên kết điều kiện (AND, OR)
-	 * @param conditions Danh sách các tên trường (field) dùng làm điều kiện.
-	 * @param operators  Danh sách các toán tử so sánh (ví dụ: =, >, <, v.v.)
-	 * @param values     Danh sách các giá trị tương ứng với điều kiện.
+	 * @param entityClass class entity .
+	 * @param fieldName   Trường dữ liệu muốn lấy
+	 * @param connectors  Danh sách các toán tử liên kết điều kiện (AND, OR)
+	 * @param conditions  Danh sách các tên trường (field) dùng làm điều kiện.
+	 * @param operators   Danh sách các toán tử so sánh (ví dụ: =, >, <, v.v.)
+	 * @param values      Danh sách các giá trị tương ứng với điều kiện.
 	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
 	 *         rỗng nếu không tìm thấy.
 	 */
-	private static <T> List<T> findIf(String className, List<String> connectors, List<String> conditions,
-			List<String> operators, List<Object> values) {
-		Class<T> data = getClass(className);
-		if (data == null)
+	@SuppressWarnings("unchecked")
+	private static <T, E> List<T> findIf(Class<E> entityClass, String fieldName, List<String> connectors,
+			List<String> conditions, List<String> operators, List<Object> values) {
+		Class<T> data = null;
+		Column column = null;
+		try {
+			Field field = entityClass.getDeclaredField(fieldName);
+			data = (Class<T>) field.getType();
+			column = field.getAnnotation(Column.class);
+		} catch (NoSuchFieldException | SecurityException e) {
+			System.err.println("Không tìm thấy field: " + fieldName + " trong class " + entityClass.getName());
+			e.printStackTrace();
 			return Collections.emptyList();
-		StringBuilder queryString = new StringBuilder("From " + data.getName() + " ");
+		}
+		StringBuilder queryString = new StringBuilder(column.name() + " From " + entityClass.getName() + " ");
 		queryString.append(QueryFactory.muiltiConditions(operators, conditions, connectors));
 		List<T> result = new ArrayList<>();
 		Transaction transaction = null;
@@ -144,7 +153,7 @@ public class GenericDao {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			System.err.println("Lỗi: Không thể lấy dữ liệu cho class " + className);
+			System.err.println("Lỗi: Không thể lấy dữ liệu cho class " + entityClass.getName());
 		}
 		return result;
 	}
@@ -152,14 +161,14 @@ public class GenericDao {
 	/**
 	 * Tìm kiếm dữ liệu dựa trên điều kiện "AND".
 	 * 
-	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
-	 * @param className Tên đầy đủ của class entity (bao gồm package).
-	 * @param datas     Danh sách các cặp điều kiện (field - logicOperator -value).
-	 *                  Ví dụ: id = 1
+	 * @param entityClass class entity .
+	 * @param fieldName   Trường dữ liệu muốn lấy
+	 * @param datas       Danh sách các cặp điều kiện (field - logicOperator - value
+	 *                    - logicConnector(optional) ). Ví dụ: id = 1
 	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
 	 *         rỗng nếu không tìm thấy.
 	 */
-	public static <T> List<T> findAnd(String className, Object... datas) {
+	public static <T> List<T> findAnd(Class<T> entityClass, String fieldName, Object... datas) {
 		List<String> connectors = new ArrayList<String>();
 		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
@@ -168,21 +177,21 @@ public class GenericDao {
 			prepareConditions(conditions, values, operators, i, datas);
 			connectors.add("AND");
 		}
-		return findIf(className, connectors, operators, conditions, values);
+		return findIf(entityClass, fieldName, connectors, operators, conditions, values);
 	}
 
 	/**
 	 * 
 	 * Tìm kiếm dữ liệu dựa trên điều kiện "OR".
 	 * 
-	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
-	 * @param className Tên đầy đủ của class entity (bao gồm package).
-	 * @param datas     Danh sách các cặp điều kiện (field - logicOperator -value).
-	 *                  Ví dụ: id = 1
+	 * @param entityClass class entity .
+	 * @param fieldName   Trường dữ liệu muốn lấy
+	 * @param datas       Danh sách các cặp điều kiện (field - logicOperator - value
+	 *                    - logicConnector(optional) ). Ví dụ: id = 1
 	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
 	 *         rỗng nếu không tìm thấy.
 	 */
-	public static <T> List<T> findOr(String className, Object... datas) {
+	public static <T> List<T> findOr(Class<T> entityClass, String fieldName, Object... datas) {
 		List<String> connectors = new ArrayList<String>();
 		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
@@ -191,22 +200,21 @@ public class GenericDao {
 			prepareConditions(conditions, values, operators, i, datas);
 			connectors.add("OR");
 		}
-		return findIf(className, connectors, conditions, operators, values);
+		return findIf(entityClass, fieldName, connectors, conditions, operators, values);
 	}
 
 	/**
 	 * 
 	 * Tìm danh sách đối tượng dựa trên nhiều điều kiện.
 	 * 
-	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
-	 * @param className Tên đầy đủ của class entity (bao gồm package).
-	 * @param datas     Danh sách các bộ 4 (field - logicOperator - value
-	 *                  -logicConnector ) xác định điều kiện. Ví dụ (id = 1 and).
-	 *                  Danh sách có thể chứa bộ 3 (field -logicOperator - value)
-	 *                  nêu không cần nhiều điều kiện
+	 * @param entityClass class entity .
+	 * @param fieldName   Trường dữ liệu muốn lấy
+	 * @param datas       Danh sách các cặp điều kiện (field - logicOperator - value
+	 *                    - logicConnector(optional) ) xác định điều kiện. Ví dụ (id
+	 *                    = 1).
 	 * @return Danh sách thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
 	 */
-	public static <T> List<T> findWithConditions(String className, Object... datas) {
+	public static <T> List<T> findWithConditions(Class<T> entityClass, String fieldName, Object... datas) {
 		List<String> connectors = new ArrayList<String>();
 		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
@@ -215,22 +223,22 @@ public class GenericDao {
 			prepareConditions(conditions, values, operators, i, datas);
 			conditions.add(datas[i + 3].toString());
 		}
-		return findIf(className, connectors, conditions, operators, values);
+		return findIf(entityClass, fieldName, connectors, conditions, operators, values);
 	}
 
 	/**
 	 * 
 	 * Tìm 1 đối tượng dựa trên nhiều điều kiện.
 	 * 
-	 * @param <T>       Kiểu dữ liệu của đối tượng (class entity).
-	 * @param className Tên đầy đủ của class entity (bao gồm package).
-	 * @param datas     Danh sách các bộ ba (field - logicOperator - value ) xác
-	 *                  định điều kiện. Ví dụ (id = 1 ). Danh sách có thể chứa bộ 2
-	 *                  (field - value) nêu không cần nhiều điều kiện
+	 * @param entityClass class entity .
+	 * @param fieldName   Trường dữ liệu muốn lấy
+	 * @param datas       Danh sách các cặp điều kiện (field - logicOperator - value
+	 *                    - logicConnector(optional) ) xác định điều kiện. Ví dụ (id
+	 *                    = 1).
 	 * @return Đối tượng thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
 	 */
-	public static <T> T findOne(String className, Object... datas) {
-		List<T> result = findAnd(className, datas);
+	public static <T> T findOne(Class<T> entityClass, String fieldName, Object... datas) {
+		List<T> result = findAnd(entityClass, fieldName, datas);
 		if (result.isEmpty())
 			return null;
 		else
