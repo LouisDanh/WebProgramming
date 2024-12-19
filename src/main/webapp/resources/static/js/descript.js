@@ -42,6 +42,7 @@ $(document).ready(function() {
 	});
 
 	// Thay đổi ảnh chính khi nhấn vào hình thu nhỏ (sử dụng jQuery)
+	$('#mainImage').attr('src',$(".img-60px").first().data('large-image'))
 	$(".img-60px").click(function() {
 		const newImage = $(this).data('large-image');  // Lấy URL của ảnh lớn từ thuộc tính data-large-image
 		$('#mainImage').attr('src', newImage);  // Cập nhật ảnh chính
