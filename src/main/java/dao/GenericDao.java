@@ -168,7 +168,7 @@ public class GenericDao {
 	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
 	 *         rỗng nếu không tìm thấy.
 	 */
-	public static <T> List<T> findAnd(Class<T> entityClass, String fieldName, Object... datas) {
+	public static <T, E> List<T> findAnd(Class<E> entityClass, String fieldName, Object... datas) {
 		List<String> connectors = new ArrayList<String>();
 		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
@@ -191,7 +191,7 @@ public class GenericDao {
 	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
 	 *         rỗng nếu không tìm thấy.
 	 */
-	public static <T> List<T> findOr(Class<T> entityClass, String fieldName, Object... datas) {
+	public static <T, E> List<T> findOr(Class<E> entityClass, String fieldName, Object... datas) {
 		List<String> connectors = new ArrayList<String>();
 		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
@@ -214,7 +214,7 @@ public class GenericDao {
 	 *                    = 1).
 	 * @return Danh sách thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
 	 */
-	public static <T> List<T> findWithConditions(Class<T> entityClass, String fieldName, Object... datas) {
+	public static <T, E> List<T> findWithConditions(Class<E> entityClass, String fieldName, Object... datas) {
 		List<String> connectors = new ArrayList<String>();
 		List<String> operators = new ArrayList<String>();
 		List<String> conditions = new ArrayList<String>();
@@ -237,7 +237,7 @@ public class GenericDao {
 	 *                    = 1).
 	 * @return Đối tượng thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
 	 */
-	public static <T> T findOne(Class<T> entityClass, String fieldName, Object... datas) {
+	public static <T, E> T findOne(Class<E> entityClass, String fieldName, Object... datas) {
 		List<T> result = findAnd(entityClass, fieldName, datas);
 		if (result.isEmpty())
 			return null;
