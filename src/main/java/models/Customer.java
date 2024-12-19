@@ -42,10 +42,58 @@ public class Customer implements Serializable {
 
 	public Customer(String fullName, String phone) {
 		this.fullName = fullName;
-		this.phone = phone;
+//		this.phone = phone;
 	}
 
 	public Customer() {
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getPlaceReceive() {
+		return placeReceive;
+	}
+
+	public void setPlaceReceive(String placeReceive) {
+		this.placeReceive = placeReceive;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public List<BankAccount> getListBankAccount() {
+		return listBankAccount;
+	}
+
+	public void setListBankAccount(List<BankAccount> listBankAccount) {
+		this.listBankAccount = listBankAccount;
+	}
+
+	public List<Invoice> getHistoryOrder() {
+		return historyOrder;
+	}
+
+	public void setHistoryOrder(List<Invoice> historyOrder) {
+		this.historyOrder = historyOrder;
+	}
+
+	public List<CartItem> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<CartItem> carts) {
+		this.carts = carts;
 	}
 
 }

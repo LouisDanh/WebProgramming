@@ -11,8 +11,6 @@
 	href="${pageContext.request.contextPath}/resources/static/css/profile.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/admin.css">
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath}/resources/static/css/base.css"> --%>
 
 </head>
 
@@ -150,19 +148,19 @@
 									<!-- Current Password -->
 									<div class="form-group mt-5">
 										<label for="email">Current password:</label> <input
-											type="password" id="password" class="form-control"
+											type="password" id="current-password" class="form-control"
 											placeholder="Enter your current password" required>
 									</div>
 									<!-- New Password -->
 									<div class="form-group">
 										<label for="email">New password:</label> <input
-											type="password" id="password" class="form-control"
+											type="password" id="new-password" class="form-control"
 											placeholder="Enter your new password" required>
 									</div>
 									<!-- Confirm Password -->
 									<div class="form-group">
 										<label for="email">Confirm password:</label> <input
-											type="password" id="password" class="form-control"
+											type="password" id="confirm-password" class="form-control"
 											placeholder="Enter your new password" required>
 									</div>
 									<!-- Save Change Button -->
@@ -189,11 +187,6 @@
 										<label for="email">Email:</label> <input type="email"
 											id="email" class="form-control"
 											placeholder="Enter your email" required>
-									</div>
-									<!-- Date of Birth Input -->
-									<div class="form-group mt-3">
-										<label for="dob">Date of Birth:</label> <input type="date"
-											id="dob" class="form-control" required>
 									</div>
 									<!-- Phone Input -->
 									<div class="form-group mt-3">
