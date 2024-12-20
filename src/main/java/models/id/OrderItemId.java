@@ -1,4 +1,4 @@
-package models;
+package models.id;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -6,14 +6,14 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ProductBenenfitId implements Serializable{
-	private static final long serialVersionUID = 6667213580579184358L;
+public class OrderItemId implements Serializable {
+	private static final long serialVersionUID = 8933858995194121739L;
+	private int orderId;
 	private int productId;
-	private int purposeId;
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(productId, purposeId);
+		return Objects.hash(orderId, productId);
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class ProductBenenfitId implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProductBenenfitId other = (ProductBenenfitId) obj;
-		return productId == other.productId && purposeId == other.purposeId;
+		OrderItemId other = (OrderItemId) obj;
+		return orderId == other.orderId && productId == other.productId;
 	}
 }

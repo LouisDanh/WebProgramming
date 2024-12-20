@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import models.id.OrderItemId;
+
 @Entity
 @Table(name = "ORDER_ITEM")
 public class OrderItem implements Serializable {

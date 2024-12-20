@@ -24,7 +24,7 @@ public class MyDetailsServlet extends HttpServlet {
 		// Đảm bảo người dùng đã đăng nhập
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 
-		Customer user = AccountServices.getCostomer(userId);
+		Customer user = AccountServices.getCustomer(userId);
 		request.setAttribute("customer", user);
 
 		request.getRequestDispatcher("views/login/profile.jsp").forward(request, response);
@@ -40,7 +40,7 @@ public class MyDetailsServlet extends HttpServlet {
 		String address = req.getParameter("address");
 
 		Integer userId = (Integer) req.getSession().getAttribute("userId");
-		Customer customer = AccountServices.getCostomer(userId);
+		Customer customer = AccountServices.getCustomer(userId);
 
 		customer.setFullName(fullName);
 		customer.setPhone(phone);

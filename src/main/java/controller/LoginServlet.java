@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import models.Account;
 import models.Customer;
 import services.AccountServices;
+import services.ProductService;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -65,8 +63,10 @@ public class LoginServlet extends HttpServlet {
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getAttribute("id") != null) {
 			String password = request.getParameter("password");
-			if (AccountServices.login((Integer) request.getAttribute("id"), password))
+			if (AccountServices.login((Integer) request.getAttribute("id"), password)) {
+				request.getServletContext().setAttribute("parentType", ProductService.getTypes());
 				response.sendRedirect("views/home/home.jsp");
+			}
 		} else {
 			request.setAttribute("loginFail", "Incorrect username or email");
 			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);

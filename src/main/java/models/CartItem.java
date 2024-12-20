@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import models.id.CartItemId;
+
 @Entity
 @Table(name = "CART_ITEM")
 public class CartItem implements Serializable {

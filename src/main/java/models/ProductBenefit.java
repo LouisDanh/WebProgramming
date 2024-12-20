@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import models.id.ProductBenenfitId;
+
 @Entity
 @Table(name = "PRODUCT_BENEFIT")
 public class ProductBenefit implements Serializable{

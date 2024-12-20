@@ -11,6 +11,8 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import models.id.VoucherStateId;
+
 @Entity
 @Table(name = "VOUCHER_STATE")
 public class VoucherState implements Serializable{

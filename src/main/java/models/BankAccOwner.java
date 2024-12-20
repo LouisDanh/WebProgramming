@@ -11,6 +11,8 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import models.id.BankAccOwnerId;
+
 @Entity	
 @Table(name = "BANK_ACC_OWNER")
 public class BankAccOwner implements Serializable{
