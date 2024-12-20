@@ -10,9 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "PRODCUT")
@@ -37,9 +37,23 @@ public class Product implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID")
 	private List<Gallery> galleries;
+	@ManyToOne
+	@JoinColumn(name = "TYPE_ID")
+	private ProductType type;
+	@ManyToOne
+	@JoinColumn(name = "BRAND")
+	private Brand brand;
 
 	public Product() {
 		active = true;
+	}
+
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
 	}
 
 	public int getId() {
@@ -97,5 +111,9 @@ public class Product implements Serializable {
 	public void setGalleries(List<Gallery> galleries) {
 		this.galleries = galleries;
 	}
-	
+
+	public boolean inPurposeType(int idType) {
+		return type.getId() == idType;
+	}
+
 }

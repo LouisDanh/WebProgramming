@@ -1,7 +1,10 @@
 package models;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -14,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import services.ProductService;
 
 @Entity
 @Table(name = "PRODUCT_TYPE")
@@ -30,8 +35,7 @@ public class ProductType implements Serializable {
 	private boolean active;
 
 //	 Cấu hình liên kết
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TYPE_ID")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
 	private List<Product> products;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PURPOSE_ID")
@@ -40,10 +44,115 @@ public class ProductType implements Serializable {
 	@JoinColumn(name = "PARENT_ID")
 	private ProductType parent;
 	@OneToMany(mappedBy = "parent")
-	private List<ProductType> child;
+	private List<ProductType> children;
+	// lưu dữ liệu mapping PurposeType-> list Purpose, Purpose-> list
+	// Product
+	private static Map<PurposeType, Map<Purpose, List<Product>>> mappingPP;
+	// Lưu dữ liệu mapping Brand -> list product;
+	private static Map<Brand, List<Product>> mappingBP;
 
 	public ProductType() {
 		active = true;
+	}
+
+	/**
+	 * Lấy dữ liệu mapping PurposeType-> list Purpose, Purpose-> list
+	 * 
+	 * @return map dữ liệu giữa purposeType và map (purpose với listProduct)
+	 */
+	public Map<PurposeType, Map<Purpose, List<Product>>> getPurposes() {
+		if (mappingPP != null)
+			return mappingPP;
+		mappingPP = new HashMap<PurposeType, Map<Purpose, List<Product>>>();
+		for (Purpose purpose : purposes) {
+			Map<Purpose, List<Product>> mapPurpose = mappingPP.get(purpose.getType());
+			if (mapPurpose == null) {
+				mapPurpose = new HashMap<Purpose, List<Product>>();
+				mappingPP.put(purpose.getType(), mapPurpose);
+			}
+			mapPurpose.put(purpose, purpose.getProducts().stream().filter(i -> i.inPurposeType(id)).toList());
+		}
+		return mappingPP;
+	}
+
+	/**
+	 * Lấy dữ liệu mapping Brand-> list Product
+	 * 
+	 * @return map dữ liệu giữa brand và listProduct
+	 */
+	public Map<Brand, List<Product>> getBrands() {
+		if (mappingBP != null)
+			return mappingBP;
+		mappingBP = new HashMap<Brand, List<Product>>();
+		for (Product product : products) {
+			List<Product> list = mappingBP.get(product.getBrand());
+			if (list == null) {
+				list = new LinkedList<Product>();
+				mappingBP.put(product.getBrand(), list);
+			}
+			list.add(product);
+		}
+		return mappingBP;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDecription() {
+		return decription;
+	}
+
+	public void setDecription(String decription) {
+		this.decription = decription;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public void setPurposes(List<Purpose> purposes) {
+		this.purposes = purposes;
+	}
+
+	public ProductType getParent() {
+		return parent;
+	}
+
+	public void setParent(ProductType parent) {
+		this.parent = parent;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<ProductType> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<ProductType> children) {
+		this.children = children;
 	}
 
 	@Override
@@ -62,6 +171,5 @@ public class ProductType implements Serializable {
 		ProductType other = (ProductType) obj;
 		return id == other.id;
 	}
-
 
 }

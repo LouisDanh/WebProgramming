@@ -2,6 +2,7 @@ package models;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "BRAND")
-public class Brand implements Serializable{
+public class Brand implements Serializable {
 	private static final long serialVersionUID = 1574043928580206693L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +25,28 @@ public class Brand implements Serializable{
 	@Column(name = "ACTIVE")
 	private boolean active;
 //	 Cấu hình liên kết
-	@OneToMany
-	@JoinColumn(name = "BAND_ID")
+	@OneToMany(mappedBy = "brand")
 	private List<Product> products;
 
 	public Brand() {
 		active = true;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Brand other = (Brand) obj;
+		return id == other.id;
 	}
 
 }
