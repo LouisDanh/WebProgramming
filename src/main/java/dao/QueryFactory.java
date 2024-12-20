@@ -11,6 +11,8 @@ public class QueryFactory {
 	public static final String GREATER_THAN_OR_EQUAL = ">=";
 	public static final String LESS_THAN = "<";
 	public static final String LESS_THAN_OR_EQUAL = "<=";
+	public static final String IS_NULL = "IS NULL";
+	public static final String IS_NOT_NULL = "IS NOT NULL";
 
 	// Các toán tử liên kết
 	public static final String AND = "AND";

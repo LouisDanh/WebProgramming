@@ -15,25 +15,6 @@ import models.Account;
 
 public class GenericDao {
 	/**
-	 * Lấy class dựa trên tên class
-	 * 
-	 * @param <T>       Kiểu class mà bạn muốn tìm.
-	 * @param className Tên đầy đủ của class (bao gồm package).
-	 * @return Class nếu tồn tại, nếu không thì trả về null.
-	 */
-	@SuppressWarnings("unchecked")
-	private static <T> Class<T> getClass(String className) {
-		Class<T> data = null;
-		try {
-			data = (Class<T>) Class.forName(className);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			System.err.println("Lỗi: Class có tên " + className + " không tồn tại ");
-		}
-		return data;
-	}
-
-	/**
 	 * Lấy tất cả dữ liệu từ bảng tương ứng với class
 	 * 
 	 * @param <T>       Kiểu dữ liệu của đối tượng cần tìm.
@@ -244,6 +225,7 @@ public class GenericDao {
 		else
 			return result.get(0);
 	}
+
 
 	/**
 	 * Chuẩn bị điều kiện tìm kiếm.
