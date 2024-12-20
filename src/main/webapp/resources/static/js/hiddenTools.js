@@ -1,22 +1,32 @@
 $(document).ready(function() {
-	// Toggle menu khi nhấn vào hamburger icon
-	$('#hamburgerIcon').click(function(event) {
-		$('#extraIcons').toggleClass('show'); // Toggle class 'show' để hiển thị/ẩn menu
-		$('.sub-category').hide();
+	let hideTimeout; // Biến lưu trữ timeout
+	const AUTO_HIDE_TIME = 2000; // Thời gian tự động ẩn menu (ms)
 
-		// Ngừng sự kiện click lan tỏa ra ngoài (ngăn không đóng khi nhấn vào menu)
-		event.stopPropagation();
+	// Toggle menu khi nhấn vào hamburger icon
+	$('#hamburgerIcon').click(function() {
+		const $extraIcons = $('#extraIcons');
+		$extraIcons.toggleClass('show');
+		if ($extraIcons.hasClass('show')) {
+			startAutoHideTimer();
+		} else {
+			clearTimeout(hideTimeout);
+		}
+		$('.sub-category').hide();
 	});
 
-
-	// Ngừng sự kiện click lan tỏa ra ngoài (ngăn không đóng khi nhấn vào menu)
-	event.stopPropagation();
-});
-
-// Đóng menu nếu nhấn ra ngoài hamburger icon và menu
-$(document).click(function(event) {
-	// Kiểm tra nếu click ra ngoài hamburger icon và menu
-	if (!$('#hamburgerIcon').is(event.target) && !$('#extraIcons').is(event.target) && $('#extraIcons').has(event.target).length === 0) {
-		$('#extraIcons').removeClass('show'); // Ẩn dropdown menu
+	// Bắt đầu bộ đếm tự động ẩn menu
+	function startAutoHideTimer() {
+		clearTimeout(hideTimeout); // Xóa bộ đếm cũ nếu tồn tại
+		hideTimeout = setTimeout(function() {
+			$('#extraIcons').removeClass('show'); // Ẩn menu
+		}, AUTO_HIDE_TIME);
 	}
+
+	$('#extraIcons, #hamburgerIcon').on('mouseenter', function() {
+		clearTimeout(hideTimeout);
+	});
+
+	$('#extraIcons').on('mouseleave', function() {
+		startAutoHideTimer();
+	});
 });
