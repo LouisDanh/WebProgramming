@@ -33,5 +33,5 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
 <script
-	src="${pageContext.request.contextPath}/resources/static/js/btn_link.js"></script>
+	src="${pageContext.request.contextPath}/resources/static/js/link.js"></script>
 

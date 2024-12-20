@@ -23,11 +23,11 @@
 				<h2 class="h2 text-center fs-1">${topic.name}</h2>
 				<p class="text-center">${topic.description}</p>
 				<!-- thể loại sản phẩm -->
-				
 				<ul
 					class="list-unstyled d-flex gap-3 justify-content-center align-items-center">
 					<c:forEach var="entry" items="${topic.products.entrySet()}" varStatus="index">
-					<c:set></c:set>
+					<c:set>
+					</c:set>
 					<li class="tabled-products fw-bold cursor-pointer">${entry.key}</li>
 					<li>|</li>
 					<li class="tabled-products cursor-pointer">Dưỡng da</li>
