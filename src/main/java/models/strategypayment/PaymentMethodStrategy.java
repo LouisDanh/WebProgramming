@@ -1,7 +1,5 @@
-package models;
+package models.strategypayment;
 
 public interface PaymentMethodStrategy {
-	String getName();
-
 	double pay();
 }

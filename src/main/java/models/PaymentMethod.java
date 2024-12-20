@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PAYMENT_METHOD")
-public class PaymentMethod implements Serializable{
+public class PaymentMethod implements Serializable {
 	private static final long serialVersionUID = 110252482276396261L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +24,35 @@ public class PaymentMethod implements Serializable{
 	 * convert to payment strategy class
 	 */
 	@Column(name = "STRATEGY_CLASS", columnDefinition = "varchar(50)")
-	private String stategyClass;
+	private String strategyClass;
 	@Column(name = "ACTIVE")
 	private boolean active;
 
 	public PaymentMethod() {
 		active = true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStrategyClass() {
+		return strategyClass;
+	}
+
+	public void setStrategyClass(String stategyClass) {
+		this.strategyClass = stategyClass;
 	}
 }
