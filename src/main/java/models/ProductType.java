@@ -31,9 +31,6 @@ public class ProductType implements Serializable {
 	private String name;
 	@Column(name = "DECRIPTION", columnDefinition = "varchar(50)")
 	private String decription;
-	@Column(name = "ACTIVE")
-	private boolean active;
-
 //	 Cấu hình liên kết
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
 	private List<Product> products;
@@ -45,15 +42,12 @@ public class ProductType implements Serializable {
 	private ProductType parent;
 	@OneToMany(mappedBy = "parent")
 	private List<ProductType> children;
+	
 	// lưu dữ liệu mapping PurposeType-> list Purpose, Purpose-> list
 	// Product
 	private static Map<PurposeType, Map<Purpose, List<Product>>> mappingPP;
 	// Lưu dữ liệu mapping Brand -> list product;
 	private static Map<Brand, List<Product>> mappingBP;
-
-	public ProductType() {
-		active = true;
-	}
 
 	/**
 	 * Lấy dữ liệu mapping PurposeType-> list Purpose, Purpose-> list
@@ -109,14 +103,6 @@ public class ProductType implements Serializable {
 
 	public void setDecription(String decription) {
 		this.decription = decription;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 
 	public List<Product> getProducts() {

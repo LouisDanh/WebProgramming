@@ -22,15 +22,9 @@ public class Brand implements Serializable {
 	private int id;
 	@Column(name = "NAME", columnDefinition = "varchar(20)", nullable = false)
 	private String name;
-	@Column(name = "ACTIVE")
-	private boolean active;
 //	 Cấu hình liên kết
 	@OneToMany(mappedBy = "brand")
 	private List<Product> products;
-
-	public Brand() {
-		active = true;
-	}
 
 	@Override
 	public int hashCode() {

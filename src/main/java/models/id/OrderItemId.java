@@ -8,12 +8,12 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class OrderItemId implements Serializable {
 	private static final long serialVersionUID = 8933858995194121739L;
-	private int orderId;
+	private int detailId;
 	private int productId;
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(orderId, productId);
+		return Objects.hash(detailId, productId);
 	}
 
 	@Override
@@ -25,6 +25,6 @@ public class OrderItemId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		OrderItemId other = (OrderItemId) obj;
-		return orderId == other.orderId && productId == other.productId;
+		return detailId == other.detailId && productId == other.productId;
 	}
 }

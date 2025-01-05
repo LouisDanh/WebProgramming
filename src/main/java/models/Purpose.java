@@ -24,18 +24,14 @@ public class Purpose implements Serializable {
 	private int id;
 	@Column(name = "DESCRIPTION")
 	private String decription;
-	@Column(name = "ACTIVE")
-	private boolean active;
 	@ManyToOne
 	@JoinColumn(name = "PURPOSE_TYPE_ID")
 	private PurposeType type;
 	@ManyToMany
-	@JoinTable(name = "PRODUCT_BENEFIT", joinColumns = @JoinColumn(referencedColumnName = "PURPOSE_ID"), inverseJoinColumns = @JoinColumn(referencedColumnName = "PRODUCT_ID"))
+	@JoinTable(name = "PRODUCT_BENEFIT", 
+		    joinColumns = @JoinColumn(name = "PURPOSE_ID"), 
+		    inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
 	private List<Product> products;
-
-	public Purpose() {
-		active = true;
-	}
 
 	public List<Product> getProducts() {
 		return products;
@@ -59,14 +55,6 @@ public class Purpose implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 
 	@Override

@@ -30,8 +30,8 @@ public class OrderItem implements Serializable {
 	@JoinColumn(name = "PRODUCT_ID",nullable = false)
 	private Product product;
 	@ManyToOne()
-	@MapsId("orderId")
-	@JoinColumn(name = "ORDER_ID",nullable = false)
-	private Order order;
+	@MapsId("detailId")
+	@JoinColumn(name = "DETAIL_ID",nullable = false)
+	private OrderDetails detail;
 
 }

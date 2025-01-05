@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PRODCUT")
+@Table(name = "PRODUCT")
 public class Product implements Serializable {
 	private static final long serialVersionUID = -864055505260462770L;
 	@Id
@@ -31,8 +31,6 @@ public class Product implements Serializable {
 	private int stock;
 	@Column(name = "CAPACITY", nullable = false)
 	private int capacity;
-	@Column(name = "ACTIVE")
-	private boolean active;
 //	 Cấu hình liên kết
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID")
@@ -43,10 +41,6 @@ public class Product implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "BRAND")
 	private Brand brand;
-
-	public Product() {
-		active = true;
-	}
 
 	public Brand getBrand() {
 		return brand;
@@ -94,14 +88,6 @@ public class Product implements Serializable {
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 
 	public List<Gallery> getGalleries() {

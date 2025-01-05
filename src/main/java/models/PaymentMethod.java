@@ -20,17 +20,6 @@ public class PaymentMethod implements Serializable {
 	private String name;
 	@Column(name = "DISCOUNT", columnDefinition = "decimal(5,2)")
 	private double discount;
-	/**
-	 * convert to payment strategy class
-	 */
-	@Column(name = "STRATEGY_CLASS", columnDefinition = "varchar(50)")
-	private String strategyClass;
-	@Column(name = "ACTIVE")
-	private boolean active;
-
-	public PaymentMethod() {
-		active = true;
-	}
 
 	public int getId() {
 		return id;
@@ -48,11 +37,4 @@ public class PaymentMethod implements Serializable {
 		this.name = name;
 	}
 
-	public String getStrategyClass() {
-		return strategyClass;
-	}
-
-	public void setStrategyClass(String stategyClass) {
-		this.strategyClass = stategyClass;
-	}
 }

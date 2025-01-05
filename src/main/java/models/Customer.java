@@ -33,7 +33,7 @@ public class Customer implements Serializable {
 	private List<BankAccount> listBankAccount;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CUS_ID", nullable = false)
-	private List<Invoice> historyOrder;
+	private List<Orders> historyOrder;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	private List<CartItem> carts;
 	@ManyToMany
@@ -80,11 +80,11 @@ public class Customer implements Serializable {
 		this.listBankAccount = listBankAccount;
 	}
 
-	public List<Invoice> getHistoryOrder() {
+	public List<Orders> getHistoryOrder() {
 		return historyOrder;
 	}
 
-	public void setHistoryOrder(List<Invoice> historyOrder) {
+	public void setHistoryOrder(List<Orders> historyOrder) {
 		this.historyOrder = historyOrder;
 	}
 

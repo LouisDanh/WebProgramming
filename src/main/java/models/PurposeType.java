@@ -23,22 +23,9 @@ public class PurposeType implements Serializable {
 	private int id;
 	@Column(name = "NAME", columnDefinition = "varchar(30)")
 	private String name;
-	@Column(name = "ACTIVE")
-	private boolean active;
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "type")
 	private List<Purpose> purposes;
 
-	public PurposeType() {
-		active = true;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
 
 	@Override
 	public int hashCode() {
