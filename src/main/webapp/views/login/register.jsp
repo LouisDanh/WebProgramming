@@ -11,12 +11,10 @@
 	href="${pageContext.request.contextPath}/resources/static/css/hiddenEye.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/static/css/btn.css">
-
 </head>
 
 <body>
 	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-
 	<main>
 		<div class="container mt-5">
 			<div class="row justify-content-center">
@@ -26,25 +24,26 @@
 							<h2 class="text-center mb-4">Create an AP Account</h2>
 							<p class="text-center mb-4">Create an account to access
 								exclusive features and check your products in.</p>
-
 							<!-- Account Registration Form -->
 							<form id="registerForm" action="/WebMyPham/LoginServlet"
-								method="Post">
+								method="Post" accept-charset="UTF-8">
 								<div class="mb-3">
 									<label for="fullName" class="form-label">Full Name</label> <input
 										type="text" class="form-control" id="fullName" name="fullName"
 										placeholder="Enter your full name" required>
 								</div>
 								<div class="mb-3">
-									<label for="tel" class="form-label">Phone number</label> <input
-										type="tel" class="form-control" id="tel" name="tel"
+									<label for="phone" class="form-label">Phone number</label> <input
+										type="tel" class="form-control" id="phone" name="phone"
+										pattern="[0-9]{10,15}"
+										title="Please enter a valid phone number (10 to 15 digits)"
 										placeholder="Enter your phone number" required>
 								</div>
 								<div class="mb-3">
 									<label for="email" class="form-label">Email</label> <input
 										type="email" class="form-control" id="email" name="email"
 										placeholder="Enter your email address" required>
-									<c:if test="${emailError not empty }">
+									<c:if test="${ not empty emailError }">
 										<p class="text-danger d-none">${emailError}/p>
 									</c:if>
 								</div>
@@ -69,7 +68,7 @@
 											<input type="password" class="form-control"
 												id="confirmPassword" placeholder="Confirm your password"
 												required>
-											<button id="toggle-password"
+											<button id="toggle-password" type="button"
 												class=" position-absolute top-50 end-5 translate-middle-y p-0">
 												<i class="bi-eye-slash"></i>
 											</button>
@@ -87,7 +86,6 @@
 										acknowledge that my personal data will be processed in
 										accordance with Hishaku Privacy Notice. </label>
 								</div>
-
 								<!-- Submit Button -->
 								<button type="submit" class="btn btn-dark w-100" name="action"
 									value="create">Create an Account</button>

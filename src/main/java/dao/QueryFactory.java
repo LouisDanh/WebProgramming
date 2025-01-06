@@ -4,6 +4,7 @@ import java.util.List;
 
 public class QueryFactory {
 	// Các toán tử SQL
+	public static final String ALL = "*";
 	public static final String LIKE = "LIKE";
 	public static final String EQUALS = "=";
 	public static final String NOT_EQUALS = "!=";
@@ -30,6 +31,9 @@ public class QueryFactory {
 		case NOT_EQUALS:
 		case EQUALS:
 			return condition + " " + operator + " :" + condition;
+		case IS_NULL:
+		case IS_NOT_NULL:
+			return condition + " " + operator;
 		default:
 			return null;
 		}

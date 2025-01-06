@@ -20,27 +20,26 @@
 				<!-- Login part -->
 				<div class="col-md-5 text-center">
 					<h1 class="text-center">Log in</h1>
-					<form id="loginForm" method="post" enctype="multipart/form-data"
-						action="/WebMyPham/LoginServlet">
+					<form id="loginForm" method="post" action="/WebMyPham/LoginServlet">
 						<!--  Email -->
 						<div class="form-floating mb-3">
-							<input type="text" class="form-control" id="email" name="email"
-								placeholder="EMAIL" required> <label for="email">Enter
+							<input type="email" class="form-control" id="email" name="email"
+								placeholder="EMAIL" required><label for="email">Enter
 								your email address</label>
 						</div>
 						<!-- Password -->
 						<div class="form-floating mb-3 position-relative">
 							<input type="password" class="form-control" id="password"
-								name="password" placeholder="Password"> <label
+								name="password" placeholder="Password" required><label
 								for="password">Enter your password</label>
-							<button id="toggle-password"
+							<button id="toggle-password" type="button"
 								class="position-absolute top-50 end-7 translate-middle-y p-0">
 								<i class="bi-eye-slash"></i>
 							</button>
 						</div>
 						<!-- Error -->
-						<c:if test="${not empty loginError}">
-							<p class="text-danger text-start">${loginError}</p>
+						<c:if test="${not empty loginFail}">
+							<p class="text-danger text-start">${loginFail}</p>
 						</c:if>
 						<!--Forgot password -->
 						<a
@@ -65,19 +64,5 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/static/js/hiddenEye.js"
 		type="text/javascript"></script>
-	<script type="text/javascript">
-		$(function() {
-			$('#email').on("input", function() {
-				$.ajax({
-					url : 'LoginServlet',
-					type : 'POST',
-					data : {
-						email : email
-					}
-				})
-			})
-		})
-	</script>
-
 </body>
 </html>
