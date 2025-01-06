@@ -9,6 +9,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import utils.HibernateUtil;
+
 public class GenericDao {
 	/**
 	 * Lấy tất cả dữ liệu từ bảng tương ứng với class

@@ -1,4 +1,4 @@
-package services;
+package utils;
 
 import java.util.Properties;
 
@@ -10,7 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailService {
+public class EmailUtil {
 
 	public static void sendEmail(String to, String subject, String body) {
 		String host = "smtp.gmail.com";
