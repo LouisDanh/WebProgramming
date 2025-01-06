@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,28 +20,16 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String requestedWith = request.getHeader("X-Requested-With");
-		if ("XMLHttpRequest".equals(requestedWith)) {
-			checkEmail(request, response);
-		} else {
-			String action = request.getParameter("action");
-			if ("create".equalsIgnoreCase(action))
-				if (createAccount(request, response))
-					response.sendRedirect("views/login/login.jsp");
-				else {
-					request.getRequestDispatcher("views/login/register.jsp").forward(request, response);
-				}
-			else
-				login(request, response);
-		}
-	}
-
-	private void checkEmail(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String email = request.getParameter("email");
-		Integer id = AccountServices.getIdAccount(email);
-		if (id != null) {
-			request.setAttribute("id", id);
+		request.removeAttribute("loginFail");
+		String action = request.getParameter("action");
+		if ("create".equalsIgnoreCase(action))
+			if (createAccount(request, response)) {
+				response.sendRedirect("views/login/login.jsp");
+			} else {
+				request.getRequestDispatcher("views/login/register.jsp").forward(request, response);
+			}
+		else {
+			login(request, response);
 		}
 	}
 
@@ -52,23 +41,24 @@ public class LoginServlet extends HttpServlet {
 			return false;
 		}
 		String fullName = request.getParameter("fullName");
-		String tel = request.getParameter("tel");
+		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
-		Customer customer = new Customer(fullName, tel);
+		Customer customer = new Customer(fullName, phone);
 		Account account = new Account(email, password, customer);
 		return AccountServices.createAccount(account);
 
 	}
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getAttribute("id") != null) {
-			String password = request.getParameter("password");
-			if (AccountServices.login((Integer) request.getAttribute("id"), password)) {
-				request.getServletContext().setAttribute("parentType", ProductService.getTypes());
-				response.sendRedirect("views/home/home.jsp");
-			}
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		Integer  id = AccountServices.login(email, password);
+		if (id != null) {
+			request.getServletContext().setAttribute("parentType", ProductService.getTypes());
+			request.getSession().setAttribute("id", id);
+			response.sendRedirect("views/home/home.jsp");
 		} else {
-			request.setAttribute("loginFail", "Incorrect username or email");
+			request.setAttribute("loginFail", "Invalid email or password. Please try again.");
 			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 		}
 	}

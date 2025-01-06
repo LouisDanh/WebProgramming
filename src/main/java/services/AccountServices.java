@@ -13,6 +13,10 @@ public class AccountServices {
 	 * @return id nếu tồn tại, ngược lại null
 	 */
 	public static Integer getIdAccount(String email) {
+		if (email == null || email.isBlank()) {
+			System.err.println("Email null hoặc rỗng");
+			return null;
+		}
 		return GenericDao.findOne(Account.class, "id", "email", QueryFactory.EQUALS, email);
 	}
 
@@ -23,10 +27,14 @@ public class AccountServices {
 	 * @param password
 	 * @return true nếu thành công
 	 */
-	public static boolean login(int id, String password) {
-		Boolean isLogin = GenericDao.findOne(Account.class, "password", QueryFactory.EQUALS, password, QueryFactory.AND,
-				"id", QueryFactory.EQUALS, id);
-		return isLogin != null;
+	public static Integer login(String email, String password) {
+		if (email == null || email.isBlank() || password == null || password.isBlank()) {
+			System.err.println("Email hoặc pass null hoặc rỗng");
+			return null;
+		}
+		return GenericDao.findOne(Account.class, "id", "password", QueryFactory.EQUALS, password,
+				"email", QueryFactory.EQUALS, email);
+		
 	}
 
 	/**
@@ -36,11 +44,15 @@ public class AccountServices {
 	 * @return
 	 */
 	public static boolean createAccount(Account acc) {
-		return GenericDao.insert(acc);
+		if (GenericDao.insert(acc.getCustomer(), false) && GenericDao.insert(acc, false)) {
+			GenericDao.commit();
+			return true;
+		}
+		return false;
 	}
 
 	public static boolean updateCustomer(Customer customer) {
-		return GenericDao.update(customer);
+		return GenericDao.update(customer, true);
 	}
 
 	/**
@@ -64,7 +76,7 @@ public class AccountServices {
 	}
 
 	public static boolean updateAccount(Account account) {
-		return GenericDao.update(account);
+		return GenericDao.update(account, true);
 	}
 
 }

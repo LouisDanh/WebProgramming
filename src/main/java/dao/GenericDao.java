@@ -126,15 +126,15 @@ public class GenericDao {
 			e.printStackTrace();
 			return Collections.emptyList();
 		}
-		StringBuilder queryString = new StringBuilder(
-				String.format("Select e.%s From %s e where ", fieldName, entityClass.getName()));
+		StringBuilder queryString = new StringBuilder(String.format("Select %s From %s e where ",
+				fieldName.equals(QueryFactory.ALL) ? "e" : "e." + fieldName, entityClass.getName()));
 		queryString.append(QueryFactory.muiltiConditions(operators, conditions, connectors));
 		List<T> result = new ArrayList<>();
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSession()) {
 			transaction = session.beginTransaction();
 			Query<T> query = session.createQuery(queryString.toString(), dataType);
-			for (int i = 0; i < conditions.size(); i++) {
+			for (int i = 0; i < values.size(); i++) {
 				query.setParameter(conditions.get(i), values.get(i));
 			}
 			System.out.println(query.toString());
@@ -252,7 +252,8 @@ public class GenericDao {
 			int index, Object... datas) {
 		conditions.add(datas[index].toString());
 		operators.add(datas[index + 1].toString());
-		values.add(datas[index + 2]);
+		if (index + 2 < datas.length)
+			values.add(datas[index + 2]);
 	}
 
 }
