@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC 
+    "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "dtd/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<!-- Định nghĩa layout chung cho tất cả các trang -->
+	<definition name="baseLayout"
+		template="/views/shares/layout.jsp">
+		<put-attribute name="header"
+			value="/views/shares/header.jsp" />
+		<put-attribute name="footer"
+			value="/views/shares/footer.jsp" />
+		<put-attribute name="body" value="" />
+		<put-list-attribute name="pageCss"  />
+		<put-list-attribute name="pageJs"  />
+	</definition>
+</tiles-definitions>

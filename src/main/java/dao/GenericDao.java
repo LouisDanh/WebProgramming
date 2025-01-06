@@ -5,14 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-import models.Account;
 
 public class GenericDao {
 	/**
@@ -30,13 +25,13 @@ public class GenericDao {
 			transaction = session.beginTransaction();
 			Query<T> query = session.createQuery("FROM " + entityName.getName(), entityName);
 			result = query.list();
+			transaction.commit();
 		} catch (Exception e) {
 			System.err.println("Lỗi: Không thể lấy dữ liệu All cho class " + entityName.getName());
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		transaction.commit();
 		return result;
 	}
 
@@ -117,7 +112,7 @@ public class GenericDao {
 	@SuppressWarnings("unchecked")
 	private static <T, E> List<T> findIf(Class<E> entityClass, String fieldName, List<String> connectors,
 			List<String> conditions, List<String> operators, List<Object> values) {
-		Class<T> dataType = null;
+		Class<T> dataType ;
 		try {
 			Field field = entityClass.getDeclaredField(fieldName);
 			dataType = (Class<T>) field.getType();
@@ -163,10 +158,10 @@ public class GenericDao {
 	 *         rỗng nếu không tìm thấy.
 	 */
 	public static <T, E> List<T> findAnd(Class<E> entityClass, String fieldName, Object... datas) {
-		List<String> connectors = new ArrayList<String>();
-		List<String> operators = new ArrayList<String>();
-		List<String> conditions = new ArrayList<String>();
-		List<Object> values = new ArrayList<Object>();
+		List<String> connectors = new ArrayList<>();
+		List<String> operators = new ArrayList<>();
+		List<String> conditions = new ArrayList<>();
+		List<Object> values = new ArrayList<>();
 		for (int i = 0; i < datas.length; i += 3) {
 			if (i != 0 && i != datas.length) {
 				connectors.add("AND");
@@ -189,10 +184,10 @@ public class GenericDao {
 	 *         rỗng nếu không tìm thấy.
 	 */
 	public static <T, E> List<T> findOr(Class<E> entityClass, String fieldName, Object... datas) {
-		List<String> connectors = new ArrayList<String>();
-		List<String> operators = new ArrayList<String>();
-		List<String> conditions = new ArrayList<String>();
-		List<Object> values = new ArrayList<Object>();
+		List<String> connectors = new ArrayList<>();
+		List<String> operators = new ArrayList<>();
+		List<String> conditions = new ArrayList<>();
+		List<Object> values = new ArrayList<>();
 		for (int i = 0; i < datas.length; i += 3) {
 			if (i != 0 && i != datas.length) {
 				connectors.add("OR");
@@ -214,10 +209,10 @@ public class GenericDao {
 	 * @return Danh sách thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
 	 */
 	public static <T, E> List<T> findWithConditions(Class<E> entityClass, String fieldName, Object... datas) {
-		List<String> connectors = new ArrayList<String>();
-		List<String> operators = new ArrayList<String>();
-		List<String> conditions = new ArrayList<String>();
-		List<Object> values = new ArrayList<Object>();
+		List<String> connectors = new ArrayList<>();
+		List<String> operators = new ArrayList<>();
+		List<String> conditions = new ArrayList<>();
+		List<Object> values = new ArrayList<>();
 		for (int i = 0; i < datas.length; i += 4) {
 			prepareConditions(conditions, values, operators, i, datas);
 			conditions.add(datas[i + 3].toString());

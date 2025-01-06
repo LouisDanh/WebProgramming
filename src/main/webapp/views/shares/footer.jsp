@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-request.setAttribute("pageCss", new String[] { "footer" });
-%>
+<link
+	href="${pageContext.request.contextPath}/resources/static/css/footer.css"
+	rel="stylesheet">
 <footer>
 	<div class="div-with-top-border cursor-pointer">
 		<div class="footer-container container mt-5">

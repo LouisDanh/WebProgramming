@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-request.setAttribute("pageCss", new String[] { "header", "category" });
-request.setAttribute("pageJs", new String[] { "category", "hiddenTools" });
-%>
+<link
+	href="${pageContext.request.contextPath}/resources/static/css/header.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/static/css/category.css"
+	rel="stylesheet">
 <header>
 	<div
 		class="container d-flex justify-content-between align-items-center">
@@ -78,3 +80,7 @@ request.setAttribute("pageJs", new String[] { "category", "hiddenTools" });
 		</div>
 	</c:forEach>
 </div>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/static/js/category.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/static/js/hiddenTools.js"></script>

@@ -1,39 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${titlePage}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><tiles:getAsString name="titlePage" /></title>
 <jsp:include page="/views/shares/staticlib.jsp"></jsp:include>
-<c:forEach var="css" items="${pageCss}">
+<!-- Css -->
+<tiles:useAttribute id="cssFiles" name="pageCss"
+	classname="java.util.List" />
+<c:forEach var="css" items="${cssFiles}">
 	<link
-		href="${pageContext.request.contextPath}/resources/static/css/${css}"
+		href="${pageContext.request.contextPath}/resources/static/css/${css}.css"
 		rel="stylesheet">
 </c:forEach>
 </head>
 <body>
-	<c:if test="${containHeader}">
-		<jsp:include page="/views/shares/header.jsp" />
-	</c:if>
+	<tiles:insertAttribute name="header" />
 	<main>
-		<c:choose>
-			<c:when test="${not empty contentPage}">
-				<jsp:include page="${contentPage}" />
-			</c:when>
-			<c:otherwise>
-				<p>Content not found</p>
-			</c:otherwise>
-		</c:choose>
+		<tiles:insertAttribute name="body" />
 	</main>
-
-	<c:if test="${containFooter}">
-		<jsp:include page="/views/shares/footer.jsp" />
-	</c:if>
-	<c:forEach var="js" items="${pageJs}">
+	<tiles:insertAttribute name="footer" />
+	<!-- Js -->
+	<tiles:useAttribute id="jsFiles" name="pageJs"
+		classname="java.util.List" />
+	<c:forEach var="js" items="${jsFiles}">
 		<script type="text/javascript"
-			src="${pageContext.request.contextPath}/resources/static/js/${js}"></script>
+			src="${pageContext.request.contextPath}/resources/static/js/${js}.js"></script>
 	</c:forEach>
 </body>
 </html>

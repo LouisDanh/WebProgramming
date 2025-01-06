@@ -1,0 +1,29 @@
+<!ENTITY % TilesAttrs "
+    name        CDATA    #REQUIRED
+    value       CDATA    #IMPLIED
+    type        CDATA    #IMPLIED
+    cascade     (true | false) #IMPLIED
+    role        CDATA    #IMPLIED
+    expr        CDATA    #IMPLIED
+    inherit     (true | false) #IMPLIED
+">
+<!ELEMENT tiles-definitions (definition*)>
+<!ELEMENT definition (put-attribute*, put-list-attribute*, set-property*)>
+<!ATTLIST definition
+    name        CDATA    #REQUIRED
+    template    CDATA    #IMPLIED
+    role        CDATA    #IMPLIED
+>
+<!ELEMENT put-attribute EMPTY>
+<!ATTLIST put-attribute %TilesAttrs;>
+<!ELEMENT put-list-attribute (add-attribute*)>
+<!ATTLIST put-list-attribute
+    name        CDATA    #REQUIRED
+>
+<!ELEMENT add-attribute EMPTY>
+<!ATTLIST add-attribute %TilesAttrs;>
+<!ELEMENT set-property EMPTY>
+<!ATTLIST set-property
+    name        CDATA    #REQUIRED
+    value       CDATA    #REQUIRED
+>
