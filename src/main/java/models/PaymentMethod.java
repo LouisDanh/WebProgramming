@@ -9,17 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "PAYMENT_METHOD")
 public class PaymentMethod implements Serializable {
 	private static final long serialVersionUID = 110252482276396261L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name = "NAME", columnDefinition = "varchar(20)")
+	@Column(name="ID")
+	private Integer id;
+	@Nationalized
+	@Column(name = "NAME")
 	private String name;
-	@Column(name = "DISCOUNT", columnDefinition = "decimal(5,2)")
-	private double discount;
+	@Column(name = "DISCOUNT", columnDefinition = "decimal(3,2)")
+	private Double discount;
 
 	public int getId() {
 		return id;

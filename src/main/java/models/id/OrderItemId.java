@@ -8,8 +8,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class OrderItemId implements Serializable {
 	private static final long serialVersionUID = 8933858995194121739L;
-	private int detailId;
-	private int productId;
+	private Integer detailId;
+	private Integer productId;
 
 	@Override
 	public int hashCode() {

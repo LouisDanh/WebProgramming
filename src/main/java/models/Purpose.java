@@ -15,14 +15,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "PURPOSE")
 public class Purpose implements Serializable {
 	private static final long serialVersionUID = -2000061415947397510L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="ID")
+	private Integer id;
 	@Column(name = "DESCRIPTION")
+	@Nationalized
 	private String decription;
 	@ManyToOne
 	@JoinColumn(name = "PURPOSE_TYPE_ID")

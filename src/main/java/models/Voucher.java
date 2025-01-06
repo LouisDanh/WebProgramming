@@ -9,11 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "VOUCHER")
@@ -21,17 +20,19 @@ public class Voucher implements Serializable{
 	private static final long serialVersionUID = -1870479247193352102L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name = "NAME", columnDefinition = "varchar(20)",nullable = false)
+	@Column(name="ID")
+	private Integer id;
+	@Column(name = "NAME", nullable = false)
+	@Nationalized
 	private String name;
 	@Column(name = "PERCENTAGE",nullable = false)
-	private double percentage;
+	private Double percentage;
 	@Column(name = "MAX_DISCOUNT",nullable = false)
-	private double maxDiscount;
+	private Double maxDiscount;
 	@Column(name = "EXPIRED_DATE",nullable = false)
 	private LocalDateTime expiredDate;
 	@Column(name = "QUANTITY",nullable = false)
-	private int quantity;
+	private Integer quantity;
 	@OneToMany(mappedBy = "voucher")
 	private List<VoucherState> state;
 

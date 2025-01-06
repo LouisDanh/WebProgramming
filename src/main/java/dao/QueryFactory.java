@@ -21,7 +21,7 @@ public class QueryFactory {
 	public static String getCondition(String operator, String condition) {
 		switch (operator) {
 		case LIKE: {
-			return condition + " LIKE CONCAT('%', :" + condition + ", '%')";
+			return condition + " " + " LIKE CONCAT('%', :" + condition + ", '%')";
 		}
 		case GREATER_THAN:
 		case GREATER_THAN_OR_EQUAL:
@@ -29,7 +29,7 @@ public class QueryFactory {
 		case LESS_THAN:
 		case NOT_EQUALS:
 		case EQUALS:
-			return condition + operator + " :" + condition;
+			return condition + " " + operator + " :" + condition;
 		default:
 			return null;
 		}
@@ -37,10 +37,10 @@ public class QueryFactory {
 
 	public static String muiltiConditions(List<String> operator, List<String> condition, List<String> connectors) {
 		StringBuilder queryBuilder = new StringBuilder();
-		queryBuilder.append(getCondition(operator.get(0), condition.get(0)));
+		queryBuilder.append("e." + getCondition(operator.get(0), condition.get(0)));
 		for (int i = 0; i < connectors.size(); i++) {
 			queryBuilder.append(" " + connectors.get(i));
-			queryBuilder.append(getCondition(operator.get(i + 1), condition.get(i + 1)));
+			queryBuilder.append(" e." + getCondition(operator.get(i), condition.get(i)));
 		}
 		return queryBuilder.toString();
 	}

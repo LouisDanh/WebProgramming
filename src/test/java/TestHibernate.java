@@ -1,7 +1,7 @@
 import org.hibernate.Session;
 
 import dao.HibernateUtil;
-import models.Bank;
+import models.Brand;
 
 public class TestHibernate {
 	public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class TestHibernate {
 			session.beginTransaction();
 
 			// Tạo đối tượng Product
-			Bank bank = new Bank("Viettinbank");
+			Brand bank = new Brand("23");
 
 			// Lưu đối tượng vào database
 			session.save(bank);

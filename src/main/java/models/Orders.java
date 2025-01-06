@@ -16,10 +16,11 @@ public class Orders implements Serializable{
 	private static final long serialVersionUID = -8145256353326935319L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="ID")
+	private Integer id;
 
 	@Column(name = "TOTAL_AMOUNT",nullable = false)
-	private double totalAmount;
+	private Double totalAmount;
 //	 Cấu hình liên kết
 	@OneToOne
 	@JoinColumn(name="ORDER_DETAILS_ID")

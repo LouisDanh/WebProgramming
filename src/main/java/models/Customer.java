@@ -15,18 +15,23 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer implements Serializable {
 	private static final long serialVersionUID = -7422323496908434761L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name = "FULL_NAME", columnDefinition = "varchar(50)", nullable = false)
+	@Column(name="ID")
+	private Integer id;
+	@Nationalized
+	@Column(name = "FULL_NAME", nullable = false)
 	private String fullName;
 	@Column(name = "PLACE_RECEIVE")
+	@Nationalized
 	private String placeReceive;
-	@Column(name = "PHONE", columnDefinition = "varchar(10)", nullable = false)
+	@Column(name = "PHONE", nullable = false)
 	private String phone;
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "BANK_ACC_OWNER", joinColumns = @JoinColumn(name = "CUS_ID"), inverseJoinColumns = @JoinColumn(name = "BANK_ACCOUNT_ID"))
@@ -42,7 +47,7 @@ public class Customer implements Serializable {
 
 	public Customer(String fullName, String phone) {
 		this.fullName = fullName;
-//		this.phone = phone;
+		this.phone = phone;
 	}
 
 	public Customer() {

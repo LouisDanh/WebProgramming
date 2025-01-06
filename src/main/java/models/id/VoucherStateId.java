@@ -8,8 +8,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VoucherStateId implements Serializable {
 	private static final long serialVersionUID = -7893920505554652675L;
-	private int voucherId;
-	private int cusId;
+	private Integer voucherId;
+	private Integer cusId;
 
 	@Override
 	public int hashCode() {

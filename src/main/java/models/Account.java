@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "ACCOUNT")
@@ -24,16 +22,17 @@ public class Account implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="ID")
+	private Integer id;
 
-	@Column(name = "EMAIL", nullable = false, columnDefinition = "VARCHAR(20)")
+	@Column(name = "EMAIL", nullable = false)
 	private String email;
-	@Column(name = "PASSWORD", nullable = false, columnDefinition = "VARCHAR(20)")
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 	@Column(name = "BAN", nullable = false)
-	private boolean ban;
+	private Boolean ban;
 	@Column(name = "ROLE", nullable = false)
-	private int role;
+	private Integer role;
 	@Column(name = "CREATE_DATE", nullable = false)
 	private LocalDateTime createDate;
 
@@ -55,6 +54,7 @@ public class Account implements Serializable {
 		this.email = email;
 		this.password = password;
 		this.customer = customer;
+		role=3;
 	}
 
 	public String getPassword() {
@@ -64,6 +64,13 @@ public class Account implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 
 }

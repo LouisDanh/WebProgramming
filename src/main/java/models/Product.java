@@ -14,23 +14,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "PRODUCT")
 public class Product implements Serializable {
 	private static final long serialVersionUID = -864055505260462770L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="ID")
+	private Integer id;
+	@Nationalized
 	@Column(name = "NAME", columnDefinition = "varchar(30)")
 	private String name;
 	@Column(name = "PRICE")
-	private double price;
+	private Double price;
 	@Column(name = "DISCOUNT", columnDefinition = "DECIMAL(5,2)")
-	private double discount;
+	private Double discount;
 	@Column(name = "STOCK", nullable = false)
-	private int stock;
+	private Integer stock;
 	@Column(name = "CAPACITY", nullable = false)
-	private int capacity;
+	private Integer capacity;
 //	 Cấu hình liên kết
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID")

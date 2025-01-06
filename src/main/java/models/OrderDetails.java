@@ -3,6 +3,7 @@ package models;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,8 @@ public class OrderDetails implements Serializable {
 	private static final long serialVersionUID = -18167224923213724L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="ID")
+	private Integer id;
 	@ManyToOne
 	@JoinColumn(name = "VOUCHER_ID")
 	private Voucher voucher;

@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import services.ProductService;
+import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "PRODUCT_TYPE")
@@ -26,10 +26,13 @@ public class ProductType implements Serializable {
 	private static final long serialVersionUID = 9215015874801278028L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name = "NAME", columnDefinition = "varchar(20)")
+	@Column(name="ID")
+	private Integer id;
+	@Column(name = "NAME")
+	@Nationalized
 	private String name;
-	@Column(name = "DECRIPTION", columnDefinition = "varchar(50)")
+	@Column(name = "DECRIPTION")
+	@Nationalized
 	private String decription;
 //	 Cấu hình liên kết
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")

@@ -19,7 +19,7 @@ public class CartItem implements Serializable {
 	@EmbeddedId
 	private CartItemId id;
 	@Column(name = "QUANTITY", nullable = false)
-	private int quantity;
+	private Integer quantity;
 //	 Cấu hình liên kết
 	@ManyToOne
 	@MapsId("productId")

@@ -17,15 +17,14 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.archive.autodetection">class</property>
 		<mapping class="models.Account" />
-		<mapping class="models.Bank" />
 		<mapping class="models.BankAccount" />
 		<mapping class="models.BankAccOwner" />
 		<mapping class="models.Brand" />
 		<mapping class="models.CartItem" />
 		<mapping class="models.Customer" />
 		<mapping class="models.Gallery" />
-		<mapping class="models.Invoice" />
-		<mapping class="models.Order" />
+		<mapping class="models.Orders" />
+		<mapping class="models.OrderDetails" />
 		<mapping class="models.OrderItem" />
 		<mapping class="models.OrderDate" />
 		<mapping class="models.OrderState" />

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "GALLERY")
 public class Gallery implements Serializable {
@@ -17,8 +19,10 @@ public class Gallery implements Serializable {
 	private static final long serialVersionUID = -7810072010082294351L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name = "TYPE", columnDefinition = "varchar(20)", nullable = false)
+	@Column(name = "ID")
+	private Integer id;
+	@Nationalized
+	@Column(name = "TYPE", nullable = false)
 	private String type;
 	@Column(name = "LINK", nullable = false)
 	private String link;

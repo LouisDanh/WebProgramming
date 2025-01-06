@@ -15,12 +15,11 @@ import models.id.VoucherStateId;
 
 @Entity
 @Table(name = "VOUCHER_STATE")
-public class VoucherState implements Serializable{
+public class VoucherState implements Serializable {
 	private static final long serialVersionUID = -1070809452707047256L;
 
 	@EmbeddedId
 	private VoucherStateId id;
-	
 	@ManyToOne
 	@MapsId("cusId")
 	@JoinColumn(name = "CUS_ID", nullable = false)

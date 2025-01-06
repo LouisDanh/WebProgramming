@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Table;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -29,14 +30,18 @@ public class GenericDao {
 			transaction = session.beginTransaction();
 			Query<T> query = session.createQuery("FROM " + entityName.getName(), entityName);
 			result = query.list();
-			transaction.commit();
 		} catch (Exception e) {
+			System.err.println("Lỗi: Không thể lấy dữ liệu All cho class " + entityName.getName());
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			System.err.println("Lỗi: Không thể lấy dữ liệu All cho class " + entityName.getName());
 		}
+		transaction.commit();
 		return result;
+	}
+
+	public static void commit() {
+		HibernateUtil.getCurrentTransaction().commit();
 	}
 
 	/**
@@ -45,22 +50,23 @@ public class GenericDao {
 	 * @param data Dữ liệu cần cập nhật (bản ghi muốn thay đổi).
 	 * @return true nếu cập nhật thành công, ngược lại trả về false.
 	 */
-	public static boolean update(Object data) {
+	public static boolean update(Object data, boolean commitOnComplete) {
 		if (data == null) {
 			System.err.println("Dữ liệu không được null khi update");
 			return false;
 		}
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSession()) {
-			transaction = session.beginTransaction();
-			session.update(data);
-			transaction.commit();
+		try (Session session = commitOnComplete ? HibernateUtil.getSession() : HibernateUtil.getCurrentSession()) {
+			transaction = HibernateUtil.getCurrentTransaction();
+			session.save(data);
+			if (commitOnComplete)
+				transaction.commit();
 			return true;
 		} catch (Exception e) {
-			if (transaction != null)
-				transaction.rollback();
 			System.err.println("Lỗi: Không thể cập nhật dữ liệu cho class " + data.getClass().getName());
 			e.printStackTrace();
+			if (transaction != null)
+				transaction.rollback();
 		}
 		return false;
 	}
@@ -68,25 +74,29 @@ public class GenericDao {
 	/**
 	 * Thêm dữ liệu vào bảng
 	 * 
-	 * @param data Dữ liệu cần thêm vào bảng.
+	 * @param data             Dữ liệu cần thêm vào bảng.
+	 * @param commitOnComplete commit true sẽ commit sau khi hoàn tất, ngược lại cần
+	 *                         tự gọi lệnh commit để commit
 	 * @return true nếu thêm thành công, ngược lại trả về false.
 	 */
-	public static boolean insert(Object data) {
+	public static boolean insert(Object data, boolean commitOnComplete) {
 		if (data == null) {
 			System.err.println("Dữ liệu không được null khi insert");
 			return false;
 		}
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSession()) {
-			transaction = session.beginTransaction();
+		try (Session session = commitOnComplete ? HibernateUtil.getSession() : HibernateUtil.getCurrentSession()) {
+			transaction = HibernateUtil.getCurrentTransaction();
 			session.save(data);
-			transaction.commit();
+			if (commitOnComplete)
+				transaction.commit();
 			return true;
 		} catch (Exception e) {
-			if (transaction != null)
-				transaction.rollback();
 			System.err.println("Lỗi: Không thể thêm dữ liệu cho class " + data.getClass().getName());
 			e.printStackTrace();
+			if (transaction != null)
+				transaction.rollback();
+
 		}
 		return false;
 	}
@@ -107,35 +117,38 @@ public class GenericDao {
 	@SuppressWarnings("unchecked")
 	private static <T, E> List<T> findIf(Class<E> entityClass, String fieldName, List<String> connectors,
 			List<String> conditions, List<String> operators, List<Object> values) {
-		Class<T> data = null;
-		Column column = null;
+		Class<T> dataType = null;
 		try {
 			Field field = entityClass.getDeclaredField(fieldName);
-			data = (Class<T>) field.getType();
-			column = field.getAnnotation(Column.class);
-		} catch (NoSuchFieldException | SecurityException e) {
+			dataType = (Class<T>) field.getType();
+		} catch (NoSuchFieldException e) {
 			System.err.println("Không tìm thấy field: " + fieldName + " trong class " + entityClass.getName());
 			e.printStackTrace();
 			return Collections.emptyList();
 		}
-		StringBuilder queryString = new StringBuilder(column.name() + " From " + entityClass.getName() + " ");
+		StringBuilder queryString = new StringBuilder(
+				String.format("Select e.%s From %s e where ", fieldName, entityClass.getName()));
 		queryString.append(QueryFactory.muiltiConditions(operators, conditions, connectors));
 		List<T> result = new ArrayList<>();
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSession()) {
 			transaction = session.beginTransaction();
-			Query<T> query = session.createQuery(queryString.toString(), data);
+			Query<T> query = session.createQuery(queryString.toString(), dataType);
 			for (int i = 0; i < conditions.size(); i++) {
 				query.setParameter(conditions.get(i), values.get(i));
 			}
+			System.out.println(query.toString());
 			result = query.list();
 			transaction.commit();
 		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Lỗi: Không thể lấy dữ liệu cho class " + entityClass.getName());
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			System.err.println("Lỗi: Không thể lấy dữ liệu cho class " + entityClass.getName());
+
 		}
+
 		return result;
 	}
 
@@ -155,10 +168,13 @@ public class GenericDao {
 		List<String> conditions = new ArrayList<String>();
 		List<Object> values = new ArrayList<Object>();
 		for (int i = 0; i < datas.length; i += 3) {
+			if (i != 0 && i != datas.length) {
+				connectors.add("AND");
+			}
 			prepareConditions(conditions, values, operators, i, datas);
-			connectors.add("AND");
+
 		}
-		return findIf(entityClass, fieldName, connectors, operators, conditions, values);
+		return findIf(entityClass, fieldName, connectors, conditions, operators, values);
 	}
 
 	/**
@@ -178,8 +194,10 @@ public class GenericDao {
 		List<String> conditions = new ArrayList<String>();
 		List<Object> values = new ArrayList<Object>();
 		for (int i = 0; i < datas.length; i += 3) {
+			if (i != 0 && i != datas.length) {
+				connectors.add("OR");
+			}
 			prepareConditions(conditions, values, operators, i, datas);
-			connectors.add("OR");
 		}
 		return findIf(entityClass, fieldName, connectors, conditions, operators, values);
 	}
@@ -226,12 +244,11 @@ public class GenericDao {
 			return result.get(0);
 	}
 
-
 	/**
 	 * Chuẩn bị điều kiện tìm kiếm.
 	 * 
 	 */
-	private static void prepareConditions(List<String> conditions, List<Object> values, List<String> operators,
+	private static <E> void prepareConditions(List<String> conditions, List<Object> values, List<String> operators,
 			int index, Object... datas) {
 		conditions.add(datas[index].toString());
 		operators.add(datas[index + 1].toString());

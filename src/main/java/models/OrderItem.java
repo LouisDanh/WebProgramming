@@ -21,9 +21,9 @@ public class OrderItem implements Serializable {
 	private OrderItemId id;
 	
 	@Column(name = "QUANTITY", nullable = false)
-	private int quantity;
+	private Integer quantity;
 	@Column(name="RATING")
-	private int rating;
+	private Integer rating;
 //	 Cấu hình liên kết
 	@ManyToOne()
 	@MapsId("productId")

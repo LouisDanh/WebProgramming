@@ -9,9 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "BRAND")
@@ -19,8 +20,10 @@ public class Brand implements Serializable {
 	private static final long serialVersionUID = 1574043928580206693L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name = "NAME", columnDefinition = "varchar(20)", nullable = false)
+	@Column(name="ID")
+	private Integer id;
+	@Column(name = "NAME", nullable = false)
+	@Nationalized
 	private String name;
 //	 Cấu hình liên kết
 	@OneToMany(mappedBy = "brand")
@@ -42,5 +45,10 @@ public class Brand implements Serializable {
 		Brand other = (Brand) obj;
 		return id == other.id;
 	}
+
+	public Brand(String name) {
+		this.name = name;
+	}
+	
 
 }

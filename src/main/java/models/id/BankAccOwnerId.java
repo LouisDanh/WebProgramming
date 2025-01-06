@@ -8,8 +8,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class BankAccOwnerId implements Serializable{
 	private static final long serialVersionUID = 2680491701495028602L;
-	private int cusId;
-	private int bankAccountId;
+	private Integer cusId;
+	private Integer bankAccountId;
 	@Override
 	public int hashCode() {
 		return Objects.hash(bankAccountId, cusId);

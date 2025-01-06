@@ -23,10 +23,11 @@ public class Topic implements Serializable {
 	private static final long serialVersionUID = -3425253960930818716L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name = "TITLE", columnDefinition = "varchar(30)")
+	@Column(name="ID")
+	private Integer id;
+	@Column(name = "TITLE")
 	private String title;
-	@Column(name = "DESCRIPTION", columnDefinition = "varchar(50)")
+	@Column(name = "DESCRIPTION")
 	private String description;
 	@Column(name = "CREATE_DATE")
 	private LocalDateTime createDate;
