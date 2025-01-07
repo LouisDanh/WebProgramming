@@ -1,89 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/profile.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/admin.css">
+<tiles:insertDefinition name="baseLayout">
+	<!-- TITLE -->
+	<tiles:putAttribute name="titlePage" value="profilePage" />
 
-</head>
+	<!-- CSS -->
+	<tiles:putListAttribute name="pageCss">
+		<tiles:addAttribute value="profile" />
+	</tiles:putListAttribute>
 
-<body>
-	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-	<main class="my-4">
-		<div class="container-fluid">
-			<div class="row mt-5">
-				<!-- Tools part -->
-				<div class="col-3">
-					<div class="new-container mt-5">
-						<ul class="new-list cursor-pointer">
-							<div class="mb-5">
-								<i class="bi bi-person"></i><span> Hi! Customer</span>
-							</div>
-							<li class="border-top" data-target="account-overview"><i
-								class="bi bi-house-door"></i><span> Account Overview</span></li>
-							<li data-target="my-details"><i
-								class="bi bi-person-lines-fill"></i><span> My Details</span></li>
-							<li data-target="order-history"><i class="bi bi-cart-check"></i><span>
-									Order History</span></li>
-							<li data-target="customer-service"><i class="bi bi-headset"></i><span>
-									Customer Service</span></li>
-							<li data-target="change-password"><i class="bi bi-key"></i><span>
-									Change Password</span></li>
-							<li data-target="sign-out"><i class="bi bi-box-arrow-right"></i><span>
-									Sign Out</span></li>
-						</ul>
-					</div>
-				</div>
-				<!-- Information part -->
-				<div class="col-9">
-					<div class="container mt-5">
-						<!-- ACCOUNT OVERVIEW -->
-						<div id="account-overview" class="detail-form d-none">
-							<h3 class="font-weight-bold h3-color text-center">ACCOUNT
-								OVERVIEW</h3>
-							<!-- Rank -->
-							<div class="customer-tier-card">
-								<div class="tier-title mb-5">
-									<span><strong>Customer Tier</strong></span>
+	<!--SCRIPTS-->
+	<tiles:putListAttribute name="pageJs">
+		<tiles:addAttribute value="profiles" />
+		<tiles:addAttribute value="collapse" />
+		<tiles:addAttribute value="user_infor_validate" />
+		<tiles:addAttribute value="review" />
+	</tiles:putListAttribute>
+
+	<!-- BODY -->
+	<tiles:putAttribute name="body">
+		<main class="my-4">
+			<div class="container-fluid">
+				<div class="row mt-5">
+					<!-- TOOLS PART -->
+					<div class="col-3">
+						<div class="new-container mt-5">
+							<ul class="new-list cursor-pointer">
+								<div class="mb-5">
+									<i class="bi bi-person"></i><span> Hi! Customer</span>
 								</div>
-								<div class="tier-progress-wrapper">
-									<!-- Progress Bar Container -->
-									<div class="progress-bar-container">
-										<!-- Progress Bar -->
-										<div class="progress-bar-background">
-											<div class="progress-bar-fill" id="progressFill"></div>
+								<li class="border-top" data-target="account-overview"><i
+									class="bi bi-house-door"></i><span> Account Overview</span></li>
+								<li data-target="my-details"><i
+									class="bi bi-person-lines-fill"></i><span> My Details</span></li>
+								<li data-target="order-history"><i class="bi bi-cart-check"></i><span>
+										Order History</span></li>
+								<li data-target="customer-service"><i class="bi bi-headset"></i><span>
+										Customer Service</span></li>
+								<li data-target="change-password"><i class="bi bi-key"></i><span>
+										Change Password</span></li>
+								<li data-target="sign-out"><i class="bi bi-box-arrow-right"></i><span>
+										Sign Out</span></li>
+							</ul>
+						</div>
+					</div>
+					<!-- INFORMATION PART -->
+					<div class="col-9">
+						<div class="container mt-5">
+							<!-- ACCOUNT OVERVIEW -->
+							<div id="account-overview" class="detail-form d-none">
+								<h3 class="font-weight-bold h3-color text-center">ACCOUNT
+									OVERVIEW</h3>
+								<!-- Rank -->
+								<!-- <div class="customer-tier-card">
+									<div class="tier-title mb-5">
+										<span><strong>Customer Tier</strong></span>
+									</div>
+									<div class="tier-progress-wrapper">
+										Progress Bar Container
+										<div class="progress-bar-container">
+											Progress Bar
+											<div class="progress-bar-background">
+												<div class="progress-bar-fill" id="progressFill"></div>
+											</div>
+										</div>
+										Customer Tier Labels
+										<div class="tier-labels-wrapper">
+											Tier 1: Bronze (Icon for 1000)
+											<span class="tier-label" data-tier="1"> <i
+												class="bi bi-award icon-rank" aria-hidden="true"></i> 1000
+											</span>
+											Tier 2: Silver (Icon for 10000)
+											<span class="tier-label" data-tier="2"> <i
+												class="bi bi-award icon-rank" aria-hidden="true"></i> 10000
+											</span>
+											Tier 3: Gold (Icon for 100000)
+											<span class="tier-label" data-tier="3"> <i
+												class="bi bi-award icon-rank" aria-hidden="true"></i> 100000
+											</span>
+											Tier 4: Diamond (Icon for 1000000)
+											<span class="tier-label" data-tier="4"> <i
+												class="bi bi-gem icon-rank" aria-hidden="true"></i> 1000000
+											</span>
 										</div>
 									</div>
-									<!-- Customer Tier Labels -->
-									<div class="tier-labels-wrapper">
-										<!-- Tier 1: Bronze (Icon for 1000) -->
-										<span class="tier-label" data-tier="1"> <i
-											class="bi bi-award icon-rank" aria-hidden="true"></i> 1000
-										</span>
-										<!-- Tier 2: Silver (Icon for 10000) -->
-										<span class="tier-label" data-tier="2"> <i
-											class="bi bi-award icon-rank" aria-hidden="true"></i> 10000
-										</span>
-										<!-- Tier 3: Gold (Icon for 100000) -->
-										<span class="tier-label" data-tier="3"> <i
-											class="bi bi-award icon-rank" aria-hidden="true"></i> 100000
-										</span>
-										<!-- Tier 4: Diamond (Icon for 1000000) -->
-										<span class="tier-label" data-tier="4"> <i
-											class="bi bi-gem icon-rank" aria-hidden="true"></i> 1000000
-										</span>
-									</div>
 								</div>
-							</div>
-							<!-- Default Address Section -->
-							<div class="mt-5 customer-tier-card">
+								Default Address Section
+								<div class="mt-5 customer-tier-card"> -->
 								<div
 									class="border-bottom d-flex justify-content-between align-items-center pb-3">
 									<span><strong>Default Address</strong></span>
@@ -104,7 +110,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Customer Service -->
+						<!-- CUSTOMER SERVICE -->
 						<div id="customer-service" class="detail-form d-none">
 							<h3 class="font-weight-bold h3-color">CUSTOMER SERVICE</h3>
 							<!-- Add the Bootstrap Icons stylesheet -->
@@ -123,7 +129,7 @@
 										<i class="bi bi-envelope"></i>
 									</div>
 									<div>
-										<p>Email Customer Services</>
+										<p>Email Customer Services</p>
 										<p class="service-text">sales@thewhiskyworld.com</p>
 									</div>
 								</div>
@@ -209,8 +215,7 @@
 								<div class="col"></div>
 							</div>
 						</div>
-						<!-- Order History -->
-
+						<!-- ORDER HISTORY -->
 						<div id="order-history" class="detail-form d-none">
 							<h3 class="font-weight-bold h3-color text-center">ORDER
 								HISTORY</h3>
@@ -333,17 +338,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</main>
-
-	<script
-		src="${pageContext.request.contextPath}/resources/static/js/profiles.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/static/js/collapse.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/static/js/user_infor_validate.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/static/js/review.js"></script>
-</body>
-
+		</main>
+	</tiles:putAttribute>
+</tiles:insertDefinition>
 </html>
