@@ -341,4 +341,3 @@
 		</main>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
-</html>
