@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -99,158 +101,72 @@ public class GenericDao {
 	}
 
 	/**
+	 * Thực thi một truy vấn trả về danh sách kết
+	 * quả.
 	 * 
-	 * Tìm kiếm dữ liệu từ bảng dựa trên điều kiện linh hoạt.
-	 * 
-	 * @param entityClass class entity .
-	 * @param fieldName   Trường dữ liệu muốn lấy
-	 * @param connectors  Danh sách các toán tử liên kết điều kiện (AND, OR)
-	 * @param conditions  Danh sách các tên trường (field) dùng làm điều kiện.
-	 * @param operators   Danh sách các toán tử so sánh (ví dụ: =, >, <, v.v.)
-	 * @param values      Danh sách các giá trị tương ứng với điều kiện.
-	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
-	 *         rỗng nếu không tìm thấy.
+	 * @param <T>         Kiểu dữ liệu trả về trong kết quả truy vấn.
+	 * @param <E>         Kiểu entity của bảng dữ liệu.
+	 * @param entityClass Class của entity tương ứng với bảng dữ liệu.
+	 * @param returnData  Tên trường dữ liệu mà bạn muốn trả về trong kết quả truy
+	 *                    vấn.
+	 * @param queryString Câu truy vấn  để thực thi.
+	 * @param data        Danh sách các tham số truyền vào truy vấn.
+	 * @return Danh sách các đối tượng thuộc kiểu T thỏa mãn truy vấn. Nếu không có
+	 *         kết quả, trả về null.
 	 */
 	@SuppressWarnings("unchecked")
-	private static <T, E> List<T> findIf(Class<E> entityClass, String fieldName, List<String> connectors,
-			List<String> conditions, List<String> operators, List<Object> values) {
-		Class<T> dataType ;
-		try {
-			Field field = entityClass.getDeclaredField(fieldName);
-			dataType = (Class<T>) field.getType();
-		} catch (NoSuchFieldException e) {
-			System.err.println("Không tìm thấy field: " + fieldName + " trong class " + entityClass.getName());
-			e.printStackTrace();
-			return Collections.emptyList();
-		}
-		StringBuilder queryString = new StringBuilder(String.format("Select %s From %s e where ",
-				fieldName.equals(QueryFactory.ALL) ? "e" : "e." + fieldName, entityClass.getName()));
-		queryString.append(QueryFactory.muiltiConditions(operators, conditions, connectors));
-		List<T> result = new ArrayList<>();
+	public static <T, E> List<T> excuteQueryGetList(Class<E> entityClass, String returnData, String queryString,
+			Object... data) {
+		Class<T> dataType;
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSession()) {
+		try {
+			Field field = entityClass.getDeclaredField(returnData);
+			dataType = (Class<T>) field.getType();
+			Session session = HibernateUtil.getSession();
 			transaction = session.beginTransaction();
-			Query<T> query = session.createQuery(queryString.toString(), dataType);
-			for (int i = 0; i < values.size(); i++) {
-				query.setParameter(conditions.get(i), values.get(i));
+			Query<T> query = session.createQuery(queryString, dataType);
+			for (int i = 0; i < data.length; i++) {
+				query.setParameter(i, data[i]);
 			}
-			System.out.println(query.toString());
-			result = query.list();
+			List<T> result = query.getResultList();
 			transaction.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("Lỗi: Không thể lấy dữ liệu cho class " + entityClass.getName());
-			if (transaction != null) {
+			return result;
+		} catch (NoSuchFieldException | SecurityException e) {
+			if (transaction != null)
 				transaction.rollback();
-			}
-
+			e.printStackTrace();
 		}
+		return null;
 
-		return result;
 	}
-
 	/**
-	 * Tìm kiếm dữ liệu dựa trên điều kiện "AND".
+	 * Thực thi một truy vấn trả về một đối tượng duy nhất.
 	 * 
-	 * @param entityClass class entity .
-	 * @param fieldName   Trường dữ liệu muốn lấy
-	 * @param datas       Danh sách các cặp điều kiện (field - logicOperator - value
-	 *                    - logicConnector(optional) ). Ví dụ: id = 1
-	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
-	 *         rỗng nếu không tìm thấy.
+	 * @param <T>           Kiểu dữ liệu trả về trong kết quả truy vấn.
+	 * @param <E>           Kiểu entity của bảng dữ liệu.
+	 * @param entityClass   Class của entity tương ứng với bảng dữ liệu.
+	 * @param returnData    Kiểu dữ liệu trả về trong kết quả truy vấn.
+	 * @param queryString   Câu truy vấn để thực thi.
+	 * @param data          Danh sách các tham số truyền vào truy vấn.
+	 * @return              Đối tượng duy nhất thỏa mãn truy vấn, hoặc null nếu không có kết quả.
 	 */
-	public static <T, E> List<T> findAnd(Class<E> entityClass, String fieldName, Object... datas) {
-		List<String> connectors = new ArrayList<>();
-		List<String> operators = new ArrayList<>();
-		List<String> conditions = new ArrayList<>();
-		List<Object> values = new ArrayList<>();
-		for (int i = 0; i < datas.length; i += 3) {
-			if (i != 0 && i != datas.length) {
-				connectors.add("AND");
-			}
-			prepareConditions(conditions, values, operators, i, datas);
-
+	public static <T, E> T excuteQueryGetSingle(Class<E> entityClass, Class<T> returnData, String queryString,
+			Object... data) {
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		Query<T> query = session.createQuery(queryString, returnData);
+		for (int i = 0; i < data.length; i++) {
+			query.setParameter(i, data[i]);
 		}
-		return findIf(entityClass, fieldName, connectors, conditions, operators, values);
-	}
-
-	/**
-	 * 
-	 * Tìm kiếm dữ liệu dựa trên điều kiện "OR".
-	 * 
-	 * @param entityClass class entity .
-	 * @param fieldName   Trường dữ liệu muốn lấy
-	 * @param datas       Danh sách các cặp điều kiện (field - logicOperator - value
-	 *                    - logicConnector(optional) ). Ví dụ: id = 1
-	 * @return Danh sách các đối tượng thỏa mãn điều kiện tìm kiếm, hoặc danh sách
-	 *         rỗng nếu không tìm thấy.
-	 */
-	public static <T, E> List<T> findOr(Class<E> entityClass, String fieldName, Object... datas) {
-		List<String> connectors = new ArrayList<>();
-		List<String> operators = new ArrayList<>();
-		List<String> conditions = new ArrayList<>();
-		List<Object> values = new ArrayList<>();
-		for (int i = 0; i < datas.length; i += 3) {
-			if (i != 0 && i != datas.length) {
-				connectors.add("OR");
-			}
-			prepareConditions(conditions, values, operators, i, datas);
-		}
-		return findIf(entityClass, fieldName, connectors, conditions, operators, values);
-	}
-
-	/**
-	 * 
-	 * Tìm danh sách đối tượng dựa trên nhiều điều kiện.
-	 * 
-	 * @param entityClass class entity .
-	 * @param fieldName   Trường dữ liệu muốn lấy
-	 * @param datas       Danh sách các cặp điều kiện (field - logicOperator - value
-	 *                    - logicConnector(optional) ) xác định điều kiện. Ví dụ (id
-	 *                    = 1).
-	 * @return Danh sách thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
-	 */
-	public static <T, E> List<T> findWithConditions(Class<E> entityClass, String fieldName, Object... datas) {
-		List<String> connectors = new ArrayList<>();
-		List<String> operators = new ArrayList<>();
-		List<String> conditions = new ArrayList<>();
-		List<Object> values = new ArrayList<>();
-		for (int i = 0; i < datas.length; i += 4) {
-			prepareConditions(conditions, values, operators, i, datas);
-			conditions.add(datas[i + 3].toString());
-		}
-		return findIf(entityClass, fieldName, connectors, conditions, operators, values);
-	}
-
-	/**
-	 * 
-	 * Tìm 1 đối tượng dựa trên nhiều điều kiện.
-	 * 
-	 * @param entityClass class entity .
-	 * @param fieldName   Trường dữ liệu muốn lấy
-	 * @param datas       Danh sách các cặp điều kiện (field - logicOperator - value
-	 *                    - logicConnector(optional) ) xác định điều kiện. Ví dụ (id
-	 *                    = 1).
-	 * @return Đối tượng thỏa mãn điều kiện tìm kiếm, hoặc rỗng nếu không tìm thấy.
-	 */
-	public static <T, E> T findOne(Class<E> entityClass, String fieldName, Object... datas) {
-		List<T> result = findAnd(entityClass, fieldName, datas);
-		if (result.isEmpty())
+		try {
+			T result = query.getSingleResult();
+			transaction.commit();
+			return result;
+		} catch (NoResultException e) {
+			System.err.println("Không có phần tử được trả về");
 			return null;
-		else
-			return result.get(0);
-	}
+		}
 
-	/**
-	 * Chuẩn bị điều kiện tìm kiếm.
-	 * 
-	 */
-	private static <E> void prepareConditions(List<String> conditions, List<Object> values, List<String> operators,
-			int index, Object... datas) {
-		conditions.add(datas[index].toString());
-		operators.add(datas[index + 1].toString());
-		if (index + 2 < datas.length)
-			values.add(datas[index + 2]);
 	}
 
 }
