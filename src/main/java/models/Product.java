@@ -22,7 +22,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = -864055505260462770L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Integer id;
 	@Nationalized
 	@Column(name = "NAME", columnDefinition = "varchar(30)")
@@ -40,10 +40,10 @@ public class Product implements Serializable {
 	@JoinColumn(name = "PRODUCT_ID")
 	private List<Gallery> galleries;
 	@ManyToOne
-	@JoinColumn(name = "TYPE_ID")
-	private ProductType type;
+	@JoinColumn(name="CATEGORY_ID")
+	private ProductCategory category;
 	@ManyToOne
-	@JoinColumn(name = "BRAND")
+	@JoinColumn(name = "BRAND_ID")
 	private Brand brand;
 
 	public Brand getBrand() {
@@ -100,10 +100,6 @@ public class Product implements Serializable {
 
 	public void setGalleries(List<Gallery> galleries) {
 		this.galleries = galleries;
-	}
-
-	public boolean inPurposeType(int idType) {
-		return type.getId() == idType;
 	}
 
 }
