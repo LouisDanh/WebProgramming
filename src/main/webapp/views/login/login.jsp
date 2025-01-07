@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-
 <tiles:insertDefinition name="baseLayout">
 	<tiles:putAttribute name="titlePage" value="Login Page" />
 	<tiles:putListAttribute name="pageCss">
@@ -28,7 +27,8 @@
 						<!-- Password -->
 						<div class="form-floating mb-3 position-relative">
 							<input type="password" class="form-control" id="password"
-								name="password" placeholder="Password" required><label
+								name="password" placeholder="Password" required
+								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"><label
 								for="password">Enter your password</label>
 							<button id="toggle-password" type="button"
 								class="position-absolute top-50 end-7 translate-middle-y p-0">
