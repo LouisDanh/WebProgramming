@@ -20,6 +20,11 @@
 		<tiles:addAttribute value="review" />
 	</tiles:putListAttribute>
 
+	<!--AJAX-->
+	<tiles:putListAttribute name="pageAjax">
+		<tiles:addAttribute value="profiles" />
+	</tiles:putListAttribute>
+
 	<!-- BODY -->
 	<tiles:putAttribute name="body">
 		<main class="my-4">
@@ -30,7 +35,10 @@
 						<div class="new-container mt-5">
 							<ul class="new-list cursor-pointer">
 								<div class="mb-5">
-									<i class="bi bi-person"></i><span> Hi! Customer</span>
+									<c:if test="${not empty account}">
+										<i class="bi bi-person"></i>
+										<span><strong>Hi! <span>${account.customer.fullName}</span></strong></span>
+									</c:if>
 								</div>
 								<li class="border-top" data-target="account-overview"><i
 									class="bi bi-house-door"></i><span> Account Overview</span></li>
@@ -61,20 +69,20 @@
 								<div class="mt-4">
 									<c:if test="${not empty account}">
 										<p>
-											<strong>Name:</strong> ${account.customer.fullName}
-										</p>
-
-										<p>
-											<strong>Phone:</strong> ${account.customer.phone}
+											<strong>Name:</strong> <span>${account.customer.fullName}</span>
 										</p>
 										<p>
-											<strong>Address:</strong> ${account.customer.placeReceive}
+											<strong>Phone:</strong> <span>${account.customer.phone}</span>
+										</p>
+										<p>
+											<strong>Address:</strong> <span>${account.customer.placeReceive}</span>
 										</p>
 									</c:if>
 									<c:if test="${empty account}">
 										<p>No account data found!</p>
 									</c:if>
 								</div>
+
 							</div>
 						</div>
 						<!-- CUSTOMER SERVICE -->
@@ -151,38 +159,51 @@
 
 									<!-- Full Name Input -->
 									<c:if test="${not empty account}">
-									<div class="form-group mt-5">
-										<label for="full-name">Full Name:</label> <input type="text"
-											id="full-name" class="form-control"
-											placeholder="Enter your full name" value="${account.customer.fullName}" required>
-									</div>
-									<!-- Email Input -->
-									<div class="form-group mt-3">
-										<label for="email">Email:</label> <input type="email"
-											id="email" class="form-control"
-											placeholder="Enter your email" value="${account.email}" required>
-									</div>
-									<!-- Phone Input -->
-									<div class="form-group mt-3">
-										<label for="phone">Phone Number:</label> <input type="tel"
-											id="phone" class="form-control"
-											placeholder="Enter your phone number" value="${account.customer.phone}" required>
-									</div>
-									<!-- Address Input -->
-									<div class="form-group mt-3">
-										<label for="address">Address:</label> <input type="text"
-											id="address" class="form-control"
-											placeholder="Enter your address" value="${account.customer.placeReceive}" required>
-									</div>
-									<!-- Save Change Button -->
-									<div class="text-center">
-										<button type="submit" class="btn btn-dark w-100 mt-3">Save
-										</button>
-									</div>
+										<form id="update-info-form">
+											<div class="form-group mt-5">
+												<label for="full-name">Full Name:</label> <input type="text"
+													id="full-name" name="fullName" class="form-control"
+													placeholder="Enter your full name"
+													value="${account.customer.fullName}" required>
+											</div>
+											<!-- Email Input -->
+											<div class="form-group mt-3">
+												<label for="email">Email:</label> <input type="email"
+													id="email" name="email" class="form-control"
+													placeholder="Enter your email" value="${account.email}"
+													required>
+											</div>
+											<!-- Phone Input -->
+											<div class="form-group mt-3">
+												<label for="phone">Phone Number:</label> <input type="tel"
+													id="phone" name="phone" class="form-control"
+													placeholder="Enter your phone number"
+													value="${account.customer.phone}" required>
+											</div>
+											<!-- Address Input -->
+											<div class="form-group mt-3">
+												<label for="address">Address:</label> <input type="text"
+													id="address" name="address" class="form-control"
+													placeholder="Enter your address"
+													value="${account.customer.placeReceive}" required>
+											</div>
+											<!-- Save Change Button -->
+											<div class="text-center">
+												<button type="submit" class="btn btn-dark w-100 mt-3">Save</button>
+											</div>
+											<div id="success-message" class="alert alert-success mt-3"
+												style="display: none;">Account info updated
+												successfully!</div>
+											<!-- Thông báo lỗi -->
+											<div id="error-message" class="alert alert-danger mt-3"
+												style="display: none;">Error occurred while updating
+												account info.</div>
+										</form>
 									</c:if>
 									<c:if test="${empty account}">
 										<p>No account data found!</p>
 									</c:if>
+
 								</div>
 								<div class="col"></div>
 							</div>

@@ -76,8 +76,17 @@ public class AccountServices {
 		return GenericDao.excuteQueryGetSingle(Account.class, Account.class, query, accountId);
 	}
 
+	/**
+	 * Cập nhật thông tin account
+	 * 
+	 * @param account
+	 * @return account, ngược lại null
+	 */
 	public static boolean updateAccount(Account account) {
-		return GenericDao.update(account, true);
+		boolean customerUpdate = GenericDao.update(account.getCustomer(), true);
+		boolean accountUpdate = GenericDao.update(account, true);
+		return customerUpdate && accountUpdate;
+
 	}
 
 }
