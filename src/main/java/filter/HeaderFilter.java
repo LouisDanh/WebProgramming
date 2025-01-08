@@ -10,19 +10,16 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import models.Topic;
+import models.ProductCategory;
 import services.ProductService;
-@WebFilter("/views/home/home.jsp")
-public class HomeFilter implements Filter {
-	@Override
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-			throws IOException, ServletException {
-		Object topics = req.getAttribute("topics");
-		if (topics == null) {
-			List<Topic> data = ProductService.getAllTopic();
-			req.setAttribute("topics", data);
-		}
-		chain.doFilter(req, res);
-	}
 
+@WebFilter("/views/*")
+public class HeaderFilter implements Filter {
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		List<ProductCategory> data = ProductService.getChildCategory(null);
+		request.setAttribute("categories", data);
+		chain.doFilter(request, response);
+	}
 }
