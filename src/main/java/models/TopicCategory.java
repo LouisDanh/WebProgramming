@@ -31,4 +31,16 @@ public class TopicCategory {
 		this.topic = topic;
 	}
 
+	public int getIdCategory() {
+		return category.getId();
+	}
+
+	public String getName() {
+		return category.getName();
+	}
+
+	public int getId() {
+		return category.getId();
+	}
+
 }

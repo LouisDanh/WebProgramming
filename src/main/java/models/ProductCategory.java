@@ -15,10 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "PRODUCT_CATEGORY")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ProductCategory implements Serializable {
 	private static final long serialVersionUID = 9215015874801278028L;
 	@Id
@@ -28,7 +31,7 @@ public class ProductCategory implements Serializable {
 	@Column(name = "NAME")
 	@Nationalized
 	private String name;
-	@Column(name = "DECRIPTION")
+	@Column(name = "DESCRIPTION")
 	@Nationalized
 	private String decription;
 //	 Cấu hình liên kết
@@ -39,9 +42,35 @@ public class ProductCategory implements Serializable {
 	private List<Purpose> purposes;
 	@ManyToOne
 	@JoinColumn(name = "PARENT_ID")
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private ProductCategory parent;
 	@OneToMany(mappedBy = "parent")
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private List<ProductCategory> children;
+
+	public ProductCategory getParent() {
+		return parent;
+	}
+
+	public void setParent(ProductCategory parent) {
+		this.parent = parent;
+	}
+
+	public List<ProductCategory> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<ProductCategory> children) {
+		this.children = children;
+	}
+
+	public List<Purpose> getPurposes() {
+		return purposes;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -86,6 +115,14 @@ public class ProductCategory implements Serializable {
 			return false;
 		ProductCategory other = (ProductCategory) obj;
 		return id == other.id;
+	}
+
+	public boolean isSameCategory(int categoryId) {
+		return id == categoryId;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

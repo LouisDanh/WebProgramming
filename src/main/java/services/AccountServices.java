@@ -1,9 +1,10 @@
 package services;
 
 import dao.GenericDao;
-import dao.QueryFactory;
 import models.Account;
 import models.Customer;
+import utils.AccountUtil;
+import utils.QueryUtil;
 
 public class AccountServices {
 	/**
@@ -17,7 +18,9 @@ public class AccountServices {
 			System.err.println("Email null hoặc rỗng");
 			return null;
 		}
-		return GenericDao.findOne(Account.class, "id", "email", QueryFactory.EQUALS, email);
+		String condition = QueryUtil.createCondition("email", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Account.class, "id", condition);
+		return GenericDao.excuteQueryGetSingle(Account.class, Integer.class, query, email);
 	}
 
 	/**
@@ -32,9 +35,14 @@ public class AccountServices {
 			System.err.println("Email hoặc pass null hoặc rỗng");
 			return null;
 		}
-		return GenericDao.findOne(Account.class, "id", "password", QueryFactory.EQUALS, password,
-				"email", QueryFactory.EQUALS, email);
-		
+		Integer id = getIdAccount(email);
+		if (id == null)
+			return null;
+		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Account.class, "password", condition);
+		String storedPassword = GenericDao.excuteQueryGetSingle(Account.class, String.class, query, id);
+		return AccountUtil.verifyPassword(password, storedPassword) ? id : null;
+
 	}
 
 	/**
@@ -44,6 +52,7 @@ public class AccountServices {
 	 * @return
 	 */
 	public static boolean createAccount(Account acc) {
+		acc.setPassword(AccountUtil.hashPassword(acc.getPassword()));
 		if (GenericDao.insert(acc.getCustomer(), false) && GenericDao.insert(acc, false)) {
 			GenericDao.commit();
 			return true;
@@ -62,7 +71,7 @@ public class AccountServices {
 	 * @return custome, ngược lại null
 	 */
 	public static Customer getCustomer(Integer accountId) {
-		return GenericDao.findOne(Customer.class, "*", "id", QueryFactory.EQUALS, accountId);
+		return null;
 	}
 
 	/**
@@ -72,7 +81,7 @@ public class AccountServices {
 	 * @return account, ngược lại null
 	 */
 	public static Account getAccount(Integer accountId) {
-		return GenericDao.findOne(Account.class, "*", "id", QueryFactory.EQUALS, accountId);
+		return null;
 	}
 
 	public static boolean updateAccount(Account account) {

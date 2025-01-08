@@ -38,5 +38,20 @@ public class TopicProduct implements Serializable {
 		this.product = product;
 	}
 
+	public boolean isSameCategory(int categoryId) {
+		return product.isSameCategory(categoryId);
+	}
+
+	public int getProductId() {
+		return product.getId();
+	}
+
+	public String getProductName() {
+		return product.getName();
+	}
+
+	public double getProductPrice() {
+		return product.getPrice();
+	}
 
 }

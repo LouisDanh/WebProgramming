@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +16,12 @@ import services.ProductService;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getSession().removeAttribute("id");
+		resp.sendRedirect("views/login/login.jsp");
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -52,14 +57,13 @@ public class LoginServlet extends HttpServlet {
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		Integer  id = AccountServices.login(email, password);
+		Integer id = AccountServices.login(email, password);
 		if (id != null) {
-			request.getServletContext().setAttribute("parentType", ProductService.getTypes());
 			request.getSession().setAttribute("id", id);
-			response.sendRedirect("views/home/home.jsp");
+			response.sendRedirect("/views/home/home.jsp");
 		} else {
 			request.setAttribute("loginFail", "Invalid email or password. Please try again.");
-			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/login/login.jsp").forward(request, response);
 		}
 	}
 

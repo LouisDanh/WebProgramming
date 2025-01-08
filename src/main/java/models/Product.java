@@ -25,7 +25,7 @@ public class Product implements Serializable {
 	@Column(name = "ID")
 	private Integer id;
 	@Nationalized
-	@Column(name = "NAME", columnDefinition = "varchar(30)")
+	@Column(name = "NAME")
 	private String name;
 	@Column(name = "PRICE")
 	private Double price;
@@ -35,12 +35,15 @@ public class Product implements Serializable {
 	private Integer stock;
 	@Column(name = "CAPACITY", nullable = false)
 	private Integer capacity;
+	@Nationalized
+	@Column(name = "DESCRIPTION")
+	private String description;
 //	 Cấu hình liên kết
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID")
 	private List<Gallery> galleries;
 	@ManyToOne
-	@JoinColumn(name="CATEGORY_ID")
+	@JoinColumn(name = "CATEGORY_ID")
 	private ProductCategory category;
 	@ManyToOne
 	@JoinColumn(name = "BRAND_ID")
@@ -100,6 +103,50 @@ public class Product implements Serializable {
 
 	public void setGalleries(List<Gallery> galleries) {
 		this.galleries = galleries;
+	}
+
+	public Double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
+	public ProductCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(ProductCategory category) {
+		this.category = category;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isSameCategory(int categoryId) {
+		return this.category.isSameCategory(categoryId);
 	}
 
 }
