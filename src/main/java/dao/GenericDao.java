@@ -1,14 +1,13 @@
 package dao;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.NoResultException;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.Cache;
 import org.hibernate.query.Query;
 
 import utils.HibernateUtil;
@@ -28,6 +27,9 @@ public class GenericDao {
 		try (Session session = HibernateUtil.getSession()) {
 			transaction = session.beginTransaction();
 			Query<T> query = session.createQuery("FROM " + entityName.getName(), entityName);
+			if (entityName.isAnnotationPresent(Cache.class)) {
+				query.setCacheable(true);
+			}
 			result = query.list();
 			transaction.commit();
 		} catch (Exception e) {
@@ -101,37 +103,37 @@ public class GenericDao {
 	}
 
 	/**
-	 * Thực thi một truy vấn trả về danh sách kết
-	 * quả.
+	 * Thực thi một truy vấn trả về danh sách kết quả.
 	 * 
 	 * @param <T>         Kiểu dữ liệu trả về trong kết quả truy vấn.
 	 * @param <E>         Kiểu entity của bảng dữ liệu.
 	 * @param entityClass Class của entity tương ứng với bảng dữ liệu.
 	 * @param returnData  Tên trường dữ liệu mà bạn muốn trả về trong kết quả truy
 	 *                    vấn.
-	 * @param queryString Câu truy vấn  để thực thi.
+	 * @param queryString Câu truy vấn để thực thi.
 	 * @param data        Danh sách các tham số truyền vào truy vấn.
 	 * @return Danh sách các đối tượng thuộc kiểu T thỏa mãn truy vấn. Nếu không có
 	 *         kết quả, trả về null.
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T, E> List<T> excuteQueryGetList(Class<E> entityClass, String returnData, String queryString,
+	public static <T, E> List<T> excuteQueryGetList(Class<E> entityClass, Class<T> returnData, String queryString,
 			Object... data) {
-		Class<T> dataType;
 		Transaction transaction = null;
 		try {
-			Field field = entityClass.getDeclaredField(returnData);
-			dataType = (Class<T>) field.getType();
 			Session session = HibernateUtil.getSession();
 			transaction = session.beginTransaction();
-			Query<T> query = session.createQuery(queryString, dataType);
+			Query<T> query = session.createQuery(queryString, returnData);
+			if (entityClass.isAnnotationPresent(Cache.class)) {
+				query.setCacheable(true);
+			}
 			for (int i = 0; i < data.length; i++) {
-				query.setParameter(i, data[i]);
+				if (data[i] != null)
+					query.setParameter(i, data[i]);
 			}
 			List<T> result = query.getResultList();
 			transaction.commit();
 			return result;
-		} catch (NoSuchFieldException | SecurityException e) {
+		} catch (SecurityException e) {
 			if (transaction != null)
 				transaction.rollback();
 			e.printStackTrace();
@@ -139,24 +141,29 @@ public class GenericDao {
 		return null;
 
 	}
+
 	/**
 	 * Thực thi một truy vấn trả về một đối tượng duy nhất.
 	 * 
-	 * @param <T>           Kiểu dữ liệu trả về trong kết quả truy vấn.
-	 * @param <E>           Kiểu entity của bảng dữ liệu.
-	 * @param entityClass   Class của entity tương ứng với bảng dữ liệu.
-	 * @param returnData    Kiểu dữ liệu trả về trong kết quả truy vấn.
-	 * @param queryString   Câu truy vấn để thực thi.
-	 * @param data          Danh sách các tham số truyền vào truy vấn.
-	 * @return              Đối tượng duy nhất thỏa mãn truy vấn, hoặc null nếu không có kết quả.
+	 * @param <T>         Kiểu dữ liệu trả về trong kết quả truy vấn.
+	 * @param <E>         Kiểu entity của bảng dữ liệu.
+	 * @param entityClass Class của entity tương ứng với bảng dữ liệu.
+	 * @param returnData  Kiểu dữ liệu trả về trong kết quả truy vấn.
+	 * @param queryString Câu truy vấn để thực thi.
+	 * @param data        Danh sách các tham số truyền vào truy vấn.
+	 * @return Đối tượng duy nhất thỏa mãn truy vấn, hoặc null nếu không có kết quả.
 	 */
 	public static <T, E> T excuteQueryGetSingle(Class<E> entityClass, Class<T> returnData, String queryString,
 			Object... data) {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		Query<T> query = session.createQuery(queryString, returnData);
+		if (entityClass.isAnnotationPresent(Cache.class)) {
+			query.setCacheable(true);
+		}
 		for (int i = 0; i < data.length; i++) {
-			query.setParameter(i, data[i]);
+			if (data[i] != null)
+				query.setParameter(i, data[i]);
 		}
 		try {
 			T result = query.getSingleResult();

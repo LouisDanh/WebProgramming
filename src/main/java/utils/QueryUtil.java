@@ -18,7 +18,7 @@ public class QueryUtil {
 	public static final String AND = "AND";
 	public static final String OR = "OR";
 
-	public static String getCondition(String operator, String condition, int index) {
+	private static String getCondition(String operator, String condition, int index) {
 		switch (operator) {
 		case LIKE: {
 			return condition + " " + " LIKE CONCAT('%',?" + index + ", '%')";
@@ -44,6 +44,8 @@ public class QueryUtil {
 	 * 
 	 * @param condition Điều kiện kiểm tra
 	 * @param operator  Toán tử cho điều kiện
+	 * @param index  Vị trí điều kiện
+	 * @param operator  Toán tử liên kết (không cần liên kết thì thay bằng QueryUtil.EMPTY)
 	 * @return điều kiện cho query
 	 */
 	public static String createCondition(String condition, String operator, int index, String connector) {
