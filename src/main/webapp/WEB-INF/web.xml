@@ -9,20 +9,25 @@
 		<welcome-file>views/login/login.jsp</welcome-file>
 	</welcome-file-list>
 	<!-- Apache tiles -->
+	<!-- Định nghĩa tiles configuration -->
 	<context-param>
-		<param-name>tilesDefinitions</param-name>
+		<param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
 		<param-value>/WEB-INF/tiles.xml</param-value>
 	</context-param>
+	<!-- Tiles listener để khởi tạo và quản lý Tiles container -->
 	<listener>
-		<listener-class>org.apache.tiles.web.startup.TilesListener</listener-class>
+		<listener-class>org.apache.tiles.web.startup.simple.SimpleTilesListener</listener-class>
 	</listener>
-	<filter>
-		<filter-name>tilesFilter</filter-name>
-		<filter-class>org.apache.tiles.web.startup.TilesFilter</filter-class>
-	</filter>
 
-	<filter-mapping>
-		<filter-name>tilesFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	<!-- Servlet để xử lý các request Tiles -->
+	<servlet>
+		<servlet-name>tilesDispatch</servlet-name>
+		<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+	</servlet>
+	<!-- Mapping cho Tiles servlet -->
+	<servlet-mapping>
+		<servlet-name>tilesDispatch</servlet-name>
+		<url-pattern>/tiles/*</url-pattern>
+	</servlet-mapping>
+
 </web-app>
