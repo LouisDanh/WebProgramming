@@ -25,11 +25,19 @@
 	</main>
 	<tiles:insertAttribute name="footer" />
 	<!-- Js -->
+
 	<tiles:useAttribute id="jsFiles" name="pageJs"
 		classname="java.util.List" />
 	<c:forEach var="js" items="${jsFiles}">
 		<script type="text/javascript"
 			src="${pageContext.request.contextPath}/resources/static/js/${js}.js"></script>
+	</c:forEach>
+
+	<tiles:useAttribute id="jsAjaxFiles" name="pageAjax"
+		classname="java.util.List" />
+	<c:forEach var="js_ajax" items="${jsAjaxFiles}">
+		<script type="text/javascript"
+			src="${pageContext.request.contextPath}/resources/static/js_ajax/${js_ajax}.js"></script>
 	</c:forEach>
 </body>
 </html>

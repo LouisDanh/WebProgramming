@@ -65,27 +65,28 @@ public class AccountServices {
 	}
 
 	/**
-	 * Lấy thông tin customer
+	 * Lấy thông tin account thông qua accountId
 	 * 
 	 * @param accountId
-	 * @return custome, ngược lại null
-	 */
-	public static Customer getCustomer(Integer accountId) {
-		return null;
-	}
-
-	/**
-	 * Lấy thông tin tài khoản từ accountId
-	 * 
-	 * @param
 	 * @return account, ngược lại null
 	 */
 	public static Account getAccount(Integer accountId) {
-		return null;
+		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Account.class, QueryUtil.ALL, condition);
+		return GenericDao.excuteQueryGetSingle(Account.class, Account.class, query, accountId);
 	}
 
+	/**
+	 * Cập nhật thông tin account
+	 * 
+	 * @param account
+	 * @return account, ngược lại null
+	 */
 	public static boolean updateAccount(Account account) {
-		return GenericDao.update(account, true);
+		boolean customerUpdate = GenericDao.update(account.getCustomer(), true);
+		boolean accountUpdate = GenericDao.update(account, true);
+		return customerUpdate && accountUpdate;
+
 	}
 
 }
