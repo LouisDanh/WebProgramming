@@ -13,7 +13,7 @@ import models.Customer;
 import services.AccountServices;
 import services.ProductService;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 		Integer id = AccountServices.login(email, password);
 		if (id != null) {
 			request.getSession().setAttribute("id", id);
-			response.sendRedirect("/views/home/home.jsp");
+			response.sendRedirect("/home");
 		} else {
 			request.setAttribute("loginFail", "Invalid email or password. Please try again.");
 			request.getRequestDispatcher("/views/login/login.jsp").forward(request, response);

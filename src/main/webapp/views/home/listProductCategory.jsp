@@ -1,21 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/static/css/list_product_category.css">
-</head>
-<body>
-	<jsp:include page="/views/shares/header.jsp"></jsp:include>
-	<c:set var="typeParent"
-		value="${currentType.parent==null?currentType:currentType.parent}" />
-	<main class="my-4">
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<tiles:insertDefinition name="baseLayout">
+	<tiles:insertAttribute name="titlePage" value="Product Category" />
+	<tiles:putListAttribute name="pageCss">
+		<tiles:addAttribute value="list_product_category" />
+	</tiles:putListAttribute>
+	<tiles:putListAttribute name="pageJs">
+		<tiles:addAttribute value="filter_category" />
+		<tiles:addAttribute value="collapse" />
+	</tiles:putListAttribute>
+	<tiles:putAttribute name="body">
+		<c:set var="category"
+			value="${category.parent==null?currentType:currentType.parent}" />
 		<div class="container-fluid">
 			<div class="p-5 w-100 h-50"></div>
 			<div class="container">
@@ -137,12 +135,8 @@
 				</div>
 			</div>
 		</div>
-	</main>
-	<jsp:include page="/views/shares/footer.jsp"></jsp:include>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/static/js/filter_category.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/static/js/collapse.js"></script>
+	</tiles:putAttribute>
+</tiles:insertDefinition>
 </body>
 
 </html>
