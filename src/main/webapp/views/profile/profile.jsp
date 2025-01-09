@@ -127,26 +127,38 @@
 									<h3 class="font-weight-bold h3-color text-center">UPDATE
 										MY PASSWORD</h3>
 									<!-- Current Password -->
-									<div class="form-group mt-5">
-										<label for="email">Current password:</label> <input
-											type="password" id="current-password" class="form-control"
-											placeholder="Enter your current password" required>
-									</div>
-									<!-- New Password -->
-									<div class="form-group">
-										<label for="email">New password:</label> <input
-											type="password" id="new-password" class="form-control"
-											placeholder="Enter your new password" required>
-									</div>
-									<!-- Confirm Password -->
-									<div class="form-group">
-										<label for="email">Confirm password:</label> <input
-											type="password" id="confirm-password" class="form-control"
-											placeholder="Enter your new password" required>
-									</div>
-									<!-- Save Change Button -->
-									<button type="submit" class="btn btn-dark w-100 mt-3 ">Save
-										Changes</button>
+									<form id="change-pass-form">
+										<div class="form-group mt-5">
+											<label for="email">Current password:</label> <input
+												type="password" id="current-password"
+												name="current-password" class="form-control"
+												placeholder="Enter your current password" required>
+										</div>
+										<!-- New Password -->
+										<div class="form-group">
+											<label for="email">New password:</label> <input
+												type="password" id="new-password" name="new-password"
+												class="form-control" placeholder="Enter your new password"
+												required>
+										</div>
+										<!-- Confirm Password -->
+										<div class="form-group">
+											<label for="email">Confirm password:</label> <input
+												type="password" id="confirm-password"
+												name="confirm-password" class="form-control"
+												placeholder="Enter your new password" required>
+										</div>
+										<!-- Save Change Button -->
+										<button type="submit" class="btn btn-dark w-100 mt-3 ">Save
+											Changes</button>
+										<!-- NOTIFICATION -->
+										<div id="change-pass-success" class="alert alert-success mt-3"
+											style="display: none;">Password updated successfully!</div>
+										<!-- ERROR -->
+										<div id="change-pass-error" class="alert alert-danger mt-3"
+											style="display: none;">Error occurred while updating
+											password.</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -191,11 +203,12 @@
 											<div class="text-center">
 												<button type="submit" class="btn btn-dark w-100 mt-3">Save</button>
 											</div>
-											<div id="success-message" class="alert alert-success mt-3"
-												style="display: none;">Account info updated
-												successfully!</div>
-											<!-- Thông báo lỗi -->
-											<div id="error-message" class="alert alert-danger mt-3"
+											<!-- NOTIFICATION -->
+											<div id="update-info-success"
+												class="alert alert-success mt-3" style="display: none;">Account
+												info updated successfully!</div>
+											<!-- ERROR -->
+											<div id="update-info-error" class="alert alert-danger mt-3"
 												style="display: none;">Error occurred while updating
 												account info.</div>
 										</form>

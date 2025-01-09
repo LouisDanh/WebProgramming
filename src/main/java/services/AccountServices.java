@@ -89,4 +89,28 @@ public class AccountServices {
 
 	}
 
+	/**
+	 * Kiểm tra mật khẩu hiện tại của tài khoản.
+	 * 
+	 * @param accountId       ID của tài khoản cần kiểm tra.
+	 * @param currentPassword Mật khẩu hiện tại cần so sánh.
+	 * @return true nếu mật khẩu khớp, ngược lại false.
+	 */
+	public boolean checkPassword(Integer accountId, String currentPassword) {
+	    // Tạo câu query với đúng kiểu dữ liệu cho tham số
+	    String queryString = QueryUtil.createQuery(
+	        Account.class, 
+	        QueryUtil.ALL, 
+	        QueryUtil.createCondition("password", QueryUtil.EQUALS, 0, QueryUtil.EMPTY),
+	        QueryUtil.createCondition("id", QueryUtil.EQUALS, 1, QueryUtil.EMPTY)  // Thêm điều kiện cho accountId
+	    );
+
+	    // Thực thi query với accountId kiểu Integer
+	    Account account = GenericDao.excuteQueryGetSingle(Account.class, Account.class, queryString, accountId);
+
+	    // Kiểm tra mật khẩu
+	    return account != null && account.getPassword().equals(currentPassword);
+	}
+
+
 }

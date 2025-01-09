@@ -72,6 +72,20 @@ public class Account implements Serializable {
 		this.email = email;
 	}
 
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getPassword() {
 		return password;
 	}
