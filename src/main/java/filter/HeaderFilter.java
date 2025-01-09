@@ -13,13 +13,16 @@ import javax.servlet.annotation.WebFilter;
 import models.ProductCategory;
 import services.ProductService;
 
-@WebFilter("/views/*")
+@WebFilter("/*")
 public class HeaderFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		List<ProductCategory> data = ProductService.getChildCategory(null);
-		request.setAttribute("categories", data);
+		Object obj = request.getAttribute("categories");
+		if (obj == null) {
+			List<ProductCategory> data = ProductService.getChildCategory(null);
+			request.setAttribute("categories", data);
+		}
 		chain.doFilter(request, response);
 	}
 }

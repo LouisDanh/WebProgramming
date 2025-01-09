@@ -12,7 +12,7 @@
 		class="container d-flex justify-content-between align-items-center">
 		<!-- Logo -->
 		<div class="logo link ml-2"
-			data-href="${pageContext.request.contextPath}/views/home/home.jsp">
+			data-href="${pageContext.request.contextPath}/home">
 			HISHAKU</div>
 		<!-- Menu Navigation -->
 		<nav class="navbar navbar-expand-lg navbar-light">
@@ -49,7 +49,7 @@
 					</div>
 					<!-- Logout Icon -->
 					<div class="link" id="logoutIcon" id="profileIcon"
-						data-href="${pageContext.request.contextPath}/LoginServlet">
+						data-href="${pageContext.request.contextPath}/login">
 						<i class="fas fa-sign-out-alt"></i> Đăng xuất
 					</div>
 				</div>

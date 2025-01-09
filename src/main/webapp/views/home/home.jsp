@@ -47,7 +47,7 @@
 									<div class="topic-product-list slider tabled-product-detail">
 										<c:forEach var="product" items="${entry.value}">
 											<div class="border-0 card link mx-4"
-												data-href="${pageContext.request.contextPath}/views/home/descript.jsp?id=${product.productId}">
+												data-href="home/product/descript?id=${product.productId}">
 												<img
 													src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
 													alt="${product.productName}" class="card-img-top">
