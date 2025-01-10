@@ -33,7 +33,105 @@ public class Voucher implements Serializable{
 	private LocalDateTime expiredDate;
 	@Column(name = "QUANTITY",nullable = false)
 	private Integer quantity;
+	@Column(name= "CODE",nullable = false)
+	private String code;
 	@OneToMany(mappedBy = "voucher")
 	private List<VoucherState> state;
+	/**
+	 * @return the maxDiscount
+	 */
+	public Double getMaxDiscount() {
+		return maxDiscount;
+	}
+	/**
+	 * @param maxDiscount the maxDiscount to set
+	 */
+	public void setMaxDiscount(Double maxDiscount) {
+		this.maxDiscount = maxDiscount;
+	}
+	/**
+	 * @return the quantity
+	 */
+	public Integer getQuantity() {
+		return quantity;
+	}
+	/**
+	 * @param quantity the quantity to set
+	 */
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	/**
+	 * @return the code
+	 */
+	public String getCode() {
+		return code;
+	}
+	/**
+	 * @param code the code to set
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * @return the percentage
+	 */
+	public Double getPercentage() {
+		return percentage;
+	}
+	/**
+	 * @param percentage the percentage to set
+	 */
+	public void setPercentage(Double percentage) {
+		this.percentage = percentage;
+	}
+	/**
+	 * @return the expiredDate
+	 */
+	public LocalDateTime getExpiredDate() {
+		return expiredDate;
+	}
+	/**
+	 * @param expiredDate the expiredDate to set
+	 */
+	public void setExpiredDate(LocalDateTime expiredDate) {
+		this.expiredDate = expiredDate;
+	}
+	/**
+	 * @return the state
+	 */
+	public List<VoucherState> getState() {
+		return state;
+	}
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(List<VoucherState> state) {
+		this.state = state;
+	}
 
 }
