@@ -40,7 +40,7 @@
 							<div
 								class="cart-items d-flex flex-column align-items-center border p-2">
 								<c:if test="${not empty cartItems}">
-									<div class="cart-items">
+									<div class="cart-items" data-productId="1">
 										<c:forEach var="cartItem" items="${cartItems}">
 											<div class="cart-item border-bottom p-2">
 												<div class="cart-item-details d-flex gap-5 p-3">
@@ -132,8 +132,8 @@
 										</div>
 									</div>
 								</div>
-								<!-- Mã ưu đãi -->
 								<form action="/cart" method="POST">
+									<!-- Mã ưu đãi -->
 									<div class="card p-3 mb-3 shadow-sm rounded">
 										<div class="col-8">
 											<div class="form-floating">
@@ -154,7 +154,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
