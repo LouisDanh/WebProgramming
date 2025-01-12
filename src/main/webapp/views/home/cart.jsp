@@ -147,7 +147,7 @@
 									<!-- Thẻ div để hiển thị kết quả hợp lệ hay không -->
 									<div id="voucherMessage" class="mt-3" style="display: none;"></div>
 								</div>
-								<button class="collapse-btn btn btn-dark w-100">
+								<button class="collapse-btn btn btn-dark w-100 link"data-href="/WebMyPham/solving" >
 									<i class="bi bi-caret-down-fill"></i> Tiến hành thanh toán
 								</button>
 							</div>

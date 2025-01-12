@@ -36,8 +36,7 @@ public class Customer implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "BANK_ACC_OWNER", joinColumns = @JoinColumn(name = "CUS_ID"), inverseJoinColumns = @JoinColumn(name = "BANK_ACCOUNT_ID"))
 	private List<BankAccount> listBankAccount;
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CUS_ID", nullable = false)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	private List<Orders> historyOrder;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	private List<CartItem> carts;

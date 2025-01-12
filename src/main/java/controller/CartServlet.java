@@ -29,10 +29,6 @@ public class CartServlet extends HttpServlet {
 		
 		req.setAttribute("cartItems", cartItems);
 		
-		// Ktra tra voucher hợp lệ hay không 
-		req.getRequestDispatcher("/voucher");
-		
-	
 
 		req.getRequestDispatcher("views/home/cart.jsp").forward(req, resp);
 

@@ -17,10 +17,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ORDER_DATE")
 public class OrderDate implements Serializable {
-  
-
-	
-
 	@Override
 	public String toString() {
 		return "OrderDate [id=" + id + ", date=" + date + ", orderState=" + orderState + ", orderDetails="

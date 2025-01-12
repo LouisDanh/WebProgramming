@@ -20,6 +20,7 @@ public class VoucherServlet extends HttpServlet{
 		resp.setContentType("application/json");
 		PrintWriter out = resp.getWriter();
         if (voucherCheck != null) {
+        	req.getSession().setAttribute("voucher", voucherCheck);
             out.write("{\"status\":\"success\", \"message\":\"Voucher applied successfully!\"}");
         } else {
             out.write("{\"status\":\"error\", \"message\":\"Invalid voucher code!\"}");
