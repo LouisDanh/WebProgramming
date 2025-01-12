@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Brand implements Serializable {
 	@Nationalized
 	private String name;
 //	 Cấu hình liên kết
-	@OneToMany(mappedBy = "brand")
+	@OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
 	private List<Product> products;
 
 	@Override
@@ -53,6 +54,31 @@ public class Brand implements Serializable {
 		this.name = name;
 	}
 
-	public Brand() {}
+	public Brand() {
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
 }

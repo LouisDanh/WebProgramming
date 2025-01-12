@@ -33,7 +33,4 @@ public class Voucher implements Serializable{
 	private LocalDateTime expiredDate;
 	@Column(name = "QUANTITY",nullable = false)
 	private Integer quantity;
-	@OneToMany(mappedBy = "voucher")
-	private List<VoucherState> state;
-
 }

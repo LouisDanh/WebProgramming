@@ -33,13 +33,10 @@ public class ProductCategory implements Serializable {
 	private String name;
 	@Column(name = "DESCRIPTION")
 	@Nationalized
-	private String decription;
+	private String description;
 //	 Cấu hình liên kết
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
 	private List<Product> products;
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PURPOSE_ID")
-	private List<Purpose> purposes;
 	@ManyToOne
 	@JoinColumn(name = "PARENT_ID")
 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -56,16 +53,16 @@ public class ProductCategory implements Serializable {
 		this.parent = parent;
 	}
 
+	public int getSize() {
+		return this.children.size();
+	}
+
 	public List<ProductCategory> getChildren() {
 		return children;
 	}
 
 	public void setChildren(List<ProductCategory> children) {
 		this.children = children;
-	}
-
-	public List<Purpose> getPurposes() {
-		return purposes;
 	}
 
 	public void setId(Integer id) {
@@ -80,12 +77,12 @@ public class ProductCategory implements Serializable {
 		this.name = name;
 	}
 
-	public String getDecription() {
-		return decription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDecription(String decription) {
-		this.decription = decription;
+	public void setDescription(String decription) {
+		this.description = decription;
 	}
 
 	public List<Product> getProducts() {
@@ -94,10 +91,6 @@ public class ProductCategory implements Serializable {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
-	}
-
-	public void setPurposes(List<Purpose> purposes) {
-		this.purposes = purposes;
 	}
 
 	@Override

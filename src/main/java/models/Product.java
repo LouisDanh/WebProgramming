@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -48,6 +49,16 @@ public class Product implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "BRAND_ID")
 	private Brand brand;
+	@OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
+	private List<ProductAttributes> attributes;
+
+	public List<ProductAttributes> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(List<ProductAttributes> attributes) {
+		this.attributes = attributes;
+	}
 
 	public Brand getBrand() {
 		return brand;

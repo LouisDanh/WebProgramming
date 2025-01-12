@@ -12,31 +12,25 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
-@Table(name = "PAYMENT_METHOD")
-public class PaymentMethod implements Serializable {
-	private static final long serialVersionUID = 110252482276396261L;
+@Table(name = "ATTRIBUTE_KEY")
+public class AttributeKey implements Serializable {
+	private static final long serialVersionUID = -74648730955064254L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Integer id;
 	@Nationalized
-	@Column(name = "NAME")
+	@Column(name = "NAME", nullable = false, unique = true)
 	private String name;
-	@Column(name = "DISCOUNT", columnDefinition = "decimal(3,2)")
-	private Double discount;
-
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
