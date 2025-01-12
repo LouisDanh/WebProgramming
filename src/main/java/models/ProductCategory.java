@@ -114,7 +114,7 @@ public class ProductCategory implements Serializable {
 		return id == categoryId;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

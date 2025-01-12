@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import models.AttributeKey;
+import models.AttributeValue;
 import models.Brand;
 import models.Product;
 import models.ProductAttributes;
@@ -38,24 +39,24 @@ public class FilterViewModel {
 		this.attributesSelected = attributesSelected;
 	}
 
-	public Map<AttributeKey, Map<ProductAttributes, List<Product>>> loadAttribute(List<Product> products) {
-		Map<AttributeKey, Map<ProductAttributes, List<Product>>> mappingAttributes = new HashMap<>();
+	public Map<AttributeKey, Map<AttributeValue, List<Product>>> loadAttribute(List<Product> products) {
+		Map<AttributeKey, Map<AttributeValue, List<Product>>> mappingAttributes = new HashMap<>();
 		for (Product product : products) {
 			for (ProductAttributes at : product.getAttributes()) {
-				Map<ProductAttributes, List<Product>> mappingQuantity = mappingAttributes.get(at.getAttributeKey());
+				Map<AttributeValue, List<Product>> mappingQuantity = mappingAttributes.get(at.getAttributeKey());
 				List<Product> quantity;
 				if (mappingQuantity == null) {
 					mappingQuantity = new HashMap<>();
 					mappingAttributes.put(at.getAttributeKey(), mappingQuantity);
 					quantity = new LinkedList<Product>();
 				} else {
-					quantity = mappingQuantity.get(at);
+					quantity = mappingQuantity.get(at.getAttValue());
 					if (quantity == null) {
 						quantity = new LinkedList<Product>();
 					}
 				}
 				quantity.add(product);
-				mappingQuantity.put(at, quantity);
+				mappingQuantity.put(at.getAttValue(), quantity);
 			}
 		}
 		return mappingAttributes;
@@ -63,12 +64,11 @@ public class FilterViewModel {
 
 	public void setMappingAttributes() {
 		mappingAttributes = new HashMap<>();
-		for (Map.Entry<AttributeKey, Map<ProductAttributes, List<Product>>> entry : loadAttribute(products)
-				.entrySet()) {
+		for (Map.Entry<AttributeKey, Map<AttributeValue, List<Product>>> entry : loadAttribute(products).entrySet()) {
 			AttributeKey key = entry.getKey();
-			Map<ProductAttributes, List<Product>> val = entry.getValue();
+			Map<AttributeValue, List<Product>> val = entry.getValue();
 			Map<Integer, Integer> temp = new HashMap<>();
-			for (Map.Entry<ProductAttributes, List<Product>> e : val.entrySet()) {
+			for (Map.Entry<AttributeValue, List<Product>> e : val.entrySet()) {
 				temp.put(e.getKey().getId(), e.getValue().size());
 			}
 			mappingAttributes.put(key.getId(), temp);

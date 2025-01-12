@@ -21,7 +21,7 @@
 							<p class="text-center mb-4">Create an account to access
 								exclusive features and check your products in.</p>
 							<!-- Account Registration Form -->
-							<form id="registerForm" action="/WebMyPham/LoginServlet"
+							<form id="registerForm" action="/WebMyPham/login"
 								method="Post" accept-charset="UTF-8">
 								<div class="mb-3">
 									<label for="fullName" class="form-label">Full Name</label> <input
@@ -52,7 +52,7 @@
 											<input type="password" class="form-control" id="password"
 												placeholder="Enter your password" name="password" required
 												pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
-											<button id="toggle-password"
+											<button id="toggle-password" type="button"
 												class=" position-absolute top-50 end-5 translate-middle-y p-0">
 												<i class="bi-eye-slash"></i>
 											</button>

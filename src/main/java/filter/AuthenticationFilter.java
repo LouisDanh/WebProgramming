@@ -10,6 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 @WebFilter("/customer/*")
 public class AuthenticationFilter implements Filter {
 	@Override
@@ -19,9 +20,14 @@ public class AuthenticationFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		Object accountId = httpRequest.getSession().getAttribute("id");
 		if (accountId == null) {
-			httpResponse.sendRedirect("/home");
+			httpResponse.sendRedirect("/WebMyPham/home");
 			return;
 		}
-		chain.doFilter(httpRequest, httpResponse);
+		Integer role = Integer.parseInt(httpRequest.getSession().getAttribute("role").toString());
+		if (role == 5)
+			chain.doFilter(httpRequest, httpResponse);
+		else {
+			httpResponse.sendRedirect("/WebMyPham/admin");
+		}
 	}
 }

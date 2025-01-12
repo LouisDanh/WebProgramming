@@ -23,6 +23,12 @@ public class AccountServices {
 		return GenericDao.excuteQueryGetSingle(Account.class, Integer.class, query, email);
 	}
 
+	public static Integer getRole(Integer id) {
+		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Account.class, "role", condition);
+		return GenericDao.excuteQueryGetSingle(Account.class, Integer.class, query, id);
+	}
+
 	/**
 	 * Đăng nhập
 	 * 
@@ -97,20 +103,17 @@ public class AccountServices {
 	 * @return true nếu mật khẩu khớp, ngược lại false.
 	 */
 	public boolean checkPassword(Integer accountId, String currentPassword) {
-	    // Tạo câu query với đúng kiểu dữ liệu cho tham số
-	    String queryString = QueryUtil.createQuery(
-	        Account.class, 
-	        QueryUtil.ALL, 
-	        QueryUtil.createCondition("password", QueryUtil.EQUALS, 0, QueryUtil.EMPTY),
-	        QueryUtil.createCondition("id", QueryUtil.EQUALS, 1, QueryUtil.EMPTY)  // Thêm điều kiện cho accountId
-	    );
+		// Tạo câu query với đúng kiểu dữ liệu cho tham số
+		String queryString = QueryUtil.createQuery(Account.class, QueryUtil.ALL,
+				QueryUtil.createCondition("password", QueryUtil.EQUALS, 0, QueryUtil.EMPTY),
+				QueryUtil.createCondition("id", QueryUtil.EQUALS, 1, QueryUtil.EMPTY) // Thêm điều kiện cho accountId
+		);
 
-	    // Thực thi query với accountId kiểu Integer
-	    Account account = GenericDao.excuteQueryGetSingle(Account.class, Account.class, queryString, accountId);
+		// Thực thi query với accountId kiểu Integer
+		Account account = GenericDao.excuteQueryGetSingle(Account.class, Account.class, queryString, accountId);
 
-	    // Kiểm tra mật khẩu
-	    return account != null && account.getPassword().equals(currentPassword);
+		// Kiểm tra mật khẩu
+		return account != null && account.getPassword().equals(currentPassword);
 	}
-
 
 }

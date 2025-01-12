@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -15,7 +16,7 @@ import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "PRODUCT_ATTRIBUTES")
-public class ProductAttributes implements Serializable{
+public class ProductAttributes implements Serializable {
 	private static final long serialVersionUID = 3298580693096254172L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,31 +28,38 @@ public class ProductAttributes implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "ATTRIBUTE_KEY_ID", nullable = false)
 	private AttributeKey attributeKey;
-	@Column(name = "VALUE", nullable = false)
-	@Nationalized
-	private String value;
+	@ManyToOne
+	@JoinColumn(name = "ATTRIBUTE_VALUE_ID", nullable = false)
+	private AttributeValue value;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Product getProduct() {
 		return product;
 	}
+
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
 	public AttributeKey getAttributeKey() {
 		return attributeKey;
 	}
+
 	public void setAttributeKey(AttributeKey attributeKey) {
 		this.attributeKey = attributeKey;
 	}
+
 	public String getValue() {
-		return value;
+		return value.getValue();
 	}
-	public void setValue(String value) {
-		this.value = value;
+	public AttributeValue getAttValue() {
+		return value;
 	}
 }

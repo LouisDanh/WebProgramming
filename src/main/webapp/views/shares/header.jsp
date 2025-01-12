@@ -42,7 +42,7 @@
 					</div>
 					<!-- Cart Icon -->
 					<div class="link" id="profileIcon"
-						data-href="${pageContext.request.contextPath}/views/home/cart.jsp">
+						data-href="${pageContext.request.contextPath}/customer/cart">
 						<i class="fas fa-shopping-cart"></i> Giỏ hàng
 					</div>
 					<!-- Logout Icon -->

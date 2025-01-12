@@ -7,7 +7,6 @@
 		<tiles:addAttribute value="btn" />
 	</tiles:putListAttribute>
 	<tiles:putAttribute name="body">
-
 		<div class="container d-flex justify-content-center mt-5">
 			<div class="card custom-card">
 				<div class="card-body">

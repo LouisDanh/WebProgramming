@@ -18,6 +18,11 @@ public class ProductService {
 	public static List<Topic> getAllTopic() {
 		return GenericDao.getAll(Topic.class);
 	}
+	public static Brand getBrand(Integer id) {
+		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Brand.class, QueryUtil.ALL, condition);
+		return GenericDao.excuteQueryGetSingle(Brand.class, Brand.class, query, id);
+	}
 
 	public static Product findProduct(Integer idProduct) {
 		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);

@@ -17,7 +17,7 @@
 				<!-- Login part -->
 				<div class="col-md-5 text-center">
 					<h1 class="text-center">Log in</h1>
-					<form id="loginForm" method="post" action="/WebMyPham/LoginServlet">
+					<form id="loginForm" method="post" action="/WebMyPham/login">
 						<!--  Email -->
 						<div class="form-floating mb-3">
 							<input type="email" class="form-control" id="email" name="email"

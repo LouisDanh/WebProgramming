@@ -42,23 +42,35 @@ public class Account implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "CUS_ID")
 	private Customer customer;
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CUS_ID")
-	private List<Violate> violates;
-
 	public Account() {
-
+		createDate = LocalDateTime.now();
+		ban = false;
 	}
-
 	public Account(String email, String password, Customer customer) {
 		ban = false;
 		createDate = LocalDateTime.now();
 		this.email = email;
 		this.password = password;
 		this.customer = customer;
-		role=3;
+		role=5;
 	}
 	
+
+	public Boolean getBan() {
+		return ban;
+	}
+
+	public void setBan(Boolean ban) {
+		this.ban = ban;
+	}
+
+	public Integer getRole() {
+		return role;
+	}
+
+	public void setRole(Integer role) {
+		this.role = role;
+	}
 
 	/**
 	 * @return the email
