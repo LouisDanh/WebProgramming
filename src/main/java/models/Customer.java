@@ -61,6 +61,20 @@ public class Customer implements Serializable {
 		this.fullName = fullName;
 	}
 
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getPlaceReceive() {
 		return placeReceive;
 	}

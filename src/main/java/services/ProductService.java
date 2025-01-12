@@ -3,6 +3,10 @@ package services;
 import java.util.List;
 
 import dao.GenericDao;
+import models.CartItem;
+import models.OrderDetails;
+import models.Orders;
+import models.PaymentMethod;
 import models.Product;
 import models.ProductCategory;
 import models.Topic;
@@ -36,10 +40,11 @@ public class ProductService {
 	public static Voucher checkVoucherCode(String voucherCode) {
 		String condition = QueryUtil.createCondition("code", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
 		String query = QueryUtil.createQuery(Voucher.class, QueryUtil.ALL, condition);
-
-		List<Voucher> vouchers = GenericDao.excuteQueryGetList(Voucher.class, Voucher.class, query, voucherCode);
-
-		return (vouchers != null && !vouchers.isEmpty()) ? vouchers.get(0) : null;
+		Voucher voucher = GenericDao.excuteQueryGetSingle(Voucher.class, Voucher.class, query, voucherCode);
+		if (voucher != null) {
+			return voucher;
+		}
+		return null;
 	}
 
 	/**
@@ -52,4 +57,35 @@ public class ProductService {
 		Voucher voucher = GenericDao.excuteQueryGetSingle(Voucher.class, Voucher.class, query, voucherCode);
 		return voucher.getPercentage();
 	}
+
+	/**
+	 * Lấy Orders
+	 */
+	public static List<Orders> getOrders(Integer cusId) {
+		String condition = QueryUtil.createCondition("customer.id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Orders.class, QueryUtil.ALL, condition);
+
+		List<Orders> orders = GenericDao.excuteQueryGetList(Orders.class, Orders.class, query, cusId);
+		return orders;
+	}
+
+	/**
+	 * Lấy sản phẩm
+	 */
+	public static Product getProduct(Integer productIds) {
+		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Product.class, QueryUtil.ALL, condition);
+//		List<Product> products = GenericDao.excuteQueryGetList(Product.class, Product.class, query, productIds);
+		return GenericDao.excuteQueryGetSingle(Product.class, Product.class, query, productIds);
+	}
+
+	public static List<CartItem> getCartItem(Integer cusId) {
+		String condition = QueryUtil.createCondition("customer.id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(CartItem.class, QueryUtil.ALL, condition);
+		List<CartItem> cartItems = GenericDao.excuteQueryGetList(CartItem.class, CartItem.class, query, cusId);
+		return cartItems;
+	}
+
+	
+
 }

@@ -25,6 +25,34 @@ public class PaymentMethod implements Serializable {
 	@Nationalized
 	@Column(name = "NAME")
 	private String name;
+	/**
+	 * @return the discount
+	 */
+	public Double getDiscount() {
+		return discount;
+	}
+
+	/**
+	 * @param discount the discount to set
+	 */
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Column(name = "DISCOUNT", columnDefinition = "decimal(3,2)")
 	private Double discount;
 
@@ -40,8 +68,6 @@ public class PaymentMethod implements Serializable {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 
 }

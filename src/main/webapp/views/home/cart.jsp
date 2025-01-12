@@ -23,7 +23,7 @@
 
 	<!-- AJAX -->
 	<tiles:putListAttribute name="pageAjax">
-		<tiles:addAttribute value="payment" />
+		<tiles:addAttribute value="voucher" />
 	</tiles:putListAttribute>
 	<!-- BODY -->
 	<tiles:putAttribute name="body">
@@ -40,8 +40,9 @@
 							<div
 								class="cart-items d-flex flex-column align-items-center border p-2">
 								<c:if test="${not empty cartItems}">
-									<div class="cart-items" data-productId="1">
+									<div class="cart-items">
 										<c:forEach var="cartItem" items="${cartItems}">
+
 											<div class="cart-item border-bottom p-2">
 												<div class="cart-item-details d-flex gap-5 p-3">
 													<div class="product-image-wrapper">
@@ -77,8 +78,7 @@
 															<div class="ms-auto">
 																<!-- Hiển thị tổng giá -->
 																<h5 class="text-danger total-price"
-																	data-price="${cartItem.product.price}">
-																	${cartItem.product.price * cartItem.quantity}₫</h5>
+																	data-price="${cartItem.product.price}">${cartItem.product.price}₫</h5>
 															</div>
 														</div>
 													</div>
@@ -86,10 +86,6 @@
 											</div>
 										</c:forEach>
 									</div>
-								</c:if>
-								<!-- Nếu giỏ hàng trống -->
-								<c:if test="${empty cartItems}">
-									<p>Giỏ hàng của bạn hiện đang trống.</p>
 								</c:if>
 							</div>
 						</div>
@@ -132,12 +128,12 @@
 										</div>
 									</div>
 								</div>
-								<form action="/cart" method="POST">
-									<!-- Mã ưu đãi -->
-									<div class="card p-3 mb-3 shadow-sm rounded">
+								<!-- Mã ưu đãi -->
+								<div class="card p-3 mb-3 shadow-sm rounded">
+									<form action="/voucher" method="POST">
 										<div class="col-8">
 											<div class="form-floating">
-												<input type="text" id="voucher" class="form-control"
+												<input type="text" id="voucher" name="voucher" class="form-control"
 													value="" placeholder=" " /> <label for="voucher">NHẬP
 													MÃ ƯU ĐÃI</label>
 											</div>
@@ -147,8 +143,13 @@
 												class="btn btn-dark primary-color-hover"
 												id="checkVoucherbtn">Áp dụng</button>
 										</div>
-									</div>
-								</form>
+									</form>
+									<!-- Thẻ div để hiển thị kết quả hợp lệ hay không -->
+									<div id="voucherMessage" class="mt-3" style="display: none;"></div>
+								</div>
+								<button class="collapse-btn btn btn-dark w-100">
+									<i class="bi bi-caret-down-fill"></i> Tiến hành thanh toán
+								</button>
 							</div>
 						</div>
 					</div>

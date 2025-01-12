@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.account-details {
+	flex: 1;
+	max-width: 60%;
+}
+
+.profile-image-container {
+	margin-left: 20px;
+	text-align: center;
+}
+
+.profile-image {
+	width: 300px; /* Đặt chiều rộng ảnh là 300px */
+	height: 300px; /* Đặt chiều cao ảnh là 300px */
+	border-radius: 50%; /* Đảm bảo ảnh là hình tròn */
+	object-fit: cover;
+	/* Đảm bảo ảnh bao phủ toàn bộ vòng tròn mà không bị méo */
+	max-width: 100%; /* Ngăn ảnh bị tràn ra ngoài nếu ảnh quá lớn */
+	max-height: 100%; /* Đảm bảo ảnh vừa với kích thước container */
+}
+
+.image-upload {
+	margin-top: 20px;
+}
+
+.form-control-file {
+	margin-top: 10px;
+}

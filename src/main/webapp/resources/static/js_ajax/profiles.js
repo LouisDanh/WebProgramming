@@ -114,7 +114,7 @@ $("#change-pass-form").on("submit", function(event) {
             $("#change-pass-error").text("Error: " + xhr.responseText).show();
             setTimeout(function() {
                 $("#change-pass-error").fadeOut();
-            }, 200000);
+            }, 2000);
         }
     });
 });

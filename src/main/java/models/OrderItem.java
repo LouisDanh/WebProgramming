@@ -33,5 +33,71 @@ public class OrderItem implements Serializable {
 	@MapsId("detailId")
 	@JoinColumn(name = "DETAIL_ID",nullable = false)
 	private OrderDetails detail;
+	/**
+	 * @return the id
+	 */
+	public OrderItemId getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(OrderItemId id) {
+		this.id = id;
+	}
+	/**
+	 * @return the quantity
+	 */
+	public Integer getQuantity() {
+		return quantity;
+	}
+	/**
+	 * @param quantity the quantity to set
+	 */
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	/**
+	 * @return the rating
+	 */
+	public Integer getRating() {
+		return rating;
+	}
+	/**
+	 * @param rating the rating to set
+	 */
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+	/**
+	 * @return the product
+	 */
+	public Product getProduct() {
+		return product;
+	}
+	/**
+	 * @param product the product to set
+	 */
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	/**
+	 * @return the detail
+	 */
+	public OrderDetails getDetail() {
+		return detail;
+	}
+	/**
+	 * @param detail the detail to set
+	 */
+	public void setDetail(OrderDetails detail) {
+		this.detail = detail;
+	}
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }

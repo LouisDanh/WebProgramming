@@ -1,84 +1,113 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Account;
-import services.AccountServices;
-import utils.AccountUtil;
 
 import org.json.JSONObject;
+
+import models.Account;
+import models.CartItem;
+import models.OrderDetails;
+import models.OrderItem;
+import models.Orders;
+import services.AccountServices;
+import services.ProductService;
 
 @WebServlet("/profiles")
 public class ProfilesServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer accountId = 2; // Lấy từ session
+		Integer accountId = 2; // Hoặc lấy từ session
 		Account account = AccountServices.getAccount(accountId);
 
-		JSONObject responseJson = new JSONObject();
-
-		if (account != null) {
-			req.setAttribute("account", account);
-			req.getRequestDispatcher("views/profile/profile.jsp").forward(req, resp);
-		} else {
+		if (account == null) {
+			JSONObject responseJson = new JSONObject();
 			responseJson.put("status", "error");
 			responseJson.put("message", "Account not found");
 			resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			resp.setContentType("application/json");
 			resp.getWriter().write(responseJson.toString());
+			req.getRequestDispatcher("views/profile/profile.jsp");
 		}
+
+		Integer cusId = account.getCustomer().getId();
+		List<Orders> orders = ProductService.getOrders(cusId);
+		List<OrderItem> allOrderItems = new ArrayList<>();
+		for(Orders order: orders) {
+			OrderDetails orderDetails = order.getOrderDetails();
+			if(orderDetails!=null) {
+				allOrderItems.addAll(orderDetails.getOrderItems());
+			}
+		}
+
+		req.setAttribute("account", account);
+		req.setAttribute("orderItems", allOrderItems);
+
+		req.getRequestDispatcher("views/profile/profile.jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    Integer accountId = 2; // Lấy từ session
-	    Account account = AccountServices.getAccount(accountId);
-	    JSONObject responseJson = new JSONObject();
+		Integer accountId = 2; // Lấy từ session
+		Account account = AccountServices.getAccount(accountId);
+		JSONObject responseJson = new JSONObject();
 
-	    if (account == null) {
-	        responseJson.put("status", "error");
-	        responseJson.put("message", "Account not found");
-	        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-	    } else {
-	        String action = req.getParameter("action");
+		if (account == null) {
+			responseJson.put("status", "error");
+			responseJson.put("message", "Account not found");
+			resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		} else {
+			String action = req.getParameter("action");
 
-	        switch (action) {
-	            case "updateInfo":
-	                if (updateAccountInfo(req, account)) {
-	                    responseJson.put("status", "success");
-	                    responseJson.put("message", "Account info updated successfully!");
-	                } else {
-	                    responseJson.put("status", "error");
-	                    responseJson.put("message", "Failed to update account");
-	                }
-	                break;
+			switch (action) {
+			case "updateInfo":
+				if (updateAccountInfo(req, account)) {
+					responseJson.put("status", "success");
+					responseJson.put("message", "Account info updated successfully!");
+				} else {
+					responseJson.put("status", "error");
+					responseJson.put("message", "Failed to update account");
+				}
+				break;
 
-	            case "changePass":
-	                if (changePassword(req, account)) {
-	                    responseJson.put("status", "success");
-	                    responseJson.put("message", "Change password successfully!");
-	                } else {
-	                    responseJson.put("status", "error");
-	                    responseJson.put("message", "Failed to change password. Please check your current password.");
-	                }
-	                break;
+			case "changePass":
+				if (changePassword(req, account)) {
+					responseJson.put("status", "success");
+					responseJson.put("message", "Change password successfully!");
+				} else {
+					responseJson.put("status", "error");
+					responseJson.put("message", "Failed to change password. Please check your current password.");
+				}
+				break;
 
-	            default:
-	                responseJson.put("status", "error");
-	                responseJson.put("message", "Action not found");
-	                break;
-	        }
-	    }
+			case "orderHistory":
+				if (orderHistory(req, account)) {
 
-	    resp.setContentType("application/json");
-	    resp.getWriter().write(responseJson.toString());
+				}
+
+			default:
+				responseJson.put("status", "error");
+				responseJson.put("message", "Action not found");
+				break;
+			}
+		}
+
+		resp.setContentType("application/json");
+		resp.getWriter().write(responseJson.toString());
 	}
 
+	private boolean orderHistory(HttpServletRequest req, Account account) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	private boolean updateAccountInfo(HttpServletRequest req, Account account) {
 		String fullName = req.getParameter("fullName");
