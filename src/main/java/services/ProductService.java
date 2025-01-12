@@ -32,7 +32,6 @@ public class ProductService {
 		return GenericDao.excuteQueryGetList(ProductCategory.class, ProductCategory.class, query, parentId);
 	}
 
-<<<<<<< HEAD
 	public static ProductCategory getCategory(Integer id) {
 		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
 		String query = QueryUtil.createQuery(ProductCategory.class, QueryUtil.ALL, condition);
@@ -113,7 +112,8 @@ public class ProductService {
 		} else
 			query = QueryUtil.createQuery(Product.class, QueryUtil.ALL, conditions.toArray(new String[0]));
 		return GenericDao.excuteQueryGetList(Product.class, Product.class, query, data.toArray());
-=======
+	}
+
 	/**
 	 * Kiểm tra mã voucher từ cơ sở dữ liệu.
 	 * 
@@ -138,6 +138,5 @@ public class ProductService {
 		String query = QueryUtil.createQuery(Voucher.class, QueryUtil.ALL, condition);
 		Voucher voucher = GenericDao.excuteQueryGetSingle(Voucher.class, Voucher.class, query, voucherCode);
 		return voucher.getPercentage();
->>>>>>> cb0ce1613ba85d9a72d00c797b650eab2d45ef0c
 	}
 }
