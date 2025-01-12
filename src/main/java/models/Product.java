@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -25,7 +24,6 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Integer id;
-	@Nationalized
 	@Column(name = "NAME")
 	private String name;
 	@Column(name = "PRICE")
@@ -36,7 +34,6 @@ public class Product implements Serializable {
 	private Integer stock;
 	@Column(name = "CAPACITY", nullable = false)
 	private Integer capacity;
-	@Nationalized
 	@Column(name = "DESCRIPTION")
 	private String description;
 //	 Cấu hình liên kết

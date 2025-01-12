@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import utils.AccountUtil;
+
 @Entity
 @Table(name = "ACCOUNT")
 public class Account implements Serializable {
@@ -72,6 +74,20 @@ public class Account implements Serializable {
 		this.email = email;
 	}
 
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -86,6 +102,14 @@ public class Account implements Serializable {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public boolean checkPassword(Integer accountId, String currentPassword) {
+	    if (this.id.equals(accountId)) {
+	        return this.password.equals(currentPassword);
+//	        return AccountUtil.verifyPassword(currentPassword, this.password); 
+	    }
+	    return false;
 	}
 
 }

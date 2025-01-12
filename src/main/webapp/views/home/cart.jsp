@@ -21,6 +21,10 @@
 		<tiles:addAttribute value="total_cart" />
 	</tiles:putListAttribute>
 
+	<!-- AJAX -->
+	<tiles:putListAttribute name="pageAjax">
+		<tiles:addAttribute value="payment" />
+	</tiles:putListAttribute>
 	<!-- BODY -->
 	<tiles:putAttribute name="body">
 		<div class="container">
@@ -28,7 +32,6 @@
 				<div class="container mt-3">
 					<div class="row">
 						<!-- Cột bên trái: Danh sách sản phẩm trong giỏ hàng -->
-
 						<div class="col-8 d-flex flex-column align-items-center">
 							<div class="text-center">
 								<h2 id="cart-count" class="text-center">Giỏ hàng của bạn
@@ -36,82 +39,58 @@
 							</div>
 							<div
 								class="cart-items d-flex flex-column align-items-center border p-2">
-								<!-- sp1 -->
-								<div class="cart-item border-bottom p-2" data-price="4200000">
-									<div class="cart-item-details d-flex gap-5 p-3">
-										<div class="product-image-wrapper">
-											<img
-												src="${pageContext.request.contextPath}/resources/static/img/sp3.png"
-												class="product-image">
-										</div>
-										<div
-											class="product-info-wrapper d-flex flex-column justify-content-between h-100">
-											<div class="product-info d-flex justify-content-between mb-3">
-												<div>
-													<h6 class="mb-1">Synchronized Multi-Recovery Complex</h6>
-													<p class="text-muted mb-0">Kích thước: 75ml</p>
+								<c:if test="${not empty cartItems}">
+									<div class="cart-items" data-productId="1">
+										<c:forEach var="cartItem" items="${cartItems}">
+											<div class="cart-item border-bottom p-2">
+												<div class="cart-item-details d-flex gap-5 p-3">
+													<div class="product-image-wrapper">
+														<!-- Hiển thị ảnh sản phẩm -->
+														<img
+															src="${pageContext.request.contextPath}/resources/static/img/sp3.png"
+															alt="Product Image" class="product-image">
+													</div>
+													<div
+														class="product-info-wrapper d-flex flex-column justify-content-between h-100">
+														<div
+															class="product-info d-flex justify-content-between mb-3">
+															<div>
+																<h6 class="mb-1">${cartItem.product.name}</h6>
+																<p class="text-muted mb-0">Kích thước:
+																	${cartItem.product.capacity}ml</p>
+															</div>
+														</div>
+														<div
+															class="quantity-controls d-flex align-items-center gap-0">
+															<!-- Giảm số lượng -->
+															<div class="quantity-btn decrease">
+																<i class="bi bi-dash"></i>
+															</div>
+															<!-- Hiển thị số lượng -->
+															<div class="quantity-btn">
+																<span class="quantity-display">${cartItem.quantity}</span>
+															</div>
+															<!-- Tăng số lượng -->
+															<div class="quantity-btn increase">
+																<i class="bi bi-plus"></i>
+															</div>
+															<div class="ms-auto">
+																<!-- Hiển thị tổng giá -->
+																<h5 class="text-danger total-price"
+																	data-price="${cartItem.product.price}">
+																	${cartItem.product.price * cartItem.quantity}₫</h5>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
-											<div
-												class="quantity-controls d-flex align-items-center gap-0">
-												<!-- Giảm số lượng -->
-												<div class="quantity-btn">
-													<i class="bi bi-dash decrease"></i>
-												</div>
-												<!-- Hiển thị số lượng -->
-												<div class="quantity-btn">
-													<span class="quantity-display">1</span>
-												</div>
-												<!-- Tăng số lượng -->
-												<div class="quantity-btn">
-													<i class="bi bi-plus increase"></i>
-												</div>
-												<div class="ms-auto">
-													<h5 class="text-danger total-price" data-price="4200000"
-														id="price-1">4.200.000₫</h5>
-												</div>
-											</div>
-										</div>
+										</c:forEach>
 									</div>
-								</div>
-								<!-- sp2 -->
-								<div class="cart-item border-bottom p-2" data-price="4200000">
-									<div class="cart-item-details d-flex gap-5 p-3">
-										<div class="product-image-wrapper">
-											<img
-												src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
-												class="product-image">
-										</div>
-										<div
-											class="product-info-wrapper d-flex flex-column justify-content-between h-100">
-											<div class="product-info d-flex justify-content-between mb-3">
-												<div>
-													<h6 class="mb-1">Synchronized Multi-Recovery Complex</h6>
-													<p class="text-muted mb-0">Kích thước: 75ml</p>
-												</div>
-											</div>
-											<div
-												class="quantity-controls d-flex align-items-center gap-0">
-												<!-- Giảm số lượng -->
-												<div class="quantity-btn">
-													<i class="bi bi-dash decrease"></i>
-												</div>
-												<!-- Hiển thị số lượng -->
-												<div class="quantity-btn">
-													<span class="quantity-display">1</span>
-												</div>
-												<!-- Tăng số lượng -->
-												<div class="quantity-btn">
-													<i class="bi bi-plus increase"></i>
-												</div>
-												<div class="ms-auto">
-													<h5 class="text-danger total-price" data-price="3600000"
-														id="price-2">3.600.000₫</h5>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								</c:if>
+								<!-- Nếu giỏ hàng trống -->
+								<c:if test="${empty cartItems}">
+									<p>Giỏ hàng của bạn hiện đang trống.</p>
+								</c:if>
 							</div>
 						</div>
 						<!-- Cột bên phải: Thông tin thanh toán -->
@@ -125,9 +104,6 @@
 									<div class="collapse-content mt-3">
 										<!--         <h5>Chọn phương thức thanh toán</h5> -->
 										<div class="payment-methods">
-											<button class="payment-method btn btn-dark w-100 mb-2">Thẻ
-												tín dụng</button>
-											<button class="payment-method btn btn-dark w-100 mb-2">PayPal</button>
 											<button class="payment-method btn btn-dark w-100 mb-2">Chuyển
 												khoản ngân hàng</button>
 											<button class="payment-method btn btn-dark w-100 mb-2">Thanh
@@ -135,8 +111,6 @@
 										</div>
 									</div>
 								</div>
-
-
 								<!-- Tóm tắt đơn hàng -->
 								<div class="card shadow-sm mb-3">
 									<div class="card-body">
@@ -158,22 +132,23 @@
 										</div>
 									</div>
 								</div>
-								<!-- Mã ưu đãi -->
-								<div class="card p-3 mb-3 shadow-sm rounded">
-									<div class="row g-2 align-items-center">
+								<form action="/cart" method="POST">
+									<!-- Mã ưu đãi -->
+									<div class="card p-3 mb-3 shadow-sm rounded">
 										<div class="col-8">
 											<div class="form-floating">
 												<input type="text" id="voucher" class="form-control"
-													placeholder=" " /> <label for="voucher">NHẬP MÃ ƯU
-													ĐÃI</label>
+													value="" placeholder=" " /> <label for="voucher">NHẬP
+													MÃ ƯU ĐÃI</label>
 											</div>
 										</div>
 										<div class="col-4">
 											<button type="button"
-												class="btn btn-dark primary-color-hover">Áp dụng</button>
+												class="btn btn-dark primary-color-hover"
+												id="checkVoucherbtn">Áp dụng</button>
 										</div>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -182,5 +157,6 @@
 		</div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
+
 
 
