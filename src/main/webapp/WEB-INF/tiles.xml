@@ -13,5 +13,6 @@
 		<put-attribute name="body" value="" />
 		<put-list-attribute name="pageCss"  />
 		<put-list-attribute name="pageJs"  />
+		<put-list-attribute name="pageAjax"/>
 	</definition>
 </tiles-definitions>

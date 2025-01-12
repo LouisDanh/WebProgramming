@@ -7,7 +7,6 @@ import javax.persistence.NoResultException;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.Cache;
 import org.hibernate.query.Query;
 
 import utils.HibernateUtil;
@@ -27,9 +26,6 @@ public class GenericDao {
 		try (Session session = HibernateUtil.getSession()) {
 			transaction = session.beginTransaction();
 			Query<T> query = session.createQuery("FROM " + entityName.getName(), entityName);
-			if (entityName.isAnnotationPresent(Cache.class)) {
-				query.setCacheable(true);
-			}
 			result = query.list();
 			transaction.commit();
 		} catch (Exception e) {
@@ -115,7 +111,6 @@ public class GenericDao {
 	 * @return Danh sách các đối tượng thuộc kiểu T thỏa mãn truy vấn. Nếu không có
 	 *         kết quả, trả về null.
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T, E> List<T> excuteQueryGetList(Class<E> entityClass, Class<T> returnData, String queryString,
 			Object... data) {
 		Transaction transaction = null;
@@ -123,9 +118,6 @@ public class GenericDao {
 			Session session = HibernateUtil.getSession();
 			transaction = session.beginTransaction();
 			Query<T> query = session.createQuery(queryString, returnData);
-			if (entityClass.isAnnotationPresent(Cache.class)) {
-				query.setCacheable(true);
-			}
 			for (int i = 0; i < data.length; i++) {
 				if (data[i] != null)
 					query.setParameter(i, data[i]);
@@ -139,7 +131,6 @@ public class GenericDao {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 	/**
@@ -158,9 +149,6 @@ public class GenericDao {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		Query<T> query = session.createQuery(queryString, returnData);
-		if (entityClass.isAnnotationPresent(Cache.class)) {
-			query.setCacheable(true);
-		}
 		for (int i = 0; i < data.length; i++) {
 			if (data[i] != null)
 				query.setParameter(i, data[i]);

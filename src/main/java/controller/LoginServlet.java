@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().removeAttribute("id");
-		resp.sendRedirect("views/login/login.jsp");
+		resp.sendRedirect("/views/login/login.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		if ("create".equalsIgnoreCase(action))
 			if (createAccount(request, response)) {
-				response.sendRedirect("views/login/login.jsp");
+				response.sendRedirect("/views/login/login.jsp");
 			} else {
 				request.getRequestDispatcher("views/login/register.jsp").forward(request, response);
 			}

@@ -12,14 +12,12 @@
 		class="container d-flex justify-content-between align-items-center">
 		<!-- Logo -->
 		<div class="logo link ml-2"
-			data-href="${pageContext.request.contextPath}/home">
-			HISHAKU</div>
+			data-href="${pageContext.request.contextPath}/home">HISHAKU</div>
 		<!-- Menu Navigation -->
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<div class="navbar-nav">
 				<c:forEach var="category" items="${categories}">
-					<a class="nav-link"
-						onclick="toggleSubCategory('${category.id}')">
+					<a class="nav-link" onclick="toggleSubCategory('${category.id}')">
 						<strong>${category.name}</strong>
 					</a>
 				</c:forEach>
@@ -60,23 +58,26 @@
 <div class="danhMuc cursor-pointer">
 	<c:forEach var="category" items="${categories}">
 		<div id="${category.id}" class="sub-category">
-			<div class="d-flex row">
-				<div class="col-1"></div>
-				<div class="d-flex flex-column col-2">
-					<c:forEach var="child" items="${category.children}">
-						<div class="link"
-							data-href="views/home/listProductCategory?idType=${child.id}">
+			<div class="d-flex">
+				<c:forEach var="child" items="${category.children}">
+					<div class="d-flex flex-column ms-5">
+						<div>
 							<h5>${child.name}</h5>
 						</div>
 						<br>
 						<c:forEach var="subChild" items="${child.children}">
 							<div class="link"
-								data-href="views/home/listProductCategory?idType=${subChild.id}">
+								data-href="${pageContext.request.contextPath}/home/product/category?id=${subChild.id}&parentId=${child.id}">
 								<span>${subChild.name}</span>
 							</div>
+							<br>
 						</c:forEach>
-					</c:forEach>
-				</div>
+						<div class="link"
+							data-href="${pageContext.request.contextPath}/home/product/category?parentId=${child.id}">
+							<span class="fw-bold">Xem tất cả sản phẩm ${child.name}</span>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</c:forEach>
