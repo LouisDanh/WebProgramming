@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <tiles:insertDefinition name="baseLayout">
-	<tiles:insertAttribute name="titlePage" value="Product Category" />
+	<tiles:putAttribute name="titlePage" value="Product Category" />
 	<tiles:putListAttribute name="pageCss">
 		<tiles:addAttribute value="list_product_category" />
 	</tiles:putListAttribute>
@@ -12,19 +12,18 @@
 		<tiles:addAttribute value="collapse" />
 	</tiles:putListAttribute>
 	<tiles:putAttribute name="body">
-		<c:set var="category"
-			value="${category.parent==null?currentType:currentType.parent}" />
 		<div class="container-fluid">
 			<div class="p-5 w-100 h-50"></div>
-			<div class="container">
-				<h2 class="title-category">${currentType.name}</h2>
-				<p class="fs-15rem fw-light">${currentType.description}</p>
+			<div class="container text-center">
+				<h2 class="title-category">${filter.category.name}</h2>
+				<p class="fs-15rem fw-light">${filter.category.description}</p>
 			</div>
 			<div class="py-5 w-75 m-auto h-50">
 				<div
 					class="d-flex justify-content-between align-items-center shadow fs-4 fw-bold collapse-btn">
 					<p class="p-4 m-0">
-						<span>(${currentType.products.size()})</span> Kết quả
+						<span class="quantiy-product" data-target="main">(${filter.totalQuantity})</span>
+						Kết quả
 					</p>
 					<div id="filter-product"
 						class="px-5 py-4 bg-dark text-white cursor-pointer ">
@@ -32,32 +31,34 @@
 							class="fa-solid fa-filter"></i>
 					</div>
 				</div>
+
 				<div class="collapse-content bg-dark text-white p-5 shadow">
 					<div>
 						<div class="p-4">
 							<h3 class="mb-4">Loai san pham</h3>
 							<div class="d-flex flex-wrap gap-4 cursor-pointer">
-								<c:forEach var="child" items="${typeParent.children}">
-									<div class="filter-item">
-										<p class="p-3  m-0">
-											${child.name} <span>${child.products.size()}</span>
-										</p>
+								<c:forEach var="child" items="${filter.childrenCategory}">
+									<div
+										class="filter-item filter-category ${child.id==filter.category.id?'filter-item__active':''}"
+										data-id="${child.id}" data-target="category">
+										<p class="p-3  m-0">${child.name}</p>
 									</div>
 								</c:forEach>
 							</div>
 						</div>
-						<c:forEach var="child" items="${typeParent.purposes.entrySet()}">
-							<c:set var="type" value="${child.getKey()}" />
-							<c:set var="mapPurposeProduct" value="${child.getValue()}" />
+						<c:forEach var="entry" items="${mappingAttributes.entrySet()}">
+							<c:set var="key" value="${entry.key}" />
+							<c:set var="mapValue" value="${entry.value}" />
 							<div class="p-4">
-								<h3 class="mb-4">${type.name}</h3>
+								<h3 class="mb-4">${key.name}</h3>
 								<div class="d-flex flex-wrap gap-4 cursor-pointer">
-									<c:forEach var="purpose" items="${mapPurposeProduct}">
-										<c:set var="key" value="${purpose.getKey()}" />
-										<c:set var="value" value="${purpose.getValue()}" />
-										<div class="filter-item">
-											<p class="p-3  m-0">
-												${key.name} <span>${value.size()}</span>
+									<c:forEach var="entryAttribute" items="${mapValue.entrySet()}">
+										<c:set var="attribute" value="${entryAttribute.key}" />
+										<div
+											class="filter-item ${filter.isAttributeSelected(attribute.id)?'filter-item__active':''}"
+											data-id="${attribute.id}" data-target="attributes">
+											<p class="p-3  m-0">${attribute.value}
+												<span>(${filter.getQuantity(key.id,attribute.id)})</span>
 											</p>
 										</div>
 									</c:forEach>
@@ -65,7 +66,6 @@
 							</div>
 						</c:forEach>
 					</div>
-
 					<div class="d-flex align-items-center p-4">
 						<p class="fs-4 m-0">Dong san pham</p>
 						<div class="dropdown w-50 ms-3 cursor-default">
@@ -73,7 +73,7 @@
 								class="d-flex justify-content-between align-items-center border-bottom py-2 px-3 dropdown-toggle"
 								data-bs-toggle="dropdown" aria-expanded="false">
 								<div class="fw-bold fs-5 m-0 text-wrap d-flex">
-									<span class="me-2">Brand</span> <span id="dropdown-text-brand"></span>
+									<span class="me-2">Brand</span> <span id="dropdown-text-brand">${filter.brandSelected!=null?filter.brandSelected.name:''}</span>
 								</div>
 							</div>
 							<div
@@ -81,33 +81,36 @@
 								<div
 									class="dropdown-item disabled text-muted dropdown-brand-item">
 									Brand</div>
-								<c:forEach var="entry" items="${typeParent.brands.entrySet()}">
-									<c:set var="brand" value="${entry.getKey()}" />
-									<c:set var="listProduct" value="${entry.getValue()}" />
-									<div class="dropdown-item dropdown-brand-item">
-										${brand.name} <span>${listProduct.size()}</span>
-									</div>
+								<c:forEach var="brand" items="${filter.brands}">
+									<div class="dropdown-item dropdown-brand-item"
+										data-id="${brand.id}">${brand.name}</div>
 								</c:forEach>
 							</div>
 						</div>
-
 					</div>
 					<!-- button filter -->
-					<div class="p-4 d-flex align-items-center justify-content-end">
-						<button id="filter-remove-button">
-							<span class="me-2">Xoa toan bo</span> <i
-								class="fa-solid fa-xmark"></i>
-						</button>
-						<button id="filter-submit-button" class="collapse-btn">Xong</button>
-					</div>
+					<form action="category" method="post">
+						<div class="p-4 d-flex align-items-center justify-content-end">
+							<button id="filter-remove-button" class="link" type="button"
+								data-href="${pageContext.request.contextPath}/home/product/category">
+								<span class="me-2">Xoa toan bo</span> <i
+									class="fa-solid fa-xmark"></i>
+							</button>
+							<button id="filter-submit-button" type="submit"
+								class="collapse-btn">Xong</button>
+						</div>
+						<input type="hidden" name="brandId"> <input type="hidden"
+							name="categoryId" value="${filter.category.id}"> <input
+							type="hidden" name="attributesId" value="${filter.attributesSelected}">
+					</form>
 				</div>
 			</div>
 			<div class="container">
 				<div class="row p-4">
-					<c:if test="${products not empty }">
-						<c:forEach var="product" items="${products}">
-							<div class="col-3 hover-dark btn-link mb-4"
-								data-href="${pageContext.request.contextPath}/views/home/descript.jsp?id=${product.id}">
+					<c:if test="${ not empty  filter.products}">
+						<c:forEach var="product" items="${filter.products}">
+							<div class="col-3 hover-dark link mb-4"
+								data-href="${pageContext.request.contextPath}/home/product/descript?id=${product.id}">
 								<div class="card border-0 text-center">
 									<img
 										src="https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/makeup/lip-color/lipstick/les-nus-intense-lipstick-intensely-pigmented/nu-impertinent/les-nus-impertinent-173-071249421758-primary.png?rev=b599fdaa54c046b58c6f5f54041e78c5&w=200&hash=37DCDDDD3E18F314410CE9365B2CECAF1A136492"

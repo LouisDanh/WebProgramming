@@ -111,12 +111,6 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.2.4.Final</version>
 		</dependency>
-		<!-- Hibernate Level 2 Cache -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-ehcache</artifactId>
-			<version>5.4.30.Final</version>
-		</dependency>
 		<!-- Connection Pooling with HikariCP -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
@@ -141,10 +135,7 @@
 			<artifactId>jbcrypt</artifactId>
 			<version>0.4</version>
 		</dependency>
-		<!-- Cập nhật version của slf4j-api -->
-
 		<!--JSON-->
-
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>

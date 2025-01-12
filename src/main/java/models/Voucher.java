@@ -35,8 +35,6 @@ public class Voucher implements Serializable{
 	private Integer quantity;
 	@Column(name= "CODE",nullable = false)
 	private String code;
-	@OneToMany(mappedBy = "voucher")
-	private List<VoucherState> state;
 	/**
 	 * @return the maxDiscount
 	 */
@@ -121,17 +119,4 @@ public class Voucher implements Serializable{
 	public void setExpiredDate(LocalDateTime expiredDate) {
 		this.expiredDate = expiredDate;
 	}
-	/**
-	 * @return the state
-	 */
-	public List<VoucherState> getState() {
-		return state;
-	}
-	/**
-	 * @param state the state to set
-	 */
-	public void setState(List<VoucherState> state) {
-		this.state = state;
-	}
-
 }

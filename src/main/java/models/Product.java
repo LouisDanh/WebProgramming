@@ -10,10 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "PRODUCT")
@@ -45,6 +45,25 @@ public class Product implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "BRAND_ID")
 	private Brand brand;
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private List<ProductAttributes> attributes;
+
+	public boolean sameAttribute(Integer keyId, Integer valueId) {
+		for (ProductAttributes productAttributes : attributes) {
+			if (productAttributes.getAttributeKey().getId() == keyId
+					&& productAttributes.getAttValue().getId() == valueId)
+				return true;
+		}
+		return false;
+	}
+
+	public List<ProductAttributes> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(List<ProductAttributes> attributes) {
+		this.attributes = attributes;
+	}
 
 	public Brand getBrand() {
 		return brand;
@@ -54,7 +73,7 @@ public class Product implements Serializable {
 		this.brand = brand;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

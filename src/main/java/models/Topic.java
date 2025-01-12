@@ -9,7 +9,6 @@ import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,12 +17,8 @@ import javax.persistence.PostLoad;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 @Entity
 @Table(name = "TOPIC")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Topic implements Serializable {
 	private static final long serialVersionUID = -3425253960930818716L;
 	@Id
@@ -39,10 +34,8 @@ public class Topic implements Serializable {
 	@Column(name = "END_DATE")
 	private LocalDateTime endDate;
 	@OneToMany(mappedBy = "topic")
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private List<TopicProduct> products;
 	@OneToMany(mappedBy = "topic")
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private List<TopicCategory> categories;
 	@Transient
 	private Map<TopicCategory, List<TopicProduct>> mappingProduct;

@@ -9,13 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "PAYMENT_METHOD")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class PaymentMethod implements Serializable {
 	private static final long serialVersionUID = 110252482276396261L;
 	@Id
