@@ -65,28 +65,7 @@
 									<h4 class="text-center fw-bold prices">${product.price}</h4>
 									<div
 										class="d-flex justify-content-center align-items-center gap-3 mb-3">
-										<p class="mb-0 fw-bold">SLG</p>
-										<!-- Container for quantity controls (minus, quantity, plus) -->
-										<div class="d-flex align-items-center gap-0">
-											<!-- Ô vuông chứa dấu trừ (giảm số lượng) -->
-											<div class="border p-0" style="width: 40px; height: 40px;">
-												<i id="decrease"
-													class="bi bi-dash w-100 h-100 d-flex justify-content-center align-items-center"></i>
-											</div>
-											<!-- Ô vuông chứa số lượng -->
-											<div class="border p-0" style="width: 40px; height: 40px;">
-												<span
-													class="text-center w-100 h-100 d-flex justify-content-center align-items-center"
-													id="quantity">1</span>
-											</div>
-											<!-- Ô vuông chứa dấu cộng (tăng số lượng) -->
-											<div class="border p-0" style="width: 40px; height: 40px;">
-												<i id="increase"
-													class="bi bi-plus w-100 h-100 d-flex justify-content-center align-items-center"></i>
-											</div>
-										</div>
-										<!-- Nút thêm vào giỏ hàng với khoảng cách -->
-										<button class="btn btn-dark ms-3">Thêm vào giỏ hàng</button>
+										<button class="btn btn-dark ms-3 link" data-href="${pageContext.request.contextPath}/customer/cart?id=${product.id}">Thêm vào giỏ hàng</button>
 									</div>
 								</div>
 								<!-- Thông tin giao hàng miễn phí -->

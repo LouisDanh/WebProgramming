@@ -20,12 +20,12 @@ import models.Orders;
 import services.AccountServices;
 import services.ProductService;
 
-@WebServlet("/profiles")
+@WebServlet("/customer/profiles")
 public class ProfilesServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer accountId = 2; // Hoặc lấy từ session
+		Integer accountId = Integer.parseInt(req.getSession().getAttribute("id").toString());
 		Account account = AccountServices.getAccount(accountId);
 
 		if (account == null) {
@@ -41,9 +41,9 @@ public class ProfilesServlet extends HttpServlet {
 		Integer cusId = account.getCustomer().getId();
 		List<Orders> orders = ProductService.getOrders(cusId);
 		List<OrderItem> allOrderItems = new ArrayList<>();
-		for(Orders order: orders) {
+		for (Orders order : orders) {
 			OrderDetails orderDetails = order.getOrderDetails();
-			if(orderDetails!=null) {
+			if (orderDetails != null) {
 				allOrderItems.addAll(orderDetails.getOrderItems());
 			}
 		}
@@ -56,7 +56,7 @@ public class ProfilesServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer accountId = 2; // Lấy từ session
+		Integer accountId = Integer.parseInt(req.getSession().getAttribute("id").toString());
 		Account account = AccountServices.getAccount(accountId);
 		JSONObject responseJson = new JSONObject();
 

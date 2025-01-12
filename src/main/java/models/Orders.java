@@ -23,7 +23,7 @@ public class Orders implements Serializable {
 
     // Ánh xạ với bảng CUSTOMER
     @ManyToOne
-    @JoinColumn(name = "CUS_ID", nullable = false, insertable = false, updatable = false) // Sử dụng insertable = false và updatable = false
+    @JoinColumn(name = "CUS_ID") // Sử dụng insertable = false và updatable = false
     private Customer customer;
 
     // Getter và Setter

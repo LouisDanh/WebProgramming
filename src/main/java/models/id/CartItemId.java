@@ -25,6 +25,18 @@ public class CartItemId implements Serializable{
 		CartItemId other = (CartItemId) obj;
 		return cusId == other.cusId && productId == other.productId;
 	}
+	public Integer getCusId() {
+		return cusId;
+	}
+	public void setCusId(Integer cusId) {
+		this.cusId = cusId;
+	}
+	public Integer getProductId() {
+		return productId;
+	}
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
 	
 
 }

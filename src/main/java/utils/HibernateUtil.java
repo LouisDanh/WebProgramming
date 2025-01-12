@@ -41,7 +41,6 @@ public class HibernateUtil {
 		Transaction transaction = session.getTransaction();
 		return transaction.isActive() ? transaction : session.beginTransaction();
 	}
-
 	public static void closeFactory() {
 		factory.close();
 	}

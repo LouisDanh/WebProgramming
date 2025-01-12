@@ -47,11 +47,10 @@ public class GenericDao {
 			return false;
 		}
 		Transaction transaction = null;
-		try (Session session = commitOnComplete ? HibernateUtil.getSession() : HibernateUtil.getCurrentSession()) {
-			transaction = HibernateUtil.getCurrentTransaction();
+		try (Session session = HibernateUtil.getSession()) {
+			transaction = session.beginTransaction();
 			session.save(data);
-			if (commitOnComplete)
-				transaction.commit();
+			transaction.commit();
 			return true;
 		} catch (Exception e) {
 			System.err.println("Lỗi: Không thể cập nhật dữ liệu cho class " + data.getClass().getName());
@@ -76,11 +75,10 @@ public class GenericDao {
 			return false;
 		}
 		Transaction transaction = null;
-		try (Session session = commitOnComplete ? HibernateUtil.getSession() : HibernateUtil.getCurrentSession()) {
-			transaction = HibernateUtil.getCurrentTransaction();
+		try (Session session = HibernateUtil.getSession()) {
+			transaction = session.beginTransaction();
 			session.save(data);
-			if (commitOnComplete)
-				transaction.commit();
+			transaction.commit();
 			return true;
 		} catch (Exception e) {
 			System.err.println("Lỗi: Không thể thêm dữ liệu cho class " + data.getClass().getName());

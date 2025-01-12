@@ -31,10 +31,9 @@ import services.ProductService;
 public class SolvingPayServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer accountId = 2;
+		Integer accountId =Integer.parseInt(req.getSession().getAttribute("id").toString());
 		Account account = AccountServices.getAccount(accountId);
 		Integer cusId = account.getCustomer().getId();
-		System.out.println(cusId);
 		
 		List<CartItem> cartItems = ProductService.getCartItem(cusId);
 		
@@ -64,7 +63,6 @@ public class SolvingPayServlet extends HttpServlet {
 		// Tao orders
 		Orders order = new Orders();
 		order.setCustomer(account.getCustomer());
-		System.out.println(account.getCustomer());
 		order.setOrderDetails(orderDetails);
 		order.setTotalAmount(orderDetails.calculateTotalAmount());
 		PayServices.saveOrders(order);
