@@ -26,15 +26,13 @@
 	border: 1px solid white;
 }
 
-.filter-item:hover,
-#filter-submit-button:hover {
+.filter-item:hover, #filter-submit-button:hover {
 	color: black;
 	background-color: #F2CD95;
 	border-color: #F2CD95;
 }
 
-#filter-remove-button,
-#filter-submit-button {
+#filter-remove-button, #filter-submit-button {
 	padding: 0.5em 3em;
 	border: none;
 	font-weight: bold;
