@@ -1,35 +1,6 @@
 $("#update-info-form").on("submit", function(event) {
     event.preventDefault();
 
-    /*var fullName = $("#full-name").val();
-    var email = $("#email").val();
-    var phone = $("#phone").val();
-    var address = $("#address").val();
-
-    var errorMessages = [];
-
-    if (!fullName) {
-        errorMessages.push("Full Name is required.");
-    }
-    if (!email) {
-        errorMessages.push("Email is required.");
-    }
-    if (!phone) {
-        errorMessages.push("Phone Number is required.");
-    }
-    if (!address) {
-        errorMessages.push("Address is required.");
-    }
-
-    if (errorMessages.length > 0) {
-        $("#update-info-error").html(errorMessages.join("<br>")).show();
-        setTimeout(function() {
-            $("#update-info-error").fadeOut();
-        }, 2000);
-        return;
-    }*/
-
-    var formData = $(this).serialize();
     formData += "&action=updateInfo";
 
     $.ajax({

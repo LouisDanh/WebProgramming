@@ -25,7 +25,7 @@ public class Account implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Integer id;
 
 	@Column(name = "EMAIL", nullable = false)
@@ -43,19 +43,44 @@ public class Account implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CUS_ID")
 	private Customer customer;
+	@Column(name = "RESET_TOKEN")
+	private String resetToken;
+	@Column(name = "RESET_TOKEN_EXPIRATION_TIME")
+	private LocalDateTime resetTokenExpirationTime;
+	/**
+	 * @return the resetTokenExpirationTime
+	 */
+	public LocalDateTime getResetTokenExpirationTime() {
+		return resetTokenExpirationTime;
+	}
+
+	/**
+	 * @param resetTokenExpirationTime the resetTokenExpirationTime to set
+	 */
+	public void setResetTokenExpirationTime(LocalDateTime resetTokenExpirationTime) {
+		this.resetTokenExpirationTime = resetTokenExpirationTime;
+	}
+
+	/**
+	 * @return the resetToken
+	 */
+	public String getResetToken() {
+		return resetToken;
+	}
+
 	public Account() {
 		createDate = LocalDateTime.now();
 		ban = false;
 	}
+
 	public Account(String email, String password, Customer customer) {
 		ban = false;
 		createDate = LocalDateTime.now();
 		this.email = email;
 		this.password = password;
 		this.customer = customer;
-		role=5;
+		role = 5;
 	}
-	
 
 	public Boolean getBan() {
 		return ban;
@@ -118,11 +143,20 @@ public class Account implements Serializable {
 	}
 
 	public boolean checkPassword(Integer accountId, String currentPassword) {
-	    if (this.id.equals(accountId)) {
+		if (this.id.equals(accountId)) {
 //	        return this.password.equals(currentPassword);
-	        return AccountUtil.verifyPassword(currentPassword, this.password); 
-	    }
-	    return false;
+			return AccountUtil.verifyPassword(currentPassword, this.password);
+		}
+		return false;
 	}
+
+	/**
+	 * @param resetToken the resetToken to set
+	 */
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
+	
 
 }

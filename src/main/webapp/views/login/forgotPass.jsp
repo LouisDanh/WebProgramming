@@ -14,9 +14,9 @@
 					<p class="card-text text-center mb-4">Enter the email address
 						associated with your account and we will send you a link to reset
 						your password.</p>
-					<form action="/WebMyPham/LoginServlet" method="post">
+					<form action="/WebMyPham/ForgotPasswordServlet" method="post">
 						<div class="mb-3">
-							<label for="email" class="form-label">Email</label> <input
+							<label for="email" class="form-label">Email</label> <input name="email" 
 								type="email" class="form-control" id="email"
 								placeholder="Enter your email" required>
 						</div>
