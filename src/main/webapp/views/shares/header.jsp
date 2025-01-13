@@ -23,6 +23,9 @@
 				</c:forEach>
 			</div>
 		</nav>
+		<a href="?lang=vi">Tiếng Việt</a>
+<a href="?lang=en">English</a>
+		
 		<!-- Tools Section -->
 		<div class="d-flex justify-content-between align-items-center">
 			<div id="headerContainer">
