@@ -20,6 +20,8 @@ import javax.persistence.PostLoad;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "TOPIC")
 public class Topic implements Serializable {
@@ -29,8 +31,10 @@ public class Topic implements Serializable {
 	@Column(name = "ID")
 	private Integer id;
 	@Column(name = "TITLE")
+	@Nationalized
 	private String title;
 	@Column(name = "DESCRIPTION")
+	@Nationalized
 	private String description;
 	@Column(name = "START_DATE")
 	private LocalDateTime startDate;

@@ -23,7 +23,7 @@ public class CartServlet extends HttpServlet {
 		Integer accountId = Integer.parseInt(req.getSession().getAttribute("id").toString());
 		Account account = AccountServices.getAccount(accountId);
 		Integer cusId = account.getCustomer().getId();
-		List<CartItem> cartItems = ProductService.getCartItem(cusId);
+		List<CartItem> cartItems = PayServices.getCartItem(cusId);
 		try {
 			Integer idProduct = Integer.parseInt(req.getParameter("id"));
 			boolean contain = false;
@@ -47,6 +47,7 @@ public class CartServlet extends HttpServlet {
 				cartItem.setQuantity(1);
 				cartItem.setCustomer(account.getCustomer());
 				PayServices.addCartItem(cartItem);
+				cartItems.add(cartItem);
 			}
 		} catch (Exception e) {
 		}

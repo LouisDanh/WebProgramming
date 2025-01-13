@@ -67,11 +67,15 @@ public class ProductAdminServlet extends HttpServlet {
 		List<ProductAttributes> attributes = id == -1 ? new LinkedList<ProductAttributes>() : product.getAttributes();
 		for (String str : attributesStr) {
 			StringTokenizer tokens = new StringTokenizer(str, ",");
-			Integer key = Integer.parseInt(tokens.nextToken());
-			Integer value = Integer.parseInt(tokens.nextToken());
-			if (!product.sameAttribute(key, value))
-				attributes.add(new ProductAttributes(AdminService.getAttributeKey(key),
-						AdminService.getAttributeValue(value)));
+			try {
+				Integer key = Integer.parseInt(tokens.nextToken());
+				Integer value = Integer.parseInt(tokens.nextToken());
+				if (!product.sameAttribute(key, value))
+					attributes.add(new ProductAttributes(AdminService.getAttributeKey(key),
+							AdminService.getAttributeValue(value)));
+			} catch (Exception e) {
+			}
+			
 		}
 		product.setName(name);
 		product.setPrice(price);

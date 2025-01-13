@@ -13,9 +13,12 @@ import models.Account;
 import models.AttributeKey;
 import models.AttributeValue;
 import models.Brand;
+import models.OrderItem;
+import models.Orders;
 import models.Product;
 import models.ProductCategory;
 import models.Topic;
+import models.Voucher;
 import services.AdminService;
 
 @WebServlet("/admin")
@@ -30,12 +33,19 @@ public class AdminServlet extends HttpServlet {
 		List<AttributeKey> attributeKeys = AdminService.getAllAttributeKeys();
 		List<Topic> topics = AdminService.getAllTopics();
 		req.setAttribute("topics", topics);
+		List<Voucher> vouchers = AdminService.getAllVouchers();
+		List<Orders> orders = AdminService.getAllOrders();
+		List<OrderItem> orderItems = AdminService.getAllOrderItem();
 		req.setAttribute("brands", brands);
 		req.setAttribute("categories", categories);
 		req.setAttribute("attributeKeys", attributeKeys);
 		req.setAttribute("attributeValues", attributeValues);
 		req.setAttribute("accounts", accounts);
 		req.setAttribute("products", products);
+		req.setAttribute("vouchers", vouchers);
+		req.setAttribute("orders", orders);
+		req.setAttribute("orderItems", orderItems);
+
 		req.getRequestDispatcher("/views/admin/index.jsp").forward(req, resp);
 	}
 }

@@ -7,7 +7,7 @@
 
 <tiles:insertDefinition name="baseLayout">
 	<!-- TITLE -->
-	<tiles:putAttribute name="titlePage" value="profilePage" />
+	<tiles:putAttribute name="titlePage" value="pFrofilePage" />
 
 	<!-- CSS -->
 	<tiles:putListAttribute name="pageCss">
@@ -19,7 +19,6 @@
 	<!--SCRIPTS-->
 	<tiles:putListAttribute name="pageJs">
 		<tiles:addAttribute value="profiles" />
-		<tiles:addAttribute value="user_infor_validate" />
 		<tiles:addAttribute value="review" />
 		<tiles:addAttribute value="changeImageProfiles" />
 	</tiles:putListAttribute>
@@ -104,26 +103,6 @@
 													</div>
 												</div>
 											</div>
-
-											<!-- Profile Image (Right Side) -->
-											<div class="profile-image-container">
-												<img id="profileImagePreview"
-													src="https://imgs.search.brave.com/bhzRkkqIZ7tN1zNUGk1c85QU2jbz5MTrAdpfEzFrrG0/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nbGFtb3VyLmNv/bS9waG90b3MvNWM4/MmRkOWNjYzg1YmYw/MTRhZTQxMTBkL21h/c3Rlci93XzE2MDAs/Y19saW1pdC9QVU1B/eE1heWJlbGxpbmUl/MjBDb2xsZWN0aW9u/X0hlcm8uanBn"
-													alt="Profile Image" class="profile-image" />
-
-												<!-- Image Upload Section -->
-												<div class="image-upload mt-4">
-													<form action="/uploadProfileImage" method="post"
-														enctype="multipart/form-data">
-														<div class="form-group">
-															<input type="file" id="profileImage" name="profileImage"
-																accept="image/*" class="form-control-file"
-																onchange="previewImage(event)" />
-														</div>
-														<button type="submit" class="btn btn-primary mt-2">Upload</button>
-													</form>
-												</div>
-											</div>
 										</div>
 									</c:if>
 								</div>
@@ -173,74 +152,71 @@
 						</div>
 						<!-- MY DETAILS -->
 						<div id="my-details" class="detail-form d-none">
-							<div class="row">
-								<div class="col-6">
-									<h3 class="font-weight-bold h3-color text-center">UPDATE
-										MY DETAILS</h3>
+							<div class="col-6">
+								<h3 class="font-weight-bold h3-color text-center">UPDATE MY
+									DETAILS</h3>
 
-									<!-- Full Name Input -->
-									<c:if test="${not empty account}">
-										<form id="update-info-form">
-											<div class="form-group mt-5">
-												<label for="full-name">Full Name:</label> <input type="text"
-													id="full-name" name="fullName" class="form-control"
-													placeholder="Enter your full name"
-													value="${account.customer.fullName}" required>
-											</div>
-											<!-- Email Input -->
-											<div class="form-group mt-3">
-												<label for="email">Email:</label> <input type="email"
-													id="email" name="email" class="form-control"
-													placeholder="Enter your email" value="${account.email}"
-													required>
-											</div>
-											<!-- Phone Input -->
-											<div class="form-group mt-3">
-												<label for="phone">Phone Number:</label> <input type="tel"
-													id="phone" name="phone" class="form-control"
-													placeholder="Enter your phone number"
-													value="${account.customer.phone}" required>
-											</div>
-											<!-- Address Input -->
-											<div class="form-group mt-3">
-												<label for="address">Address:</label> <input type="text"
-													id="address" name="address" class="form-control"
-													placeholder="Enter your address"
-													value="${account.customer.placeReceive}" required>
-											</div>
-											<!-- Save Change Button -->
-											<div class="text-center">
-												<button type="submit" class="btn btn-dark w-100 mt-3">Save</button>
-											</div>
-											<!-- NOTIFICATION -->
-											<div id="update-info-success"
-												class="alert alert-success mt-3" style="display: none;">Account
-												info updated successfully!</div>
-											<!-- ERROR -->
-											<div id="update-info-error" class="alert alert-danger mt-3"
-												style="display: none;">Error occurred while updating
-												account info.</div>
-										</form>
-									</c:if>
-									<c:if test="${empty account}">
-										<p>No account data found!</p>
-									</c:if>
+								<!-- Full Name Input -->
+								<c:if test="${not empty account}">
+									<form id="update-info-form">
+										<div class="form-group mt-5">
+											<label for="full-name">Full Name:</label> <input type="text"
+												id="full-name" name="fullName" class="form-control"
+												placeholder="Enter your full name"
+												value="${account.customer.fullName}" required>
+										</div>
+										<!-- Email Input -->
+										<div class="form-group mt-3">
+											<label for="email">Email:</label> <input type="email"
+												id="email" name="email" class="form-control"
+												placeholder="Enter your email" value="${account.email}"
+												required>
+										</div>
+										<!-- Phone Input -->
+										<div class="form-group mt-3">
+											<label for="phone">Phone Number:</label> <input type="tel"
+												id="phone" name="phone" class="form-control"
+												placeholder="Enter your phone number"
+												value="${account.customer.phone}" required>
+										</div>
+										<!-- Address Input -->
+										<div class="form-group mt-3">
+											<label for="address">Address:</label> <input type="text"
+												id="address" name="address" class="form-control"
+												placeholder="Enter your address"
+												value="${account.customer.placeReceive}" required>
+										</div>
+										<!-- Save Change Button -->
+										<div class="text-center">
+											<button type="submit" class="btn btn-dark w-100 mt-3">Save</button>
+										</div>
+										<!-- NOTIFICATION -->
+										<div id="update-info-success" class="alert alert-success mt-3"
+											style="display: none;">Account info updated
+											successfully!</div>
+										<!-- ERROR -->
+										<div id="update-info-error" class="alert alert-danger mt-3"
+											style="display: none;">Error occurred while updating
+											account info.</div>
+									</form>
+								</c:if>
+								<c:if test="${empty account}">
+									<p>No account data found!</p>
+								</c:if>
 
-								</div>
-								<div class="col"></div>
 							</div>
+							<div class="col"></div>
 						</div>
-						<!-- ORDER HISTORY -->
 						<div id="order-history" class="detail-form d-none">
 							<h3 class="font-weight-bold h3-color text-center">ORDER
 								HISTORY</h3>
 							<div class="mt-4">
-								<c:forEach var="orderItem" items="${orderItems}">
+								<c:forEach var="order" items="${orders}">
 									<div class="border p-3 mb-4">
 										<div class="collapse-btn">
 											<h5 class="font-weight-bold">Invoice</h5>
 											<c:forEach var="orderDate"
-												items="${orderItem.detail.orderDates}">
+												items="${order.orderDetails.orderDates}">
 												<p>
 													<strong>Date:</strong>
 													<fmt:formatDate value="${orderDate.date}"
@@ -253,17 +229,16 @@
 												</p>
 											</c:forEach>
 											<p>
-												<strong>Total Amount:</strong>$${orderItem.quantity *
-												orderItem.product.price}
+												<strong>Total Amount:</strong>$${order.totalAmount}
 											</p>
 											<c:if test="${not empty account }">
 												<ul class="timeline">
 													<li><strong>Order Placed: </strong>
 														${account.customer.placeReceive}</li>
 													<li><strong>Payment Confirmed:</strong>
-														${orderItem.detail.paymentMethod.name }</li>
+														${order.orderDetails.paymentMethod.name }</li>
 													<c:forEach var="orderDate"
-														items="${orderItem.detail.orderDates}">
+														items="${order.orderDetails.orderDates}">
 														<li><strong>Shipped:</strong> <fmt:formatDate
 																value="${orderDate.date}" pattern="yyyy-MM-dd HH:mm:ss" />
 															PM</li>
@@ -275,65 +250,65 @@
 											</c:if>
 											<hr>
 										</div>
-
 										<!-- Collapse content for invoice details -->
 										<div class="collapse-content">
 											<p>
 												<strong>Products:</strong>
 											</p>
 											<div class="mb-3" id="product-list">
-												<div class="d-flex align-items-center mb-3">
-													<img
-														src="https://whisky.vn/wp-content/uploads/2023/10/Glenallachie-15-nhan-moi-300x450.jpg"
-														alt="Product A" class="img-thumbnail"
-														style="width: 160px; height: auto;">
-													<div class="ml-3">
-														<p>
-															<strong>${orderItem.product.name } </strong>
-														</p>
-														<p>${orderItem.quantity}x${orderItem.product.price }$</p>
-														<p>
-															<strong>Price:</strong> $${orderItem.quantity *
-															orderItem.product.price}
-														</p>
-														<div class="d-flex flex-column">
-															<div class="d-flex align-items-center mb-3">
-																<strong>Review:</strong>
-																<div class="stars ml-2 stars-selected" data-value="3">
-																	<span class="star" data-value="1">&#9734;</span> <span
-																		class="star" data-value="2">&#9734;</span> <span
-																		class="star" data-value="3">&#9734;</span> <span
-																		class="star" data-value="4">&#9734;</span> <span
-																		class="star" data-value="5">&#9734;</span>
+												<c:forEach var="orderItem"
+													items="${order.orderDetails.orderItems }">
+													<div class="d-flex align-items-center mb-3">
+														<img src="${orderItem.product.galleries[0].link }"
+															alt="Product A" class="img-thumbnail"
+															style="width: 160px; height: auto;">
+														<div class="ml-3">
+															<p>
+																<strong>${orderItem.product.name } </strong>
+															</p>
+															<p>${orderItem.quantity}x${orderItem.product.price }$</p>
+															<p>
+																<strong>Price:</strong> $${orderItem.quantity *
+																orderItem.product.price}
+															</p>
+															<div class="d-flex flex-column">
+																<div class="d-flex align-items-center mb-3">
+																	<strong>Review:</strong>
+																	<div class="stars ml-2 stars-selected" data-value="3">
+																		<span class="star" data-value="1">&#9734;</span> <span
+																			class="star" data-value="2">&#9734;</span> <span
+																			class="star" data-value="3">&#9734;</span> <span
+																			class="star" data-value="4">&#9734;</span> <span
+																			class="star" data-value="5">&#9734;</span>
+																	</div>
 																</div>
-															</div>
-															<div class="d-flex">
-																<button
-																	class="btn btn-profile mr-2 buy_again-btn disabled-btn">Buy
-																	again</button>
-																<button class="btn btn-profile recieved_order-btn">Recieved</button>
+																<div class="d-flex">
+																	<button
+																		class="btn btn-profile mr-2 buy_again-btn disabled-btn">Buy
+																		again</button>
+																	<button class="btn btn-profile recieved_order-btn">Recieved</button>
+																</div>
 															</div>
 														</div>
 													</div>
-												</div>
+												</c:forEach>
 											</div>
 											<hr>
 										</div>
 										<p>
-											<strong>Total Price:</strong> $<span id="total-price">${orderItem.quantity *
-												orderItem.product.price}</span>
+											<strong>Total Price:</strong> $<span id="total-price">${order.totalAmount}</span>
 										</p>
 										<p>
-											<strong>Discount:</strong> % <span id="discount">${orderItem.detail.voucher.percentage }</span>
+											<strong>Discount:</strong> % <span id="discount">${order.orderDetails.voucher.percentage}</span>
 										</p>
 										<p>
-											<strong>Total Amount:</strong> $<span id="total-amount">${orderItem.quantity *
-												orderItem.product.price}</span>
+											<strong>Total Amount:</strong> $<span id="total-amount">${order.totalAmount}</span>
 										</p>
 									</div>
 								</c:forEach>
 							</div>
 						</div>
+						<!-- ORDER HISTORY -->
 					</div>
 				</div>
 			</div>

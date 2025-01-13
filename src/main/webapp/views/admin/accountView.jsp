@@ -39,9 +39,9 @@
 				<label for="role">Role</label> <select name="role" id="role"
 					class="form-select">
 					<option value="1">Administrator (Admin)</option>
-					<option value="2">Order Manager</option>
-					<option value="3">Account Manager</option>
-					<option value="4">Product Manager</option>
+					<option value="4">Order Manager</option>
+					<option value="2">Account Manager</option>
+					<option value="3">Product Manager</option>
 					<option value="5" selected>Regular User</option>
 				</select>
 			</div>

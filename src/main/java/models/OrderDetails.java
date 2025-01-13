@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import services.ProductService;
@@ -28,14 +29,15 @@ public class OrderDetails implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "VOUCHER_ID")
 	private Voucher voucher;
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "orderDetails",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderDetails", cascade = CascadeType.ALL)
 	private List<OrderDate> orderDates;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "detail",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "detail", cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems;
 	@ManyToOne
 	@JoinColumn(name = "PAYMENT_ID")
 	private PaymentMethod paymentMethod;
-
+	@OneToOne(mappedBy = "orderDetails")
+	private Orders order;
 	// Getter và Setter
 	public Integer getId() {
 		return id;

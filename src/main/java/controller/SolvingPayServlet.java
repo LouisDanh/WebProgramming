@@ -19,6 +19,7 @@ import models.OrderItem;
 import models.OrderState;
 import models.Orders;
 import models.Voucher;
+import models.id.OrderItemId;
 import services.AccountServices;
 import services.PayServices;
 import services.ProductService;
@@ -27,42 +28,44 @@ import services.ProductService;
 public class SolvingPayServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer accountId =Integer.parseInt(req.getSession().getAttribute("id").toString());
+		Integer accountId = Integer.parseInt(req.getSession().getAttribute("id").toString());
 		Account account = AccountServices.getAccount(accountId);
 		Integer cusId = account.getCustomer().getId();
-		
-		List<CartItem> cartItems = ProductService.getCartItem(cusId);
-		
-		// Tao OrderItem
-		List<OrderItem> orderItems = new ArrayList<>();
-		for (CartItem cartItem : cartItems) {
-			OrderItem orderItem = new OrderItem();
-			orderItem.setProduct(cartItem.getProduct());
-			orderItem.setQuantity(cartItem.getQuantity());
+		List<CartItem> cartItems = PayServices.getCartItem(cusId);
+		if (!cartItems.isEmpty()) {
+			// Tao OrderItem
+			List<OrderItem> orderItems = new ArrayList<>();
+			OrderDetails orderDetails = new OrderDetails();
+			for (CartItem cartItem : cartItems) {
+				OrderItem orderItem = new OrderItem();
+				orderItem.setId(new OrderItemId());
+				orderItem.setProduct(cartItem.getProduct());
+				orderItem.setDetail(orderDetails);
+				orderItem.setQuantity(cartItem.getQuantity());
+				orderItems.add(orderItem);
+			}
+			// Tao Order Date
+			OrderState orderState = PayServices.getOrderState(1);
+			OrderDate orderDate = new OrderDate();
+			List<OrderDate> orderDateList = new ArrayList<OrderDate>();
+			orderDate.setDate(LocalDateTime.now());
+			orderDate.setOrderState(orderState);
+			orderDateList.add(orderDate);
+			orderDetails.setPaymentMethod(PayServices.getPaymentMethod(1));
+			Voucher voucher = (Voucher) req.getSession().getAttribute("voucher");
+			orderDetails.setVoucher(voucher);
+			orderDetails.setOrderItems(orderItems);
+			orderDetails.setOrderDates(orderDateList);
+			// Tao orders
+			Orders order = new Orders();
+			order.setCustomer(account.getCustomer());
+			order.setOrderDetails(orderDetails);
+			order.setTotalAmount(orderDetails.calculateTotalAmount());
+			if (PayServices.saveOrders(order)) {
+				PayServices.clearCart(cusId);
+			}
 		}
-		
-		// Tao Order Date
-		OrderState orderState  = PayServices.getOrderState(1);
-		OrderDate orderDate = new OrderDate();
-		List<OrderDate> orderDateList = new ArrayList<OrderDate>();
-		orderDate.setDate(LocalDateTime.now());
-		orderDate.setOrderState(orderState);
-	
-		OrderDetails orderDetails = new OrderDetails();
-		orderDetails.setPaymentMethod(PayServices.getPaymentMethod(3));
-		Voucher voucher = (Voucher) req.getSession().getAttribute("voucher");
-		orderDetails.setVoucher(voucher);
-		orderDetails.setOrderItems(orderItems);
-		orderDetails.setOrderDates(orderDateList);
-		orderDateList.add(orderDate);
-		
-		// Tao orders
-		Orders order = new Orders();
-		order.setCustomer(account.getCustomer());
-		order.setOrderDetails(orderDetails);
-		order.setTotalAmount(orderDetails.calculateTotalAmount());
-		PayServices.saveOrders(order);
-		
-		
+		resp.sendRedirect("/WebMyPham/home");
+
 	}
 }

@@ -111,5 +111,19 @@ public class AccountServices {
 		// Kiểm tra mật khẩu
 		return account != null && account.getPassword().equals(currentPassword);
 	}
+	/**
+	 * Kiểm tra account có tồn tại không bằng enail
+	 */
+	public static Account checkAccountByEmail(String email) {
+		String condition = QueryUtil.createCondition("email", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Account.class, QueryUtil.ALL, condition);
+		return GenericDao.excuteQueryGetSingle(Account.class, Account.class, query, email);
+	}
+
+	public static Account getAccountByResetToken(String token) {
+		String condition = QueryUtil.createCondition("resetToken", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Account.class, QueryUtil.ALL, condition);
+		return GenericDao.excuteQueryGetSingle(Account.class, Account.class, query, token);
+	}
 
 }

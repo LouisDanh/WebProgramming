@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import dao.GenericDao;
 import models.CartItem;
 import models.OrderState;
@@ -34,4 +36,31 @@ public class PayServices {
 	public static void updateCartItem(CartItem cartItem) {
 		GenericDao.update(cartItem, true);
 	}
+
+	/**
+	 * Lấy Orders
+	 */
+	public static List<Orders> getOrders(Integer cusId) {
+		String condition = QueryUtil.createCondition("customer.id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Orders.class, QueryUtil.ALL, condition);
+		List<Orders> orders = GenericDao.excuteQueryGetList(Orders.class, Orders.class, query, cusId);
+		return orders;
+	}
+
+	public static List<CartItem> getCartItem(Integer cusId) {
+		String condition = QueryUtil.createCondition("customer.id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(CartItem.class, QueryUtil.ALL, condition);
+		List<CartItem> cartItems = GenericDao.excuteQueryGetList(CartItem.class, CartItem.class, query, cusId);
+		System.out.println(cartItems.size());
+		return cartItems;
+	}
+
+	public static void clearCart(Integer cusId) {
+		List<CartItem> cartItems = getCartItem(cusId);
+		for (CartItem cartItem : cartItems) {
+			GenericDao.delete(cartItem);
+		}
+		
+	}
+
 }

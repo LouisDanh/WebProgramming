@@ -112,11 +112,6 @@
 			<version>6.2.4.Final</version>
 		</dependency>
 		<!-- C3P0 Connection Pooling -->
-<dependency>
-    <groupId>org.hibernate</groupId>
-    <artifactId>hibernate-c3p0</artifactId>
-    <version>5.4.30.Final</version>
-</dependency>
 		<!--JavaMail API-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
