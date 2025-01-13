@@ -35,8 +35,12 @@
 									class="bi bi-map"></i><span> Brand Management</span></li>
 								<li class="tool" data-target="CategoryManagement"><i
 									class="bi bi-map"></i><span> Category Management</span></li>
-								<li class="tool" data-target="AttributeManagement"><i
-									class="bi bi-map"></i><span> Attribute Management</span></li>
+								<li class="tool" data-target="AttributeKeyManagement"><i
+									class="bi bi-map"></i><span> Attribute Key Management</span></li>
+								<li class="tool" data-target="AttributeValueManagement"><i
+									class="bi bi-map"></i><span> Attribute Value Management</span></li>
+								<li class="tool" data-target="TopicManagement"><i
+									class="bi bi-map"></i><span> Topic Management</span></li>
 							</c:if>
 							<c:if test="${sessionScope.role==1||sessionScope.role==4}">
 								<li class="tool" data-target="VoucherManagement"><i
@@ -230,15 +234,45 @@
 						</div>
 					</div>
 					<!-- Attribute Management Section -->
-					<div class="main" data-section="AttributeManagement"
-						id="AttributeManagement">
-						<h1 class="text-center">Attribute Management</h1>
+					<div class="main" data-section="AttributeKeyManagement"
+						id="AttributeKeyManagement">
+						<h1 class="text-center">Attribute Key Management</h1>
 						<div class="container-fluid p-2">
 							<div class="d-flex justify-content-end mb-3">
 								<button class="btn btn-primary link me-3"
 									data-href="${pageContext.request.contextPath}/admin/attribute-key">
 									<i class="bi bi-plus"></i> Add Attribute Key
 								</button>
+							</div>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Edit</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${attributeKey}" var="attributeKeys">
+										<tr>
+											<td><strong>Key:</strong> ${attributeKey.name}</td>
+											<td>
+												<button class="btn btn-warning edit-product link"
+													data-href="${pageContext.request.contextPath}/admin/attribute-key?id=${attributeKey.id}">
+													<i class="bi bi-pencil"></i>
+												</button>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- Attribute Management Section -->
+					<div class="main" data-section="AttributeValueManagement"
+						id="AttributeValueManagement">
+						<h1 class="text-center">Attribute Value Management</h1>
+						<div class="container-fluid p-2">
+							<div class="d-flex justify-content-end mb-3">
 								<button class="btn btn-primary link"
 									data-href="${pageContext.request.contextPath}/admin/attribute-value">
 									<i class="bi bi-plus"></i> Add Attribute Value
@@ -252,25 +286,55 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${attributes}" var="attribute">
+									<c:forEach var="attributeValue" items="${attributeValues}">
 										<tr>
-											<td><strong>Key:</strong> ${attribute.key.name}</td>
-											<td>
-												<button class="btn btn-warning edit-product link"
-													data-href="${pageContext.request.contextPath}/admin/attribute-key?id=${attribute.key.id}">
+											<td>${attributeValue.value}</td>
+											<td><button class="btn btn-warning edit-product link"
+													data-href="${pageContext.request.contextPath}/admin/attribute-value?id=${attributeValue.id}">
 													<i class="bi bi-pencil"></i>
-												</button>
-											</td>
+												</button></td>
 										</tr>
-										<c:forEach var="attributeValue" items="${attribute.value}">
-											<tr>
-												<td>${attributeValue.value}</td>
-												<td><button class="btn btn-warning edit-product link"
-														data-href="${pageContext.request.contextPath}/admin/attribute-value?id=${attributeValue.id}">
-														<i class="bi bi-pencil"></i>
-													</button></td>
-											</tr>
-										</c:forEach>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- Attribute Management Section -->
+					<div class="main" data-section="TopicManagement"
+						id="TopicManagement">
+						<h1 class="text-center">Topic Management</h1>
+						<div class="container-fluid p-2">
+							<div class="d-flex justify-content-end mb-3">
+								<button class="btn btn-primary link"
+									data-href="${pageContext.request.contextPath}/admin/topic">
+									<i class="bi bi-plus"></i> Add Topic
+								</button>
+							</div>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Title</th>
+										<th>Start Date</th>
+										<th>End Date</th>
+										<th>Edit</th>
+										<th>Detail</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="topic" items="${topics}">
+										<tr>
+											<td>${topic.title}</td>
+											<td>${topic.startDate}</td>
+											<td>${topic.endDate}</td>
+											<td><button class="btn btn-warning edit-product link"
+													data-href="${pageContext.request.contextPath}/admin/topic?id=${topic.id}">
+													<i class="bi bi-pencil"></i>
+												</button></td>
+											<td><button class="btn btn-warning edit-product link"
+													data-href="${pageContext.request.contextPath}/admin/topic/topic-detail?id=${topic.id}">
+													<i class="bi bi-eye"></i>
+												</button></td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>

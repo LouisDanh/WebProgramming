@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,14 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Account;
 import models.CartItem;
-import models.Customer;
 import models.OrderDate;
 import models.OrderDetails;
 import models.OrderItem;
 import models.OrderState;
 import models.Orders;
-import models.PaymentMethod;
-import models.Product;
 import models.Voucher;
 import services.AccountServices;
 import services.PayServices;

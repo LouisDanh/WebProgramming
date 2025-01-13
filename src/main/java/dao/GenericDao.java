@@ -23,7 +23,8 @@ public class GenericDao {
 	 */
 	public static <T> List<T> getAll(Class<T> entityName) {
 		List<T> result = new ArrayList<>();
-		try (Session session = HibernateUtil.getSession()) {
+		try {
+			Session session = HibernateUtil.getSession();
 			Query<T> query = session.createQuery("FROM " + entityName.getName(), entityName);
 			result = query.list();
 		} catch (Exception e) {
@@ -48,7 +49,8 @@ public class GenericDao {
 			return false;
 		}
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSession()) {
+		try  {
+			Session session = HibernateUtil.getSession();
 			transaction = commitOnComplete ? session.beginTransaction() : session.getTransaction();
 			session.update(data);
 			if (commitOnComplete)
@@ -62,6 +64,7 @@ public class GenericDao {
 		}
 		return false;
 	}
+
 	/**
 	 * Thêm dữ liệu vào bảng
 	 * 
@@ -76,7 +79,8 @@ public class GenericDao {
 			return false;
 		}
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSession()) {
+		try  {
+			Session session = HibernateUtil.getSession();
 			transaction = commitOnComplete ? session.beginTransaction() : session.getTransaction();
 			session.save(data);
 			if (commitOnComplete)

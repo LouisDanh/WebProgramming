@@ -1,13 +1,10 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -52,6 +49,10 @@ public class TopicProduct implements Serializable {
 
 	public double getProductPrice() {
 		return product.getPrice();
+	}
+
+	public List<Gallery> getGalleries() {
+		return this.product.getGalleries();
 	}
 
 }

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 import models.Account;
-import models.CartItem;
 import models.OrderDetails;
 import models.OrderItem;
 import models.Orders;
