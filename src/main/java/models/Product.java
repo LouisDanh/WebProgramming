@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,7 +42,7 @@ public class Product implements Serializable {
 	@Nationalized
 	private String description;
 //	 Cấu hình liên kết
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "PRODUCT_ID")
 	private List<Gallery> galleries;
 	@ManyToOne

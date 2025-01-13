@@ -21,7 +21,6 @@ public class FilterViewModel {
 	private int totalQuantity;
 	private List<Product> products;
 	private Map<Integer, Map<Integer, Integer>> mappingAttributes;
-
 	public String getAttributesSelected() {
 		if (attributesSelected != null && !attributesSelected.isEmpty()) {
 			StringBuilder build = new StringBuilder();

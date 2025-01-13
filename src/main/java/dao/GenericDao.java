@@ -117,10 +117,11 @@ public class GenericDao {
 		Session session = HibernateUtil.getSession();
 		try {
 			Query<T> query = session.createQuery(queryString, returnData);
-			for (int i = 0; i < data.length; i++) {
-				if (data[i] != null)
-					query.setParameter(i, data[i]);
-			}
+			if (data != null)
+				for (int i = 0; i < data.length; i++) {
+					if (data[i] != null)
+						query.setParameter(i, data[i]);
+				}
 			List<T> result = query.getResultList();
 			return result;
 		} catch (SecurityException e) {

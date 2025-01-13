@@ -11,7 +11,7 @@
 
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- C3P0 Connection Pool Configuration -->
-
+		<property name="hibernate.use_sql_comments">true</property>
 		<!-- mapping -->
 		<mapping class="models.Account" />
 		<mapping class="models.BankAccount" />

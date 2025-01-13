@@ -100,7 +100,6 @@ public class Topic implements Serializable {
 			mappingProduct.put(topicCategory, listProduct);
 		}
 	}
-
 	public List<TopicCategory> getCategories() {
 		return categories;
 	}

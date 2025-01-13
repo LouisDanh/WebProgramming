@@ -19,6 +19,7 @@ public class ProductService {
 	public static List<Topic> getAllTopic() {
 		return GenericDao.getAll(Topic.class);
 	}
+
 	public static Brand getBrand(Integer id) {
 		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
 		String query = QueryUtil.createQuery(Brand.class, QueryUtil.ALL, condition);
@@ -30,10 +31,9 @@ public class ProductService {
 		String query = QueryUtil.createQuery(Product.class, QueryUtil.ALL, condition);
 		return GenericDao.excuteQueryGetSingle(Product.class, Product.class, query, idProduct);
 	}
-	
+
 	public static List<ProductCategory> getChildCategory(Integer parentId) {
-		String condition = QueryUtil.createCondition("parent.id",
-				parentId == null ? QueryUtil.IS_NULL : QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String condition = QueryUtil.createCondition("parent.id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
 		String query = QueryUtil.createQuery(ProductCategory.class, QueryUtil.ALL, condition);
 		return GenericDao.excuteQueryGetList(ProductCategory.class, ProductCategory.class, query, parentId);
 	}
@@ -120,10 +120,6 @@ public class ProductService {
 		return GenericDao.excuteQueryGetList(Product.class, Product.class, query, data.toArray());
 	}
 
-	
-
-	
-
 	/**
 	 * Lấy sản phẩm
 	 */
@@ -134,7 +130,10 @@ public class ProductService {
 		return GenericDao.excuteQueryGetSingle(Product.class, Product.class, query, productIds);
 	}
 
-
-	
+	public static List<ProductCategory> getParentCategory(Object object) {
+		String condition = QueryUtil.createCondition("parent.id", QueryUtil.IS_NULL, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(ProductCategory.class, QueryUtil.ALL, condition);
+		return GenericDao.excuteQueryGetList(ProductCategory.class, ProductCategory.class, query, new Object[0]);
+	}
 
 }

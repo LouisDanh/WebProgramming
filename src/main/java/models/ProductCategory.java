@@ -37,7 +37,7 @@ public class ProductCategory implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "PARENT_ID")
 	private ProductCategory parent;
-	@OneToMany(mappedBy = "parent",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
 	private List<ProductCategory> children;
 
 	public ProductCategory getParent() {
@@ -106,7 +106,11 @@ public class ProductCategory implements Serializable {
 	}
 
 	public boolean isSameCategory(int categoryId) {
-		return id == categoryId;
+		for (ProductCategory productCategory : children) {
+			if (productCategory.isSameCategory(categoryId))
+				return true;
+		}
+		return false;
 	}
 
 	public Integer getId() {

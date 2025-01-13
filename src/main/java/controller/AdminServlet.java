@@ -29,6 +29,9 @@ public class AdminServlet extends HttpServlet {
 		List<ProductCategory> categories = AdminService.getAllCategories();
 		List<Account> accounts = AdminService.getAllAccounts();
 		List<Product> products = AdminService.getAllProducts();
+		for (Product product : products) {
+			product.getGalleries();
+		}
 		List<AttributeValue> attributeValues = AdminService.getAllAttributeValues();
 		List<AttributeKey> attributeKeys = AdminService.getAllAttributeKeys();
 		List<Topic> topics = AdminService.getAllTopics();

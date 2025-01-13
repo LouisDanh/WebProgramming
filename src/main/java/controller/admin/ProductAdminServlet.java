@@ -20,7 +20,7 @@ import services.AdminService;
 import services.ProductService;
 import utils.UploadUtils;
 
-@MultipartConfig(maxFileSize = 10485760, maxRequestSize = 20971520, fileSizeThreshold = 0)
+@MultipartConfig(maxFileSize = 10485760, maxRequestSize = 20971520, fileSizeThreshold = 5242880)
 @WebServlet("/admin/product")
 public class ProductAdminServlet extends HttpServlet {
 	@Override
@@ -43,40 +43,41 @@ public class ProductAdminServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String priceStr = request.getParameter("price");
 		String stockStr = request.getParameter("stock");
+		String capacityStr = request.getParameter("capacity");
 		String discountStr = request.getParameter("discount");
 		String description = request.getParameter("description");
 		String categoryIdStr = request.getParameter("categoryId");
 		String brandIdStr = request.getParameter("brandId");
 		String[] attributesStr = request.getParameterValues("attributes");
-		List<String> path = UploadUtils.uploadImg(request.getParts(),
-				"D:\\Programming\\Project\\Web\\UngDungWebBanMyPham_Hishaku\\src\\main\\webapp\\resources\\static\\img\\products");
+		List<String> imagePaths = UploadUtils.uploadImg(request.getParts(), "D://Programming//Project//Web//UngDungWebBanMyPham_Hishaku//src//main//webapp//resources//static//img//products");
 		int id = Integer.parseInt(idStr);
 		double price = Double.parseDouble(priceStr);
 		int stock = Integer.parseInt(stockStr);
 		double discount = Double.parseDouble(discountStr);
 		int categoryId = Integer.parseInt(categoryIdStr);
 		int brandId = Integer.parseInt(brandIdStr);
+		int capacity = Integer.parseInt(capacityStr);
 		Product product = id == -1 ? new Product() : ProductService.findProduct(id);
 		List<Gallery> galleries = id == -1 ? new LinkedList<Gallery>() : product.getGalleries();
-		for (String str : path) {
+		for (String str : imagePaths) {
 			Gallery gallery = new Gallery();
 			gallery.setLink(str);
 			gallery.setType("img");
 			galleries.add(gallery);
 		}
 		List<ProductAttributes> attributes = id == -1 ? new LinkedList<ProductAttributes>() : product.getAttributes();
-		for (String str : attributesStr) {
-			StringTokenizer tokens = new StringTokenizer(str, ",");
-			try {
-				Integer key = Integer.parseInt(tokens.nextToken());
-				Integer value = Integer.parseInt(tokens.nextToken());
-				if (!product.sameAttribute(key, value))
-					attributes.add(new ProductAttributes(AdminService.getAttributeKey(key),
-							AdminService.getAttributeValue(value)));
-			} catch (Exception e) {
+		if (attributesStr != null)
+			for (String str : attributesStr) {
+				StringTokenizer tokens = new StringTokenizer(str, ",");
+				try {
+					Integer key = Integer.parseInt(tokens.nextToken());
+					Integer value = Integer.parseInt(tokens.nextToken());
+					if (!product.sameAttribute(key, value))
+						attributes.add(new ProductAttributes(AdminService.getAttributeKey(key),
+								AdminService.getAttributeValue(value)));
+				} catch (Exception e) {
+				}
 			}
-			
-		}
 		product.setName(name);
 		product.setPrice(price);
 		product.setStock(stock);
@@ -86,6 +87,7 @@ public class ProductAdminServlet extends HttpServlet {
 		product.setBrand(ProductService.getBrand(brandId));
 		product.setAttributes(attributes);
 		product.setGalleries(galleries);
+		product.setCapacity(capacity);
 		AdminService.saveOrUpdateProduct(product);
 		resp.sendRedirect("/WebMyPham/admin");
 	}

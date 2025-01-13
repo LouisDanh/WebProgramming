@@ -45,8 +45,6 @@
 							<c:if test="${sessionScope.role==1||sessionScope.role==4}">
 								<li class="tool" data-target="VoucherManagement"><i
 									class="bi bi-book"></i><span> Voucher Management</span></li>
-								<li class="tool" data-target="PendingOrders"><i
-									class="bi bi-heart"></i><span> Solving Order</span></li>
 							</c:if>
 							<li class="tool link"
 								data-href="${pageContext.request.contextPath}/login"><i
@@ -124,7 +122,10 @@
 											<td>${product.name}</td>
 											<td>${product.price}</td>
 											<td>${product.stock}</td>
-											<td><img src="${pageContext.request.contextPath}${!product.galleries.isEmpty()?product.galleries.get(0).link:''}"
+											<td>
+											<td><img
+												src="${pageContext.request.contextPath}
+												${not empty product.galleries ? product.galleries[0].link : '/images/default_image.jpg'}"
 												alt="${product.name}" style="width: 50px; height: 50px;"></td>
 											<td>
 												<button class="btn btn-warning edit-product link"
@@ -342,43 +343,6 @@
 					</div>
 				</c:if>
 				<c:if test="${sessionScope.role==1||sessionScope.role==4}">
-					<!-- Order Management Section -->
-					<div class="main" data-section="PendingOrders" id="PendingOrders">
-						<h1 class="text-center">Solving Orders</h1>
-						<div class="container-fluid p-2">
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<!-- <th>Order ID</th>
-										<th>Customer</th>
-										<th>Products</th>
-										<th>Order State</th>
-										<th>Order Date</th>
-										<th>Total Amount</th>
-										<th>Actions</th> -->
-									</tr>
-								</thead>
-								<tbody id="orderTableBody">
-									<%-- <c:forEach items="${orders}" var="order">
-										<tr>
-										<td>${order.id}</td>
-											<td>${order.customer.fullName}</td>
-											 <c:forEach var="orderItem" items="${order.orderDetails.orderItems}">
-												<td>${orderItem.product.name}</td>
-											</c:forEach> 
-											 <c:forEach items="${order.orderDetails.orderDates}" var="orderDate">
-												<td>${orderDate.orderState}</td>
-											</c:forEach>
-											<c:forEach items="${order.orderDetails.orderDates}" var="orderDate">
-												<td>${orderDate.date}</td>
-											</c:forEach> 
-											<td>${order.totalAmount}</td> 
-										</tr>
-									</c:forEach> --%>
-								</tbody>
-							</table>
-						</div>
-					</div>
 					<!-- Voucher Management Section -->
 					<div class="main" data-section="VoucherManagement"
 						id="VoucherManagement">

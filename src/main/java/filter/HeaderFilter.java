@@ -20,15 +20,17 @@ public class HeaderFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		String uri = ((HttpServletRequest) request).getRequestURI();
-		if (uri.contains("admin")) {
+		int role = -1;
+		if (uri.contains("/admin/")) {
 			try {
-				Integer.parseInt(request.getParameter("role"));
+				role = Integer.parseInt(request.getParameter("role"));
 			} catch (Exception e) {
 			}
-		} else {
+		}
+		if (role == 5 || role == -1) {
 			Object obj = request.getAttribute("categories");
 			if (obj == null) {
-				List<ProductCategory> data = ProductService.getChildCategory(null);
+				List<ProductCategory> data = ProductService.getParentCategory(null);
 				request.setAttribute("categories", data);
 			}
 		}

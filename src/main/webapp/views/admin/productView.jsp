@@ -45,6 +45,11 @@
 				<textarea class="form-control" id="description" name="description"
 					required>${productViewModel.product != null ? productViewModel.product.description : ''}</textarea>
 			</div>
+			<div class="form-group mb-3">
+				<label for="capacity">Capacity</label> <input type="number"
+					class="form-control" id="capacity" name="capacity" required
+					value="${productViewModel.product != null ? productViewModel.product.capacity : ''}" />
+			</div>
 
 			<div class="form-group mb-3">
 				<label for="categoryId">Category</label> <select name="categoryId"
