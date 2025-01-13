@@ -16,9 +16,12 @@ import models.Account;
 import models.AttributeKey;
 import models.AttributeValue;
 import models.Brand;
+import models.OrderItem;
+import models.Orders;
 import models.Product;
 import models.ProductAttributes;
 import models.ProductCategory;
+import models.Voucher;
 import services.AdminService;
 
 @WebServlet("/admin")
@@ -30,6 +33,9 @@ public class AdminServlet extends HttpServlet {
 		List<ProductAttributes> proAttribute = AdminService.getAllAttributes();
 		List<Account> accounts = AdminService.getAllAccounts();
 		List<Product> products = AdminService.getAllProducts();
+		List<Voucher> vouchers = AdminService.getAllVouchers();
+		List<Orders> orders = AdminService.getAllOrders();
+		List<OrderItem> orderItems = AdminService.getAllOrderItem();
 		Map<AttributeKey, List<AttributeValue>> attributes = new HashMap<>();
 		ProductViewModel model = new ProductViewModel(proAttribute);
 		for (AttributeKey key : model.getAttributeKeys()) {
@@ -40,6 +46,10 @@ public class AdminServlet extends HttpServlet {
 		req.setAttribute("attributes", attributes);
 		req.setAttribute("accounts", accounts);
 		req.setAttribute("products", products);
+		req.setAttribute("vouchers", vouchers);
+		req.setAttribute("orders", orders);
+		req.setAttribute("orderItems", orderItems);
+
 		req.getRequestDispatcher("/views/admin/index.jsp").forward(req, resp);
 	}
 }

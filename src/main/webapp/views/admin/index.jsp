@@ -278,45 +278,37 @@
 				<c:if test="${sessionScope.role==1||sessionScope.role==4}">
 					<!-- Order Management Section -->
 					<div class="main" data-section="PendingOrders" id="PendingOrders">
-						<h1 class="text-center">Pending Orders</h1>
+						<h1 class="text-center">Solving Orders</h1>
 						<div class="container-fluid p-2">
 							<table class="table table-bordered">
 								<thead>
 									<tr>
-										<th>Order ID</th>
+										<!-- <th>Order ID</th>
 										<th>Customer</th>
-										<th>Email</th>
 										<th>Products</th>
-										<th>Total Amount</th>
+										<th>Order State</th>
 										<th>Order Date</th>
-										<th>Actions</th>
+										<th>Total Amount</th>
+										<th>Actions</th> -->
 									</tr>
 								</thead>
 								<tbody id="orderTableBody">
-									<c:forEach items="${orders}" var="order">
+									<%-- <c:forEach items="${orders}" var="order">
 										<tr>
-											<td>${order.orderId}</td>
-											<td>${order.customerName}</td>
-											<td>${order.customerEmail}</td>
-											<td>
-												<button class="btn btn-primary btn-sm view-items-btn"
-													data-id="${order.orderId}">View Items
-													(${order.itemCount})</button>
-											</td>
-											<td>${order.totalAmount}</td>
-											<td>${order.orderDate}</td>
-											<td>
-												<button class="btn btn-success confirm-order"
-													data-id="${order.orderId}">
-													<i class="bi bi-check-circle"></i>
-												</button>
-												<button class="btn btn-danger cancel-order"
-													data-id="${order.orderId}">
-													<i class="bi bi-x-circle"></i>
-												</button>
-											</td>
+										<td>${order.id}</td>
+											<td>${order.customer.fullName}</td>
+											 <c:forEach var="orderItem" items="${order.orderDetails.orderItems}">
+												<td>${orderItem.product.name}</td>
+											</c:forEach> 
+											 <c:forEach items="${order.orderDetails.orderDates}" var="orderDate">
+												<td>${orderDate.orderState}</td>
+											</c:forEach>
+											<c:forEach items="${order.orderDetails.orderDates}" var="orderDate">
+												<td>${orderDate.date}</td>
+											</c:forEach> 
+											<td>${order.totalAmount}</td> 
 										</tr>
-									</c:forEach>
+									</c:forEach> --%>
 								</tbody>
 							</table>
 						</div>
@@ -327,7 +319,8 @@
 						<h1 class="text-center">Voucher Management</h1>
 						<div class="container-fluid p-2">
 							<div class="d-flex justify-content-end mb-3">
-								<button class="btn btn-primary" id="addVoucherBtn">
+								<button class="btn btn-primary link" id="addVoucherBtn"
+									data-href="${pageContext.request.contextPath}/views/admin/voucherView.jsp">
 									<i class="bi bi-plus"></i> Add Voucher
 								</button>
 							</div>
@@ -337,10 +330,12 @@
 										<th><input type="checkbox" id="select-all-vouchers"></th>
 										<th>ID</th>
 										<th>Name</th>
-										<th>Description</th>
-										<th>Discount (%)</th>
+										<th>Expired Date</th>
 										<th>Max Discount</th>
-										<th>Actions</th>
+										<th>Percentage (%)</th>
+										<th>Quantity</th>
+										<th>Code</th>
+										<!-- <th>Actions</th> -->
 									</tr>
 								</thead>
 								<tbody id="voucherTableBody">
@@ -349,15 +344,17 @@
 											<td><input type="checkbox" class="voucher-select"></td>
 											<td>${voucher.id}</td>
 											<td>${voucher.name}</td>
-											<td>${voucher.description}</td>
-											<td>${voucher.percentage}</td>
+											<td>${voucher.expiredDate}</td>
 											<td>${voucher.maxDiscount}</td>
-											<td>
+											<td>${voucher.percentage}</td>
+											<td>${voucher.quantity}</td>
+											<td>${voucher.code}</td>
+											<%-- <td>
 												<button class="btn btn-danger delete-voucher"
 													data-id="${voucher.id}">
 													<i class="bi bi-trash"></i>
 												</button>
-											</td>
+											</td> --%>
 										</tr>
 									</c:forEach>
 								</tbody>

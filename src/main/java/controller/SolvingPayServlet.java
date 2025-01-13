@@ -35,7 +35,7 @@ public class SolvingPayServlet extends HttpServlet {
 		Account account = AccountServices.getAccount(accountId);
 		Integer cusId = account.getCustomer().getId();
 		
-		List<CartItem> cartItems = ProductService.getCartItem(cusId);
+		List<CartItem> cartItems = PayServices.getCartItem(cusId);
 		
 		// Tao OrderItem
 		List<OrderItem> orderItems = new ArrayList<>();

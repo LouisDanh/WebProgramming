@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Voucher;
 import services.ProductService;
+import services.VoucherService;
 @WebServlet("/voucher")
 public class VoucherServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String codeVoucher = req.getParameter("voucher");
-		Voucher voucherCheck = ProductService.checkVoucherCode(codeVoucher);
+		Voucher voucherCheck = VoucherService.checkVoucherCode(codeVoucher);
 		resp.setContentType("application/json");
 		PrintWriter out = resp.getWriter();
         if (voucherCheck != null) {

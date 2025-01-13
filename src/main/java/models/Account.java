@@ -118,8 +118,8 @@ public class Account implements Serializable {
 
 	public boolean checkPassword(Integer accountId, String currentPassword) {
 	    if (this.id.equals(accountId)) {
-	        return this.password.equals(currentPassword);
-//	        return AccountUtil.verifyPassword(currentPassword, this.password); 
+//	        return this.password.equals(currentPassword);
+	        return AccountUtil.verifyPassword(currentPassword, this.password); 
 	    }
 	    return false;
 	}

@@ -1,7 +1,7 @@
 import org.hibernate.Session;
 
-import dao.HibernateUtil;
 import models.Brand;
+import utils.HibernateUtil;
 
 public class TestHibernate {
 	public static void main(String[] args) {
@@ -11,12 +11,7 @@ public class TestHibernate {
 			// Bắt đầu transaction
 			session.beginTransaction();
 
-			// Tạo đối tượng Product
-			Brand bank = new Brand("23");
-
-			// Lưu đối tượng vào database
-			session.save(bank);
-
+		
 			// Commit transaction
 			session.getTransaction().commit();
 		} catch (Exception e) {

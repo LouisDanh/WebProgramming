@@ -80,13 +80,3 @@ $(document).ready(function () {
 	    $('ul.new-list li[data-target="' + currentPage + '"]').addClass('active');
 	});
 
-	// Xét rank user (tạm)
-	function updateProgressBar(progressPercentage) {
-	    const progressFill = document.getElementById('progressFill');
-	    progressFill.style.width = progressPercentage + '%'; // Set progress width
-	}
-
-	// Example of updating the progress to 50% (You can dynamically change this value)
-	updateProgressBar(50); // You can change 50 to any value based on the user's progress.
-
-

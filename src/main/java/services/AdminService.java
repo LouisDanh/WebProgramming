@@ -7,9 +7,12 @@ import models.Account;
 import models.AttributeKey;
 import models.AttributeValue;
 import models.Brand;
+import models.OrderItem;
+import models.Orders;
 import models.Product;
 import models.ProductAttributes;
 import models.ProductCategory;
+import models.Voucher;
 import utils.QueryUtil;
 
 public class AdminService {
@@ -46,6 +49,17 @@ public class AdminService {
 	public static List<ProductCategory> getAllCategories() {
 		return GenericDao.getAll(ProductCategory.class);
 	}
+	public static List<Voucher> getAllVouchers() {
+		return GenericDao.getAll(Voucher.class);
+	}
+	public static List<Orders> getAllOrders() {
+		return GenericDao.getAll(Orders.class);
+	}
+	
+	public static List<OrderItem> getAllOrderItem() {
+		return GenericDao.getAll(OrderItem.class);
+	}
+	
 
 	public static AttributeKey getAttributeKey(int id) {
 		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
