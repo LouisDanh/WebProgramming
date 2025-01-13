@@ -26,7 +26,7 @@ public class CategoryAdminServlet extends HttpServlet {
 			req.setAttribute("category", category);
 		} catch (NumberFormatException e) {
 		}
-		req.getRequestDispatcher("/views/admin/category-form.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/admin/categoryView.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -36,12 +36,13 @@ public class CategoryAdminServlet extends HttpServlet {
 		int id = Integer.parseInt(req.getParameter("id"));
 		String name = req.getParameter("name");
 		String description = req.getParameter("description");
-		String parentId = req.getParameter("parentId");
+		String parentIdStr = req.getParameter("parentId");
 		ProductCategory category = id == -1 ? new ProductCategory() : AdminService.getCategory(id);
 		category.setName(name);
 		category.setDescription(description);
-		category.setParent(ProductService.getCategory(Integer.parseInt(parentId)));
+		int parentId = Integer.parseInt(parentIdStr);
+		category.setParent(ProductService.getCategory(parentId));
 		AdminService.saveOrUpdateCategory(category);
-		resp.sendRedirect("/admin");
+		resp.sendRedirect("/WebMyPham/admin");
 	}
 }

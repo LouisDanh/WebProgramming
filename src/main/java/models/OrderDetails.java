@@ -2,6 +2,8 @@ package models;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,9 +28,9 @@ public class OrderDetails implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "VOUCHER_ID")
 	private Voucher voucher;
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "orderDetails")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "orderDetails",cascade = CascadeType.ALL)
 	private List<OrderDate> orderDates;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "detail")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "detail",cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems;
 	@ManyToOne
 	@JoinColumn(name = "PAYMENT_ID")

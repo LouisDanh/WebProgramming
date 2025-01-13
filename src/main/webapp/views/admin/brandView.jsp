@@ -18,27 +18,18 @@
 		<form action="${pageContext.request.contextPath}/admin/brand"
 			method="post" class="mt-4">
 			<input type="hidden" name="id" value="${brand!=null?brand.id:-1}">
-
-
 			<div class="mb-3">
 				<label for="name" class="form-label">Brand Name</label> <input
 					type="text" id="name" name="name" class="form-control"
-					placeholder="Enter Attribute Key Name"
+					placeholder="Enter Brand Name"
 					value="${brand != null ? brand.name : ''}" required>
 			</div>
-
 			<!-- Submit Button -->
 			<div class="d-flex justify-content-end">
 				<button type="submit" class="btn btn-primary">${brand != null ? "Update" : "Add"}</button>
 			</div>
 		</form>
-		<!-- Back to List -->
-		<div class="mt-3 text-end">
-			<a href="${pageContext.request.contextPath}/attribute-keys"
-				class="btn btn-secondary">Back to List</a>
-		</div>
 	</div>
-
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

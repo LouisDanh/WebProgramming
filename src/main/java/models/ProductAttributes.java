@@ -23,7 +23,7 @@ public class ProductAttributes implements Serializable {
 	@Column(name = "ID")
 	private Integer id;
 	@ManyToOne
-	@JoinColumn(name = "PRODUCT_ID", nullable = false)
+	@JoinColumn(name = "PRODUCT_ID")
 	private Product product;
 	@ManyToOne
 	@JoinColumn(name = "ATTRIBUTE_KEY_ID", nullable = false)
@@ -59,7 +59,16 @@ public class ProductAttributes implements Serializable {
 	public String getValue() {
 		return value.getValue();
 	}
+
 	public AttributeValue getAttValue() {
 		return value;
+	}
+
+	public ProductAttributes() {
+	}
+
+	public ProductAttributes(AttributeKey attributeKey, AttributeValue value) {
+		this.attributeKey = attributeKey;
+		this.value = value;
 	}
 }

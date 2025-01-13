@@ -27,8 +27,7 @@
 						<!-- Password -->
 						<div class="form-floating mb-3 position-relative">
 							<input type="password" class="form-control" id="password"
-								name="password" placeholder="Password" required
-								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"><label
+								name="password" placeholder="Password" required><label
 								for="password">Enter your password</label>
 							<button id="toggle-password" type="button"
 								class="position-absolute top-50 end-7 translate-middle-y p-0">

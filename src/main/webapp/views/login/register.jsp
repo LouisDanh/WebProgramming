@@ -51,7 +51,7 @@
 										<div class="input-group">
 											<input type="password" class="form-control" id="password"
 												placeholder="Enter your password" name="password" required
-												pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+												>
 											<button id="toggle-password" type="button"
 												class=" position-absolute top-50 end-5 translate-middle-y p-0">
 												<i class="bi-eye-slash"></i>

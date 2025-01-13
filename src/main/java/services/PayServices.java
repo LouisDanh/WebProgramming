@@ -26,7 +26,6 @@ public class PayServices {
 	 * Luu orders
 	 */
 	public static boolean saveOrders(Orders order) {
-		GenericDao.insert(order.getOrderDetails(), true);
 		return GenericDao.insert(order, true);
 	}
 

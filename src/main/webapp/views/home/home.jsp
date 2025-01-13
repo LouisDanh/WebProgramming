@@ -49,7 +49,7 @@
 											<div class="border-0 card link mx-4"
 												data-href="home/product/descript?id=${product.productId}">
 												<img
-													src="https://www.esteelauder.com.vn/media/export/cms/products/308x424/el_sku_G1VI01_308x424_0.jpg"
+													src="${pageContext.request.contextPath}${product.galleries[0].link} }"
 													alt="${product.productName}" class="card-img-top">
 												<div class="card-body">
 													<h5 class="card-title">${product.productName}</h5>

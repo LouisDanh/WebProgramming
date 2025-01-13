@@ -31,7 +31,7 @@
 			<div class="form-group mb-3">
 				<label for="parent">Parent Category (Optional)</label> <select
 					class="form-control" id="parent" name="parentId">
-					<option value="">-- No Parent Category --</option>
+					<option value="-1">-- No Parent Category --</option>
 					<c:forEach var="parentCategory" items="${categories}">
 						<option value="${parentCategory.id}"
 							<c:if test="${category != null && category.parent != null && category.parent.id == parentCategory.id}">
