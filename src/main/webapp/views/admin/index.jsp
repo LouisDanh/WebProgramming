@@ -200,7 +200,8 @@
 												<div class="accordion-body">
 													<!-- Parent Category Actions -->
 													<div class="d-flex justify-content-end mb-4">
-														<a href="category-form.jsp?id=${category.id}"
+														<a
+															href="${pageContext.request.contextPath}/admin/category?id=${category.id}"
 															class="edit-btn"> <i class="bi bi-pencil"></i> Edit
 															Category
 														</a>
@@ -213,7 +214,8 @@
 																<span class="category-name"> <i
 																	class="bi bi-chevron-right me-2 text-muted"></i>
 																	${child.name}
-																</span> <a href="category-form.jsp?id=${child.id}"
+																</span> <a
+																	href="${pageContext.request.contextPath}/admin/category?id=${child.id}"
 																	class="edit-btn"> <i class="bi bi-pencil"></i> Edit
 																</a>
 															</div>

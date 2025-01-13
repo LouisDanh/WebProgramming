@@ -18,7 +18,6 @@
 		<!-- Cấu hình hibernate -->
 		<property name="hibernate.archive.autodetection">update</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.archive.autodetection">class</property>
 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
 		<!-- Cấu hình pooling -->

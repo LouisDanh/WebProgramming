@@ -59,11 +59,7 @@ public class AccountServices {
 	 */
 	public static boolean createAccount(Account acc) {
 		acc.setPassword(AccountUtil.hashPassword(acc.getPassword()));
-		if (GenericDao.insert(acc.getCustomer(), false) && GenericDao.insert(acc, false)) {
-			GenericDao.commit();
-			return true;
-		}
-		return false;
+		return GenericDao.insert(acc, true);
 	}
 
 	public static boolean updateCustomer(Customer customer) {

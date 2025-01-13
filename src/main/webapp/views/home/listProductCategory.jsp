@@ -113,7 +113,7 @@
 								data-href="${pageContext.request.contextPath}/home/product/descript?id=${product.id}">
 								<div class="card border-0 text-center">
 									<img
-										src="https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/makeup/lip-color/lipstick/les-nus-intense-lipstick-intensely-pigmented/nu-impertinent/les-nus-impertinent-173-071249421758-primary.png?rev=b599fdaa54c046b58c6f5f54041e78c5&w=200&hash=37DCDDDD3E18F314410CE9365B2CECAF1A136492"
+										src="${pageContext.request.contextPath}${product.galleries[0].link}"
 										alt="" class="img-card-top img-300px">
 									<div class="card-body">
 										<h6 class="subtitle">${product.name}</h6>

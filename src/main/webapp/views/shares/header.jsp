@@ -32,7 +32,7 @@
 				<div id="extraIcons" class="mt-2">
 					<!-- Personal Profile Icon -->
 					<div class="link" id="profileIcon"
-						data-href="${pageContext.request.contextPath}/">
+						data-href="${pageContext.request.contextPath}/customer/profiles">
 						<i class="fas fa-user"></i> Hồ sơ
 					</div>
 					<!-- Tìm kiếm Text (Search) -->

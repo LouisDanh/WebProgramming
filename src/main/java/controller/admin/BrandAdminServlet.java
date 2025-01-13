@@ -19,8 +19,8 @@ public class BrandAdminServlet extends HttpServlet {
 
 		try {
 			int id = Integer.parseInt(req.getParameter("id"));
-			AttributeValue attributeValue = AdminService.getAttributeValue(id);
-			req.setAttribute("brand", attributeValue);
+			Brand brand = AdminService.getBrand(id);
+			req.setAttribute("brand", brand);
 		} catch (Exception e) {
 		}
 		req.getRequestDispatcher("/views/admin/brandView.jsp").forward(req, resp);
@@ -30,13 +30,12 @@ public class BrandAdminServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
-
 		Integer id = Integer.parseInt(req.getParameter("id"));
 		String name = req.getParameter("name");
 		Brand brand = id == -1 ? new Brand() : AdminService.getBrand(id);
 		brand.setName(name);
 		AdminService.saveOrUpdateBrand(brand);
-		resp.sendRedirect("/admin");
+		resp.sendRedirect("/WebMyPham/admin");
 
 	}
 }

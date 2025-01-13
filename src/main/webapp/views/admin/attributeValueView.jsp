@@ -35,12 +35,6 @@
 					${attributeValue != null ? "Update" : "Add"}</button>
 			</div>
 		</form>
-
-		<!-- Back to List -->
-		<div class="mt-3 text-end">
-			<a href="${pageContext.request.contextPath}/attribute-values"
-				class="btn btn-secondary">Back to List</a>
-		</div>
 	</div>
 
 	<script

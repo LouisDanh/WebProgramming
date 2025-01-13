@@ -2,7 +2,9 @@ package models;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "PRODUCT")
 public class Product implements Serializable {
@@ -24,6 +28,7 @@ public class Product implements Serializable {
 	@Column(name = "ID")
 	private Integer id;
 	@Column(name = "NAME")
+	@Nationalized
 	private String name;
 	@Column(name = "PRICE")
 	private Double price;
@@ -34,9 +39,10 @@ public class Product implements Serializable {
 	@Column(name = "CAPACITY", nullable = false)
 	private Integer capacity;
 	@Column(name = "DESCRIPTION")
+	@Nationalized
 	private String description;
 //	 Cấu hình liên kết
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "PRODUCT_ID")
 	private List<Gallery> galleries;
 	@ManyToOne
@@ -45,7 +51,7 @@ public class Product implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "BRAND_ID")
 	private Brand brand;
-	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ProductAttributes> attributes;
 
 	public boolean sameAttribute(Integer keyId, Integer valueId) {
@@ -163,6 +169,23 @@ public class Product implements Serializable {
 
 	public boolean isSameCategory(int categoryId) {
 		return this.category.isSameCategory(categoryId);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }

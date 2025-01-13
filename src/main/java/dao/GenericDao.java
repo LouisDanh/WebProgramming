@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
 public class GenericDao {
+
 	/**
 	 * Lấy tất cả dữ liệu từ bảng tương ứng với class
 	 * 
@@ -22,7 +23,7 @@ public class GenericDao {
 	 */
 	public static <T> List<T> getAll(Class<T> entityName) {
 		List<T> result = new ArrayList<>();
-		try (Session session = HibernateUtil.createSessionWithTimeout(10000)) {
+		try (Session session = HibernateUtil.getSession()) {
 			Query<T> query = session.createQuery("FROM " + entityName.getName(), entityName);
 			result = query.list();
 		} catch (Exception e) {
@@ -48,9 +49,10 @@ public class GenericDao {
 		}
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSession()) {
-			transaction = session.beginTransaction();
-			session.save(data);
-			transaction.commit();
+			transaction = commitOnComplete ? session.beginTransaction() : session.getTransaction();
+			session.update(data);
+			if (commitOnComplete)
+				transaction.commit();
 			return true;
 		} catch (Exception e) {
 			System.err.println("Lỗi: Không thể cập nhật dữ liệu cho class " + data.getClass().getName());
@@ -60,7 +62,6 @@ public class GenericDao {
 		}
 		return false;
 	}
-
 	/**
 	 * Thêm dữ liệu vào bảng
 	 * 
@@ -76,9 +77,10 @@ public class GenericDao {
 		}
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSession()) {
-			transaction = session.beginTransaction();
+			transaction = commitOnComplete ? session.beginTransaction() : session.getTransaction();
 			session.save(data);
-			transaction.commit();
+			if (commitOnComplete)
+				transaction.commit();
 			return true;
 		} catch (Exception e) {
 			System.err.println("Lỗi: Không thể thêm dữ liệu cho class " + data.getClass().getName());
@@ -105,8 +107,8 @@ public class GenericDao {
 	 */
 	public static <T, E> List<T> excuteQueryGetList(Class<E> entityClass, Class<T> returnData, String queryString,
 			Object... data) {
+		Session session = HibernateUtil.getSession();
 		try {
-			Session session = HibernateUtil.createSessionWithTimeout(10000);
 			Query<T> query = session.createQuery(queryString, returnData);
 			for (int i = 0; i < data.length; i++) {
 				if (data[i] != null)
@@ -133,7 +135,7 @@ public class GenericDao {
 	 */
 	public static <T, E> T excuteQueryGetSingle(Class<E> entityClass, Class<T> returnData, String queryString,
 			Object... data) {
-		Session session = HibernateUtil.createSessionWithTimeout(10000);
+		Session session = HibernateUtil.getSession();
 		Query<T> query = session.createQuery(queryString, returnData);
 		for (int i = 0; i < data.length; i++) {
 			if (data[i] != null)
@@ -146,7 +148,5 @@ public class GenericDao {
 			System.err.println("Không có phần tử được trả về");
 			return null;
 		}
-
 	}
-
 }

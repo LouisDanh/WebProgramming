@@ -22,7 +22,6 @@ public class AttributeKeyAdminServlet extends HttpServlet {
 			req.setAttribute("attributeKey", attributeKey);
 		} catch (NumberFormatException e) {
 		}
-
 		List<AttributeKey> attributeKeys = AdminService.getAllAttributeKeys();
 		req.setAttribute("attributeKeys", attributeKeys);
 		req.getRequestDispatcher("/views/admin/attributeKeyView.jsp").forward(req, resp);
@@ -37,6 +36,6 @@ public class AttributeKeyAdminServlet extends HttpServlet {
 		AttributeKey attributeKey = id == -1 ? new AttributeKey() : AdminService.getAttributeKey(id);
 		attributeKey.setName(name);
 		AdminService.saveOrUpdateAttributeKey(attributeKey);
-		resp.sendRedirect("/admin");
+		resp.sendRedirect("/WebMyPham/admin");
 	}
 }

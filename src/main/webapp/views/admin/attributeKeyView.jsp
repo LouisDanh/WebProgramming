@@ -20,8 +20,6 @@
 			method="post" class="mt-4">
 			<input type="hidden" name="id"
 				value="${attributeKey!=null?attributeKey.id:-1}">
-
-
 			<!-- Attribute Key Name -->
 			<div class="mb-3">
 				<label for="name" class="form-label">Attribute Key Name</label> <input
@@ -36,14 +34,7 @@
 					${attributeKey != null ? "Update" : "Add"}</button>
 			</div>
 		</form>
-
-		<!-- Back to List -->
-		<div class="mt-3 text-end">
-			<a href="${pageContext.request.contextPath}/attribute-keys"
-				class="btn btn-secondary">Back to List</a>
-		</div>
 	</div>
-
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

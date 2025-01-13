@@ -17,13 +17,13 @@ public class Orders implements Serializable {
     private Double totalAmount;
 
     // Ánh xạ với bảng ORDER_DETAILS
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_DETAILS_ID")
     private OrderDetails orderDetails;
 
     // Ánh xạ với bảng CUSTOMER
-    @ManyToOne
-    @JoinColumn(name = "CUS_ID") // Sử dụng insertable = false và updatable = false
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CUS_ID")
     private Customer customer;
 
     // Getter và Setter

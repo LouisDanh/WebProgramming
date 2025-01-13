@@ -24,12 +24,13 @@ public class PayServices {
 	 * Luu orders
 	 */
 	public static boolean saveOrders(Orders order) {
-		GenericDao.insert(order.getOrderDetails(), true);
 		return GenericDao.insert(order, true);
 	}
+
 	public static boolean addCartItem(CartItem item) {
 		return GenericDao.insert(item, true);
 	}
+
 	public static void updateCartItem(CartItem cartItem) {
 		GenericDao.update(cartItem, true);
 	}

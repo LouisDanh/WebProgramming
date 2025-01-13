@@ -24,9 +24,8 @@ public class AttributeValueAdminServlet extends HttpServlet {
 		}
 		List<AttributeValue> attributeValues = AdminService.getAllAttributeValues();
 		req.setAttribute("attributeValues", attributeValues);
-		req.getRequestDispatcher("/views/admin/attribute-value.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/admin/attributeValueView.jsp").forward(req, resp);
 	}
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -36,7 +35,7 @@ public class AttributeValueAdminServlet extends HttpServlet {
 		AttributeValue attributeValue = id == -1 ? new AttributeValue() : AdminService.getAttributeValue(id);
 		attributeValue.setValue(value);
 		AdminService.saveOrUpdateAttributeValue(attributeValue);
-		resp.sendRedirect("/admin");
+		resp.sendRedirect("/WebMyPham/admin");
 
 	}
 }
