@@ -41,7 +41,6 @@
 					</c:forEach>
 				</select>
 			</div>
-
 			<button type="submit" class="btn btn-primary w-100">${param.id != null ? "Update" : "Add"}</button>
 		</form>
 	</div>

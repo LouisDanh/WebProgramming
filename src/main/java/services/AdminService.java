@@ -12,6 +12,7 @@ import models.Orders;
 import models.Product;
 import models.ProductAttributes;
 import models.ProductCategory;
+import models.Topic;
 import models.Voucher;
 import utils.QueryUtil;
 
@@ -61,6 +62,10 @@ public class AdminService {
 	}
 	
 
+	public static List<Topic> getAllTopics() {
+		return GenericDao.getAll(Topic.class);
+	}
+
 	public static AttributeKey getAttributeKey(int id) {
 		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
 		String query = QueryUtil.createQuery(AttributeKey.class, QueryUtil.ALL, condition);
@@ -83,6 +88,12 @@ public class AdminService {
 		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
 		String query = QueryUtil.createQuery(Brand.class, QueryUtil.ALL, condition);
 		return GenericDao.excuteQueryGetSingle(Brand.class, Brand.class, query, id);
+	}
+
+	public static Topic getTopic(Integer id) {
+		String condition = QueryUtil.createCondition("id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
+		String query = QueryUtil.createQuery(Topic.class, QueryUtil.ALL, condition);
+		return GenericDao.excuteQueryGetSingle(Topic.class, Topic.class, query, id);
 	}
 
 	public static void saveOrUpdateBrand(Brand brand) {
@@ -119,4 +130,12 @@ public class AdminService {
 		else
 			GenericDao.update(category, true);
 	}
+
+	public static void saveOrUpdateTopic(Topic topic) {
+		if (topic.getId() == null)
+			GenericDao.insert(topic, true);
+		else
+			GenericDao.update(topic, true);
+	}
+
 }

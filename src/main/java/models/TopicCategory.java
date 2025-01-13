@@ -23,6 +23,18 @@ public class TopicCategory {
 	@JoinColumn(name = "TOPIC_ID", nullable = false)
 	private Topic topic;
 
+	public ProductCategory getCategory() {
+		return category;
+	}
+
+	public void setId(TopicCategoryId id) {
+		this.id = id;
+	}
+
+	public void setCategory(ProductCategory category) {
+		this.category = category;
+	}
+
 	public Topic getTopic() {
 		return topic;
 	}

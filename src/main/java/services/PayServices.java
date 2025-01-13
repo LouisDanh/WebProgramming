@@ -43,7 +43,6 @@ public class PayServices {
 	public static List<Orders> getOrders(Integer cusId) {
 		String condition = QueryUtil.createCondition("customer.id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
 		String query = QueryUtil.createQuery(Orders.class, QueryUtil.ALL, condition);
-
 		List<Orders> orders = GenericDao.excuteQueryGetList(Orders.class, Orders.class, query, cusId);
 		return orders;
 	}
@@ -52,7 +51,16 @@ public class PayServices {
 		String condition = QueryUtil.createCondition("customer.id", QueryUtil.EQUALS, 0, QueryUtil.EMPTY);
 		String query = QueryUtil.createQuery(CartItem.class, QueryUtil.ALL, condition);
 		List<CartItem> cartItems = GenericDao.excuteQueryGetList(CartItem.class, CartItem.class, query, cusId);
+		System.out.println(cartItems.size());
 		return cartItems;
+	}
+
+	public static void clearCart(Integer cusId) {
+		List<CartItem> cartItems = getCartItem(cusId);
+		for (CartItem cartItem : cartItems) {
+			GenericDao.delete(cartItem);
+		}
+		
 	}
 
 }

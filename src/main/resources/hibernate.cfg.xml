@@ -1,35 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-	<!-- Kết nối với cơ sở dữ liệu -->
 	<session-factory>
-		<!-- thuộc tính db -->
+		<!-- Basic Hibernate properties -->
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
 		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=BEAUTYSTORE;trustServerCertificate=true;encrypt=true</property>
 		<property name="hibernate.connection.username">minhhien</property>
 		<property name="hibernate.connection.password">minhhien</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
 
-		<!-- cấu hình log sql -->
-		<property name="hibernate.show_sql">false</property>
-		<property name="hibernate.format_sql">false</property>
-		<property name="hibernate.use_sql_comments">false</property>
-
-		<!-- Cấu hình hibernate -->
-		<property name="hibernate.archive.autodetection">update</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.archive.autodetection">class</property>
-		<property name="hibernate.enable_lazy_load_no_trans">true</property>
-		<!-- Cấu hình pooling -->
-		<property name="hibernate.hikari.connection_provider_class">com.zaxxer.hikari.hibernate.HikariConnectionProvider</property>
-		<property name="hibernate.hikari.dataSourceClassName">com.microsoft.sqlserver.jdbc.SQLServerDataSource</property>
-		<property name="hibernate.hikari.maximumPoolSize">20</property>
-		<property name="hibernate.hikari.minimumIdle">5</property>
-		<property name="hibernate.hikari.idleTimeout">30000</property>
-		<property name="hibernate.hikari.poolName">HikariCP</property>
-		<property name="hibernate.hikari.connectionTimeout">30000</property>
-		<property name="hibernate.hikari.maxLifetime">600000</property>
-		<property name="hibernate.hikari.leakDetectionThreshold">20000</property>
+		<!-- C3P0 Connection Pool Configuration -->
+
 		<!-- mapping -->
 		<mapping class="models.Account" />
 		<mapping class="models.BankAccount" />

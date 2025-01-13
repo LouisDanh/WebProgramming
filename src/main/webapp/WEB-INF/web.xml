@@ -8,6 +8,7 @@
 	<welcome-file-list>
 		<welcome-file>views/login/login.jsp</welcome-file>
 	</welcome-file-list>
+
 	<!-- Apache tiles -->
 	<!-- Định nghĩa tiles configuration -->
 	<context-param>
@@ -29,5 +30,20 @@
 		<servlet-name>tilesDispatch</servlet-name>
 		<url-pattern>/tiles/*</url-pattern>
 	</servlet-mapping>
-
+	<filter>
+		<filter-name>setCharacterEncodingFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>setCharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

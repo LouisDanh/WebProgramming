@@ -28,7 +28,6 @@ public class ProfilesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Integer accountId = Integer.parseInt(req.getSession().getAttribute("id").toString());
 		Account account = AccountServices.getAccount(accountId);
-
 		if (account == null) {
 			JSONObject responseJson = new JSONObject();
 			responseJson.put("status", "error");
@@ -41,16 +40,8 @@ public class ProfilesServlet extends HttpServlet {
 
 		Integer cusId = account.getCustomer().getId();
 		List<Orders> orders = PayServices.getOrders(cusId);
-		List<OrderItem> allOrderItems = new ArrayList<>();
-		for (Orders order : orders) {
-			OrderDetails orderDetails = order.getOrderDetails();
-			if (orderDetails != null) {
-				allOrderItems.addAll(orderDetails.getOrderItems());
-			}
-		}
-
 		req.setAttribute("account", account);
-		req.setAttribute("orderItems", allOrderItems);
+		req.setAttribute("orders", orders);
 
 		req.getRequestDispatcher("/views/profile/profile.jsp").forward(req, resp);
 	}
@@ -138,8 +129,8 @@ public class ProfilesServlet extends HttpServlet {
 		}
 
 		// Mã hóa mật khẩu
-        String hashedPassword = AccountUtil.hashPassword(newPassword);
-        account.setPassword(hashedPassword);
+		String hashedPassword = AccountUtil.hashPassword(newPassword);
+		account.setPassword(hashedPassword);
 
 //		account.setPassword(newPassword);
 		return AccountServices.updateAccount(account);

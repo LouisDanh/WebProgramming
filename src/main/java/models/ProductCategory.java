@@ -15,13 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "PRODUCT_CATEGORY")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ProductCategory implements Serializable {
 	private static final long serialVersionUID = 9215015874801278028L;
 	@Id
@@ -39,10 +36,8 @@ public class ProductCategory implements Serializable {
 	private List<Product> products;
 	@ManyToOne
 	@JoinColumn(name = "PARENT_ID")
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private ProductCategory parent;
-	@OneToMany(mappedBy = "parent")
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	@OneToMany(mappedBy = "parent",fetch = FetchType.LAZY)
 	private List<ProductCategory> children;
 
 	public ProductCategory getParent() {

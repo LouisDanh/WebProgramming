@@ -2,11 +2,14 @@ package models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +20,8 @@ import javax.persistence.PostLoad;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "TOPIC")
 public class Topic implements Serializable {
@@ -26,21 +31,39 @@ public class Topic implements Serializable {
 	@Column(name = "ID")
 	private Integer id;
 	@Column(name = "TITLE")
+	@Nationalized
 	private String title;
 	@Column(name = "DESCRIPTION")
+	@Nationalized
 	private String description;
 	@Column(name = "START_DATE")
 	private LocalDateTime startDate;
 	@Column(name = "END_DATE")
 	private LocalDateTime endDate;
-	@OneToMany(mappedBy = "topic")
+	@OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
 	private List<TopicProduct> products;
-	@OneToMany(mappedBy = "topic")
+	@OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
 	private List<TopicCategory> categories;
 	@Transient
 	private Map<TopicCategory, List<TopicProduct>> mappingProduct;
 
-	public int getId() {
+	public Date getStartDate() {
+		return Date.from(startDate.atZone(ZoneId.systemDefault()).toInstant());
+	}
+
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return Date.from(endDate.atZone(ZoneId.systemDefault()).toInstant());
+	}
+
+	public void setEndDate(LocalDateTime endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 

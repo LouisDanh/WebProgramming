@@ -1,6 +1,6 @@
 $("#update-info-form").on("submit", function(event) {
     event.preventDefault();
-
+	var formData = $("#update-info-form").serialize();
     formData += "&action=updateInfo";
 
     $.ajax({
@@ -52,15 +52,6 @@ $("#change-pass-form").on("submit", function(event) {
         }, 2000);
         return; 
     }
-
-    if (newPassword.length < 6) {
-        $("#change-pass-error").text("New password must be at least 6 characters long.").show();
-        setTimeout(function() {
-            $("#change-pass-error").fadeOut();
-        }, 2000);
-        return; 
-    }
-
     var formData = $(this).serialize();
     formData += "&action=changePass";
 

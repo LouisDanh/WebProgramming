@@ -16,6 +16,22 @@ public class TopicCategoryId implements Serializable {
 		return Objects.hash(topicId, categoryId);
 	}
 
+	public Integer getTopicId() {
+		return topicId;
+	}
+
+	public void setTopicId(Integer topicId) {
+		this.topicId = topicId;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

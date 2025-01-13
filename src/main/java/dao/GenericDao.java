@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import models.CartItem;
 import utils.HibernateUtil;
 
 public class GenericDao {
@@ -23,7 +24,8 @@ public class GenericDao {
 	 */
 	public static <T> List<T> getAll(Class<T> entityName) {
 		List<T> result = new ArrayList<>();
-		try (Session session = HibernateUtil.getSession()) {
+		try {
+			Session session = HibernateUtil.getSession();
 			Query<T> query = session.createQuery("FROM " + entityName.getName(), entityName);
 			result = query.list();
 		} catch (Exception e) {
@@ -48,7 +50,8 @@ public class GenericDao {
 			return false;
 		}
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSession()) {
+		try {
+			Session session = HibernateUtil.getSession();
 			transaction = commitOnComplete ? session.beginTransaction() : session.getTransaction();
 			session.update(data);
 			if (commitOnComplete)
@@ -57,11 +60,13 @@ public class GenericDao {
 		} catch (Exception e) {
 			System.err.println("Lỗi: Không thể cập nhật dữ liệu cho class " + data.getClass().getName());
 			e.printStackTrace();
-			if (transaction != null)
+			if (transaction != null && transaction.isActive()) {
 				transaction.rollback();
+			}
 		}
 		return false;
 	}
+
 	/**
 	 * Thêm dữ liệu vào bảng
 	 * 
@@ -76,7 +81,8 @@ public class GenericDao {
 			return false;
 		}
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSession()) {
+		try {
+			Session session = HibernateUtil.getSession();
 			transaction = commitOnComplete ? session.beginTransaction() : session.getTransaction();
 			session.save(data);
 			if (commitOnComplete)
@@ -85,8 +91,9 @@ public class GenericDao {
 		} catch (Exception e) {
 			System.err.println("Lỗi: Không thể thêm dữ liệu cho class " + data.getClass().getName());
 			e.printStackTrace();
-			if (transaction != null)
+			if (transaction != null && transaction.isActive()) {
 				transaction.rollback();
+			}
 
 		}
 		return false;
@@ -145,8 +152,30 @@ public class GenericDao {
 			T result = query.getSingleResult();
 			return result;
 		} catch (NoResultException e) {
-			System.err.println("Không có phần tử được trả về");
 			return null;
 		}
+	}
+
+	public static boolean delete(Object data) {
+		if (data == null) {
+			System.err.println("Dữ liệu không được null khi delete");
+			return false;
+		}
+		Transaction transaction = null;
+		try {
+			Session session = HibernateUtil.getSession();
+			transaction = session.beginTransaction();
+			session.delete(data);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			System.err.println("Lỗi: Không thể xóa dữ liệu cho class " + data.getClass().getName());
+			e.printStackTrace();
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+
+		}
+		return false;
 	}
 }

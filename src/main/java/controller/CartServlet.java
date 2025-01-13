@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Account;
 import models.CartItem;
-import models.OrderDetails;
-import models.Orders;
-import models.Voucher;
 import models.id.CartItemId;
 import services.AccountServices;
 import services.PayServices;
@@ -50,6 +47,7 @@ public class CartServlet extends HttpServlet {
 				cartItem.setQuantity(1);
 				cartItem.setCustomer(account.getCustomer());
 				PayServices.addCartItem(cartItem);
+				cartItems.add(cartItem);
 			}
 		} catch (Exception e) {
 		}

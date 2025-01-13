@@ -27,4 +27,20 @@ public class OrderItemId implements Serializable {
 		OrderItemId other = (OrderItemId) obj;
 		return detailId == other.detailId && productId == other.productId;
 	}
+
+	public Integer getDetailId() {
+		return detailId;
+	}
+
+	public void setDetailId(Integer detailId) {
+		this.detailId = detailId;
+	}
+
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
 }
