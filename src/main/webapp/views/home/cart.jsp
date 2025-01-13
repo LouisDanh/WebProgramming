@@ -47,9 +47,13 @@
 												<div class="cart-item-details d-flex gap-5 p-3">
 													<div class="product-image-wrapper">
 														<!-- Hiển thị ảnh sản phẩm -->
-														<img
-															src="${pageContext.request.contextPath}/resources/static/img/sp3.png"
-															alt="Product Image" class="product-image">
+														<c:forEach items="${cartItem.product.galleries}" var="img">
+															<img
+																src="${pageContext.request.contextPath}${img.link}"
+																alt="${cartItem.product.name}" class="product-image">
+														</c:forEach>
+
+
 													</div>
 													<div
 														class="product-info-wrapper d-flex flex-column justify-content-between h-100">
@@ -133,9 +137,9 @@
 									<form action="/voucher" method="POST">
 										<div class="col-8">
 											<div class="form-floating">
-												<input type="text" id="voucher" name="voucher" class="form-control"
-													value="" placeholder=" " /> <label for="voucher">NHẬP
-													MÃ ƯU ĐÃI</label>
+												<input type="text" id="voucher" name="voucher"
+													class="form-control" value="" placeholder=" " /> <label
+													for="voucher">NHẬP MÃ ƯU ĐÃI</label>
 											</div>
 										</div>
 										<div class="col-4">
@@ -147,7 +151,8 @@
 									<!-- Thẻ div để hiển thị kết quả hợp lệ hay không -->
 									<div id="voucherMessage" class="mt-3" style="display: none;"></div>
 								</div>
-								<button class="collapse-btn btn btn-dark w-100 link"data-href="/WebMyPham/solving" >
+								<button class="collapse-btn btn btn-dark w-100 link"
+									data-href="/WebMyPham/solving">
 									<i class="bi bi-caret-down-fill"></i> Tiến hành thanh toán
 								</button>
 							</div>

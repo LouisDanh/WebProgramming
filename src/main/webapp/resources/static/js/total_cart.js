@@ -26,7 +26,9 @@ $(document).ready(function() {
     };
 
     // Gán sự kiện cho các nút tăng và giảm số lượng sản phẩm
-    $('.cart-items').on('click', '.decrease, .increase', function() {
+    $('.cart-items').off('click', '.decrease, .increase').on('click', '.decrease, .increase', function() {
+        console.log("Click event triggered");
+
         // Lấy sản phẩm đang thay đổi số lượng
         const productItem = $(this).closest('.cart-item');
         // Lấy số lượng hiện tại của sản phẩm
